@@ -1,4 +1,4 @@
-# Historical player-data coverage — initial audit
+# Historical player-data coverage
 
 September 20, 2026. Hitting profiles and pitching quality/depth are approved priorities. **Coverage qualification remains incomplete; no features fitted.** Thresholds and scaling remain open in [statistics triage](Statistics_Discovery_and_Triage.md).
 
@@ -36,7 +36,7 @@ Internal checks compare player sums with provider team totals, including basebal
 
 ## Official-school fallback pilot
 
-The [LSU archive](https://lsusports.net/bbstats/) linked all five historical indexes. Retained indexes list 63, 62, 71, 66 and 68 unique box links for 2021–2025, respectively, equal to baseline LSU game counts. **Equal counts are not game-by-game reconciliation and do not prove every link works.** Retrieved only the earliest listed box per season: all five expose a pitching BF header, HBP notation, pitches/strikes and narrative play-by-play. Those are schema-presence checks, not parsed/validated player counts. No full season of appearances has been certified.
+The [LSU archive](https://lsusports.net/bbstats/) linked all five historical indexes. Retained indexes list 63, 62, 71, 66 and 68 unique box links for 2021–2025, respectively, equal to baseline LSU game counts. **Equal counts are not game-by-game reconciliation and do not prove every link works.** Retrieved only the earliest listed box per season: all five expose a pitching BF header, HBP notation, pitches/strikes and narrative play-by-play. Those are schema-presence checks, not parsed/validated player counts. That initial check did not qualify a full season; the completed two-season audit below now reconciles counts.
 
 These official boxes offer missing pitcher fields, but require school-specific parsing and player identity work. They are one school's sample, not a nationally viable fallback yet. Sources: [2021](https://static.lsusports.net/assets/docs/bb/21stats/lsu220.htm), [2022](https://static.lsusports.net/assets/docs/bb/22stats/lsu218.htm), [2023](https://static.lsusports.net/assets/docs/bb/23stats/lsu217.htm), [2024](https://static.lsusports.net/assets/docs/bb/24stats/lsu216.htm), [2025](https://static.lsusports.net/assets/docs/bb/25stats/lsu214.htm).
 
@@ -44,7 +44,7 @@ These official boxes offer missing pitcher fields, but require school-specific p
 
 The offline `audit_official_season_inventory.py` now reconciles every dated game link in the retained discovery index against baseline identities and scores, rather than comparing counts alone. It rejects unknown identities, duplicate URLs, reused games, ambiguous same-score doubleheaders, malformed rows and wrong seasons. Three explicit source aliases are retained in the script; no fuzzy matching or baseline edits occur.
 
-Of 68 index rows, **67 uniquely match on date, teams and score**. All 55 baseline-eligible regular-only games and all 57 conference-inclusive games match under the existing cutoff contract. These are game-inventory results, not player-data coverage. Only one linked box response is cached in the supplied discovery checkpoint; zero full-season appearance histories are verified. The cached count describes this checkpoint only, not all prior evidence or online availability.
+Of 68 index rows, **67 uniquely match on date, teams and score**. All 55 baseline-eligible regular-only games and all 57 conference-inclusive games match under the existing cutoff contract. These are game-inventory results, not player-data coverage. Only one linked box response is cached in the supplied discovery checkpoint; that checkpoint alone verifies no full-season appearance history. The cached count describes this checkpoint only, not all prior evidence or online availability.
 
 The remaining row is LSU–UCLA, 9–5: the index says June 16; baseline game `wn:2025:51008` says June 17. LSU’s [suspension notice](https://lsusports.net/news/2025/06/16/lsu-ucla-game-suspended-will-resume-at-10-a-m-ct-tuesday) and [completion recap](https://lsusports.net/news/2025/06/17/baseball-defeats-ucla-9-5-to-advance-to-college-world-series-semifinal) explain start versus completion. These were verified through web search, not retained as new raw payloads. The strict inventory join remains blocked for this row; no date is silently replaced. This postseason game does not affect the two pre-NCAA inventory counts. Future workload imports must distinguish the actual day each pitcher worked; assigning the entire box to either date would be unsafe.
 
@@ -67,10 +67,39 @@ School roster links are present for home players, but cross-season/provider IDs 
 
 Ten new synthetic tests cover missing appearances, unknown pitches, zero-out rows, baseball innings, aggregate conflicts, duplicate/unknown teams and names, and legacy HTML blank cells. All 27 prior tests still pass. Offline results repeat byte-for-byte. Reproduction and raw evidence: [DATA.md](DATA.md#official-pitching-comparison-evidence).
 
-## Gate and next work
+## Complete-season appearance pilot: LSU 2025 and Towson 2024
 
-**Do not implement model features from this pilot.** Next reconcile every dated appearance for selected team-seasons, beginning with LSU and a smaller-conference school. Extend these fixed-box parsers only after verifying each new source schema; retain unresolved fields and source conflicts. Expand to conference tournaments, regionals, supers and Omaha as coverage strata only; respect forecast-mode cutoffs when later building inputs. Keep missing games distinct from rested/unused arms, and incomplete player totals distinct from zero performance.
+`audit_season_appearances.py` verifies retained source hashes, dated boxes, team/score identity, player counts and cumulative totals offline. `collect_season_appearances.py` is limited to these two historical seasons, caches responses/failures and makes at most one request per school host. This bounded pilot establishes tested access, **not permission for nationwide bulk collection**. No D1Baseball or 2026 statistics were requested.
 
-Before larger collection, establish permitted automation volume and a viable fallback. ESPN is an undocumented interface; public responses do not establish a feed license. School bulk permission remains unverified. D1Baseball was not requested; its prohibition remains binding. No 2026 stats requested. Do not infer historical publication times from retrieval timestamps. Suspended-game start/completion separation, phase verification and prospective holdout locking remain open under [SPEC](../historical/SPEC.md).
+| Check | LSU 2025 | Towson 2024 (CAA) |
+|---|---:|---:|
+| Official completed-game boxes retrieved and parsed | 68/68 | 54/54 |
+| Strict date/team/score joins to preserved baseline | 67/68 | 54/54 |
+| Pitchers / pitching appearances | 18 / 274 | 21 / 265 |
+| Positive pitch counts / appearances | 273/274 | 238/265 |
+| Zero-out pitching appearances retained | 16 | 6 |
+| Batting leaderboard players / reconciled GP total | 20 / 875 | 17 / 601 |
+| Regular-only eligible games / pitching appearances | 55 / 233 | 54 / 265 |
+| Conference-inclusive eligible games / pitching appearances | 57 / 238 | 54 / 265 |
 
-Reproduction and raw evidence are in [DATA.md](DATA.md#historical-player-coverage-evidence). The baseline was restored solely as a read-only audit reference; no baseline, cutoff, v2, forecast mode or model output was changed.
+Every sampled pitcher's appearance count, outs, H/R/ER/BB/SO/WP/BK/HBP/AB matches the school's [LSU cumulative totals](https://static.lsusports.net/assets/docs/bb/25stats/teamcume.htm) or [Towson cumulative totals](https://towsontigers.com/sports/baseball/stats/2024). Every listed batting player's GP and AB/R/H/RBI/BB/SO also reconciles. This is within-school consistency, not independent certification. Final season totals are **audit targets only**; they include postseason where applicable and are never forecast features.
+
+All 1,149 LSU and 854 Towson batting-table rows remain in the evidence. GP comparison excludes documented pitcher-only zero-batting rows: 274 LSU, 253 Towson. LSU excludes Dalton Beck's three pitcher-only appearances from batting GP; Towson includes Bobby Spencer's pitcher appearances in his batting GP because he also batted. These provider conventions are explicit and tested; unknown fielders are not silently discarded. No fuzzy player matching was needed; names remain scoped to one school-season, not stable cross-provider/transfer identities.
+
+Blank, `--` and zero pitch counts remain unknown with original strings retained. BF is present throughout, but not independently reconciled to a cumulative BF total. Towson's April 14 box has 11 summed pitcher ER versus 9 team ER; these remain distinct, since team-unearned scoring can legitimately produce that difference ([StatCrew explanation](https://www.statcrew.com/sports/m-basebl/statc-m-basebl-body.html)). Individual ER still reconciles against each pitcher's cumulative total. Individual HR allowed, extra-base hitting/HBP/sacrifice inputs, starts/roles and play-by-play completeness remain unqualified. Full core-count reconciliation does not qualify every advanced metric.
+
+The LSU–UCLA June 16–17 box now retains its suspension/resumption note as raw evidence. The strict June 16 source-date versus June 17 baseline-completion mismatch stays visible; no baseline correction or assumed individual appearance date is applied. LSU's April 22 box also notes a same-evening weather delay. Neither affects pre-NCAA game inventory completeness. **All eligible pre-NCAA games have parsed boxes in both forecast modes**, but source dates are not independently certified actual player-work dates or historical publication timestamps. Rest stays `unknown`; no missing appearance or missing pitch count becomes zero workload. No availability rule or model feature was fitted.
+
+Twelve synthetic tests cover omitted HTML closing tags, zero-out/missing-count rows, wrong game identities/dates/scores, missing or duplicate boxes, unknown players, two-way-player conventions and conservative rest status. All 37 prior tests pass. Offline outputs reproduce byte-for-byte, with baseline/input hashes unchanged. Raw responses and audit output are retained in the separate season evidence checkpoint described in [DATA.md](DATA.md#complete-season-appearance-evidence).
+
+## Expansion gate and next work
+
+The next step is a **source registry and another small batch of whole team-seasons spanning different school publishing systems and smaller conferences**, using the same qualification checks. Do not extrapolate two schools' success to every tournament team.
+
+1. Before nationwide collection, establish each provider's permitted automated use/volume or a licensed alternative. Record tested success separately from permission; do not automate D1Baseball under existing restrictions.
+2. Build an explicit school/season source registry: schedule, all box links, cumulative audit totals, parser version, identities and failures. Inventory every completed official game, including non-D1 opponents for workload; baseline modeling exclusions must not erase physical pitching usage. Deduplicate shared opponent boxes and retain canceled/postponed/suspended games separately.
+3. Qualify every team-season with game identity joins and every player's season appearance/count reconciliation, including zero-out appearances and substitutes. Preserve batting-GP conventions, missing pitch counts, ambiguous names and start/completion/appearance dates. Split eligible counts by the existing forecast contracts; audit-only postseason totals never enter pre-NCAA inputs.
+4. At bracket lock, require an explicit coverage row for **every tournament team**, with separate hitting, season pitching-depth and recent-workload flags. No team may silently disappear because its player source failed. Where player detail remains unqualified, use a declared simpler team-level estimate with wider availability uncertainty; never label unknown arms rested. Validate that fallback before production.
+5. Reconcile more schema samples before extending parsers nationally, then implement the approved hitting and pitching-quality/depth features on qualified chronological samples. Keep workload/quality/ace thresholds and scaling open. Simulate usage forward from the single frozen bracket snapshot; live updates and scheduling are unnecessary.
+
+The preserved baseline, cutoff rules, forecast modes and holdout safeguards are unchanged. 2025 remains development; 2026 remains uncertified and unused. No interface or tournament simulator was built.

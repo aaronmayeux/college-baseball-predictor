@@ -106,3 +106,31 @@ python3 scripts/test_official_pitching.py
 ```
 
 The comparison is offline, verifies both source hashes/URLs and game identity, and never writes baseline data or changes original counts. Only these two boxes are supported. Schedules retain discovery provenance; they are not qualified full-season imports. Findings and remaining gaps belong in the [coverage report](Historical_Player_Data_Coverage.md#official-pitching-comparison-two-smaller-conference-sources).
+
+## Complete-season appearance evidence
+
+`College_Baseball_Season_Appearance_Evidence.zip` (about 3.7 MB) contains the 126 required source responses (two indexes, two cumulative audit targets and 122 boxes), their URL/UTC-retrieval/SHA-256 metadata, and the derived audit. Reused bytes come from the supplied prior checkpoints; new responses cover LSU 2025 and Towson 2024 only. SHA-256:
+
+```text
+4f481828e3d7d16d47ccd5d46c1e1d7735dfd9ca3f3ad1cc8996a061b70ded71
+```
+
+Restore the original baseline, verify this hash, then extract to a fresh directory:
+
+```sh
+sha256sum /absolute/path/to/College_Baseball_Season_Appearance_Evidence.zip
+python3 -m zipfile -e /absolute/path/to/College_Baseball_Season_Appearance_Evidence.zip /tmp/baseball-season-appearances
+python3 scripts/audit_season_appearances.py --raw-dir /tmp/baseball-season-appearances/raw --output /tmp/season-appearance-rerun.json
+cmp /tmp/season-appearance-rerun.json /tmp/baseball-season-appearances/audit.json
+python3 scripts/test_season_appearances.py
+```
+
+The audit is offline and never modifies baseline/model inputs. Full season totals only reconcile counts. Inspect per-game issues, `season_counts_reconciled`, per-mode box coverage and the separate timing/rest flags; a completed command does not certify workload availability. [Coverage report](Historical_Player_Data_Coverage.md#complete-season-appearance-pilot-lsu-2025-and-towson-2024) owns results, provider-specific GP conventions and expansion gates.
+
+The optional bounded collector can reproduce access attempts into a new evidence directory, reusing the three earlier extracted raw directories:
+
+```sh
+python3 scripts/collect_season_appearances.py --evidence-dir /tmp/new-season-pilot --source-raw-dirs /tmp/baseball-statistics-discovery/raw /tmp/baseball-player-coverage/raw /tmp/baseball-official-pitching/raw
+```
+
+Fresh downloads are a different snapshot and may change. The collector is hard-limited to these two inventories, caches failures without automatic retries, and never requests 2026. This is not a nationwide importer or a grant of bulk-source permission. Keep all raw and game/player-level outputs outside Git.

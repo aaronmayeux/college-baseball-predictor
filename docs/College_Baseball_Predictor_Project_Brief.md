@@ -1,6 +1,6 @@
 # College Baseball Predictor — Project Brief
 
-Current state as of September 20, 2026. Git history preserves earlier revisions.
+Current state: September 20, 2026.
 
 ## Purpose and current status
 
@@ -16,7 +16,7 @@ The preserved baseline and separate v2 evidence checkpoints are documented in DA
 
 ## Working references
 
-GitHub `main` is authoritative. `AGENTS.md` owns working rules; `historical/SPEC.md` owns evaluation rules. Edit this brief in place.
+GitHub `main` is authoritative. `AGENTS.md` owns working rules; `historical/SPEC.md` owns evaluation rules.
 
 - [Data restoration](DATA.md): restore the separately retained `College_Baseball_Historical_Baseline_Bundle.zip` with repository code. Ask for the ZIP if unavailable.
 - [Historical coverage and Elo report](College_Baseball_Historical_Coverage_and_Elo_Report.md): detailed evidence, results and exclusions.
@@ -41,7 +41,7 @@ A mobile-friendly web app with an on-demand pre-tournament data import, one comp
 
 The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Aaron approved prioritizing hitting profiles and pitching quality/depth. Individual features, quality-arm/ace thresholds and scaling are not selected or fitted.
 
-The [historical player audit](Historical_Player_Data_Coverage.md) found rows in 9/36 ESPN samples. Official Towson/Missouri State boxes now explain a missing Arkansas pitcher and a Towson innings-total error; 18 official appearances have BF/HBP, but pitch counts are uneven. LSU’s 2025 pre-NCAA game inventory matches; full-season player histories remain unqualified. Other feature families await review.
+The [historical player audit](Historical_Player_Data_Coverage.md) now reconciles full-season core player counts for LSU 2025 (68 boxes, 274 pitching appearances) and Towson 2024 (54 boxes, 265 pitching appearances). Both have complete pre-NCAA box coverage under both forecast modes. Missing pitch counts, LSU's suspended postseason game, player-date/identity qualification and nationwide source coverage still limit workload modeling. School season totals are audit targets only, not forecast inputs.
 
 Carry these product requirements forward:
 
@@ -68,7 +68,7 @@ Retain the hypotheses of home/park effects, power sensitivity, opponent-specific
 | FanGraphs college leaderboards | Advanced-stat comparisons and possible inputs | Export access, historical coverage, definitions, and usage terms |
 | Commercial provider if needed | More consistent coverage | Verify sample coverage and terms before considering cost |
 
-Fresh discovery probes reproduced populated and empty ESPN boxes; retained evidence is separate from the earlier lost probes. National player-data coverage remains unverified. baseballr is an access tool, not an independent source. MLB-derived metrics such as SIERA require college-specific validation.
+National player-data coverage remains unverified. baseballr is an access tool, not an independent source. MLB-derived metrics require college-specific validation.
 
 Every normalized record should retain provider, provider ID, stable internal team/player ID where available, season, game timestamp, venue, retrieval timestamp, and raw-record reference. Handle missing data explicitly. Cache responses, avoid duplicate games, validate baseball innings notation, and make reruns safe. A reliable on-demand command supports the primary one-run workflow. Scheduled refresh is out of the primary scope; no scheduler has been configured.
 
@@ -116,7 +116,7 @@ Recheck access and applicable-year rules before production use.
 
 Use current repository code and [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
-Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next reconcile full sampled team-season appearances before feature fitting. Broader independent phase checks and prospective holdout locking remain outstanding. Preserve the separate daily-mode contract as deferred research, not a prerequisite for the one-run product. Actual appearance dates still matter when reconstructing pitching workload at bracket lock.
+Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next expand the source registry and whole-season qualification to a small batch of additional publishing systems and smaller conferences before feature fitting. Every eventual tournament team needs explicit coverage/fallback status. Broader independent phase checks and prospective holdout locking remain outstanding. Preserve the separate daily-mode contract as deferred research, not a prerequisite for the one-run product. Actual appearance dates still matter when reconstructing pitching workload at bracket lock.
 
 ## Open decisions
 
