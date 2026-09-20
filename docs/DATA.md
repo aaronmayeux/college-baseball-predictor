@@ -87,3 +87,22 @@ python3 scripts/test_player_coverage.py
 ```
 
 The ESPN audit records hashes of its ten preserved baseline roster/game inputs. Both audits are offline by default. The optional `--collect` flag is a bounded ESPN pilot, not a bulk importer or permission grant; cached failures are retained and never retried automatically. Official-source audit consumes retained bytes, including gzip-compressed responses. No full-season player import, feature fitting or baseline writes occur. [Coverage report](Historical_Player_Data_Coverage.md) owns findings and limitations.
+
+## Official pitching comparison evidence
+
+`College_Baseball_Official_Pitching_Evidence.zip` contains four new school responses with URL/retrieval-time/SHA-256 metadata and the derived comparison report. It supplements the original player-coverage checkpoint; neither archive replaces the other. SHA-256:
+
+```text
+1e071c3d118921b9adbc5efc875eb2ad469bc41e7c9201003dd9a6fad7c48590
+```
+
+Verify the hash, extract into a fresh temporary directory, and use current repository code:
+
+```sh
+sha256sum /absolute/path/to/College_Baseball_Official_Pitching_Evidence.zip
+python3 -m zipfile -e /absolute/path/to/College_Baseball_Official_Pitching_Evidence.zip /tmp/baseball-official-pitching
+python3 scripts/audit_official_pitching.py --official-raw-dir /tmp/baseball-official-pitching/raw --espn-raw-dir /tmp/baseball-player-coverage/raw
+python3 scripts/test_official_pitching.py
+```
+
+The comparison is offline, verifies both source hashes/URLs and game identity, and never writes baseline data or changes original counts. Only these two boxes are supported. Schedules retain discovery provenance; they are not qualified full-season imports. Findings and remaining gaps belong in the [coverage report](Historical_Player_Data_Coverage.md#official-pitching-comparison-two-smaller-conference-sources).
