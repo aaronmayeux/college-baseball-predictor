@@ -1,28 +1,17 @@
-# Session log
+# Current handoff
 
-## September 20, 2026 — Public repository setup
+Updated September 20, 2026. Replace this summary as work advances; use Git history for prior sessions.
 
-Repository: https://github.com/aaronmayeux/college-baseball-predictor
+## Latest change
 
-### Changes
+Established the standing documentation rule in `AGENTS.md`: current state, concise working files, no accumulating decision diary. Consolidated the brief, removed obsolete setup instructions and repeated historical checkpoints, and retained the requested radar chart in the product requirements.
 
-Imported the current historical pipeline and six chronology tests from the supplied baseline ZIP. Added the README, project instructions, current brief, specification, audit reports, data-restoration instructions and a checksum-verified restoration command. Added Git exclusions for raw evidence, databases, generated data and original workbooks. Added a GitHub Actions workflow for offline tests. The cached pipeline gives a clear restoration instruction when data is missing.
+## Verification
 
-Public files contain code, configuration and project-authored documentation. The evidence bundle remains separate. Legacy 2025 scripts, including its historical D1Baseball probe, are not included. No model parameters or prediction rules changed.
+This change only edits documentation. Reviewed the diff for preserved constraints, active requirements and correct repository paths. Code, data, audit reports and model behavior are unchanged; runtime tests were not rerun.
 
-### Verification
+Last runtime verification (repository setup): all six offline tests passed, 3,212 data files restored, and the full cached pipeline passed SQLite integrity/foreign-key checks. Predictions, metrics and eligibility matched the saved bundle byte-for-byte. These are prior verified results, not new test runs.
 
-- All six offline chronology tests passed in the repository.
-- Restored 3,212 data files from the pinned ZIP without replacing code or documents.
-- Full cached pipeline completed; SQLite contains 40,615 games and passed its integrity/foreign-key checks.
-- Predictions, baseline metrics and cutoff eligibility reproduced the audited ZIP byte-for-byte.
-- Reviewed the staged file list: no raw responses, databases, game-level exports, workbooks or archives are tracked; checked for common credential/private-key patterns.
+## Next action and blockers
 
-### Limits and next step
-
-Data is not publicly redistributed; full reproduction requires the existing bundle from the project owner. No license has been selected. The current baseline remains retrospective, 2025 remains development, and 2026 is not certified untouched. Next: resolve the two 2023 date conflicts, broaden independent date/phase checks and add a seed benchmark. No interface work.
-
-
-## September 20, 2026 — Spreadsheet-style graphs requested
-
-Recorded Aaron’s request for graphs in the future app. Inspected the original DYNAMIC workbook chart XML: MATCHUPS uses a two-series radar chart with contact, power, speed, pitching and defense axes. Added the requirement to the brief. Original spreadsheets, code, data and model are unchanged. Verification was limited to the source chart definition and documentation diff; no runtime tests were needed. Next data/model work remains the two timing conflicts, broader independent checks and a cutoff-safe seed benchmark. Interface implementation remains deferred.
+Resolve the two excluded 2023 timing conflicts, broaden independent date/phase checks, then add a cutoff-safe seed benchmark. Follow the brief and specification for evaluation constraints. Full reproduction requires the separately retained data bundle; see `DATA.md`. No interface work yet.
