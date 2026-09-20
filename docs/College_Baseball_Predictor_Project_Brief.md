@@ -12,7 +12,7 @@ A fixed chronological neutral Elo baseline has been implemented and evaluated. F
 
 Exact pre-NCAA cutoffs are now recorded: Wednesday 12:00 UTC before regionals, with a two-calendar-day assumed availability delay for date-only results. Regular-only and conference-inclusive inputs are separate. Point-in-time publication/completion is not certified. 2026 cannot be called untouched because prior ESPN probes and a wrong-season official response exposed outcomes; it was not used for model fitting or evaluation.
 
-The current reproducible handoff is College_Baseball_Historical_Baseline_Bundle.zip, containing Python standard-library scripts, raw evidence, provenance, corrections, cutoff eligibility, tests, predictions and a combined SQLite database. The dedicated public repository is https://github.com/aaronmayeux/college-baseball-predictor. No tournament simulator, interface, hosting, scheduled refresh or paid feed exists. A separate v2 extension resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. Next: handle suspended games safely in daily forecasts and lock a future holdout protocol.
+The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. No tournament simulator, interface, hosting, scheduled refresh or paid feed exists. Next: broad statistics discovery and joint triage before feature implementation.
 
 ## Working references
 
@@ -37,6 +37,12 @@ A mobile-friendly web app with automated data refresh, tournament brackets, game
 5. Benchmark a simple model before adding proposed differentiators.
 6. Treat novelty as a research objective, not a reason to keep a feature that fails validation.
 
+## Statistics discovery and joint triage
+
+Before adding statistical features, inventory available college baseball statistics broadly; Aaron's spreadsheets are a starting point, not an exhaustive list. Cover team/player hitting, plate discipline, power/contact, baserunning/HAVOC, pitching/usage, defense/catching, opponent strength, parks and situational splits, including derivable and advanced measures.
+
+For each candidate, record its definition, potential predictive value, overlap with other metrics, source, tested versus advertised access, historical/team coverage, pre-cutoff availability, reliability, automation permissions/cost and implementation effort. Distinguish unavailable data from unexplored sources. Propose **test now / research further / defer / skip**, with plain-English reasons and a prioritized shortlist. Review the triage with Aaron before implementing selected features; predictive benefit must still be tested against the preserved baseline. Do not claim universal exhaustiveness without documented search scope and gaps.
+
 ## Spreadsheet cautions and research hypotheses
 
 The inherited spreadsheet audit found postseason-contaminated inputs, uncertain source attribution, inconsistent weight alignment, cached errors, flawed defensive/HAVOC formulas and incorrect series logic. Reinspect originals before reusing individual formulas. ISR is a candidate only if historical cutoff-safe coverage is established. Existing weights and style thresholds are not validated.
@@ -60,7 +66,7 @@ Test these ideas only after assessing coverage; retain features for measured pre
 | FanGraphs college leaderboards | Advanced-stat comparisons and possible inputs | Export access, historical coverage, definitions, and usage terms |
 | Commercial provider if needed | More consistent coverage | Verify sample coverage and terms before considering cost |
 
-The earlier research successfully inspected individual ESPN examples with pitch counts and play-by-play, but other sampled games lacked box scores. This was a feasibility probe, not a completed coverage study. Those original raw files were lost; these player-data findings are inherited, not freshly reproduced by the 2025 results audit. The baseballr package documents NCAA/ESPN access functions but is an access tool, not an independent source of truth. MLB-derived metrics such as SIERA require validation before assuming equivalent college performance.
+Inherited ESPN probes found some pitch counts/play-by-play and some missing box scores; original raw files were lost. Player-data coverage remains unverified. baseballr is an access tool, not an independent source. MLB-derived metrics such as SIERA require college-specific validation.
 
 Every normalized record should retain provider, provider ID, stable internal team/player ID where available, season, game timestamp, venue, retrieval timestamp, and raw-record reference. Handle missing data explicitly. Cache responses, avoid duplicate games, validate baseball innings notation, and make reruns safe. Scheduled refresh comes after a reliable manual command; no scheduler has been configured.
 
@@ -71,11 +77,12 @@ Every normalized record should retain provider, provider ID, stable internal tea
 | 1. Coverage audit | Representative season/date/team coverage table and selected sources | Results, box scores, player data, and play-by-play availability are quantified separately; fallbacks and access limits documented |
 | 2. Data pipeline | Repeatable import command, raw cache, normalized database, cutoff-aware features | A representative regular-season dataset loads without manual stat copying; reruns do not duplicate records; key totals reconcile |
 | 3. Baseline | Simple game model, such as regularized logistic regression or Elo | Evaluated chronologically against simple benchmarks; probabilities and limitations reported |
+| 3a. Statistics discovery and triage | Broad candidate inventory and prioritized shortlist | Follow the statistics discovery contract above; Aaron and assistant review priorities before feature implementation |
 | 4. Tournament engine | Regionals, supers, Omaha groups, final series | Reset games, series stopping rules, advancement, and shared simulation state behave correctly; probabilities reconcile |
 | 5. Added features | Measured home/park effects, power/HAVOC, then pitching availability | Each addition is compared with the baseline on unseen seasons and retained only with a justified benefit |
 | 6. Interface and refresh | Mobile-friendly bracket, explanations, exports, refresh status | Real predictions trace to model/data versions and timestamps; missing data and uncertainty are visible |
 
-Python standard-library scripts and SQLite implement the reversible 2021–2025 research pilot. Results coverage, reconstructed cutoff eligibility and a fixed Elo comparator are implemented; broader independent coverage, exact historical completion/publication times, player data and advancement evaluation remain incomplete. A fixed seed benchmark now covers 2022–2025 in a separate evaluation. Milestones 1–3 are therefore partial at the wider project level. Milestones 4–6 have not started. The dedicated public GitHub repository is established; no deployment destination is selected.
+Python and SQLite implement the results pipeline, cutoff reconstruction, Elo and separate seed benchmark. Milestones 1–3 remain partial: broader coverage, exact timing, player data and advancement evaluation are incomplete. Statistics triage and milestones 4–6 have not started. Hosting remains undecided.
 
 ## Evaluation rules
 
@@ -107,7 +114,7 @@ These links were used in the prior research. Recheck current access, coverage, a
 
 Use repository code, `historical/SPEC.md` and [DATA.md](DATA.md); the cached pipeline entry point is `python3 historical/run.py`. Do not run older bundled scripts over the current handoff.
 
-The requested timing resolutions, expanded checks and seed benchmark are complete in `historical/validation_v2/`; the original baseline remains unchanged. See the v2 report for evidence and results, and DATA.md for the separate add-on checkpoint. Next implement start/completion separation for daily suspended-game forecasts, broaden independent phase checks, and reserve a future holdout after locking the protocol.
+Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next perform statistics discovery and joint triage. Start/completion separation for daily forecasts, broader independent phase checks and prospective holdout locking remain outstanding; none should be silently dropped.
 
 ## Open decisions
 
@@ -116,5 +123,3 @@ The requested timing resolutions, expanded checks and seed benchmark are complet
 - A future prospectively reserved holdout; 2026 is not certified untouched. Current exact cutoffs and regular-only/conference-inclusive rules are settled in cutoffs.json.
 - Whether a paid source becomes necessary after testing free coverage.
 - Bracket scoring system if optimizing a contest entry rather than simply reporting the most likely outcomes.
-
-Current fixed-parameter results use recorded date-based eligibility. Broader exact-time and independent national verification remain limitations; no precise historical publication-time claim is made.

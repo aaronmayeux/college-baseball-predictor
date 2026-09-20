@@ -44,7 +44,7 @@ The restore command verifies the pinned bundle checksum, restores data without r
 
 ## Next work
 
-Separate suspended-game start and completion events for daily forecasts, broaden independent phase coverage, and lock a prospective holdout protocol. Preserve the fixed baseline before tuning or adding richer features.
+Begin broad statistics discovery and joint triage with Aaron, beyond the original spreadsheets, following the project brief. Preserve the baseline; daily suspended-game handling, broader phase checks and a prospective holdout protocol remain outstanding.
 
 ## Source boundaries
 
