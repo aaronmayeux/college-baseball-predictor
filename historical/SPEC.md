@@ -11,6 +11,7 @@ Extends the recovered 2025 audit. Read `docs/College_Baseball_Predictor_Project_
 - School name changes require explicit aliases with evidence. Do not fuzzy-merge institutions.
 
 ## Forecast contract
+- Primary product: one frozen pre-NCAA run produces the entire tournament bracket. Optional late-season conference matchups are secondary. Daily-updated evaluation remains a separate, deferred research mode; live updates and recurring refresh are not required for the primary product. Tournament workloads are simulated forward from bracket lock.
 - Separate regular-season-only and conference-inclusive pre-NCAA strength.
 - A recorded exact cutoff plus a strict date eligibility rule is required. Historical date-only results are reconstructed evidence, not point-in-time certified snapshots.
 - Missing dates, score conflicts, non-D1 games, unscored results and unresolved phases must be excluded or block evaluation, with reasons retained.

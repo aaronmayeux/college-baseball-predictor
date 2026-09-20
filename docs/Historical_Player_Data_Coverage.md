@@ -40,6 +40,16 @@ The [LSU archive](https://lsusports.net/bbstats/) linked all five historical ind
 
 These official boxes offer missing pitcher fields, but require school-specific parsing and player identity work. They are one school's sample, not a nationally viable fallback yet. Sources: [2021](https://static.lsusports.net/assets/docs/bb/21stats/lsu220.htm), [2022](https://static.lsusports.net/assets/docs/bb/22stats/lsu218.htm), [2023](https://static.lsusports.net/assets/docs/bb/23stats/lsu217.htm), [2024](https://static.lsusports.net/assets/docs/bb/24stats/lsu216.htm), [2025](https://static.lsusports.net/assets/docs/bb/25stats/lsu214.htm).
 
+## Full-season inventory gate: LSU 2025
+
+The offline `audit_official_season_inventory.py` now reconciles every dated game link in the retained discovery index against baseline identities and scores, rather than comparing counts alone. It rejects unknown identities, duplicate URLs, reused games, ambiguous same-score doubleheaders, malformed rows and wrong seasons. Three explicit source aliases are retained in the script; no fuzzy matching or baseline edits occur.
+
+Of 68 index rows, **67 uniquely match on date, teams and score**. All 55 baseline-eligible regular-only games and all 57 conference-inclusive games match under the existing cutoff contract. These are game-inventory results, not player-data coverage. Only one linked box response is cached in the supplied discovery checkpoint; zero full-season appearance histories are verified. The cached count describes this checkpoint only, not all prior evidence or online availability.
+
+The remaining row is LSU–UCLA, 9–5: the index says June 16; baseline game `wn:2025:51008` says June 17. LSU’s [suspension notice](https://lsusports.net/news/2025/06/16/lsu-ucla-game-suspended-will-resume-at-10-a-m-ct-tuesday) and [completion recap](https://lsusports.net/news/2025/06/17/baseball-defeats-ucla-9-5-to-advance-to-college-world-series-semifinal) explain start versus completion. These were verified through web search, not retained as new raw payloads. The strict inventory join remains blocked for this row; no date is silently replaced. This postseason game does not affect the two pre-NCAA inventory counts. Future workload imports must distinguish the actual day each pitcher worked; assigning the entire box to either date would be unsafe.
+
+Eight new synthetic tests cover matching and failure cases; all 19 existing baseline, v2 and player-audit tests pass. The new audit reproduces offline from the baseline and discovery checkpoints already documented in DATA.md. No new evidence archive is needed. Smaller-conference boxes, the two ESPN inconsistencies and complete appearance reconciliation remain pending.
+
 ## Gate and next work
 
 **Do not implement model features from this pilot.** Next qualify official boxes for a smaller-conference school alongside LSU, reconcile every dated appearance for selected team-seasons, and resolve the two ESPN disagreements against official boxes. Expand to conference tournaments, regionals, supers and Omaha as coverage strata only; respect forecast-mode cutoffs when later building inputs. Keep missing games distinct from rested/unused arms, and incomplete player totals distinct from zero performance.

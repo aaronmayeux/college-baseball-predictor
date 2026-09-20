@@ -59,6 +59,15 @@ python3 -m zipfile -e /absolute/path/to/College_Baseball_Statistics_Discovery_Ev
 python3 scripts/audit_statistics_sources.py --raw-dir /tmp/baseball-statistics-discovery/raw
 ```
 
+After restoring the baseline, the same discovery checkpoint also supports the full LSU 2025 game-link inventory check:
+
+```sh
+python3 scripts/audit_official_season_inventory.py --raw-dir /tmp/baseball-statistics-discovery/raw
+python3 scripts/test_official_season_inventory.py
+```
+
+This prints a reproducible per-game report with source/input hashes, strict join failures, cached-box presence and separate forecast-mode counts. It does not download boxes or certify appearances. A false `inventory_pass` is a reported coverage finding, not a script crash; callers must inspect it. Findings are in the [player coverage report](Historical_Player_Data_Coverage.md#full-season-inventory-gate-lsu-2025).
+
 The offline audit verifies hashes and the fixed sample's event seasons, pitcher counts, pitch counts and outs. It never fetches data or modifies model inputs. These selected examples cannot estimate national coverage. Keep raw evidence private and outside Git, as with the earlier checkpoints.
 
 ## Historical player coverage evidence
