@@ -41,7 +41,7 @@ A mobile-friendly web app with an on-demand pre-tournament data import, one comp
 
 The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Aaron approved prioritizing hitting profiles and pitching quality/depth. Individual features, quality-arm/ace thresholds and scaling are not selected or fitted.
 
-The [historical player audit](Historical_Player_Data_Coverage.md) now reconciles full-season core player counts for LSU 2025 (68 boxes, 274 pitching appearances) and Towson 2024 (54 boxes, 265 pitching appearances). Both have complete pre-NCAA box coverage under both forecast modes. Missing pitch counts, LSU's suspended postseason game, player-date/identity qualification and nationwide source coverage still limit workload modeling. School season totals are audit targets only, not forecast inputs.
+The [historical player audit](Historical_Player_Data_Coverage.md) now covers four complete sampled team-seasons: LSU 2025, Towson 2024, Davidson 2024 and Missouri State 2022. All pitching counts reconcile; specific batting/date exceptions remain flagged. A source registry and shared parser support expansion. Missing pitch counts, actual-work dates and nationwide coverage still limit workload modeling. Final season totals remain audit targets only.
 
 Carry these product requirements forward:
 
@@ -116,7 +116,7 @@ Recheck access and applicable-year rules before production use.
 
 Use current repository code and [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
-Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next expand the source registry and whole-season qualification to a small batch of additional publishing systems and smaller conferences before feature fitting. Every eventual tournament team needs explicit coverage/fallback status. Broader independent phase checks and prospective holdout locking remain outstanding. Preserve the separate daily-mode contract as deferred research, not a prerequisite for the one-run product. Actual appearance dates still matter when reconstructing pitching workload at bracket lock.
+Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next resolve the new audit exceptions and map source availability for the entire 2025 development tournament field before feature fitting. Every eventual tournament team needs explicit coverage/fallback status. Broader independent phase checks and prospective holdout locking remain outstanding. Preserve the separate daily-mode contract as deferred research, not a prerequisite for the one-run product. Actual appearance dates still matter when reconstructing pitching workload at bracket lock.
 
 ## Open decisions
 

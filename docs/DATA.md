@@ -134,3 +134,27 @@ python3 scripts/collect_season_appearances.py --evidence-dir /tmp/new-season-pil
 ```
 
 Fresh downloads are a different snapshot and may change. The collector is hard-limited to these two inventories, caches failures without automatic retries, and never requests 2026. This is not a nationwide importer or a grant of bulk-source permission. Keep all raw and game/player-level outputs outside Git.
+
+## Structured-source expansion evidence
+
+`College_Baseball_Source_Expansion_Evidence.zip` (about 12.1 MB) retains 117 responses with URL/UTC-retrieval/SHA-256 metadata: two schedules, two cumulative pages, 112 season boxes, and the excluded Missouri State–Drury fall exhibition box. It also contains the complete derived audit. It supplements the earlier checkpoints; no raw/player/game exports belong in Git.
+
+SHA-256:
+
+```text
+33fb20a46b46c81cc372865aa28baec8e51701b89d72b9803c2bcf3ae7973a6f
+```
+
+Restore the original baseline, verify this hash, then extract into a fresh directory and use current repository code:
+
+```sh
+sha256sum /absolute/path/to/College_Baseball_Source_Expansion_Evidence.zip
+python3 -m zipfile -e /absolute/path/to/College_Baseball_Source_Expansion_Evidence.zip /tmp/baseball-source-expansion
+python3 scripts/audit_player_source_expansion.py --raw-dir /tmp/baseball-source-expansion/raw --output /tmp/source-expansion-rerun.json
+cmp /tmp/source-expansion-rerun.json /tmp/baseball-source-expansion/audit.json
+python3 scripts/test_player_source_expansion.py
+```
+
+The audit verifies hashes, historical payload paths, season labels, game identities, participation flags and mapped player counts. Inspect `comparisons`, per-game `issues`, and mode-specific completeness: Davidson's batting-list omission and Missouri State's May 24/25 date conflict remain explicit failures, not automatic corrections. Cumulative season values are audit targets only. [Coverage report](Historical_Player_Data_Coverage.md#structured-source-expansion-davidson-2024-and-missouri-state-2022) owns detailed findings.
+
+`historical/player_sources.json` is source configuration, not raw data. Its four entries retain original season/conference identity and parser families. The optional `python3 scripts/collect_player_source_expansion.py --evidence-dir /tmp/new-source-expansion` command collects only the two reviewed embedded-SIDEARM entries, one request per host, caching failures without automatic retries. A fresh collection is a new snapshot; it does not establish bulk permission. The prior LSU/Towson collector and checkpoint remain separate and reproducible.

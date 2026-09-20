@@ -92,9 +92,36 @@ The LSU–UCLA June 16–17 box now retains its suspension/resumption note as ra
 
 Twelve synthetic tests cover omitted HTML closing tags, zero-out/missing-count rows, wrong game identities/dates/scores, missing or duplicate boxes, unknown players, two-way-player conventions and conservative rest status. All 37 prior tests pass. Offline outputs reproduce byte-for-byte, with baseline/input hashes unchanged. Raw responses and audit output are retained in the separate season evidence checkpoint described in [DATA.md](DATA.md#complete-season-appearance-evidence).
 
+## Structured-source expansion: Davidson 2024 and Missouri State 2022
+
+The machine-readable [source registry](../historical/player_sources.json) now records four school-seasons, covering the prior StatCrew/legacy SIDEARM pages and two newer SIDEARM pages with embedded Nuxt data. One new adapter reads both new schools without running page JavaScript. The registry records historical conferences, source URLs, parser family, expected inventory, explicit spelling aliases and unverified bulk permission. Its entries describe bounded pilots, not national coverage.
+
+| Check | Davidson 2024 (Atlantic 10) | Missouri State 2022 (Missouri Valley) |
+|---|---:|---:|
+| Completed season boxes retrieved / parsed | 52/52 | 60/60 |
+| Strict baseline date/team/score joins | 52/52 | 59/60 |
+| Pitchers / reconciled pitching appearances | 18 / 212 | 13 / 223 |
+| Positive pitch counts / appearances | 194/212 | 72/223 |
+| Zero-out pitching appearances retained | 15 | 2 |
+| Unused roster rows excluded from appearances | 1,271 | 1,053 |
+| Regular-only eligible games verified / expected | 52/52 | 51/51 |
+| Conference-inclusive eligible games verified / expected | 52/52 | 56/57 |
+
+All pitching appearance counts and 16 mapped counts reconcile per player, including outs, H/R/ER/BB/SO, HBP, HR allowed, doubles/triples allowed, sacrifice counts and explicitly reported starts. These are count/schema checks, not validated quality or availability features. Player names and nonempty roster IDs agree within these sampled seasons; cross-season, transfer and cross-provider stability remain unqualified.
+
+All 14 mapped batting counts plus GP match for the 19 listed Davidson and 16 listed Missouri State batting players. The adapter retains **an additional Davidson player appearance**: Jake Dunagan pinch-ran/played center field at Duke on February 27 with zero batting counts, but is absent from the cumulative batting list. It is not treated as a pitcher-only row or discarded; Davidson batting completeness stays false. Missouri State's listed batting GP sums to 644; Davidson's listed GP sums to 564 plus that one unresolved appearance. Original player rows, positions and source IDs remain in the checkpoint.
+
+The Missouri State 2022 schedule includes a September 23, 2021 Drury exhibition with a misleading `/stats/2022/` box URL. The fetched box confirms the 2021 date; it is retained as excluded evidence, outside 2022 season totals and forecasts. Two no-result/canceled entries per school are also excluded with source labels preserved. Embedded unused roster entries have `gamePlayed=0`; their presence never counts as an appearance.
+
+Missouri State–Illinois State, 9–4, is dated May 24, 2022 in the schedule, cumulative game list and box; baseline `wn:2022:40418` says May 25. This is a newly identified **unresolved date conflict**, not a demonstrated suspension. The baseline is unchanged, and the unmatched game blocks complete conference-inclusive qualification. Its player counts remain in season-total reconciliation with a null baseline game ID. Regular-only coverage is unaffected. Independent timing verification is needed before adding a versioned correction.
+
+`player_coverage_ledger.py` creates one status row per requested team and keeps unregistered teams visible. It separates batting/pitching reconciliation from unknown recent workload and requires a validated fallback; it does not implement predictions or claim an available fallback model. Mixed seasons, missing data and forecast-mode differences cannot silently promote a team to qualified. Rest remains unknown throughout.
+
+Eleven new synthetic tests plus all 49 existing tests pass. Both the new audit and prior LSU/Towson audit reproduce their saved output byte-for-byte; baseline inputs remain unchanged. New evidence: [DATA.md](DATA.md#structured-source-expansion-evidence). Source season totals are audit targets only; no feature fitting, thresholds, scaling, interface or 2026 statistics collection was added.
+
 ## Expansion gate and next work
 
-The next step is a **source registry and another small batch of whole team-seasons spanning different school publishing systems and smaller conferences**, using the same qualification checks. Do not extrapolate two schools' success to every tournament team.
+The next step is to resolve the new timing/batting exceptions and map source availability for the complete 2025 development tournament field. The four-school registry and shared adapter establish a repeatable process, not full-field coverage. Establish permissions before scaling collection, then qualify each additional team-season and any fallback.
 
 1. Before nationwide collection, establish each provider's permitted automated use/volume or a licensed alternative. Record tested success separately from permission; do not automate D1Baseball under existing restrictions.
 2. Build an explicit school/season source registry: schedule, all box links, cumulative audit totals, parser version, identities and failures. Inventory every completed official game, including non-D1 opponents for workload; baseline modeling exclusions must not erase physical pitching usage. Deduplicate shared opponent boxes and retain canceled/postponed/suspended games separately.

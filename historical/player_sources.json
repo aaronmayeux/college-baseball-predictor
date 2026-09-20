@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "key": "davidson_2024",
+      "team_name": "Davidson",
+      "team_id": "wn:Davidson",
+      "season": 2024,
+      "conference": "Atlantic 10",
+      "adapter": "sidearm_embedded_v1",
+      "schedule_url": "https://davidsonwildcats.com/sports/baseball/schedule/2024",
+      "cumulative_url": "https://davidsonwildcats.com/sports/baseball/stats/2024",
+      "expected_completed_games": 52,
+      "collection_scope": "bounded_historical_pilot",
+      "bulk_permission": "unverified",
+      "actual_work_dates_qualified": false,
+      "team_aliases": {
+        "N.C. A&T": "wn:North-Carolina-AT",
+        "St. Bonaventure": "wn:Saint-Bonaventure"
+      },
+      "box_team_aliases": {
+        "N.C. A&T": "North Carolina A&T",
+        "Davidson College": "Davidson",
+        "Tenn. Tech": "Tennessee Tech",
+        "St. Bonaventure": "Saint Bonaventure"
+      }
+    },
+    {
+      "key": "missouri_state_2022",
+      "team_name": "Missouri State",
+      "team_id": "wn:Missouri-State",
+      "season": 2022,
+      "conference": "Missouri Valley",
+      "adapter": "sidearm_embedded_v1",
+      "schedule_url": "https://missouristatebears.com/sports/baseball/schedule/2022",
+      "cumulative_url": "https://missouristatebears.com/sports/baseball/stats/2022",
+      "expected_completed_games": 60,
+      "collection_scope": "bounded_historical_pilot",
+      "bulk_permission": "unverified",
+      "actual_work_dates_qualified": false,
+      "team_aliases": {
+        "Southeast Missouri State": "wn:Southeast-Missouri"
+      },
+      "box_team_aliases": {
+        "Southeast Missouri State": "Southeast Missouri"
+      }
+    },
+    {
+      "key": "lsu_2025",
+      "team_name": "LSU",
+      "team_id": "wn:LSU",
+      "season": 2025,
+      "conference": "SEC",
+      "adapter": "lsu_statcrew_v1",
+      "schedule_url": "https://static.lsusports.net/assets/docs/bb/25stats/teamstat.htm",
+      "cumulative_url": "https://static.lsusports.net/assets/docs/bb/25stats/teamcume.htm",
+      "expected_completed_games": 68,
+      "collection_scope": "preserved_season_pilot",
+      "bulk_permission": "unverified",
+      "actual_work_dates_qualified": false
+    },
+    {
+      "key": "towson_2024",
+      "team_name": "Towson",
+      "team_id": "wn:Towson",
+      "season": 2024,
+      "conference": "CAA",
+      "adapter": "sidearm_legacy_v1",
+      "schedule_url": "https://towsontigers.com/sports/baseball/schedule/2024",
+      "cumulative_url": "https://towsontigers.com/sports/baseball/stats/2024",
+      "expected_completed_games": 54,
+      "collection_scope": "preserved_season_pilot",
+      "bulk_permission": "unverified",
+      "actual_work_dates_qualified": false
+    }
+  ]
+}

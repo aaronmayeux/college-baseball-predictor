@@ -4,16 +4,21 @@ Updated September 20, 2026. Replace as work advances; Git history owns prior ses
 
 ## Latest work
 
-Full-season appearance audit now parses all 68 LSU 2025 boxes and 54 Towson 2024 boxes. Every listed player's core season counts reconcile: 274 LSU and 265 Towson pitching appearances, plus batting GP and six core batting counts. Provider-specific pitcher-only batting rows are retained and explained. See [Historical_Player_Data_Coverage.md](Historical_Player_Data_Coverage.md).
+Added a four-school historical source registry and a shared parser for newer SIDEARM pages. All 52 Davidson 2024 and 60 Missouri State 2022 boxes are parsed. Pitching appearances and 16 counts reconcile per player: Davidson 212; Missouri State 223. Fourteen batting counts and GP reconcile for listed players. Details: [Historical_Player_Data_Coverage.md](Historical_Player_Data_Coverage.md).
+
+A coverage ledger preserves every requested team, including unknown/unregistered teams. It does not implement predictions or a fallback model.
 
 ## Verification
 
-All 55/57 LSU regular-only/conference-inclusive pre-NCAA games and all 54 Towson games have verified boxes. Pitch counts are positive for 273/274 LSU and 238/265 Towson appearances; other counts remain unknown. Zero-out appearances survive. Twelve new synthetic tests and all 37 prior tests pass. Offline audit repeats byte-for-byte; preserved baseline and cutoff hashes are unchanged. The separate season evidence ZIP is documented in DATA.md.
+Eleven new tests and all 49 prior tests pass. New and prior audits reproduce byte-for-byte; baseline/cutoff data is unchanged. Source evidence is retained separately per DATA.md. Unused roster rows, zero-out pitchers, a fall exhibition and cancellations are handled explicitly. No interface, feature fitting or 2026 statistics collection.
 
 ## Next action and limitations
 
-Expand a school/season source registry and qualify another small whole-season batch across publishing systems/smaller conferences; establish permissions before national collection. Require coverage or an explicit validated simpler fallback for every tournament team. Do not infer rest from missing appearances.
+Resolve two audit exceptions, then map sources for the full 2025 development tournament field before broader collection:
 
-LSU–UCLA still has source start June 16 versus baseline completion June 17; retained box notes confirm suspension. Individual actual-work dates, historical publication timing, cross-provider IDs, starts/roles, advanced batting fields and pitcher HR attribution remain unqualified. Final season totals only audit completeness.
+- Davidson's Jake Dunagan pinch-running/CF appearance is missing from its batting cumulative list; retain it and fail batting completeness.
+- Missouri State–Illinois State 9–4: three school sources say May 24, 2022; baseline says May 25. Preserve the baseline and verify independently before a versioned correction. Regular-only is complete; conference-inclusive remains 56/57 verified games.
 
-Primary product remains one pre-NCAA run through the champion with simulated future workloads. No interface, feature fitting, live updates or scheduler. Quality-arm/ace thresholds and scaling stay open; baseline/modes/holdout safeguards unchanged. 2025 is development; 2026 is uncertified and unused.
+Positive pitch counts: Davidson 194/212; Missouri State 72/223. Rest stays unknown. Actual-work/publication timing, cross-provider IDs and national permission/coverage remain unqualified. LSU–UCLA's overnight suspension remains unresolved for individual work dates.
+
+One pre-NCAA run through champion remains primary. Simulate future workload; no live updates/scheduler required. Quality-arm/ace thresholds and scaling stay open; baseline/modes/holdout safeguards unchanged.
