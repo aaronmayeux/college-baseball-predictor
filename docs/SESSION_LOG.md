@@ -4,7 +4,7 @@ Updated September 20, 2026. Replace this summary as work advances; Git history o
 
 ## Latest decision
 
-Aaron confirmed the product direction and requested a dedicated statistics discovery and joint triage step before feature implementation. The original spreadsheets are not an exhaustive candidate list. The [brief](College_Baseball_Predictor_Project_Brief.md#statistics-discovery-and-joint-triage) owns the scope, comparison criteria and test-now/research-further/defer/skip deliverable. Present recommendations for joint review before adding selected features.
+Aaron confirmed the product direction and requested a dedicated statistics discovery and joint triage step before feature implementation. The original spreadsheets are not an exhaustive candidate list. The [brief](College_Baseball_Predictor_Project_Brief.md#statistics-discovery-and-joint-triage) owns the scope, comparison criteria and test-now/research-further/defer/skip deliverable. The review must explicitly cover quality-arm counts using workload plus quality cutoffs, bullpen versus rotation depth, and ace identification; the brief owns those requirements. Present recommendations for joint review before adding selected features.
 
 ## Current implementation and verification
 
