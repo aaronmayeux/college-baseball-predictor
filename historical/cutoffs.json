@@ -1,0 +1,17 @@
+{
+  "contract_version": "1",
+  "evaluation_type": "retrospective_date_based_reconstruction_not_point_in_time_certified",
+  "availability_rule": "source_game_date + 2 calendar days at 00:00 UTC; conservative assumed availability, not observed completion",
+  "daily_cutoff": "00:00 UTC on source game date; only games with assumed_available_at <= cutoff",
+  "phase_rule": "explicit provider event labels; unlabeled pre-NCAA games inferred regular season; unlabeled at/after opening NCAA date quarantined",
+  "modes": {"regular_only": ["regular_season"], "conference_inclusive": ["regular_season", "conference_tournament"]},
+  "seasons": {
+    "2021": {"forecast_cutoff": "2021-06-02T12:00:00+00:00", "ncaa_opening_date": "2021-06-04", "date_evidence": "official Oregon State NCAA Fort Worth Regional schedule; provider NCAA labels; guessed NCAA manual URLs returned 404"},
+    "2022": {"forecast_cutoff": "2022-06-01T12:00:00+00:00", "ncaa_opening_date": "2022-06-03", "date_evidence": "research/raw/ncaa_2022.pdf, Important Dates"},
+    "2023": {"forecast_cutoff": "2023-05-31T12:00:00+00:00", "ncaa_opening_date": "2023-06-02", "date_evidence": "research/raw/ncaa_2023.pdf, Important Dates"},
+    "2024": {"forecast_cutoff": "2024-05-29T12:00:00+00:00", "ncaa_opening_date": "2024-05-31", "date_evidence": "research/raw/ncaa_2024.pdf, Important Dates"},
+    "2025": {"forecast_cutoff": "2025-05-28T12:00:00+00:00", "ncaa_opening_date": "2025-05-30", "date_evidence": "inherited 2025 NCAA manual and verified results audit"}
+  },
+  "model_fixed_before_metrics": {"initial_rating": 1500, "elo_k": 20, "elo_scale": 400, "annual_carry_fraction": 0.5, "tie_update": 0.5, "binary_metrics_exclude_ties": true, "home_advantage": 0, "tuning": "none; fixed engineering baseline, not optimized"},
+  "holdout": {"2025": "development", "2026": "not_certifiably_untouched; no model use", "2027": "prospective candidate after protocol lock"}
+}

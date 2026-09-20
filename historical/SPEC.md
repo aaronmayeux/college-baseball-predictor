@@ -1,0 +1,30 @@
+# Historical results pilot — session specification
+
+Extends the recovered 2025 audit. Read `docs/College_Baseball_Predictor_Project_Brief.md` before work. The public repository contains code and reports; restore data using `scripts/restore_data.py`.
+
+## Evidence and scope
+- Retain source bytes, URL, UTC retrieval time, SHA-256 and source-specific season metadata.
+- Historical RPI tables are roster/record reconciliation targets only; never feed final ratings or records into predictions.
+- Collect 2021–2024; preserve the 2025 snapshot. No 2026 collection or evaluation in this session.
+- No D1Baseball requests: inherited published automation prohibition remains binding for this pilot.
+- Team roster presence is not tournament eligibility. Preserve each season's conference; never propagate the latest affiliation backward.
+- School name changes require explicit aliases with evidence. Do not fuzzy-merge institutions.
+
+## Forecast contract
+- Separate regular-season-only and conference-inclusive pre-NCAA strength.
+- A recorded exact cutoff plus a strict date eligibility rule is required. Historical date-only results are reconstructed evidence, not point-in-time certified snapshots.
+- Missing dates, score conflicts, non-D1 games, unscored results and unresolved phases must be excluded or block evaluation, with reasons retained.
+- No arbitrary ordering of doubleheaders: predict all eligible games of a date from the preceding state, then update in a batch.
+- Ties can update Elo as half a win but are excluded from binary accuracy/log-loss/Brier evaluation.
+- Neutral model only. Venue/home designations remain unverified.
+
+## Modeling gate
+Only evaluate Elo after collection, reciprocal-score checks, season-record reconciliation, identity collision checks and phase/cutoff checks pass for the evaluation sample. Report exclusions and sample coverage. Never imply independent national completeness from agreement within one provider.
+
+## Evaluation
+2021 initializes the history; chronological development/validation follows in 2022–2024; 2025 is explicitly development. Choose simple fixed Elo parameters before reading metrics; any later tuning requires a separate chronological plan. Compare with 50/50 and prior-game win-rate strength on identical games. Frozen pre-NCAA forecasts and daily updated predictions are different outputs. No bracket engine or interface here.
+
+## Holdout decision
+2026 cannot be certified untouched: recovered SESSION_RECORD.md says an earlier ESPN sample included 2026 and its original raw evidence was lost. Exact exposed games and whether outcomes informed choices are unknown. Do not collect or evaluate 2026 under an untouched-holdout claim. Reserve a future season prospectively after locking code, cutoffs and metrics; 2027 is the earliest candidate, not yet a committed test.
+
+Additional holdout exposure: requesting Columbia's official 2021 schedule silently returned 2026 scored rows. The season guard rejects the payload from historical checks and all modeling. It is retained as raw failed-access evidence only. No 2026 fit or metrics were run.

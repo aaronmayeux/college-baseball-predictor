@@ -1,0 +1,23 @@
+# Local datasets and generated outputs
+historical/**/raw/
+historical/**/*.json
+!historical/cutoffs.json
+historical/**/*.csv
+historical/**/*.sqlite*
+historical/**/*.txt
+historical/**/*.md
+!historical/SPEC.md
+historical/2025/
+*.zip
+*.xlsx
+*.xlsb
+*.pdf
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+.DS_Store
+/deliverables/
