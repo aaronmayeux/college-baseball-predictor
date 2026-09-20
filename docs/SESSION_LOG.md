@@ -4,16 +4,16 @@ Updated September 20, 2026. Replace as work advances; Git history owns prior ses
 
 ## Latest work
 
-Broad statistics discovery is ready for joint review. [Statistics_Discovery_and_Triage.md](Statistics_Discovery_and_Triage.md) owns the inventory, source checks, proposed priorities, workload/quality threshold examples and scaling alternatives. Recommendations are not selected features. Both original workbook formats and the research PDF were inspected without modification.
+Aaron approved prioritizing hitting profiles and pitching quality/depth. Initial historical coverage audit is in [Historical_Player_Data_Coverage.md](Historical_Player_Data_Coverage.md). No features, thresholds, scaling choices or interface implemented.
 
 ## Verification
 
-Authenticated GitHub metadata confirmed push access. Fresh ESPN probes returned four historical summaries: two populated, two empty. Offline evidence audit verifies hashes, event identities/seasons, pitcher rows, positive pitch counts and nine-inning outs. All eight pitch counts in the May 16, 2025 sample agree with LSU's official box on inspection. This is feasibility evidence, not national coverage or predictive validation. Original artifacts were fingerprinted; new raw evidence is retained separately per DATA.md.
+Twenty ESPN date queries across 2021–2025 yielded a deterministic 36-game sample covering 56 teams. Nine games had batting/pitching rows; none of 16 other-only conference samples did. Two populated games failed internal totals checks. All selected event/season/scoreboard identities passed; one requested-date baseline join remains unresolved at a UTC/local-date boundary. Five LSU indexes and earliest-game boxes passed archive/schema checks, not full-season reconciliation.
 
-Baseline code, cutoffs and v2 evaluation were unchanged; their ZIPs were unnecessary for discovery and were not restored. Prior full verification remains in the v2 report. No new model, feature, threshold or interface was implemented. Documentation diff and size checks passed.
+Evidence hashes and offline reruns verified; six new synthetic guard tests and 13 existing baseline/v2 tests passed. Authenticated GitHub confirmed write access. Baseline restored for read-only comparisons; preserved baseline inputs verified unchanged. V2 bundle was unnecessary; v2 code, cutoffs and forecast modes unchanged. Raw evidence recovery is in DATA.md.
 
 ## Next action and limitations
 
-Review the shortlist with Aaron, then audit stratified 2021–2025 player-game coverage before implementing selected features. Thresholds for quality arms/aces and model/chart scaling remain open.
+Qualify smaller-conference official boxes alongside LSU, reconcile every appearance for sampled team-seasons, resolve ESPN inconsistencies, then extend coverage sampling to postseason stages. National coverage, stable player identities, historical publication timing and bulk-source permissions remain unverified. Missing appearances cannot mean rested arms.
 
-Preserve suspended-game start/completion handling for daily forecasts, broader independent phase checks and prospective holdout locking. Historical publication timing remains uncertified. 2025 is development; 2026 is uncertified and unused for modeling. The default FanGraphs page exposed current-year player stats during source discovery, reinforcing that status. No interface authorized.
+Quality-arm/ace thresholds and scaling remain open. Preserve daily start/completion handling, broader phase checks and prospective holdout locking. 2025 is development; 2026 remains uncertified and unused. No interface authorized.

@@ -1,6 +1,6 @@
 # Statistics discovery and proposed triage
 
-Reviewed September 20, 2026. **Recommendations awaiting Aaron's review, not selected features.** No new model, weights, thresholds, simulator or interface was implemented. Forecast and holdout rules remain in [SPEC](../historical/SPEC.md).
+Reviewed September 20, 2026. **Aaron approved prioritizing hitting profiles and pitching quality/depth; individual features remain unqualified.** No new model, weights, thresholds, simulator or interface was implemented. Forecast and holdout rules remain in [SPEC](../historical/SPEC.md).
 
 ## Recommendation for joint review
 
@@ -16,7 +16,7 @@ Start with a compact offense profile and individual pitching quality/depth, supp
 | Defer | Tracking-derived contact/pitch quality, full defensive runs, weather/travel effects, coach policy and detailed depletion simulation | High effort or unverified historical access; revisit after simpler features |
 | Skip as model inputs | Legacy HAVOC/DIRTY_DER formulas, assumed HR-run share, fixed style bonuses, pitcher wins/saves, clutch labels | Defective, redundant or weakly supported; raw evidence remains preserved |
 
-“Test now” means the first experiments **after joint triage and data qualification**. None is already proven predictive. Rank the pitching coverage audit alongside offense, even if simpler team features become testable first.
+“Test now” means proposed experiments **after data qualification and approval of the relevant family**. Hitting and pitching quality/depth have priority approval; the remaining families remain proposals. None is already proven predictive. Rank the pitching coverage audit alongside offense, even if simpler team features become testable first.
 
 ## Original references inspected
 
@@ -130,10 +130,10 @@ Avoid double-counting: compare OBP+ISO+K% with wOBA alternatives; K/BB component
 
 A larger outfield is not evidence of easier stealing. Separate outfield-hit/advancement effects from pitcher/catcher control of steals; do not award a generic Omaha HAVOC bonus.
 
-## Next concrete step after joint review
+## Coverage gate after priority approval
 
-Agree on the first four families above and whether “ace” should reserve its label for starters. Then run a stratified player-data audit across 2021–2025: major and smaller conferences, weekends/midweeks, early/late season and tournament stages, including failures. Measure batting/pitching/BF/pitch-count/play completeness separately, reconcile all appearances for sampled team-seasons, and verify stable player IDs, actual venues and cutoff reconstruction. Do not select only well-covered postseason teams.
+Hitting profiles and pitching quality/depth are the approved priorities. The [initial historical player audit](Historical_Player_Data_Coverage.md) owns current results, missing fields, source disagreements and the next coverage steps. Thresholds, ace-label details, scaling and other proposed families remain open. No feature fitting is authorized by a coverage success alone.
 
-Before feature fitting, establish permissions for the intended collection volume and a viable fallback, then review workload/quality threshold sensitivity. Timing/phase verification and prospective holdout locking remain outstanding. 2025 is development; 2026 remains uncertified and unused for modeling. Baseline and v2 evidence ZIPs were not restored because this task neither rebuilds nor changes their outputs.
+Before fitting, establish permissions for intended collection volume and a viable fallback, then review workload/quality threshold sensitivity. Timing/phase verification and prospective holdout locking remain outstanding under SPEC.
 
-Raw-probe recovery and the offline audit command are in [DATA.md](DATA.md#statistics-discovery-evidence). The audit validates retained source hashes, selected event identities/seasons, pitcher counts and pitching outs. It does not certify national completeness, source independence, historic publication timing or model improvement.
+Original discovery raw-probe recovery and its offline audit command remain in [DATA.md](DATA.md#statistics-discovery-evidence). That selected four-game sample is feasibility evidence, not national completeness or predictive validation.

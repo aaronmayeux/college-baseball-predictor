@@ -60,3 +60,21 @@ python3 scripts/audit_statistics_sources.py --raw-dir /tmp/baseball-statistics-d
 ```
 
 The offline audit verifies hashes and the fixed sample's event seasons, pitcher counts, pitch counts and outs. It never fetches data or modifies model inputs. These selected examples cannot estimate national coverage. Keep raw evidence private and outside Git, as with the earlier checkpoints.
+
+## Historical player coverage evidence
+
+`College_Baseball_Player_Coverage_Evidence.zip` retains 69 source responses with URL, UTC retrieval time and SHA-256 metadata, plus reproducible audit outputs. It is a separate checkpoint, not a replacement for the baseline or v2 archives. Includes exploratory empty-filter and populated probes as well as the fixed sample. No raw data belongs in Git.
+
+SHA-256: `58fda46ad191c51a8fdb55be325c0a3c64421ab50a366bb43d26605ede74c8cd`.
+
+Restore the original baseline first (no rebuild required for this audit), verify this ZIP's hash, then extract into a fresh temporary directory:
+
+```sh
+sha256sum /absolute/path/to/College_Baseball_Player_Coverage_Evidence.zip
+python3 -m zipfile -e /absolute/path/to/College_Baseball_Player_Coverage_Evidence.zip /tmp/baseball-player-coverage
+python3 scripts/audit_player_coverage.py --raw-dir /tmp/baseball-player-coverage/raw --output /tmp/baseball-player-coverage-rerun.json
+python3 scripts/audit_official_player_sample.py --raw-dir /tmp/baseball-player-coverage/raw
+python3 scripts/test_player_coverage.py
+```
+
+The ESPN audit records hashes of its ten preserved baseline roster/game inputs. Both audits are offline by default. The optional `--collect` flag is a bounded ESPN pilot, not a bulk importer or permission grant; cached failures are retained and never retried automatically. Official-source audit consumes retained bytes, including gzip-compressed responses. No full-season player import, feature fitting or baseline writes occur. [Coverage report](Historical_Player_Data_Coverage.md) owns findings and limitations.

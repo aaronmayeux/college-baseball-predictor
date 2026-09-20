@@ -12,7 +12,7 @@ Fixed neutral Elo selected 68.9% of NCAA winners across 411 games in 2022–2024
 
 Exact pre-NCAA cutoffs are now recorded: Wednesday 12:00 UTC before regionals, with a two-calendar-day assumed availability delay for date-only results. Regular-only and conference-inclusive inputs are separate. Point-in-time publication/completion is not certified. 2026 cannot be called untouched because prior probes exposed outcomes; discovery also encountered a default current-year player leaderboard. It was not used for model fitting or evaluation.
 
-The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. No tournament simulator, interface, hosting, scheduled refresh or paid feed exists. Broad statistics discovery is documented; joint priority review is next, before feature implementation.
+The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. No tournament simulator, interface, hosting, scheduled refresh or paid feed exists. Hitting profiles and pitching quality/depth are approved priorities; historical player-data qualification is underway before feature implementation.
 
 ## Working references
 
@@ -39,16 +39,16 @@ A mobile-friendly web app with automated data refresh, tournament brackets, game
 
 ## Statistics discovery and joint triage
 
-The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Recommendations await Aaron's review; no features or thresholds have been selected or fitted.
+The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Aaron approved prioritizing hitting profiles and pitching quality/depth. Individual features, quality-arm/ace thresholds and scaling are not selected or fitted.
 
-Proposed first tests: compact hitting components, pitcher quality and qualifying-arm depth/aces, opponent-adjusted scoring/prevention, then simple baserunning/defense challengers. Research current arm availability, park/HR dependence, fuller HAVOC and matchup interactions next. The report includes a reproducible four-game ESPN feasibility sample and an official-box cross-check; these do not establish national coverage.
+The [initial historical player audit](Historical_Player_Data_Coverage.md) found player rows in 9/36 stratified ESPN samples, with two internal inconsistencies. Five LSU historical boxes expose missing pitcher fields, but full appearance coverage remains unqualified. Audit official-school fallbacks next; other proposed feature families await review.
 
 Carry these product requirements forward:
 
 - Quality-arm counts require both meaningful workload and quality cutoffs; distinguish rotation, bullpen and mixed roles without double-counting. Identify multiple aces or none. Separate season depth from arms available after recent usage; thresholds remain open.
 - Power, contact and HAVOC can coexist. Test HR dependence and park/opponent interactions without assuming power is bad. Measure reaching base, efficient stealing and advancement separately.
 - Evaluate z-scores and alternatives for modeling; consider percentiles for comparison charts. Adjust for sample size, opponents and parks before interpreting standardized numbers as quality. Neither scaling nor chart formulas are settled.
-- Compare additions against the preserved baseline on common chronological samples. Review the shortlist jointly before implementation.
+- Compare additions against the preserved baseline on common chronological samples. Qualify data before implementing the approved priority families; review other additions jointly.
 
 ## Spreadsheet cautions and research hypotheses
 
@@ -84,7 +84,7 @@ Every normalized record should retain provider, provider ID, stable internal tea
 | 5. Added features | Measured home/park effects, power/HAVOC, then pitching availability | Each addition is compared with the baseline on unseen seasons and retained only with a justified benefit |
 | 6. Interface and refresh | Mobile-friendly bracket, explanations, exports, refresh status | Real predictions trace to model/data versions and timestamps; missing data and uncertainty are visible |
 
-Python and SQLite implement the results pipeline, cutoff reconstruction, Elo and separate seed benchmark. Milestones 1–3 remain partial: broader coverage, exact timing, player data and advancement evaluation are incomplete. Statistics discovery is documented; joint triage is pending. Milestones 4–6 have not started. Hosting remains undecided.
+Python and SQLite implement the results pipeline, cutoff reconstruction, Elo and separate seed benchmark. Milestones 1–3 remain partial: broader coverage, exact timing, player data and advancement evaluation are incomplete. Statistics discovery is documented; the two approved priority families are undergoing coverage audit. Milestones 4–6 have not started. Hosting remains undecided.
 
 ## Evaluation rules
 
@@ -116,7 +116,7 @@ These links were used in the prior research. Recheck current access, coverage, a
 
 Use repository code, `historical/SPEC.md` and [DATA.md](DATA.md); the cached pipeline entry point is `python3 historical/run.py`. Do not run older bundled scripts over the current handoff.
 
-Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next review the proposed statistics priorities with Aaron, then qualify historical player-data coverage before feature fitting. Start/completion separation for daily forecasts, broader independent phase checks and prospective holdout locking remain outstanding; none should be silently dropped.
+Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next audit smaller-conference official boxes and full sampled team-season appearances before feature fitting. Start/completion separation for daily forecasts, broader independent phase checks and prospective holdout locking remain outstanding; none should be silently dropped.
 
 ## Open decisions
 
