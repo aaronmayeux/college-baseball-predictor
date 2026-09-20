@@ -1,17 +1,17 @@
 # Current handoff
 
-Updated September 20, 2026. Replace this summary as work advances; use Git history for prior sessions.
+Updated September 20, 2026. Replace this summary as work advances; Git history owns prior sessions.
 
 ## Latest change
 
-Established the standing documentation rule in `AGENTS.md`: current state, concise working files, no accumulating decision diary. Consolidated the brief, removed obsolete setup instructions and repeated historical checkpoints, and retained the requested radar chart in the product requirements.
+Added separate `historical/validation_v2/` evaluation. Official recaps resolve Kent State–Ohio State (April 26) and Columbia–Dartmouth (April 22 start, April 23 completion). Broader checks also resolve Fordham–Richmond’s suspended game and four delayed regional openers. Original baseline code, inputs, predictions and metrics remain unchanged.
+
+Checked 1,019 official schedule observations across 18 school-seasons: 1,016 independent, three reused supplement sources. Verified 59 explicit tournament-phase observations and 128 opening regional fixtures. Added cutoff-eligible seeds for all 256 tournament team-seasons in 2022–2025. Contract, results and caveats: [v2 report](Timing_and_Seed_Validation.md).
 
 ## Verification
 
-This change only edits documentation. Reviewed the diff for preserved constraints, active requirements and correct repository paths. Code, data, audit reports and model behavior are unchanged; runtime tests were not rerun.
+All 13 offline tests pass. Full original pipeline rebuild succeeded; original predictions, metrics and eligibility match the baseline ZIP byte-for-byte. Ten v2 outputs reproduce byte-for-byte. Exact-checksum add-on restoration verified. Raw evidence and game-level outputs remain excluded from GitHub.
 
-Last runtime verification (repository setup): all six offline tests passed, 3,212 data files restored, and the full cached pipeline passed SQLite integrity/foreign-key checks. Predictions, metrics and eligibility matched the saved bundle byte-for-byte. These are prior verified results, not new test runs.
+## Next action and limitations
 
-## Next action and blockers
-
-Resolve the two excluded 2023 timing conflicts, broaden independent date/phase checks, then add a cutoff-safe seed benchmark. Follow the brief and specification for evaluation constraints. Full reproduction requires the separately retained data bundle; see `DATA.md`. No interface work yet.
+Use both separately retained checkpoints; restoration commands and hashes are in [DATA.md](DATA.md). Next separate start/completion events for daily suspended-game forecasts, broaden independent phase checks, and lock a prospective holdout protocol. V2 currently emits frozen forecasts only. Publisher dates support retrospective cutoff reconstruction, not point-in-time certification. 2025 remains development; 2026 remains uncertified untouched and unused for modeling. No interface built.

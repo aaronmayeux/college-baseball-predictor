@@ -28,3 +28,9 @@ Only evaluate Elo after collection, reciprocal-score checks, season-record recon
 2026 cannot be certified untouched: recovered SESSION_RECORD.md says an earlier ESPN sample included 2026 and its original raw evidence was lost. Exact exposed games and whether outcomes informed choices are unknown. Do not collect or evaluate 2026 under an untouched-holdout claim. Reserve a future season prospectively after locking code, cutoffs and metrics; 2027 is the earliest candidate, not yet a committed test.
 
 Additional holdout exposure: requesting Columbia's official 2021 schedule silently returned 2026 scored rows. The season guard rejects the payload from historical checks and all modeling. It is retained as raw failed-access evidence only. No 2026 fit or metrics were run.
+
+## Versioned timing/seed extension
+
+`validation_v2/run.py` is a separate frozen-forecast evaluation; it never rewrites baseline games, predictions or metrics. Its contract and evidence are in [the v2 report](../docs/Timing_and_Seed_Validation.md). Original quarantine rules remain part of v1 reproduction; v2 applies verified timing resolutions to copies. Completion dates drive the unchanged two-day result-availability assumption. Do not feed suspended-game completion dates into a new daily prediction target: model start and completion events separately first.
+
+The seed comparator uses cutoff-eligible NCAA selection announcements and a fixed regional-seed odds rule, with no fitting or national-seed inputs. Both published and modified timestamps must precede the forecast cutoff. Require complete identity mappings and compare on identical samples. Preserve development/holdout labels and reconstruction caveats.

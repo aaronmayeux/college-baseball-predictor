@@ -6,13 +6,13 @@ Current state as of September 20, 2026. Git history preserves earlier revisions.
 
 Build a college baseball tournament predictor using automatically collected regular-season data. Produce calibrated game probabilities, advancement probabilities, and a predicted bracket from regionals through the national championship. Explain the main reasons behind predictions.
 
-The historical results pilot now covers **2021–2025: 40,615 completed D1 games, 1,520 provider team-season records and 310 stable internal team identities**. The 2021–2024 extension adds 32,197 games. All season records reconcile after evidence-backed 2023 corrections; three games are official-school supplements rather than independent reciprocal provider records. Two 2023 date-conflict games remain in the inventory but are excluded from modeling. Provider-defined completeness is not independent national certification.
+The historical results pilot now covers **2021–2025: 40,615 completed D1 games, 1,520 provider team-season records and 310 stable internal team identities**. The 2021–2024 extension adds 32,197 games. All season records reconcile after evidence-backed 2023 corrections; three games are official-school supplements rather than independent reciprocal provider records. The original baseline retains two quarantined 2023 games; a separately versioned timing-resolved evaluation now includes them, supported by official recaps. Provider-defined completeness is not independent national certification.
 
 A fixed chronological neutral Elo baseline has been implemented and evaluated. Frozen regular-only ratings selected 68.9% of NCAA game winners across 411 games in 2022–2024; 2025 development accuracy is 63.2% across 136 games. Probability scores and all comparison modes are in College_Baseball_Historical_Coverage_and_Elo_Report.md. These are retrospective matchup evaluations, not bracket accuracy or an untouched holdout.
 
 Exact pre-NCAA cutoffs are now recorded: Wednesday 12:00 UTC before regionals, with a two-calendar-day assumed availability delay for date-only results. Regular-only and conference-inclusive inputs are separate. Point-in-time publication/completion is not certified. 2026 cannot be called untouched because prior ESPN probes and a wrong-season official response exposed outcomes; it was not used for model fitting or evaluation.
 
-The current reproducible handoff is College_Baseball_Historical_Baseline_Bundle.zip, containing Python standard-library scripts, raw evidence, provenance, corrections, cutoff eligibility, tests, predictions and a combined SQLite database. The dedicated public repository is https://github.com/aaronmayeux/college-baseball-predictor. No tournament simulator, interface, hosting, scheduled refresh or paid feed exists. Next: resolve timing exceptions, broaden date/phase checks, add a cutoff-safe seed benchmark, and reserve a future holdout prospectively.
+The current reproducible handoff is College_Baseball_Historical_Baseline_Bundle.zip, containing Python standard-library scripts, raw evidence, provenance, corrections, cutoff eligibility, tests, predictions and a combined SQLite database. The dedicated public repository is https://github.com/aaronmayeux/college-baseball-predictor. No tournament simulator, interface, hosting, scheduled refresh or paid feed exists. A separate v2 extension resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. Next: handle suspended games safely in daily forecasts and lock a future holdout protocol.
 
 ## Working references
 
@@ -20,6 +20,7 @@ GitHub `main` owns current code and documents. Read `AGENTS.md` for working rule
 
 - [Data restoration](DATA.md): restore the separately retained `College_Baseball_Historical_Baseline_Bundle.zip` with repository code. Ask for the ZIP if unavailable.
 - [Historical coverage and Elo report](College_Baseball_Historical_Coverage_and_Elo_Report.md): detailed evidence, results and exclusions.
+- [Timing and seed validation](Timing_and_Seed_Validation.md): resolved dates, broader independent checks, benchmark contract/results and remaining limits.
 - [2025 coverage report](College_Baseball_2025_Coverage_Report.md): original 307-team, 8,418-game audit.
 - Project attachments: original STATIC and DYNAMIC spreadsheets and research/design PDF. Keep originals untouched; they are references, not runtime dependencies or validated model specifications.
 
@@ -51,7 +52,7 @@ Test these ideas only after assessing coverage; retain features for measured pre
 
 | Candidate | Intended role | Unresolved issue |
 |---|---|---|
-| NCAA statistics and official school schedules/box scores | Independent checks; 114 games matched across two official school schedules | Nationwide coverage, access restrictions, parsing differences and snapshot timing remain unresolved |
+| NCAA statistics and official school schedules/box scores | Independent checks; expanded results and phase coverage in the v2 validation report | Nationwide coverage, access restrictions, parsing differences and snapshot timing remain unresolved |
 | ESPN scoreboards and game summaries | Game IDs, results, box scores, play-by-play and pitch counts when available | Undocumented interfaces and uneven historical coverage; validate venue flags |
 | Boyd's World | ISR and historical ratings research | Accessible archives, cutoff dates, and permitted automated use |
 | Warren Nolan plus targeted official-school corrections | 2021–2025 results pilot: 40,615 games; all 1,520 team-season records reconcile after documented corrections | Independent national completeness, precise historical timing, broader phase verification, ongoing access/usage terms; original workbook attribution remains uncertain |
@@ -74,7 +75,7 @@ Every normalized record should retain provider, provider ID, stable internal tea
 | 5. Added features | Measured home/park effects, power/HAVOC, then pitching availability | Each addition is compared with the baseline on unseen seasons and retained only with a justified benefit |
 | 6. Interface and refresh | Mobile-friendly bracket, explanations, exports, refresh status | Real predictions trace to model/data versions and timestamps; missing data and uncertainty are visible |
 
-Python standard-library scripts and SQLite implement the reversible 2021–2025 research pilot. Results coverage, reconstructed cutoff eligibility and a fixed Elo comparator are implemented; broader independent coverage, exact historical completion/publication times, player data, seed benchmarking and advancement evaluation remain incomplete. Milestones 1–3 are therefore partial at the wider project level. Milestones 4–6 have not started. The dedicated public GitHub repository is established; no deployment destination is selected.
+Python standard-library scripts and SQLite implement the reversible 2021–2025 research pilot. Results coverage, reconstructed cutoff eligibility and a fixed Elo comparator are implemented; broader independent coverage, exact historical completion/publication times, player data and advancement evaluation remain incomplete. A fixed seed benchmark now covers 2022–2025 in a separate evaluation. Milestones 1–3 are therefore partial at the wider project level. Milestones 4–6 have not started. The dedicated public GitHub repository is established; no deployment destination is selected.
 
 ## Evaluation rules
 
@@ -106,7 +107,7 @@ These links were used in the prior research. Recheck current access, coverage, a
 
 Use repository code, `historical/SPEC.md` and [DATA.md](DATA.md); the cached pipeline entry point is `python3 historical/run.py`. Do not run older bundled scripts over the current handoff.
 
-Resolve the 2023 Kent State–Ohio State and Columbia–Dartmouth date/completion discrepancies, broaden independent date/phase checks, then add a cutoff-safe seed benchmark. Keep the two games excluded until supported corrections are established. Preserve original fields and correction provenance. Reserve a future holdout prospectively after locking the evaluation protocol.
+The requested timing resolutions, expanded checks and seed benchmark are complete in `historical/validation_v2/`; the original baseline remains unchanged. See the v2 report for evidence and results, and DATA.md for the separate add-on checkpoint. Next implement start/completion separation for daily suspended-game forecasts, broaden independent phase checks, and reserve a future holdout after locking the protocol.
 
 ## Open decisions
 

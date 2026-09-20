@@ -1,5 +1,6 @@
 # College Baseball Predictor — Historical Coverage and Elo Baseline
 
+> Preserved v1 baseline report. Timing exclusions are resolved only in the separate [v2 validation](Timing_and_Seed_Validation.md); the results below remain unchanged.
 Historical analysis checkpoint. Repository setup is recorded in the current project brief and SESSION_LOG.md.
 
 Prepared September 20, 2026. Reproducible research pilot; no interface or deployment.
