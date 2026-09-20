@@ -1,19 +1,19 @@
 # Current handoff
 
-Updated September 20, 2026. Replace this summary as work advances; Git history owns prior sessions.
+Updated September 20, 2026. Replace as work advances; Git history owns prior sessions.
 
-## Latest decision
+## Latest work
 
-Aaron confirmed the product direction and requested a dedicated statistics discovery and joint triage step before feature implementation. The original spreadsheets are not an exhaustive candidate list. The [brief](College_Baseball_Predictor_Project_Brief.md#statistics-discovery-and-joint-triage) owns the scope, comparison criteria and test-now/research-further/defer/skip deliverable. The review must explicitly cover quality-arm counts using workload plus quality cutoffs, bullpen versus rotation depth, and ace identification; the brief owns those requirements. Present recommendations for joint review before adding selected features.
+Broad statistics discovery is ready for joint review. [Statistics_Discovery_and_Triage.md](Statistics_Discovery_and_Triage.md) owns the inventory, source checks, proposed priorities, workload/quality threshold examples and scaling alternatives. Recommendations are not selected features. Both original workbook formats and the research PDF were inspected without modification.
 
-## Current implementation and verification
+## Verification
 
-The separate v2 timing/seed evaluation is complete; the original baseline remains unchanged. See the [v2 report](Timing_and_Seed_Validation.md) for evidence, coverage and results. Prior runtime verification: 13 offline tests passed, original predictions/metrics/eligibility matched the baseline ZIP byte-for-byte, and all ten v2 outputs reproduced exactly.
+Authenticated GitHub metadata confirmed push access. Fresh ESPN probes returned four historical summaries: two populated, two empty. Offline evidence audit verifies hashes, event identities/seasons, pitcher rows, positive pitch counts and nine-inning outs. All eight pitch counts in the May 16, 2025 sample agree with LSU's official box on inspection. This is feasibility evidence, not national coverage or predictive validation. Original artifacts were fingerprinted; new raw evidence is retained separately per DATA.md.
 
-This closeout changes documentation only. Reviewed the diff, checked formatting and documentation size; runtime tests were not rerun. Code, data and predictions are unchanged.
+Baseline code, cutoffs and v2 evaluation were unchanged; their ZIPs were unnecessary for discovery and were not restored. Prior full verification remains in the v2 report. No new model, feature, threshold or interface was implemented. Documentation diff and size checks passed.
 
 ## Next action and limitations
 
-Start statistics discovery and joint triage using current sources and the original spreadsheet/research references. Preserve daily suspended-game start/completion handling, broader independent phase checks and prospective holdout locking as outstanding work. Restore either retained checkpoint only when needed; commands and hashes are in [DATA.md](DATA.md).
+Review the shortlist with Aaron, then audit stratified 2021–2025 player-game coverage before implementing selected features. Thresholds for quality arms/aces and model/chart scaling remain open.
 
-V2 emits frozen forecasts only. Historical publication/completion times are not point-in-time certified. 2025 remains development; 2026 is not certified untouched and remains unused for modeling. No interface authorized.
+Preserve suspended-game start/completion handling for daily forecasts, broader independent phase checks and prospective holdout locking. Historical publication timing remains uncertified. 2025 is development; 2026 is uncertified and unused for modeling. The default FanGraphs page exposed current-year player stats during source discovery, reinforcing that status. No interface authorized.

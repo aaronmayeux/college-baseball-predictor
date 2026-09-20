@@ -10,9 +10,9 @@ The historical pilot covers **2021–2025: 40,615 completed D1 games, 1,520 team
 
 Fixed neutral Elo selected 68.9% of NCAA winners across 411 games in 2022–2024 and 63.2% across 136 games in 2025 development. The historical report owns detailed metrics. These are retrospective matchup evaluations, not bracket accuracy or an untouched holdout.
 
-Exact pre-NCAA cutoffs are now recorded: Wednesday 12:00 UTC before regionals, with a two-calendar-day assumed availability delay for date-only results. Regular-only and conference-inclusive inputs are separate. Point-in-time publication/completion is not certified. 2026 cannot be called untouched because prior ESPN probes and a wrong-season official response exposed outcomes; it was not used for model fitting or evaluation.
+Exact pre-NCAA cutoffs are now recorded: Wednesday 12:00 UTC before regionals, with a two-calendar-day assumed availability delay for date-only results. Regular-only and conference-inclusive inputs are separate. Point-in-time publication/completion is not certified. 2026 cannot be called untouched because prior probes exposed outcomes; discovery also encountered a default current-year player leaderboard. It was not used for model fitting or evaluation.
 
-The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. No tournament simulator, interface, hosting, scheduled refresh or paid feed exists. Next: broad statistics discovery and joint triage before feature implementation.
+The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. No tournament simulator, interface, hosting, scheduled refresh or paid feed exists. Broad statistics discovery is documented; joint priority review is next, before feature implementation.
 
 ## Working references
 
@@ -39,20 +39,22 @@ A mobile-friendly web app with automated data refresh, tournament brackets, game
 
 ## Statistics discovery and joint triage
 
-Before adding statistical features, inventory available college baseball statistics broadly; Aaron's spreadsheets are a starting point, not an exhaustive list. Cover team/player hitting, plate discipline, power/contact, baserunning/HAVOC, pitching/usage, defense/catching, opponent strength, parks and situational splits, including derivable and advanced measures.
+The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Recommendations await Aaron's review; no features or thresholds have been selected or fitted.
 
-For each candidate, record its definition, potential predictive value, overlap with other metrics, source, tested versus advertised access, historical/team coverage, pre-cutoff availability, reliability, automation permissions/cost and implementation effort. Distinguish unavailable data from unexplored sources. Propose **test now / research further / defer / skip**, with plain-English reasons and a prioritized shortlist. Review the triage with Aaron before implementing selected features; predictive benefit must still be tested against the preserved baseline. Do not claim universal exhaustiveness without documented search scope and gaps.
+Proposed first tests: compact hitting components, pitcher quality and qualifying-arm depth/aces, opponent-adjusted scoring/prevention, then simple baserunning/defense challengers. Research current arm availability, park/HR dependence, fuller HAVOC and matchup interactions next. The report includes a reproducible four-game ESPN feasibility sample and an official-box cross-check; these do not establish national coverage.
+
+Carry these product requirements forward:
+
+- Quality-arm counts require both meaningful workload and quality cutoffs; distinguish rotation, bullpen and mixed roles without double-counting. Identify multiple aces or none. Separate season depth from arms available after recent usage; thresholds remain open.
+- Power, contact and HAVOC can coexist. Test HR dependence and park/opponent interactions without assuming power is bad. Measure reaching base, efficient stealing and advancement separately.
+- Evaluate z-scores and alternatives for modeling; consider percentiles for comparison charts. Adjust for sample size, opponents and parks before interpreting standardized numbers as quality. Neither scaling nor chart formulas are settled.
+- Compare additions against the preserved baseline on common chronological samples. Review the shortlist jointly before implementation.
 
 ## Spreadsheet cautions and research hypotheses
 
-The inherited spreadsheet audit found postseason-contaminated inputs, uncertain source attribution, inconsistent weight alignment, cached errors, flawed defensive/HAVOC formulas and incorrect series logic. Reinspect originals before reusing individual formulas. ISR is a candidate only if historical cutoff-safe coverage is established. Existing weights and style thresholds are not validated.
+The original weights, styles and formulas are not validated. The research PDF owns the inherited audit; the discovery report records current reference inspection. Postseason-contaminated totals, uncertain advanced-stat provenance, inconsistent weights, cached errors, flawed DIRTY_DER/HAVOC definitions and incorrect series logic preclude treating workbook results as forecast evidence. Keep originals untouched.
 
-Test these ideas only after assessing coverage; retain features for measured predictive benefit:
-
-- **Home field:** distinguish actual home park, host selection, batting last, travel and crowd effects. Control for team strength. Venue flags need independent verification; host advancement rates are not game probabilities.
-- **Power and HR dependence:** power, contact and HAVOC can coexist. Test whether HR dependence and strikeouts increase sensitivity to park/opponent changes. Prefer actual runs on HR plays when available; the workbook's 1.6 runs-per-HR estimate is only an assumption. Consider both teams' park effects, opposition, weather and batted-ball tendencies when covered; historical exit velocity/spray data is not assumed available.
-- **HAVOC:** measure reaching base, efficient stealing and extra-base advancement separately, using opportunities and caught stealing. Test opponent control, catcher/defense interactions and value beyond ordinary offensive metrics. Do not assume a bigger outfield improves stealing or double-count walks/contact.
-- **Pitching depth, bullpen and aces:** explicitly assess counts of pitchers meeting both a minimum innings/workload threshold and a quality cutoff (ERA or a validated alternative). Review thresholds with Aaron; test sensitivity, small-sample reliability and predictive value using chronological training data. Compare ERA with available strikeout/walk and opponent/park-adjusted measures rather than selecting a metric in advance. Separate starters, relievers and mixed roles; show qualifying names, counts and workload, with no double-counting. Identify potential aces using sustained quality, meaningful workload and role; allow multiple or no qualifying aces rather than automatically labeling each team's best pitcher an ace. Distinguish season-long quality-arm depth from arms available for a particular game, accounting for recent use/rest when supported. Retain the hypothesis that exhausting an opponent's bullpen can benefit later opponents; do not invent universal recovery rules.
+Retain the hypotheses of home/park effects, power sensitivity, opponent-specific HAVOC, and tournament pitching depletion. Distinguish actual home park from host selection and batting last. Do not infer spin or contact quality from batted-ball labels, or universal recovery rules from pitcher workload. Implement only after the relevant coverage and evaluation gates.
 
 ## Data-source strategy
 
@@ -66,7 +68,7 @@ Test these ideas only after assessing coverage; retain features for measured pre
 | FanGraphs college leaderboards | Advanced-stat comparisons and possible inputs | Export access, historical coverage, definitions, and usage terms |
 | Commercial provider if needed | More consistent coverage | Verify sample coverage and terms before considering cost |
 
-Inherited ESPN probes found some pitch counts/play-by-play and some missing box scores; original raw files were lost. Player-data coverage remains unverified. baseballr is an access tool, not an independent source. MLB-derived metrics such as SIERA require college-specific validation.
+Fresh discovery probes reproduced populated and empty ESPN boxes; retained evidence is separate from the earlier lost probes. National player-data coverage remains unverified. baseballr is an access tool, not an independent source. MLB-derived metrics such as SIERA require college-specific validation.
 
 Every normalized record should retain provider, provider ID, stable internal team/player ID where available, season, game timestamp, venue, retrieval timestamp, and raw-record reference. Handle missing data explicitly. Cache responses, avoid duplicate games, validate baseball innings notation, and make reruns safe. Scheduled refresh comes after a reliable manual command; no scheduler has been configured.
 
@@ -82,7 +84,7 @@ Every normalized record should retain provider, provider ID, stable internal tea
 | 5. Added features | Measured home/park effects, power/HAVOC, then pitching availability | Each addition is compared with the baseline on unseen seasons and retained only with a justified benefit |
 | 6. Interface and refresh | Mobile-friendly bracket, explanations, exports, refresh status | Real predictions trace to model/data versions and timestamps; missing data and uncertainty are visible |
 
-Python and SQLite implement the results pipeline, cutoff reconstruction, Elo and separate seed benchmark. Milestones 1–3 remain partial: broader coverage, exact timing, player data and advancement evaluation are incomplete. Statistics triage and milestones 4–6 have not started. Hosting remains undecided.
+Python and SQLite implement the results pipeline, cutoff reconstruction, Elo and separate seed benchmark. Milestones 1–3 remain partial: broader coverage, exact timing, player data and advancement evaluation are incomplete. Statistics discovery is documented; joint triage is pending. Milestones 4–6 have not started. Hosting remains undecided.
 
 ## Evaluation rules
 
@@ -114,7 +116,7 @@ These links were used in the prior research. Recheck current access, coverage, a
 
 Use repository code, `historical/SPEC.md` and [DATA.md](DATA.md); the cached pipeline entry point is `python3 historical/run.py`. Do not run older bundled scripts over the current handoff.
 
-Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next perform statistics discovery and joint triage. Start/completion separation for daily forecasts, broader independent phase checks and prospective holdout locking remain outstanding; none should be silently dropped.
+Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next review the proposed statistics priorities with Aaron, then qualify historical player-data coverage before feature fitting. Start/completion separation for daily forecasts, broader independent phase checks and prospective holdout locking remain outstanding; none should be silently dropped.
 
 ## Open decisions
 

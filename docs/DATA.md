@@ -44,3 +44,19 @@ python3 historical/validation_v2/run.py
 ```
 
 The extension verifies source hashes, original coverage/correction gates, independent matches and seed eligibility before writing only `historical/validation_v2/output/`. Existing baseline files are fingerprinted and must remain unchanged. `evidence.py` can collect the named new sources if necessary, but only the preserved add-on reproduces this exact snapshot. Failed guessed NCAA article URLs are evidence of tested failures, not missing nationwide seed coverage. See [the v2 report](Timing_and_Seed_Validation.md) for scope and results.
+
+## Statistics discovery evidence
+
+`College_Baseball_Statistics_Discovery_Evidence.zip` is a small, independent research checkpoint, not a replacement for either baseline ZIP. It contains four ESPN historical summaries, four official LSU pages, URL/retrieval-time/hash metadata, and fingerprints of the five supplied references. No 2026 game feed was requested. Web-only source observations and current access limitations are recorded in the [triage report](Statistics_Discovery_and_Triage.md).
+
+SHA-256: `ab47ff963eb3c7e3404b9066b7110506b4e3db2ffce3abb165a836dc5dad1960`.
+
+Verify that hash before extracting into a new temporary directory. The archive has `raw/` and `reference_hashes.json` at its root. It does not contain or restore baseline outputs. Use current repository code:
+
+```sh
+sha256sum /absolute/path/to/College_Baseball_Statistics_Discovery_Evidence.zip
+python3 -m zipfile -e /absolute/path/to/College_Baseball_Statistics_Discovery_Evidence.zip /tmp/baseball-statistics-discovery
+python3 scripts/audit_statistics_sources.py --raw-dir /tmp/baseball-statistics-discovery/raw
+```
+
+The offline audit verifies hashes and the fixed sample's event seasons, pitcher counts, pitch counts and outs. It never fetches data or modifies model inputs. These selected examples cannot estimate national coverage. Keep raw evidence private and outside Git, as with the earlier checkpoints.
