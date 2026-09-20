@@ -21,3 +21,8 @@ Public files contain code, configuration and project-authored documentation. The
 ### Limits and next step
 
 Data is not publicly redistributed; full reproduction requires the existing bundle from the project owner. No license has been selected. The current baseline remains retrospective, 2025 remains development, and 2026 is not certified untouched. Next: resolve the two 2023 date conflicts, broaden independent date/phase checks and add a seed benchmark. No interface work.
+
+
+## September 20, 2026 — Spreadsheet-style graphs requested
+
+Recorded Aaron’s request for graphs in the future app. Inspected the original DYNAMIC workbook chart XML: MATCHUPS uses a two-series radar chart with contact, power, speed, pitching and defense axes. Added the requirement to the brief. Original spreadsheets, code, data and model are unchanged. Verification was limited to the source chart definition and documentation diff; no runtime tests were needed. Next data/model work remains the two timing conflicts, broader independent checks and a cutoff-safe seed benchmark. Interface implementation remains deferred.

@@ -243,3 +243,8 @@ College_Baseball_Historical_Baseline_Bundle.zip and College_Baseball_Historical_
 The public repository is `aaronmayeux/college-baseball-predictor`. Code, tests, cutoff configuration, specification and project-authored reports are tracked. The large evidence bundle, raw responses, SQLite databases, generated game-level outputs and original spreadsheets remain outside Git. `scripts/restore_data.py` verifies the saved bundle checksum and restores data without overwriting code. See `docs/DATA.md`.
 
 This repository edition supersedes earlier statements about a repository not yet existing. Historical session notes remain as dated records. No modeling parameters, source restrictions or evaluation claims changed during repository setup. Next data/model work remains resolving the two timing exceptions, broadening checks and adding a seed benchmark.
+
+
+## Interface requirement — September 20, 2026
+
+Aaron requests graphs like the original spreadsheet. Preserve the two-team radar (spider) comparison from the DYNAMIC workbook MATCHUPS sheet, with CONTACT, POWER, SPEED, PITCHING and DEFENSE axes. The inspected chart caches Coastal Carolina and LSU as its example teams. The future app should allow selecting two teams and comparing their profiles. Define comparable scales and explain the metrics when implemented; preserve the visual concept without treating the original formulas as validated. This is a recorded requirement for the later interface milestone, not authorization to build it now.
