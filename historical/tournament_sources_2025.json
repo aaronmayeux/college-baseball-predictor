@@ -86,10 +86,20 @@
           "key": "Vanderbilt_alternate.html",
           "url": "https://vucommodores.com/sports/baseball/schedule/season/2025/",
           "kind": "schedule"
+        },
+        {
+          "key": "vanderbilt_robots.txt",
+          "url": "https://vucommodores.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "vanderbilt_schedule.html",
+          "url": "https://vucommodores.com/sports/baseball/schedule/season/2024-25/",
+          "kind": "schedule"
         }
       ],
       "bulk_collection_enabled": false,
-      "candidate_schedule_url": "https://vucommodores.com/sports/baseball/schedule/2025",
+      "candidate_schedule_url": "https://vucommodores.com/sports/baseball/schedule/season/2024-25/",
       "candidate_cumulative_url": "https://vucommodores.com/sports/baseball/stats/2025"
     },
     {
@@ -266,10 +276,20 @@
           "key": "Arkansas_alternate.html",
           "url": "https://arkansasrazorbacks.com/sport/baseball/schedule/?season=2025",
           "kind": "schedule"
+        },
+        {
+          "key": "arkansas_robots.txt",
+          "url": "https://arkansasrazorbacks.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "arkansas_schedule.html",
+          "url": "https://arkansasrazorbacks.com/sport/m-basebl/schedule/?season=2024-25",
+          "kind": "schedule"
         }
       ],
       "bulk_collection_enabled": false,
-      "candidate_schedule_url": "https://arkansasrazorbacks.com/sports/baseball/schedule/2025",
+      "candidate_schedule_url": "https://arkansasrazorbacks.com/sport/m-basebl/schedule/?season=2024-25",
       "candidate_cumulative_url": "https://arkansasrazorbacks.com/sports/baseball/stats/2025"
     },
     {
@@ -664,6 +684,11 @@
       "probes": [
         {
           "key": "Dallas-Baptist_robots.txt",
+          "url": "https://dbupatriots.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "dbu_robots.txt",
           "url": "https://dbupatriots.com/robots.txt",
           "kind": "robots"
         }
@@ -1266,10 +1291,25 @@
           "key": "clemson_historical.html",
           "url": "https://clemsontigers.com/sports/baseball/schedule/season/2024-25/",
           "kind": "schedule"
+        },
+        {
+          "key": "clemson_data_robots.txt",
+          "url": "https://data.clemsontigers.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "clemson_index.html",
+          "url": "https://data.clemsontigers.com/Stats/Baseball/2025/teamstat.htm",
+          "kind": "schedule"
+        },
+        {
+          "key": "clemson_cumulative.html",
+          "url": "https://data.clemsontigers.com/Stats/Baseball/2025/teamcume.htm",
+          "kind": "cumulative"
         }
       ],
       "bulk_collection_enabled": false,
-      "candidate_schedule_url": "https://clemsontigers.com/sports/baseball/schedule/2025",
+      "candidate_schedule_url": "https://data.clemsontigers.com/Stats/Baseball/2025/teamstat.htm",
       "candidate_cumulative_url": "https://clemsontigers.com/sports/baseball/stats/2025"
     },
     {

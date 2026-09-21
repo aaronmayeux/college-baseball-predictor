@@ -117,7 +117,7 @@ Missouri State–Illinois State, 9–4, is dated May 24, 2022 in the schedule, c
 
 `player_coverage_ledger.py` creates one status row per requested team and keeps unregistered teams visible. It separates batting/pitching reconciliation from unknown recent workload and requires a validated fallback; it does not implement predictions or claim an available fallback model. Mixed seasons, missing data and forecast-mode differences cannot silently promote a team to qualified. Rest remains unknown throughout.
 
-The strict expansion audit rebuilds from recovered raw evidence; the retained LSU/Towson output reproduces byte-for-byte. All 70 current tests pass and baseline inputs remain unchanged. New evidence: [DATA.md](DATA.md#structured-source-expansion-evidence). Source season totals are audit targets only; no feature fitting, thresholds, scaling, interface or 2026 statistics collection was added.
+The strict expansion audit rebuilds from recovered raw evidence; the retained LSU/Towson output reproduces byte-for-byte. All 79 current tests pass and baseline inputs remain unchanged. New evidence: [DATA.md](DATA.md#structured-source-expansion-evidence). Source season totals are audit targets only; no feature fitting, thresholds, scaling, interface or 2026 statistics collection was added.
 
 ## Independently investigated exceptions
 

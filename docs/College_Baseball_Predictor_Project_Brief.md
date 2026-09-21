@@ -41,7 +41,7 @@ A mobile-friendly web app with an on-demand pre-tournament data import, one comp
 
 The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Aaron approved prioritizing hitting profiles and pitching quality/depth. Individual features, quality-arm/ace thresholds and scaling are not selected or fitted.
 
-The [historical player audit](Historical_Player_Data_Coverage.md) now covers four complete sampled team-seasons: LSU 2025, Towson 2024, Davidson 2024 and Missouri State 2022. All pitching counts reconcile. Dunagan’s non-batting appearance is independently confirmed but the cumulative batting omission remains flagged. The Missouri State date conflict is resolved as start versus completion in separate annotations; the baseline date was correct. The [2025 field source map](Tournament_Source_Availability_2025.md) includes all 64 teams, but only LSU has reconciled counts in that field. Provider access/volume remains a gate before bulk collection. Missing pitch counts, actual-work dates and nationwide coverage still limit workload modeling. Final season totals remain audit targets only.
+The [historical player audit](Historical_Player_Data_Coverage.md) now covers four complete sampled team-seasons: LSU 2025, Towson 2024, Davidson 2024 and Missouri State 2022. All pitching counts reconcile. Dunagan’s non-batting appearance is independently confirmed but the cumulative batting omission remains flagged. The Missouri State date conflict is resolved as start versus completion in separate annotations; the baseline date was correct. The [2025 field source map](Tournament_Source_Availability_2025.md) includes all 64 teams, but only LSU has reconciled counts in that field. The field has 62 schedule sources and 48 player-group sources; three WMT links remain untested. Offline D1 volume is sized, but provider access/volume remains a gate before bulk collection. Missing pitch counts, actual-work dates and nationwide coverage still limit workload modeling. Final season totals remain audit targets only.
 
 Carry these product requirements forward:
 
@@ -114,7 +114,7 @@ Recheck access and applicable-year rules before production use.
 
 Use [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
-Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next establish permitted provider access/volume, resolve the full-field archive/parser gaps, and reconcile additional 2025 team-seasons before feature fitting. Validate the declared team-level fallback before a full-bracket run. Broader independent phase checks and prospective holdout locking remain outstanding. Preserve the separate daily-mode contract as deferred research, not a prerequisite for the one-run product. Actual appearance dates still matter when reconstructing pitching workload at bracket lock.
+Next establish permitted collection volume, resolve remaining archives/parsers, and reconcile additional 2025 team-seasons. Validate the team-level fallback before a full-bracket claim. Independent phase checks and prospective holdout locking remain outstanding. Daily-mode research is deferred; actual appearance dates still matter at bracket lock.
 
 ## Open decisions
 

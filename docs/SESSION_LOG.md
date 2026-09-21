@@ -4,16 +4,16 @@ Updated September 21, 2026. Git history owns prior sessions.
 
 ## Latest work
 
-Mapped all 64 NCAA-selected 2025 teams: 59 historical schedules/preserved audits; 48 historical player-group pages/preserved audits. Only LSU has reconciled core counts in this field. All teams retain unknown workload and a required validated fallback. Bulk collection remains disabled pending provider access/volume. See [full-field source map](Tournament_Source_Availability_2025.md).
+Resolved Vanderbilt, Arkansas and Clemson historical schedule sources: 62/64 available indexes/audits. Player-group availability remains 48/64; only LSU has reconciled counts in this field. Shared Nuxt decoding now handles empty refs. Cincinnati/UCLA/Arizona State expose historical WMT links, not embedded player statistics; redirect/season/destination guards preserve that distinction. Murray State’s 5/4/2024 cumulative row remains flagged.
 
-Duke independently confirms Jake Dunagan's PR/CF appearance; Davidson lists him in pitching/fielding but omits batting. Batting completeness remains false. Illinois State confirms the Missouri State game started May 24 and finished May 25, 2022. Baseline completion date is correct. Separate exception annotations qualify Missouri State conference-inclusive box joins at 57/57 without assigning pitcher work dates.
+Offline collection sizing: 3,852 full-season team-game sides / 3,159 distinct D1 games; regular-only 3,396/2,865; conference-inclusive 3,580/3,023. These are inventory counts, not permission or a complete request budget; non-D1 workload remains additional. All 64 retain unknown workload and an unvalidated fallback.
 
-Recovered all 117 raw responses and metadata from the truncated source-expansion ZIP via CRC and SHA checks; rebuilt its derived audit. DATA.md documents recovery and the new checkpoint.
+SIDEARM terms rechecked; bulk volume still unverified. Little Rock remains robots-disallowed; Dallas Baptist robots again failed (502). No full-season collection, provider contact, feature fitting, simulator or interface. DATA.md documents the new evidence checkpoint.
 
 ## Verification
 
-70 tests pass. LSU/Towson audit repeats byte-for-byte. New audits reproduce offline. All 3,212 baseline files remain identical. No model fitting, thresholds, scaling, interface or simulator changes. One pre-NCAA run through champion remains primary; no scheduler/live updates required.
+79 tests pass. Both prior season audits reproduce byte-for-byte; all 3,212 baseline files match the preserved bundle. Source map and collection plan reproduce offline. Cutoffs, holdout safeguards, thresholds and scaling unchanged.
 
 ## Next action and limitations
 
-Establish provider access/volume, resolve five schedule gaps plus player-source/parser gaps, then qualify additional team-seasons and validate fallback behavior. SIDEARM personal-use copying is not a verified bulk-volume grant. Little Rock robots disallow; Dallas Baptist robots failed. A Clemson historical URL returned 2026 content and was rejected; 2026 remains uncertified and unused for modeling. Preserve cutoffs, separate forecast modes and unknown rest.
+Establish a permitted collection route/volume; investigate WMT destination terms and archives, qualify Clemson’s retained cumulative format, and resolve Little Rock/DBU alternatives. Then reconcile more team-seasons and validate the team-level fallback before claiming full-bracket readiness. Prior exception annotations remain separate; missing counts/appearance dates never imply rested pitchers.

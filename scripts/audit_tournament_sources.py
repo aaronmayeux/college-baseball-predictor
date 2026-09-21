@@ -12,10 +12,10 @@ import json
 from pathlib import Path
 import re
 import sys
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 from audit_official_player_sample import read
 from audit_official_season_inventory import REPO
-from sidearm_structured import payload, only
+from sidearm_structured import payload, only, decode
 
 
 def historical_year(value):
@@ -25,7 +25,7 @@ def historical_year(value):
     return dt.datetime.strptime(value, '%m/%d/%Y' if len(value.rsplit('/', 1)[1]) == 4 else '%m/%d/%y').year
 
 
-def inspect_page(text, url, kind):
+def inspect_page(text, url, kind, final_url=None):
     title_match = re.search(r'<title[^>]*>(.*?)</title>', text, re.S | re.I)
     title = re.sub(r'\s+', ' ', unescape(title_match[1])).strip() if title_match else ''
     links = sorted(set(urljoin(url, unescape(u)) for u in re.findall(r'href=["\']([^"\']+)', text)))
@@ -35,9 +35,27 @@ def inspect_page(text, url, kind):
         result['status'] = 'wrong_season_rejected'
         return result
     title_ok = bool(re.search(r'2025|2024[-–/]25', title)) and 'baseball' in title.lower()
+    headings = [re.sub(r'<[^>]+>', ' ', h) for h in re.findall(r'<h1[^>]*>(.*?)</h1>', text, re.S | re.I)]
+    if kind == 'schedule' and any(re.search(r'\b(?:2025|2024[-–/]25)\s+Baseball\s+Schedule\b', h, re.I) for h in headings):
+        title_ok = True
     result['parser_family'] = 'sidearm_embedded' if '__NUXT_DATA__' in text else ('sidearm_html' if 'sidearm' in text.lower() else 'other_html')
     if kind == 'cumulative' and '__NUXT_DATA__' in text:
         try:
+            decoded = decode(text)
+            roster = decoded.get('data', {}).get('sport-baseball-roster-season-2025')
+            if roster is not None:
+                # A redirect is accepted only with retained same-host evidence.
+                final = urlparse(final_url or url)
+                if final.scheme != 'https' or final.netloc != urlparse(url).netloc or final.path.rstrip('/') != '/sports/baseball/stats/season/2025' or decoded.get('path', '').rstrip('/') != final.path.rstrip('/'):
+                    raise ValueError('Unverified historical redirect')
+                if roster['season']['slug'] != '2025' or roster['season']['name'] != '2025' or roster['sport']['slug'] != 'baseball':
+                    raise ValueError('Wrong linked stats season/sport')
+                linked = roster['wmt_stats2_iframe_url']
+                target = urlparse(linked)
+                if target.scheme != 'https' or target.netloc != 'wmt.games' or not re.fullmatch(r'/[^/]+/stats/season/\d+', target.path) or target.path.rsplit('/', 1)[1] != str(roster['wmt_stats2_team_id']):
+                    raise ValueError('Unverified linked stats identity')
+                result.update(status='historical_external_stats_link_only', parser_family='wmt_nuxt', historical_stats_links=[linked])
+                return result
             data = only(payload(text, url)['statsSeason']['cumulativeStats'].values())
             games = [g for g in data['gameByGameStats']['ourGameByGameStats'] if not g['isAFooterStat']]
             individual = data['overallIndividualStats']['individualStats']
@@ -90,12 +108,12 @@ def audit(raw, registry, lsu_audit):
             item = dict(probe, evidence=meta)
             if meta.get('http_status') == 200:
                 text, _ = read(raw, probe['key'])
-                item.update(inspect_page(text, probe['url'], probe['kind']) if probe['kind'] != 'robots' else dict(status='robots_only_not_permission'))
+                item.update(inspect_page(text, probe['url'], probe['kind'], meta.get('final_url')) if probe['kind'] != 'robots' else dict(status='robots_only_not_permission'))
             else:
                 item['status'] = 'access_failed'
             row['probes'].append(item)
         row['schedule_status'] = 'historical_index_present' if any(p['kind']=='schedule' and p['status']=='historical_index_present' for p in row['probes']) else 'unverified_or_access_gap'
-        row['cumulative_status'] = 'historical_player_groups_present' if any(p['kind']=='cumulative' and p['status']=='historical_player_groups_present' for p in row['probes']) else 'unverified_or_not_tested'
+        row['cumulative_status'] = 'historical_player_groups_present' if any(p['kind']=='cumulative' and p['status']=='historical_player_groups_present' for p in row['probes']) else ('historical_external_stats_link_only' if any(p['status']=='historical_external_stats_link_only' for p in row['probes']) else 'unverified_or_not_tested')
         row['terms_status'] = 'sidearm_personal_copying_terms_bulk_volume_unverified' if any(any('sidearmsports.com' in u for u in p.get('terms_links', [])) for p in row['probes']) else 'provider_terms_unverified'
         if entry['team_id'] == 'wn:LSU':
             for mode in ('regular_only', 'conference_inclusive'):

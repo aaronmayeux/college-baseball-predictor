@@ -21,6 +21,14 @@ def decode(text):
             if value and isinstance(value[0],str):
                 tag=value[0]
                 if tag in ('Reactive','ShallowReactive','Ref','ShallowRef') and len(value)==2:result=resolve(value[1])
+                elif tag in ('EmptyRef','EmptyShallowRef') and len(value)==2:
+                    # Nuxt encodes falsy ref values as strings, not node indices.
+                    # Resolve the reference first; never coerce missing data to zero.
+                    raw=resolve(value[1])
+                    if not isinstance(raw,str):raise ValueError('Invalid empty ref value')
+                    empty={'_':None,'null':None,'false':False,'0':0,'0n':0,'""':''}
+                    if raw not in empty:raise ValueError('Unsupported empty ref value')
+                    result=empty[raw]
                 elif tag=='Set':result=[resolve(v) for v in value[1:]]
                 else:raise ValueError('Unsupported payload tag: '+tag)
             else:result=[resolve(v) for v in value]

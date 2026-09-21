@@ -172,9 +172,28 @@ python3 scripts/audit_player_source_expansion.py --raw-dir /tmp/baseball-field/e
 cmp /tmp/expansion-rebuilt.json /tmp/baseball-field/expansion/audit.json
 python3 scripts/audit_player_exceptions.py --original-audit /tmp/baseball-field/expansion/audit.json --raw-dir /tmp/baseball-field/field/raw --output /tmp/exceptions-rebuilt.json
 cmp /tmp/exceptions-rebuilt.json /tmp/baseball-field/field/exception_annotations.json
-python3 scripts/audit_tournament_sources.py --raw-dir /tmp/baseball-field/field/raw --lsu-audit /tmp/baseball-season-appearances/audit.json --output /tmp/field-rebuilt.json
-cmp /tmp/field-rebuilt.json /tmp/baseball-field/field/field_audit.json
 python3 scripts/test_tournament_sources.py
 ```
 
-These commands are offline. The registry lists exact tested URLs and retains failures; it is not a national downloader or a permission grant. No collection command is added for the full field. The [source map](Tournament_Source_Availability_2025.md) owns access/coverage limits. The exception annotations preserve original records and unknown work dates. The original strict audit remains reproducible; there is no baseline correction.
+These commands are offline. The original 59-schedule source map is retained as historical evidence; current repository code/registry use the follow-up checkpoint below for the expanded map. The registry lists exact tested URLs and retains failures; it is not a national downloader or a permission grant. No collection command is added for the full field. The [source map](Tournament_Source_Availability_2025.md) owns access/coverage limits. The exception annotations preserve original records and unknown work dates. The original strict audit remains reproducible; there is no baseline correction.
+
+## Access and parser follow-up evidence
+
+`College_Baseball_Access_Parser_Evidence.zip` contains the prior field-map raw directory plus bounded follow-up responses: Vanderbilt/Arkansas historical schedules and robots files, Clemson’s separate StatCrew index/cumulative page and missing robots response, another failed DBU robots check, and rechecked SIDEARM terms. It includes the rebuilt 62-schedule map and offline collection-volume plan. No season box sweep occurred. It supersedes only the source-map raw directory/output, not the field checkpoint’s exception/expansion evidence or the baseline.
+
+SHA-256: `54cf90c2b0fd357a2bb07db6fe1c399f0a48647d64b462dd70d2772d806e5285`.
+
+After restoring baseline, timing/seed and season-appearance inputs, verify the hash and extract to a fresh directory:
+
+```sh
+sha256sum /absolute/path/to/College_Baseball_Access_Parser_Evidence.zip
+python3 -m zipfile -e /absolute/path/to/College_Baseball_Access_Parser_Evidence.zip /tmp/baseball-access-followup
+python3 scripts/audit_tournament_sources.py --raw-dir /tmp/baseball-access-followup/raw --lsu-audit /tmp/baseball-season-appearances/audit.json --output /tmp/field_audit.json
+cmp /tmp/field_audit.json /tmp/baseball-access-followup/field_audit.json
+python3 scripts/plan_tournament_collection.py --field-audit /tmp/field_audit.json --output /tmp/collection_plan.json
+cmp /tmp/collection_plan.json /tmp/baseball-access-followup/collection_plan.json
+python3 -m unittest discover -s scripts -p 'test_*.py'
+python3 -m unittest discover -s historical -p 'test_*.py'
+```
+
+Source URL, retrieval time, bytes/hash and failed-request metadata remain preserved. The WMT link classifications derive entirely from previously retained bytes; destination pages were not fetched. Mixed-year Murray State and unqualified Clemson cumulative data remain gaps. The plan counts known D1 games by the existing cutoff rules, keeps all 64 teams, and never enables collection or converts unknown workload into rest. Findings and access constraints belong in the [field report](Tournament_Source_Availability_2025.md).
