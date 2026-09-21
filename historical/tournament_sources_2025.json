@@ -666,11 +666,31 @@
           "key": "Little-Rock_robots.txt",
           "url": "https://lrtrojans.com/robots.txt",
           "kind": "robots"
+        },
+        {
+          "key": "ovc_robots.txt",
+          "url": "https://ovcsports.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "ovc_archive.html",
+          "url": "https://ovcsports.com/custompages/stats/baseball/2025/confstat.htm",
+          "kind": "discovery"
+        },
+        {
+          "key": "ovc_little_rock.html",
+          "url": "https://ovcsports.com/custompages/stats/baseball/2025/lr.htm",
+          "kind": "schedule"
+        },
+        {
+          "key": "ovc_little_rock.html",
+          "url": "https://ovcsports.com/custompages/stats/baseball/2025/lr.htm",
+          "kind": "cumulative"
         }
       ],
       "bulk_collection_enabled": false,
-      "candidate_schedule_url": "https://lrtrojans.com/sports/baseball/schedule/2025",
-      "candidate_cumulative_url": "https://lrtrojans.com/sports/baseball/stats/2025"
+      "candidate_schedule_url": "https://ovcsports.com/custompages/stats/baseball/2025/lr.htm",
+      "candidate_cumulative_url": "https://ovcsports.com/custompages/stats/baseball/2025/lr.htm"
     },
     {
       "team_id": "wn:Dallas-Baptist",
@@ -691,10 +711,30 @@
           "key": "dbu_robots.txt",
           "url": "https://dbupatriots.com/robots.txt",
           "kind": "robots"
+        },
+        {
+          "key": "cusa_robots.txt",
+          "url": "https://conferenceusa.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "cusa_stats_2025.html",
+          "url": "https://conferenceusa.com/stats.aspx?path=baseball&year=2025",
+          "kind": "discovery"
+        },
+        {
+          "key": "cusa_dbu_schedule.html",
+          "url": "https://conferenceusa.com/schedule.aspx?schedule=4473",
+          "kind": "schedule"
+        },
+        {
+          "key": "cusa_dbu_schedule_2025.html",
+          "url": "https://conferenceusa.com/schedule.aspx?schedule=4255",
+          "kind": "schedule"
         }
       ],
       "bulk_collection_enabled": false,
-      "candidate_schedule_url": "https://dbupatriots.com/sports/baseball/schedule/2025",
+      "candidate_schedule_url": "https://conferenceusa.com/schedule.aspx?schedule=4255",
       "candidate_cumulative_url": "https://dbupatriots.com/sports/baseball/stats/2025"
     },
     {

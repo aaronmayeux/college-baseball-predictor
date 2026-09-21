@@ -72,6 +72,51 @@
       "collection_scope": "preserved_season_pilot",
       "bulk_permission": "unverified",
       "actual_work_dates_qualified": false
+    },
+    {
+      "key": "clemson_2025",
+      "team_name": "Clemson",
+      "team_id": "wn:Clemson",
+      "season": 2025,
+      "conference": "ACC",
+      "adapter": "statcrew_archive_v1",
+      "schedule_format": "statcrew_index",
+      "schedule_key": "clemson_index.html",
+      "cumulative_key": "clemson_cumulative.html",
+      "schedule_url": "https://data.clemsontigers.com/Stats/Baseball/2025/teamstat.htm",
+      "cumulative_url": "https://data.clemsontigers.com/Stats/Baseball/2025/teamcume.htm",
+      "expected_completed_games": 63,
+      "collection_scope": "retained_archive_only",
+      "bulk_permission": "unverified",
+      "actual_work_dates_qualified": false,
+      "team_aliases": {
+        "USC Upstate": "wn:South-Carolina-Upstate",
+        "NC State": "wn:North-Carolina-State",
+        "Presbyterian": "wn:Presbyterian-College"
+      }
+    },
+    {
+      "key": "little_rock_2025",
+      "team_name": "Little Rock",
+      "team_id": "wn:Little-Rock",
+      "season": 2025,
+      "conference": "Ohio Valley",
+      "adapter": "statcrew_archive_v1",
+      "schedule_format": "conference_team_page",
+      "schedule_key": "ovc_little_rock.html",
+      "cumulative_key": "ovc_little_rock.html",
+      "schedule_url": "https://ovcsports.com/custompages/stats/baseball/2025/lr.htm",
+      "cumulative_url": "https://ovcsports.com/custompages/stats/baseball/2025/lr.htm",
+      "expected_completed_games": 61,
+      "collection_scope": "retained_archive_only",
+      "bulk_permission": "unverified",
+      "actual_work_dates_qualified": false,
+      "team_aliases": {
+        "ARKANSAS PINE-BLUFF": "wn:Arkansas-Pine-Bluff",
+        "Arkansas Pine-Bluff": "wn:Arkansas-Pine-Bluff",
+        "UT Arlington": "wn:UTA",
+        "UT MARTIN": "wn:Tennessee-Martin"
+      }
     }
   ]
 }

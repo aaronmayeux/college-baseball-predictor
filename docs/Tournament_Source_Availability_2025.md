@@ -4,8 +4,8 @@ September 21, 2026. **All 64 selected teams are represented; this is a developme
 
 ## What is established
 
-- 61 historical schedule pages plus LSU's preserved complete-season audit: **62/64**. These are accessible indexes, not verified full-season game joins.
-- 47 historical cumulative pages with batting/pitching groups plus LSU's preserved audit: **48/64**. Presence is not reconciliation, pre-cutoff eligibility or a usable feature.
+- 63 historical schedule pages plus LSU's preserved complete-season audit: **64/64**. Availability alone does not verify full-season game joins; qualified inventories are listed below.
+- 49 historical cumulative pages with batting/pitching groups plus LSU's preserved audit: **50/64**. Presence is not reconciliation, pre-cutoff eligibility or a usable feature.
 - **Only LSU (1/64)** has reconciled core hitting and pitching counts in the current 2025 field. The other three completed pilot teams are different seasons and do not count toward this field.
 - **0/64** have qualified recent workload or a production-validated fallback. Every row requires a validated team-level fallback/uncertainty policy until feature coverage is qualified. The baseline Elo exists, but is not yet a validated complete-bracket fallback engine.
 - Three additional pages (Cincinnati, UCLA, Arizona State) expose season-specific WMT links only; those links are not player groups or verified coverage.
@@ -13,9 +13,9 @@ September 21, 2026. **All 64 selected teams are represented; this is a developme
 
 ## Access gate
 
-46 school pages link [SIDEARM's terms](https://sidearmsports.com/sports/2022/12/7/terms-of-service). They permit personal-use copying subject to notices, but this review establishes neither a bulk automation volume nor permission to redistribute source content. This is not an asserted blanket automation ban. The other 18 entries retain unverified provider terms. A successful response or permissive robots rule alone is not permission.
+47 field entries have pages linking [SIDEARM's terms](https://sidearmsports.com/sports/2022/12/7/terms-of-service). They permit personal-use copying subject to notices, but this review establishes neither a bulk automation volume nor permission to redistribute source content. This is not an asserted blanket automation ban. The other 17 entries retain unverified provider terms. A successful response or permissive robots rule alone is not permission.
 
-Little Rock's robots file disallows all paths; no schedule was requested. Dallas Baptist's robots request again returned 502; collection stopped there. Clemson’s separate data host returned robots 404 (missing file); its two bounded archive probes succeeded, without establishing bulk terms. The Presto terms request returned 403; its terms remain unverified. Existing D1Baseball restrictions remain binding and no requests were made to it. For each provider, establish acceptable automated use/volume or a licensed feed before collecting complete player histories. Do not contact providers without Aaron's authorization.
+Little Rock’s school robots file disallows all paths; its school schedule was not requested. Its conference’s own 2025 archive supplies results and player totals. Dallas Baptist’s school robots request returned 502; its Conference USA schedule supplies the historical index instead. Clemson’s separate data host returned robots 404 (missing file); its two bounded archive probes succeeded, without establishing bulk terms. The Presto terms request returned 403; its terms remain unverified. Existing D1Baseball restrictions remain binding and no requests were made to it. For each provider, establish acceptable automated use/volume or a licensed feed before collecting complete player histories. Do not contact providers without Aaron's authorization.
 
 The SIDEARM terms were rechecked and retained in the access checkpoint; no numeric automated collection allowance was established. The primary path remains official-school archives where permitted. Opponent/conference boxes and a licensed provider are potential alternatives, not certified fallbacks. Historical cumulative totals are audit targets only. Never replace missing pitch counts or appearances with zero workload, and never infer that an unknown pitcher is rested.
 
@@ -46,8 +46,8 @@ The SIDEARM terms were rechecked and retained in the access checkpoint; no numer
 | [Oklahoma](https://soonersports.com/sports/baseball/schedule/2025) | Index | Groups | S | Reconcile permitted game/player histories |
 | [Nebraska](https://huskers.com/sports/baseball/schedule/season/2025) | Index | Gap | U | Locate/qualify historical player totals |
 | [LSU](https://lsusports.net/sports/bsb/schedule/season/2025/) | Audit | Audit | U | Actual work dates, feature/fallback validation |
-| [Little Rock](https://lrtrojans.com) | Gap | Gap | U | Robots disallow; permitted alternative needed |
-| [Dallas Baptist](https://dbupatriots.com) | Gap | Gap | U | Robots 502; access unresolved |
+| [Little Rock](https://ovcsports.com/custompages/stats/baseball/2025/lr.htm) | Index | Groups | U | OVC archive: 61 result joins; player appearance histories still unverified |
+| [Dallas Baptist](https://conferenceusa.com/schedule.aspx?schedule=4255) | Index | Gap | S | Conference archive found; qualify player totals and boxes |
 | [Rhode Island](https://gorhody.com/sports/baseball/schedule/2025) | Index | Groups | S | Reconcile permitted game/player histories |
 | [Georgia](https://georgiadogs.com/sports/baseball/schedule/2025) | Index | Groups | S | Reconcile permitted game/player histories |
 | [Binghamton](https://bubearcats.com/sports/baseball/schedule/2025) | Index | Groups | S | Reconcile permitted game/player histories |
@@ -67,7 +67,7 @@ The SIDEARM terms were rechecked and retained in the access checkpoint; no numer
 | [Murray State](https://goracers.com/sports/baseball/schedule/2025) | Index | Gap | S | Cumulative has a 5/4/2024 Southern Ill. row; preserve date conflict |
 | [West Virginia](https://wvusports.com/sports/baseball/schedule/2025) | Index | Groups | S | Reconcile permitted game/player histories |
 | [Kentucky](https://ukathletics.com/sports/baseball/schedule/2025) | Index | Gap | U | Locate/qualify historical player totals |
-| [Clemson](https://data.clemsontigers.com/Stats/Baseball/2025/teamstat.htm) | Index | Gap | U | StatCrew archive and cumulative bytes retained; cumulative season/schema still unqualified |
+| [Clemson](https://data.clemsontigers.com/Stats/Baseball/2025/teamstat.htm) | Index | Groups | U | 63 result joins including separate suspension annotation; appearance histories unverified |
 | [South Carolina Upstate](https://upstatespartans.com/sports/baseball/schedule/2025) | Index | Groups | S | Reconcile permitted game/player histories |
 | [Arizona](https://arizonawildcats.com/sports/baseball/schedule/2025) | Index | Groups | S | Reconcile permitted game/player histories |
 | [Cal Poly](https://gopoly.com/sports/baseball/schedule/2025) | Index | Groups | S | Reconcile permitted game/player histories |
@@ -96,13 +96,13 @@ Retain raw response bytes, URL, retrieval time, SHA-256 and failed-request metad
 
 Nuxt empty refs now decode without turning missing values into workload zeros. For WMT-linked pages, retained same-host redirect, payload path, baseball season and destination ID must agree. The historical roster is selected explicitly; default/current roster metadata is not used. These pages contain destination links, not the destination statistics. Murray State’s mixed-year cumulative row remains rejected; no date correction is inferred.
 
-The Clemson 2025-26 response is quarantined discovery evidence only; no 2026 outcome was used for modeling or evaluation, and 2026 remains uncertified. Final cumulative pages include postseason and must never become pre-NCAA features. Preserve regular-only and conference-inclusive cutoffs.
+The Clemson 2025-26 response and Conference USA’s default DBU 2026 schedule link are quarantined discovery evidence only; no 2026 outcome was used for modeling or evaluation, and 2026 remains uncertified. Final cumulative pages include postseason and must never become pre-NCAA features. Preserve regular-only and conference-inclusive cutoffs.
 
-Next establish provider access, resolve the listed archive/parser gaps, then reconcile each team-season and validate a simpler fallback before any all-team feature or bracket claim. Prioritize the shared SIDEARM route because it covers most discovered pages, while retaining the Little Rock and Dallas Baptist schedule gaps explicitly. No live refresh or scheduler is needed.
+Next establish provider access, resolve remaining player-source/parser gaps, then reconcile each team-season and validate a simpler fallback before any all-team feature or bracket claim. All schedule sources are now identified; most game inventories and nearly all player histories remain unverified. No live refresh or scheduler is needed.
 
 ## Collection volume (offline planning only)
 
-`plan_tournament_collection.py` sizes the preserved D1 results inventory across all 64 teams; it does not fetch, authorize requests, qualify a fallback or change model inputs. The [access checkpoint](DATA.md#access-and-parser-follow-up-evidence) preserves its inputs and output hashes.
+`plan_tournament_collection.py` sizes the preserved D1 results inventory across all 64 teams; it does not fetch, authorize requests, qualify a fallback or change model inputs. The [conference-archive checkpoint](DATA.md#conference-archive-qualification-evidence) preserves its inputs and output hashes.
 
 | Scope | Team-game sides | Distinct games touching field teams |
 |---|---:|---:|
@@ -110,4 +110,25 @@ Next establish provider access, resolve the listed archive/parser gaps, then rec
 | Regular-only, existing pre-NCAA cutoff | 3,396 | 2,865 |
 | Conference-inclusive, same cutoff | 3,580 | 3,023 |
 
-These are known D1 game counts, **not a certified request budget**. A shared box can save a second download only after both team sides are qualified. Non-D1 physical workload, missing sources, indexes/totals, separate PDFs and validation requests add work; retained cache can reduce fresh downloads. Conference-game physical workload is still relevant at bracket lock even when strength features use regular-only inputs. All 64 retain explicit unknown workload and unvalidated fallback status. No full-season sweep or additional team-season reconciliation occurred.
+These are known D1 game counts, **not a certified request budget**. A shared box can save a second download only after both team sides are qualified. Non-D1 physical workload, missing sources, indexes/totals, separate PDFs and validation requests add work; retained cache can reduce fresh downloads. Conference-game physical workload is still relevant at bracket lock even when strength features use regular-only inputs. All 64 retain explicit unknown workload and unvalidated fallback status. No full-season box sweep occurred. Clemson and Little Rock result inventories and cumulative sum checks are qualified separately below; their appearance histories are not reconciled.
+
+## Conference alternatives and archive qualification
+
+The [shared StatCrew audit](../scripts/audit_statcrew_archives.py) reads retained Clemson and Little Rock archives through the source registry, verifies explicit report years and source identities, joins results, and compares listed player sums with team totals. Full-season totals remain audit targets only.
+
+| Check | Clemson 2025 | Little Rock 2025 |
+|---|---:|---:|
+| Strict result joins | 62/63 | 61/61 |
+| Result joins including separately evidenced completion | 63/63 | 61/61 |
+| Regular-only eligible result inventory | 56/56 | 51/51 |
+| Conference-inclusive eligible result inventory | 60/60 | 56/56 |
+| Listed batters / summed GP | 16 / 652 | 18 / 655 |
+| Listed pitchers / summed appearances | 22 / 279 | 18 / 241 |
+
+Mapped additive core counts match team totals. Individual pitcher ER sums are 316 versus Clemson’s team 310 and 378 versus Little Rock’s team 376; retain these separately because team-unearned scoring can produce this distinction. Summed player GP/appearances are not team game counts. These checks cannot reveal an omitted zero-count player, establish stable player IDs or qualify pre-cutoff features. No new complete appearance history is claimed.
+
+Florida State’s retained [May 4 recap](https://seminoles.com/news/2025/5/4/baseball-series-evened-as-no-5-fsu-edged-by-no-3-clemson-in-suspended-game) confirms the 6–3 Clemson game began May 3 and finished May 4 after an overnight suspension. A separate result annotation preserves the strict May 3 source row and links the existing May 4 baseline result. The baseline stays unchanged and individual work dates remain unknown.
+
+The [OVC archive](https://ovcsports.com/custompages/stats/baseball/2025/lr.htm) contains Little Rock’s results and cumulative player groups. Conference USA’s 2025 statistics page linked to a default 2026 DBU schedule; that response was rejected. Its season selector explicitly identifies [2025 schedule 4255](https://conferenceusa.com/schedule.aspx?schedule=4255). No outcome from the rejected response was used in modeling.
+
+`audit_source_access.py` reproduces the access findings from retained bytes. OVC and Conference USA robots allow the tested archive paths for our declared research agent with a **five-second crawl delay**; this is pacing guidance, not verified bulk-use permission. WMT Games’ robots URL returned an HTML application shell, so access rules remain unknown and no historical stats destination was requested. WMT Digital allows crawling, but its tested terms candidate returned 404 and the retained homepage linked only privacy/contact information. Rules on WMT Digital do not authorize WMT Games. No provider contact or license grant occurred.

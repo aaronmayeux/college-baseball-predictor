@@ -169,13 +169,12 @@ After restoring the baseline and timing/seed checkpoints, verify that hash and e
 ```sh
 python3 -m zipfile -e /absolute/path/to/College_Baseball_Field_Source_Evidence.zip /tmp/baseball-field
 python3 scripts/audit_player_source_expansion.py --raw-dir /tmp/baseball-field/expansion/raw --output /tmp/expansion-rebuilt.json
-cmp /tmp/expansion-rebuilt.json /tmp/baseball-field/expansion/audit.json
 python3 scripts/audit_player_exceptions.py --original-audit /tmp/baseball-field/expansion/audit.json --raw-dir /tmp/baseball-field/field/raw --output /tmp/exceptions-rebuilt.json
 cmp /tmp/exceptions-rebuilt.json /tmp/baseball-field/field/exception_annotations.json
 python3 scripts/test_tournament_sources.py
 ```
 
-These commands are offline. The original 59-schedule source map is retained as historical evidence; current repository code/registry use the follow-up checkpoint below for the expanded map. The registry lists exact tested URLs and retains failures; it is not a national downloader or a permission grant. No collection command is added for the full field. The [source map](Tournament_Source_Availability_2025.md) owns access/coverage limits. The exception annotations preserve original records and unknown work dates. The original strict audit remains reproducible; there is no baseline correction.
+These commands are offline. Adding reviewed archive entries changes the expansion audit’s registry fingerprint; all original player/game findings are unchanged. Compare the current expansion output against the conference-archive checkpoint below; the prior archived audit remains intact. The original 59-schedule source map is retained as historical evidence; current repository code/registry use the follow-up checkpoint below for the expanded map. The registry lists exact tested URLs and retains failures; it is not a national downloader or a permission grant. No collection command is added for the full field. The [source map](Tournament_Source_Availability_2025.md) owns access/coverage limits. The exception annotations preserve original records and unknown work dates. The original strict audit remains reproducible; there is no baseline correction.
 
 ## Access and parser follow-up evidence
 
@@ -183,17 +182,40 @@ These commands are offline. The original 59-schedule source map is retained as h
 
 SHA-256: `54cf90c2b0fd357a2bb07db6fe1c399f0a48647d64b462dd70d2772d806e5285`.
 
-After restoring baseline, timing/seed and season-appearance inputs, verify the hash and extract to a fresh directory:
+This checkpoint preserves the 62-schedule intermediate snapshot. Current code/registry reproduction uses the conference-archive checkpoint below. To inspect the retained intermediate evidence, verify the hash and extract to a fresh directory:
 
 ```sh
 sha256sum /absolute/path/to/College_Baseball_Access_Parser_Evidence.zip
 python3 -m zipfile -e /absolute/path/to/College_Baseball_Access_Parser_Evidence.zip /tmp/baseball-access-followup
-python3 scripts/audit_tournament_sources.py --raw-dir /tmp/baseball-access-followup/raw --lsu-audit /tmp/baseball-season-appearances/audit.json --output /tmp/field_audit.json
-cmp /tmp/field_audit.json /tmp/baseball-access-followup/field_audit.json
-python3 scripts/plan_tournament_collection.py --field-audit /tmp/field_audit.json --output /tmp/collection_plan.json
-cmp /tmp/collection_plan.json /tmp/baseball-access-followup/collection_plan.json
 python3 -m unittest discover -s scripts -p 'test_*.py'
 python3 -m unittest discover -s historical -p 'test_*.py'
 ```
 
-Source URL, retrieval time, bytes/hash and failed-request metadata remain preserved. The WMT link classifications derive entirely from previously retained bytes; destination pages were not fetched. Mixed-year Murray State and unqualified Clemson cumulative data remain gaps. The plan counts known D1 games by the existing cutoff rules, keeps all 64 teams, and never enables collection or converts unknown workload into rest. Findings and access constraints belong in the [field report](Tournament_Source_Availability_2025.md).
+Source URL, retrieval time, bytes/hash and failed-request metadata remain preserved. The WMT link classifications derive entirely from previously retained bytes; destination pages were not fetched. Murray State’s mixed-year row remains a gap; Clemson cumulative qualification now uses the conference-archive audit below. The plan counts known D1 games by the existing cutoff rules, keeps all 64 teams, and never enables collection or converts unknown workload into rest. Findings and access constraints belong in the [field report](Tournament_Source_Availability_2025.md).
+
+## Conference archive qualification evidence
+
+`College_Baseball_Conference_Archive_Evidence.zip` contains the prior access/source-map raw directory plus bounded OVC, Conference USA, WMT access/discovery responses, one Clemson box and Florida State’s independent suspension recap. Includes current field, StatCrew archive, access and collection-plan audits, plus the expansion audit with its updated registry fingerprint. No full-season box sweep occurred. Keep the baseline, timing/seed, season-appearance and field/expansion checkpoints for their distinct inputs. This ZIP supersedes the access checkpoint’s source-map raw/output; it does not replace the other archives.
+
+SHA-256: `3cc0765168b0ecc9ea74bef5ef5dcd20bcf505c496f71d452f89f779468a967f`.
+
+After restoring baseline, timing/seed and season-appearance inputs, verify the hash and extract to a fresh directory. Use current repository code:
+
+```sh
+sha256sum /absolute/path/to/College_Baseball_Conference_Archive_Evidence.zip
+python3 -m zipfile -e /absolute/path/to/College_Baseball_Conference_Archive_Evidence.zip /tmp/baseball-conference
+python3 scripts/audit_tournament_sources.py --raw-dir /tmp/baseball-conference/raw --lsu-audit /tmp/baseball-season-appearances/audit.json --output /tmp/field_audit.json
+cmp /tmp/field_audit.json /tmp/baseball-conference/field_audit.json
+python3 scripts/audit_statcrew_archives.py --raw-dir /tmp/baseball-conference/raw --output /tmp/archive_audit.json
+cmp /tmp/archive_audit.json /tmp/baseball-conference/archive_audit.json
+python3 scripts/audit_source_access.py --raw-dir /tmp/baseball-conference/raw --output /tmp/access_audit.json
+cmp /tmp/access_audit.json /tmp/baseball-conference/access_audit.json
+python3 scripts/plan_tournament_collection.py --field-audit /tmp/field_audit.json --output /tmp/collection_plan.json
+cmp /tmp/collection_plan.json /tmp/baseball-conference/collection_plan.json
+python3 scripts/audit_player_source_expansion.py --raw-dir /tmp/baseball-field/expansion/raw --output /tmp/expansion_audit.json
+cmp /tmp/expansion_audit.json /tmp/baseball-conference/expansion_audit.json
+python3 -m unittest discover -s scripts -p 'test_*.py'
+python3 -m unittest discover -s historical -p 'test_*.py'
+```
+
+The [field report](Tournament_Source_Availability_2025.md#conference-alternatives-and-archive-qualification) owns findings and limitations. All 64 source entries remain unqualified for production features/fallback; only LSU has full core appearance reconciliation. StatCrew inventories and cumulative additive checks are not appearance-history certification. Clemson’s completion annotation is separate from the strict source row and assigns no pitcher work dates. WMT Games’ HTML robots response and CUSA’s default 2026 DBU schedule are retained failed-discovery evidence; the latter is rejected from historical qualification and all modeling.

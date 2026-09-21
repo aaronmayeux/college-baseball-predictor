@@ -4,16 +4,16 @@ Updated September 21, 2026. Git history owns prior sessions.
 
 ## Latest work
 
-Resolved Vanderbilt, Arkansas and Clemson historical schedule sources: 62/64 available indexes/audits. Player-group availability remains 48/64; only LSU has reconciled counts in this field. Shared Nuxt decoding now handles empty refs. Cincinnati/UCLA/Arizona State expose historical WMT links, not embedded player statistics; redirect/season/destination guards preserve that distinction. Murray State’s 5/4/2024 cumulative row remains flagged.
+All 64 field teams now have historical schedule sources; 50 have player-group sources. Little Rock uses OVC’s own archive; Dallas Baptist uses Conference USA schedule 4255. School-host access restrictions remain unchanged. Only LSU has reconciled player histories in this field.
 
-Offline collection sizing: 3,852 full-season team-game sides / 3,159 distinct D1 games; regular-only 3,396/2,865; conference-inclusive 3,580/3,023. These are inventory counts, not permission or a complete request budget; non-D1 workload remains additional. All 64 retain unknown workload and an unvalidated fallback.
+Shared StatCrew readers qualify Clemson/Little Rock cumulative schemas and additive player sums. Result inventories join 63/63 Clemson and 61/61 Little Rock games, with one separate Clemson suspension annotation. Florida State independently confirms May 3 start / May 4 completion; baseline date is correct. Player work dates remain unknown. See the field report for mode counts and ER distinctions.
 
-SIDEARM terms rechecked; bulk volume still unverified. Little Rock remains robots-disallowed; Dallas Baptist robots again failed (502). No full-season collection, provider contact, feature fitting, simulator or interface. DATA.md documents the new evidence checkpoint.
+OVC/CUSA robots allow reviewed archive paths with five-second delays; bulk-use permission remains unverified. WMT Games robots returned HTML rather than rules; WMT Digital’s terms candidate failed. No WMT stats destination, bulk sweep or provider contact.
 
 ## Verification
 
-79 tests pass. Both prior season audits reproduce byte-for-byte; all 3,212 baseline files match the preserved bundle. Source map and collection plan reproduce offline. Cutoffs, holdout safeguards, thresholds and scaling unchanged.
+91 tests pass. New audits reproduce offline. LSU/Towson audit repeats byte-for-byte. Davidson/Missouri State results are unchanged; only the expanded registry fingerprint differs. All 3,212 baseline files remain identical. DATA.md documents the conference-archive checkpoint.
 
 ## Next action and limitations
 
-Establish a permitted collection route/volume; investigate WMT destination terms and archives, qualify Clemson’s retained cumulative format, and resolve Little Rock/DBU alternatives. Then reconcile more team-seasons and validate the team-level fallback before claiming full-bracket readiness. Prior exception annotations remain separate; missing counts/appearance dates never imply rested pitchers.
+Resolve permitted collection scope/volume and remaining player sources, then reconcile additional full appearance histories. Validate team-level fallback behavior before complete-bracket claims. Conference USA’s default DBU link returned 2026 and was quarantined; 2026 remains uncertified and unused for modeling. No thresholds/scaling, model fitting, simulator, scheduler or interface changes.

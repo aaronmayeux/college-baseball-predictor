@@ -28,7 +28,7 @@ Only evaluate Elo after collection, reciprocal-score checks, season-record recon
 ## Holdout decision
 2026 cannot be certified untouched: recovered SESSION_RECORD.md says an earlier ESPN sample included 2026 and its original raw evidence was lost. Exact exposed games and whether outcomes informed choices are unknown. Do not collect or evaluate 2026 under an untouched-holdout claim. Reserve a future season prospectively after locking code, cutoffs and metrics; 2027 is the earliest candidate, not yet a committed test.
 
-Additional holdout exposure: requesting Columbia's official 2021 schedule silently returned 2026 scored rows. The season guard rejects the payload from historical checks and all modeling. It is retained as raw failed-access evidence only. No 2026 fit or metrics were run.
+Additional holdout exposure: requesting Columbia's official 2021 schedule silently returned 2026 scored rows. The season guard rejects the payload from historical checks and all modeling. It is retained as raw failed-access evidence only. No 2026 fit or metrics were run. A later Conference USA 2025 statistics page linked to DBU’s default 2026 schedule; the season guard rejected that response. The explicit 2025 selector was used instead. The retained wrong-year page is failed-discovery evidence only.
 
 ## Versioned timing/seed extension
 

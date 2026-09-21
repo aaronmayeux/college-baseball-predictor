@@ -16,6 +16,7 @@ from urllib.parse import urljoin, urlparse
 from audit_official_player_sample import read
 from audit_official_season_inventory import REPO
 from sidearm_structured import payload, only, decode
+from statcrew_archives import cumulative as statcrew_cumulative
 
 
 def historical_year(value):
@@ -39,7 +40,14 @@ def inspect_page(text, url, kind, final_url=None):
     if kind == 'schedule' and any(re.search(r'\b(?:2025|2024[-–/]25)\s+Baseball\s+Schedule\b', h, re.I) for h in headings):
         title_ok = True
     result['parser_family'] = 'sidearm_embedded' if '__NUXT_DATA__' in text else ('sidearm_html' if 'sidearm' in text.lower() else 'other_html')
-    if kind == 'cumulative' and '__NUXT_DATA__' in text:
+    if kind == 'cumulative' and re.search(r'<!File source:', text, re.I):
+        try:
+            groups = statcrew_cumulative(text, url, 2025)
+            result.update(status='historical_player_groups_present', parser_family='statcrew_html',
+                listed_players={k: len(v['players']) for k, v in groups.items()})
+        except (ValueError, KeyError, TypeError) as error:
+            result['schema_issue'] = str(error)
+    elif kind == 'cumulative' and '__NUXT_DATA__' in text:
         try:
             decoded = decode(text)
             roster = decoded.get('data', {}).get('sport-baseball-roster-season-2025')
