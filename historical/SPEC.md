@@ -18,6 +18,7 @@ Extends the recovered 2025 audit. Read `docs/College_Baseball_Predictor_Project_
 - No arbitrary ordering of doubleheaders: predict all eligible games of a date from the preceding state, then update in a batch.
 - Ties can update Elo as half a win but are excluded from binary accuracy/log-loss/Brier evaluation.
 - Neutral model only. Venue/home designations remain unverified.
+- The development team-only fallback preserves all selected teams. Missing eligible current-season results block a matchup rather than silently using a default rating; missing player histories never imply rest. Its numerical probabilities exclude player adjustments. Unmodeled availability and uncalibrated strength intervals remain explicit; matchup checks do not qualify a complete bracket.
 
 ## Modeling gate
 Only evaluate Elo after collection, reciprocal-score checks, season-record reconciliation, identity collision checks and phase/cutoff checks pass for the evaluation sample. Report exclusions and sample coverage. Never imply independent national completeness from agreement within one provider.

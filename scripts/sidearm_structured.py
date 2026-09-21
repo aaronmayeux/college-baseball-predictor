@@ -56,7 +56,13 @@ def schedule(text,config):
         reason=None
         if int(date[:4])!=year:reason='outside_calendar_season'
         elif result.get('status') not in ('W','L','T'):reason='no_completed_result'
-        elif game.get('noplay_text'):raise ValueError('Result conflicts with no-play label')
+        elif game.get('noplay_text'):
+            # Some completed rows retain an explicit rescheduling label. Accept
+            # only a destination date that agrees with this row; keep the label.
+            # This does not certify completion or individual player work dates.
+            label=re.fullmatch(r'Postponed to (\d{1,2})/(\d{1,2})',game['noplay_text'],re.I)
+            if not label or (int(label[1]),int(label[2])) != (int(date[5:7]),int(date[8:10])):
+                raise ValueError('Result conflicts with no-play label')
         if reason:
             excluded.append(dict(source_game=game,reason=reason));continue
         box=result.get('boxscore');box_url=urljoin(url,box['url']) if box else None
@@ -65,6 +71,7 @@ def schedule(text,config):
             runs=[count(result['team_score']),count(result['opponent_score'])],box_url=box_url,
             source_opponent=game['opponent']['title'],source_game_id=str(game['id']),source_start=game['date'],source_end=game.get('enddate'),
             source_type=game.get('type'),source_result=result['status']))
+        if game.get('noplay_text'):completed[-1]['source_noplay_text']=game['noplay_text']
     if len(completed)!=config['expected_completed_games']:raise ValueError('Pilot game count changed; review inventory')
     urls=[r['box_url'] for r in completed if r['box_url']]
     if len(urls)!=len(set(urls)):raise ValueError('Duplicate box URL')

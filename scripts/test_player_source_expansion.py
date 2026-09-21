@@ -52,6 +52,27 @@ class ExpansionTests(unittest.TestCase):
         with patch('sidearm_structured.payload',return_value=data):
             with self.assertRaises(ValueError):schedule('',dict(CONFIG,expected_completed_games=2))
 
+    def test_completed_rescheduling_label_must_match_source_date(self):
+        for label, accepted in [('Postponed to 2/16', True), ('Postponed to 2/17', False), ('Canceled', False), ('Suspended', False)]:
+            game=fixture_game();game['noplay_text']=label
+            data={'schedule':{'schedules':{'schedules-baseball,2024':dict(season={'title':'2024'},sport={'shortname':'baseball'},games=[game])}}}
+            with patch('sidearm_structured.payload',return_value=data):
+                if accepted:
+                    rows,_=schedule('',CONFIG)
+                    self.assertEqual(rows[0]['source_noplay_text'],label)
+                    self.assertEqual(rows[0]['date'],'2024-02-16')
+                else:
+                    with self.assertRaises(ValueError):schedule('',CONFIG)
+
+    def test_louisville_alias_requires_retained_website_and_location(self):
+        from audit_retained_inventories import louisville_aliases, LOUISVILLE_ALIASES
+        opponents=[dict(opponent=dict(title=n,website=v[1],location=v[2])) for n,v in LOUISVILLE_ALIASES.items()]
+        data={'schedule':{'schedules':{'schedules-baseball,2025':dict(games=opponents)}}}
+        with patch('audit_retained_inventories.payload',return_value=data):
+            self.assertEqual(louisville_aliases('',CONFIG)['Miami'],'wn:Miami-FL')
+            opponents[-1]['opponent']['location']='Oxford, OH'
+            with self.assertRaises(ValueError):louisville_aliases('',CONFIG)
+
     def test_unused_roster_rows_are_not_appearances(self):
         data=fixture_box()
         with patch('sidearm_structured.payload',return_value={'boxscore':{'boxscore':{'x':data}}}):

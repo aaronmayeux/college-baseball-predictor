@@ -219,3 +219,16 @@ python3 -m unittest discover -s historical -p 'test_*.py'
 ```
 
 The [field report](Tournament_Source_Availability_2025.md#conference-alternatives-and-archive-qualification) owns findings and limitations. All 64 source entries remain unqualified for production features/fallback; only LSU has full core appearance reconciliation. StatCrew inventories and cumulative additive checks are not appearance-history certification. Clemson’s completion annotation is separate from the strict source row and assigns no pitcher work dates. WMT Games’ HTML robots response and CUSA’s default 2026 DBU schedule are retained failed-discovery evidence; the latter is rejected from historical qualification and all modeling.
+
+
+## Offline scope, inventory and fallback checks
+
+No new checkpoint is needed: these checks use the retained conference archive plus baseline and timing/seed inputs above. The season/field checkpoints remain necessary for their original appearance and exception audits. After restoration, use current repository code:
+
+```sh
+python3 scripts/audit_collection_scope.py --raw-dir /tmp/baseball-conference/raw --field-audit /tmp/baseball-conference/field_audit.json --output /tmp/collection_scope.json
+python3 scripts/audit_retained_inventories.py --raw-dir /tmp/baseball-conference/raw --field-audit /tmp/baseball-conference/field_audit.json --output /tmp/inventory_audit.json
+python3 scripts/audit_team_fallback.py --field-audit /tmp/baseball-conference/field_audit.json --output /tmp/fallback_audit.json
+```
+
+All commands are offline and leave baseline/v2 outputs unchanged. Outputs include source/input fingerprints; keep their game/matchup-level records outside Git. The fallback checks baseline gates, independent schedules, timing evidence and the NCAA field before comparing probabilities. It never uses season player totals as predictors. The [field report](Tournament_Source_Availability_2025.md#retained-source-expansion-and-team-only-fallback) owns results and remaining limitations. Tests remain runnable without the evidence bundles.
