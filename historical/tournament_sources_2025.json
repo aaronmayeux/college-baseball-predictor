@@ -1,0 +1,1906 @@
+{
+  "schema_version": 1,
+  "scope": "bounded_2025_field_source_discovery_not_bulk_collection",
+  "entries": [
+    {
+      "team_id": "wn:Louisville",
+      "stable_team_id": "cb:52f945c5-a59e-5673-aef3-391bdd5e493c",
+      "name": "Louisville",
+      "season": 2025,
+      "conference": "ACC",
+      "regional": "Nashville Regional hosted by Vanderbilt",
+      "seed": 2,
+      "candidate_origin": "https://gocards.com",
+      "probes": [
+        {
+          "key": "Louisville_robots.txt",
+          "url": "https://gocards.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Louisville_schedule.html",
+          "url": "https://gocards.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Louisville_cumulative.html",
+          "url": "https://gocards.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gocards.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gocards.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:East-Tennessee-State",
+      "stable_team_id": "cb:992cb948-e289-5b55-ad60-b6460f6198d2",
+      "name": "East Tennessee State",
+      "season": 2025,
+      "conference": "Southern",
+      "regional": "Nashville Regional hosted by Vanderbilt",
+      "seed": 3,
+      "candidate_origin": "https://etsubucs.com",
+      "probes": [
+        {
+          "key": "East-Tennessee-State_robots.txt",
+          "url": "https://etsubucs.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "East-Tennessee-State_schedule.html",
+          "url": "https://etsubucs.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "East-Tennessee-State_cumulative.html",
+          "url": "https://etsubucs.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://etsubucs.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://etsubucs.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Vanderbilt",
+      "stable_team_id": "cb:cbc2376f-d94e-582b-b48b-ef7ea1a619d7",
+      "name": "Vanderbilt",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Nashville Regional hosted by Vanderbilt",
+      "seed": 1,
+      "candidate_origin": "https://vucommodores.com",
+      "probes": [
+        {
+          "key": "Vanderbilt_robots.txt",
+          "url": "https://vucommodores.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Vanderbilt_schedule.html",
+          "url": "https://vucommodores.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Vanderbilt_alternate.html",
+          "url": "https://vucommodores.com/sports/baseball/schedule/season/2025/",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://vucommodores.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://vucommodores.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Wright-State",
+      "stable_team_id": "cb:16394739-dab6-52b5-aa95-833832ef0519",
+      "name": "Wright State",
+      "season": 2025,
+      "conference": "Horizon League",
+      "regional": "Nashville Regional hosted by Vanderbilt",
+      "seed": 4,
+      "candidate_origin": "https://wsuraiders.com",
+      "probes": [
+        {
+          "key": "Wright-State_robots.txt",
+          "url": "https://wsuraiders.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Wright-State_schedule.html",
+          "url": "https://wsuraiders.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Wright-State_cumulative.html",
+          "url": "https://wsuraiders.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://wsuraiders.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://wsuraiders.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Texas",
+      "stable_team_id": "cb:0703575c-cecb-5406-9c39-58f1e473281a",
+      "name": "Texas",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Austin Regional hosted by Texas",
+      "seed": 1,
+      "candidate_origin": "https://texassports.com",
+      "probes": [
+        {
+          "key": "Texas_robots.txt",
+          "url": "https://texassports.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Texas_schedule.html",
+          "url": "https://texassports.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Texas_cumulative.html",
+          "url": "https://texassports.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://texassports.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://texassports.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Houston-Christian",
+      "stable_team_id": "cb:ef8cd8be-156a-53c5-8d25-091ebe77f110",
+      "name": "Houston Christian",
+      "season": 2025,
+      "conference": "Southland",
+      "regional": "Austin Regional hosted by Texas",
+      "seed": 4,
+      "candidate_origin": "https://hcuhuskies.com",
+      "probes": [
+        {
+          "key": "Houston-Christian_robots.txt",
+          "url": "https://hcuhuskies.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Houston-Christian_schedule.html",
+          "url": "https://hcuhuskies.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Houston-Christian_cumulative.html",
+          "url": "https://hcuhuskies.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://hcuhuskies.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://hcuhuskies.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:UTSA",
+      "stable_team_id": "cb:b211a121-b834-5db2-bada-f9f95489c965",
+      "name": "UTSA",
+      "season": 2025,
+      "conference": "American Athletic",
+      "regional": "Austin Regional hosted by Texas",
+      "seed": 2,
+      "candidate_origin": "https://goutsa.com",
+      "probes": [
+        {
+          "key": "UTSA_robots.txt",
+          "url": "https://goutsa.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "UTSA_schedule.html",
+          "url": "https://goutsa.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "UTSA_alternate.html",
+          "url": "https://goutsa.com/sports/baseball/schedule/season/2025",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://goutsa.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://goutsa.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Kansas-State",
+      "stable_team_id": "cb:b1fff6dd-44ee-5ef7-9075-2e20de8654c7",
+      "name": "Kansas State",
+      "season": 2025,
+      "conference": "Big 12",
+      "regional": "Austin Regional hosted by Texas",
+      "seed": 3,
+      "candidate_origin": "https://kstatesports.com",
+      "probes": [
+        {
+          "key": "Kansas-State_robots.txt",
+          "url": "https://kstatesports.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Kansas-State_schedule.html",
+          "url": "https://kstatesports.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Kansas-State_cumulative.html",
+          "url": "https://kstatesports.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://kstatesports.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://kstatesports.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Arkansas",
+      "stable_team_id": "cb:2f6e1461-6148-5af1-9bdc-a30042ca075b",
+      "name": "Arkansas",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Fayetteville Regional hosted by Arkansas",
+      "seed": 1,
+      "candidate_origin": "https://arkansasrazorbacks.com",
+      "probes": [
+        {
+          "key": "Arkansas_robots.txt",
+          "url": "https://arkansasrazorbacks.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Arkansas_schedule.html",
+          "url": "https://arkansasrazorbacks.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Arkansas_alternate.html",
+          "url": "https://arkansasrazorbacks.com/sport/baseball/schedule/?season=2025",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://arkansasrazorbacks.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://arkansasrazorbacks.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:North-Dakota-State",
+      "stable_team_id": "cb:ac96b213-d437-5f27-a206-34d7d31b68e7",
+      "name": "North Dakota State",
+      "season": 2025,
+      "conference": "The Summit League",
+      "regional": "Fayetteville Regional hosted by Arkansas",
+      "seed": 4,
+      "candidate_origin": "https://gobison.com",
+      "probes": [
+        {
+          "key": "North-Dakota-State_robots.txt",
+          "url": "https://gobison.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "North-Dakota-State_schedule.html",
+          "url": "https://gobison.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "North-Dakota-State_cumulative.html",
+          "url": "https://gobison.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gobison.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gobison.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Kansas",
+      "stable_team_id": "cb:fd6020b6-0a49-52ff-997c-03610b372c3c",
+      "name": "Kansas",
+      "season": 2025,
+      "conference": "Big 12",
+      "regional": "Fayetteville Regional hosted by Arkansas",
+      "seed": 2,
+      "candidate_origin": "https://kuathletics.com",
+      "probes": [
+        {
+          "key": "Kansas_robots.txt",
+          "url": "https://kuathletics.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Kansas_schedule.html",
+          "url": "https://kuathletics.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Kansas_cumulative.html",
+          "url": "https://kuathletics.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://kuathletics.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://kuathletics.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Creighton",
+      "stable_team_id": "cb:0f2fb528-9264-52b8-9fa4-6df73ef6c851",
+      "name": "Creighton",
+      "season": 2025,
+      "conference": "Big East",
+      "regional": "Fayetteville Regional hosted by Arkansas",
+      "seed": 3,
+      "candidate_origin": "https://gocreighton.com",
+      "probes": [
+        {
+          "key": "Creighton_robots.txt",
+          "url": "https://gocreighton.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Creighton_schedule.html",
+          "url": "https://gocreighton.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Creighton_cumulative.html",
+          "url": "https://gocreighton.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gocreighton.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gocreighton.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:North-Carolina-State",
+      "stable_team_id": "cb:32f9a1a8-b611-5523-8c4a-defacc987af6",
+      "name": "North Carolina State",
+      "season": 2025,
+      "conference": "ACC",
+      "regional": "Auburn Regional hosted by Auburn",
+      "seed": 2,
+      "candidate_origin": "https://gopack.com",
+      "probes": [
+        {
+          "key": "North-Carolina-State_robots.txt",
+          "url": "https://gopack.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "North-Carolina-State_schedule.html",
+          "url": "https://gopack.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "North-Carolina-State_cumulative.html",
+          "url": "https://gopack.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gopack.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gopack.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Stetson",
+      "stable_team_id": "cb:7b398fbb-6f4f-5618-be69-1dd6587023cf",
+      "name": "Stetson",
+      "season": 2025,
+      "conference": "ASUN",
+      "regional": "Auburn Regional hosted by Auburn",
+      "seed": 3,
+      "candidate_origin": "https://gohatters.com",
+      "probes": [
+        {
+          "key": "Stetson_robots.txt",
+          "url": "https://gohatters.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Stetson_schedule.html",
+          "url": "https://gohatters.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Stetson_cumulative.html",
+          "url": "https://gohatters.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gohatters.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gohatters.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Auburn",
+      "stable_team_id": "cb:283968bd-8f9f-52aa-94a4-2d1a9ed79ba8",
+      "name": "Auburn",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Auburn Regional hosted by Auburn",
+      "seed": 1,
+      "candidate_origin": "https://auburntigers.com",
+      "probes": [
+        {
+          "key": "Auburn_robots.txt",
+          "url": "https://auburntigers.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Auburn_schedule.html",
+          "url": "https://auburntigers.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Auburn_alternate.html",
+          "url": "https://auburntigers.com/sports/baseball/schedule/season/2025",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://auburntigers.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://auburntigers.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Central-Connecticut",
+      "stable_team_id": "cb:30772246-3506-5cf5-8808-b56ced2d27ec",
+      "name": "Central Connecticut",
+      "season": 2025,
+      "conference": "Northeast",
+      "regional": "Auburn Regional hosted by Auburn",
+      "seed": 4,
+      "candidate_origin": "https://ccsubluedevils.com",
+      "probes": [
+        {
+          "key": "Central-Connecticut_robots.txt",
+          "url": "https://ccsubluedevils.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Central-Connecticut_schedule.html",
+          "url": "https://ccsubluedevils.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Central-Connecticut_alternate.html",
+          "url": "https://ccsubluedevils.com/sports/bsb/2024-25/schedule",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://ccsubluedevils.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://ccsubluedevils.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:North-Carolina",
+      "stable_team_id": "cb:1b556ec0-0ad1-502c-912d-c1321b686dea",
+      "name": "North Carolina",
+      "season": 2025,
+      "conference": "ACC",
+      "regional": "Chapel Hill Regional hosted by North Carolina",
+      "seed": 1,
+      "candidate_origin": "https://goheels.com",
+      "probes": [
+        {
+          "key": "North-Carolina_robots.txt",
+          "url": "https://goheels.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "North-Carolina_schedule.html",
+          "url": "https://goheels.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "North-Carolina_cumulative.html",
+          "url": "https://goheels.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://goheels.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://goheels.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Holy-Cross",
+      "stable_team_id": "cb:ab9d595c-820e-5e2a-a11b-d524e4cb63dd",
+      "name": "Holy Cross",
+      "season": 2025,
+      "conference": "Patriot League",
+      "regional": "Chapel Hill Regional hosted by North Carolina",
+      "seed": 4,
+      "candidate_origin": "https://goholycross.com",
+      "probes": [
+        {
+          "key": "Holy-Cross_robots.txt",
+          "url": "https://goholycross.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Holy-Cross_schedule.html",
+          "url": "https://goholycross.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Holy-Cross_cumulative.html",
+          "url": "https://goholycross.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://goholycross.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://goholycross.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Oklahoma",
+      "stable_team_id": "cb:9f58cda7-c9b7-5c44-92a4-a7cf0188c8a5",
+      "name": "Oklahoma",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Chapel Hill Regional hosted by North Carolina",
+      "seed": 2,
+      "candidate_origin": "https://soonersports.com",
+      "probes": [
+        {
+          "key": "Oklahoma_robots.txt",
+          "url": "https://soonersports.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Oklahoma_schedule.html",
+          "url": "https://soonersports.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Oklahoma_cumulative.html",
+          "url": "https://soonersports.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://soonersports.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://soonersports.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Nebraska",
+      "stable_team_id": "cb:5b95acaa-5e6e-5cf6-a7ae-5227806e7ae4",
+      "name": "Nebraska",
+      "season": 2025,
+      "conference": "Big Ten",
+      "regional": "Chapel Hill Regional hosted by North Carolina",
+      "seed": 3,
+      "candidate_origin": "https://huskers.com",
+      "probes": [
+        {
+          "key": "Nebraska_robots.txt",
+          "url": "https://huskers.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Nebraska_schedule.html",
+          "url": "https://huskers.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Nebraska_alternate.html",
+          "url": "https://huskers.com/sports/baseball/schedule/season/2025",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://huskers.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://huskers.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:LSU",
+      "stable_team_id": "cb:2a8254ca-ef75-5af9-b469-385deea4c94c",
+      "name": "LSU",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Baton Rouge Regional hosted by LSU",
+      "seed": 1,
+      "candidate_origin": "https://lsusports.net",
+      "probes": [
+        {
+          "key": "LSU_robots.txt",
+          "url": "https://lsusports.net/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "LSU_schedule.html",
+          "url": "https://lsusports.net/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "LSU_alternate.html",
+          "url": "https://lsusports.net/sports/bsb/schedule/season/2025/",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://lsusports.net/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://lsusports.net/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Little-Rock",
+      "stable_team_id": "cb:62c3698d-8463-50ef-9e9f-2ad10451723f",
+      "name": "Little Rock",
+      "season": 2025,
+      "conference": "Ohio Valley",
+      "regional": "Baton Rouge Regional hosted by LSU",
+      "seed": 4,
+      "candidate_origin": "https://lrtrojans.com",
+      "probes": [
+        {
+          "key": "Little-Rock_robots.txt",
+          "url": "https://lrtrojans.com/robots.txt",
+          "kind": "robots"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://lrtrojans.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://lrtrojans.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Dallas-Baptist",
+      "stable_team_id": "cb:ff257c60-fabb-56a5-8562-9021896fa06c",
+      "name": "Dallas Baptist",
+      "season": 2025,
+      "conference": "Conference USA",
+      "regional": "Baton Rouge Regional hosted by LSU",
+      "seed": 2,
+      "candidate_origin": "https://dbupatriots.com",
+      "probes": [
+        {
+          "key": "Dallas-Baptist_robots.txt",
+          "url": "https://dbupatriots.com/robots.txt",
+          "kind": "robots"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://dbupatriots.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://dbupatriots.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Rhode-Island",
+      "stable_team_id": "cb:83b593d6-9dd3-50b8-b70d-7069998dc1eb",
+      "name": "Rhode Island",
+      "season": 2025,
+      "conference": "Atlantic 10",
+      "regional": "Baton Rouge Regional hosted by LSU",
+      "seed": 3,
+      "candidate_origin": "https://gorhody.com",
+      "probes": [
+        {
+          "key": "Rhode-Island_robots.txt",
+          "url": "https://gorhody.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Rhode-Island_schedule.html",
+          "url": "https://gorhody.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Rhode-Island_cumulative.html",
+          "url": "https://gorhody.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gorhody.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gorhody.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Georgia",
+      "stable_team_id": "cb:53e68810-c662-549d-990b-1ef35d903999",
+      "name": "Georgia",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Athens Regional hosted by Georgia",
+      "seed": 1,
+      "candidate_origin": "https://georgiadogs.com",
+      "probes": [
+        {
+          "key": "Georgia_robots.txt",
+          "url": "https://georgiadogs.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Georgia_schedule.html",
+          "url": "https://georgiadogs.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Georgia_cumulative.html",
+          "url": "https://georgiadogs.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://georgiadogs.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://georgiadogs.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Binghamton",
+      "stable_team_id": "cb:b46e3d29-aa89-54c7-bf10-e7da5a753bb9",
+      "name": "Binghamton",
+      "season": 2025,
+      "conference": "America East",
+      "regional": "Athens Regional hosted by Georgia",
+      "seed": 4,
+      "candidate_origin": "https://bubearcats.com",
+      "probes": [
+        {
+          "key": "Binghamton_robots.txt",
+          "url": "https://bubearcats.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Binghamton_schedule.html",
+          "url": "https://bubearcats.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Binghamton_cumulative.html",
+          "url": "https://bubearcats.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://bubearcats.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://bubearcats.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Duke",
+      "stable_team_id": "cb:09be52eb-7926-5022-a342-ea42af3852f3",
+      "name": "Duke",
+      "season": 2025,
+      "conference": "ACC",
+      "regional": "Athens Regional hosted by Georgia",
+      "seed": 2,
+      "candidate_origin": "https://goduke.com",
+      "probes": [
+        {
+          "key": "Duke_robots.txt",
+          "url": "https://goduke.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Duke_schedule.html",
+          "url": "https://goduke.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Duke_cumulative.html",
+          "url": "https://goduke.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://goduke.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://goduke.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Oklahoma-State",
+      "stable_team_id": "cb:2545d542-0312-5dbe-9e97-162b20df8fe8",
+      "name": "Oklahoma State",
+      "season": 2025,
+      "conference": "Big 12",
+      "regional": "Athens Regional hosted by Georgia",
+      "seed": 3,
+      "candidate_origin": "https://okstate.com",
+      "probes": [
+        {
+          "key": "Oklahoma-State_robots.txt",
+          "url": "https://okstate.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Oklahoma-State_schedule.html",
+          "url": "https://okstate.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Oklahoma-State_cumulative.html",
+          "url": "https://okstate.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://okstate.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://okstate.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:TCU",
+      "stable_team_id": "cb:051c7be6-02f4-56d6-9f6a-7ddcee66625e",
+      "name": "TCU",
+      "season": 2025,
+      "conference": "Big 12",
+      "regional": "Corvallis Regional hosted by Oregon St.",
+      "seed": 2,
+      "candidate_origin": "https://gofrogs.com",
+      "probes": [
+        {
+          "key": "TCU_robots.txt",
+          "url": "https://gofrogs.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "TCU_schedule.html",
+          "url": "https://gofrogs.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "TCU_cumulative.html",
+          "url": "https://gofrogs.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gofrogs.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gofrogs.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:USC",
+      "stable_team_id": "cb:082f7041-68a7-5d3a-ab9f-d79f20bea356",
+      "name": "USC",
+      "season": 2025,
+      "conference": "Big Ten",
+      "regional": "Corvallis Regional hosted by Oregon St.",
+      "seed": 3,
+      "candidate_origin": "https://usctrojans.com",
+      "probes": [
+        {
+          "key": "USC_robots.txt",
+          "url": "https://usctrojans.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "USC_schedule.html",
+          "url": "https://usctrojans.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "USC_cumulative.html",
+          "url": "https://usctrojans.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://usctrojans.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://usctrojans.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Oregon-State",
+      "stable_team_id": "cb:bd25eb51-5a0f-5ae0-867b-904e63b29852",
+      "name": "Oregon State",
+      "season": 2025,
+      "conference": "Independent",
+      "regional": "Corvallis Regional hosted by Oregon St.",
+      "seed": 1,
+      "candidate_origin": "https://osubeavers.com",
+      "probes": [
+        {
+          "key": "Oregon-State_robots.txt",
+          "url": "https://osubeavers.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Oregon-State_schedule.html",
+          "url": "https://osubeavers.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Oregon-State_cumulative.html",
+          "url": "https://osubeavers.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://osubeavers.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://osubeavers.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Saint-Marys-College",
+      "stable_team_id": "cb:c5fb1347-7ddf-5414-8fdd-4d341b622e1e",
+      "name": "Saint Mary's College",
+      "season": 2025,
+      "conference": "West Coast",
+      "regional": "Corvallis Regional hosted by Oregon St.",
+      "seed": 4,
+      "candidate_origin": "https://smcgaels.com",
+      "probes": [
+        {
+          "key": "Saint-Marys-College_robots.txt",
+          "url": "https://smcgaels.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Saint-Marys-College_schedule.html",
+          "url": "https://smcgaels.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Saint-Marys-College_cumulative.html",
+          "url": "https://smcgaels.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://smcgaels.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://smcgaels.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Florida-State",
+      "stable_team_id": "cb:fc9bff91-a241-539e-aab2-f1f5d8d40ab9",
+      "name": "Florida State",
+      "season": 2025,
+      "conference": "ACC",
+      "regional": "Tallahassee Regional hosted by Florida St.",
+      "seed": 1,
+      "candidate_origin": "https://seminoles.com",
+      "probes": [
+        {
+          "key": "Florida-State_robots.txt",
+          "url": "https://seminoles.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Florida-State_schedule.html",
+          "url": "https://seminoles.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Florida-State_cumulative.html",
+          "url": "https://seminoles.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://seminoles.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://seminoles.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Bethune-Cookman",
+      "stable_team_id": "cb:f71bf0aa-1706-5273-ac56-862a250f42f6",
+      "name": "Bethune-Cookman",
+      "season": 2025,
+      "conference": "SWAC",
+      "regional": "Tallahassee Regional hosted by Florida St.",
+      "seed": 4,
+      "candidate_origin": "https://bcuathletics.com",
+      "probes": [
+        {
+          "key": "Bethune-Cookman_robots.txt",
+          "url": "https://bcuathletics.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Bethune-Cookman_schedule.html",
+          "url": "https://bcuathletics.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Bethune-Cookman_cumulative.html",
+          "url": "https://bcuathletics.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://bcuathletics.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://bcuathletics.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Northeastern",
+      "stable_team_id": "cb:356eb4f9-e325-5f3b-b765-14627da546ae",
+      "name": "Northeastern",
+      "season": 2025,
+      "conference": "Coastal Athletic",
+      "regional": "Tallahassee Regional hosted by Florida St.",
+      "seed": 2,
+      "candidate_origin": "https://nuhuskies.com",
+      "probes": [
+        {
+          "key": "Northeastern_robots.txt",
+          "url": "https://nuhuskies.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Northeastern_schedule.html",
+          "url": "https://nuhuskies.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Northeastern_cumulative.html",
+          "url": "https://nuhuskies.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://nuhuskies.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://nuhuskies.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Mississippi-State",
+      "stable_team_id": "cb:3bea0bd7-48cc-51cc-9009-b568a1795501",
+      "name": "Mississippi State",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Tallahassee Regional hosted by Florida St.",
+      "seed": 3,
+      "candidate_origin": "https://hailstate.com",
+      "probes": [
+        {
+          "key": "Mississippi-State_robots.txt",
+          "url": "https://hailstate.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Mississippi-State_schedule.html",
+          "url": "https://hailstate.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Mississippi-State_cumulative.html",
+          "url": "https://hailstate.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://hailstate.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://hailstate.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Georgia-Tech",
+      "stable_team_id": "cb:2970c9bc-70ef-598c-b697-023f4071bcca",
+      "name": "Georgia Tech",
+      "season": 2025,
+      "conference": "ACC",
+      "regional": "Oxford Regional hosted by Ole Miss",
+      "seed": 2,
+      "candidate_origin": "https://ramblinwreck.com",
+      "probes": [
+        {
+          "key": "Georgia-Tech_robots.txt",
+          "url": "https://ramblinwreck.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Georgia-Tech_schedule.html",
+          "url": "https://ramblinwreck.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Georgia-Tech_alternate.html",
+          "url": "https://ramblinwreck.com/sports/m-basebl/schedule/season/2024-25/",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://ramblinwreck.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://ramblinwreck.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Western-Kentucky",
+      "stable_team_id": "cb:1b7b8777-bd03-5f8c-9b7f-7ee82e6c17d2",
+      "name": "Western Kentucky",
+      "season": 2025,
+      "conference": "Conference USA",
+      "regional": "Oxford Regional hosted by Ole Miss",
+      "seed": 3,
+      "candidate_origin": "https://wkusports.com",
+      "probes": [
+        {
+          "key": "Western-Kentucky_robots.txt",
+          "url": "https://wkusports.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Western-Kentucky_schedule.html",
+          "url": "https://wkusports.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Western-Kentucky_cumulative.html",
+          "url": "https://wkusports.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://wkusports.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://wkusports.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Ole-Miss",
+      "stable_team_id": "cb:e32b3042-c358-594e-8d1e-c0f626bd9a1e",
+      "name": "Ole Miss",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Oxford Regional hosted by Ole Miss",
+      "seed": 1,
+      "candidate_origin": "https://olemisssports.com",
+      "probes": [
+        {
+          "key": "Ole-Miss_robots.txt",
+          "url": "https://olemisssports.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Ole-Miss_schedule.html",
+          "url": "https://olemisssports.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Ole-Miss_cumulative.html",
+          "url": "https://olemisssports.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://olemisssports.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://olemisssports.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Murray-State",
+      "stable_team_id": "cb:f5fd62bb-0cc5-53de-8138-f1b0399ef29d",
+      "name": "Murray State",
+      "season": 2025,
+      "conference": "Missouri Valley",
+      "regional": "Oxford Regional hosted by Ole Miss",
+      "seed": 4,
+      "candidate_origin": "https://goracers.com",
+      "probes": [
+        {
+          "key": "Murray-State_robots.txt",
+          "url": "https://goracers.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Murray-State_schedule.html",
+          "url": "https://goracers.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Murray-State_cumulative.html",
+          "url": "https://goracers.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://goracers.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://goracers.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:West-Virginia",
+      "stable_team_id": "cb:196372c4-5d1c-55e3-92d9-211fdefd0f14",
+      "name": "West Virginia",
+      "season": 2025,
+      "conference": "Big 12",
+      "regional": "Clemson Regional hosted by Clemson",
+      "seed": 2,
+      "candidate_origin": "https://wvusports.com",
+      "probes": [
+        {
+          "key": "West-Virginia_robots.txt",
+          "url": "https://wvusports.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "West-Virginia_schedule.html",
+          "url": "https://wvusports.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "West-Virginia_cumulative.html",
+          "url": "https://wvusports.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://wvusports.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://wvusports.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Kentucky",
+      "stable_team_id": "cb:c69b2f6d-f97f-5c54-af2e-ac1ebe75d9bb",
+      "name": "Kentucky",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Clemson Regional hosted by Clemson",
+      "seed": 3,
+      "candidate_origin": "https://ukathletics.com",
+      "probes": [
+        {
+          "key": "Kentucky_robots.txt",
+          "url": "https://ukathletics.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Kentucky_schedule.html",
+          "url": "https://ukathletics.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://ukathletics.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://ukathletics.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Clemson",
+      "stable_team_id": "cb:3dc71ccc-150c-57c4-a4d3-e668949119f8",
+      "name": "Clemson",
+      "season": 2025,
+      "conference": "ACC",
+      "regional": "Clemson Regional hosted by Clemson",
+      "seed": 1,
+      "candidate_origin": "https://clemsontigers.com",
+      "probes": [
+        {
+          "key": "Clemson_robots.txt",
+          "url": "https://clemsontigers.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Clemson_schedule.html",
+          "url": "https://clemsontigers.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Clemson_alternate.html",
+          "url": "https://clemsontigers.com/sports/baseball/schedule/season/2025/",
+          "kind": "schedule"
+        },
+        {
+          "key": "clemson_historical.html",
+          "url": "https://clemsontigers.com/sports/baseball/schedule/season/2024-25/",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://clemsontigers.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://clemsontigers.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:South-Carolina-Upstate",
+      "stable_team_id": "cb:2a902140-3ff3-5487-a160-4d5ba23c2ea2",
+      "name": "South Carolina Upstate",
+      "season": 2025,
+      "conference": "Big South",
+      "regional": "Clemson Regional hosted by Clemson",
+      "seed": 4,
+      "candidate_origin": "https://upstatespartans.com",
+      "probes": [
+        {
+          "key": "South-Carolina-Upstate_robots.txt",
+          "url": "https://upstatespartans.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "South-Carolina-Upstate_schedule.html",
+          "url": "https://upstatespartans.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "South-Carolina-Upstate_cumulative.html",
+          "url": "https://upstatespartans.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://upstatespartans.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://upstatespartans.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Arizona",
+      "stable_team_id": "cb:06bc7812-2e59-573a-859d-51ace5e4d8db",
+      "name": "Arizona",
+      "season": 2025,
+      "conference": "Big 12",
+      "regional": "Eugene Regional hosted by Oregon",
+      "seed": 2,
+      "candidate_origin": "https://arizonawildcats.com",
+      "probes": [
+        {
+          "key": "Arizona_robots.txt",
+          "url": "https://arizonawildcats.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Arizona_schedule.html",
+          "url": "https://arizonawildcats.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Arizona_cumulative.html",
+          "url": "https://arizonawildcats.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://arizonawildcats.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://arizonawildcats.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Cal-Poly",
+      "stable_team_id": "cb:3d74510a-35ef-576c-82e3-314838cad089",
+      "name": "Cal Poly",
+      "season": 2025,
+      "conference": "Big West",
+      "regional": "Eugene Regional hosted by Oregon",
+      "seed": 3,
+      "candidate_origin": "https://gopoly.com",
+      "probes": [
+        {
+          "key": "Cal-Poly_robots.txt",
+          "url": "https://gopoly.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Cal-Poly_schedule.html",
+          "url": "https://gopoly.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Cal-Poly_cumulative.html",
+          "url": "https://gopoly.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gopoly.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gopoly.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Oregon",
+      "stable_team_id": "cb:b439c8d0-c8ab-5722-a540-7880d6b7572c",
+      "name": "Oregon",
+      "season": 2025,
+      "conference": "Big Ten",
+      "regional": "Eugene Regional hosted by Oregon",
+      "seed": 1,
+      "candidate_origin": "https://goducks.com",
+      "probes": [
+        {
+          "key": "Oregon_robots.txt",
+          "url": "https://goducks.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Oregon_schedule.html",
+          "url": "https://goducks.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Oregon_cumulative.html",
+          "url": "https://goducks.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://goducks.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://goducks.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Utah-Valley",
+      "stable_team_id": "cb:2ce4458d-9f7c-5571-b33f-4c093d5ace7a",
+      "name": "Utah Valley",
+      "season": 2025,
+      "conference": "Western Athletic",
+      "regional": "Eugene Regional hosted by Oregon",
+      "seed": 4,
+      "candidate_origin": "https://gouvu.com",
+      "probes": [
+        {
+          "key": "Utah-Valley_robots.txt",
+          "url": "https://gouvu.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Utah-Valley_schedule.html",
+          "url": "https://gouvu.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Utah-Valley_cumulative.html",
+          "url": "https://gouvu.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gouvu.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gouvu.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Florida",
+      "stable_team_id": "cb:4c8cf5bd-7833-5d94-aee4-51b950497c43",
+      "name": "Florida",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Conway Regional hosted by Coastal Carolina",
+      "seed": 2,
+      "candidate_origin": "https://floridagators.com",
+      "probes": [
+        {
+          "key": "Florida_robots.txt",
+          "url": "https://floridagators.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Florida_schedule.html",
+          "url": "https://floridagators.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Florida_cumulative.html",
+          "url": "https://floridagators.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://floridagators.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://floridagators.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:East-Carolina",
+      "stable_team_id": "cb:c7e13b27-a252-54b5-9c9b-cefa7771e6e1",
+      "name": "East Carolina",
+      "season": 2025,
+      "conference": "American Athletic",
+      "regional": "Conway Regional hosted by Coastal Carolina",
+      "seed": 3,
+      "candidate_origin": "https://ecupirates.com",
+      "probes": [
+        {
+          "key": "East-Carolina_robots.txt",
+          "url": "https://ecupirates.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "East-Carolina_schedule.html",
+          "url": "https://ecupirates.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "East-Carolina_cumulative.html",
+          "url": "https://ecupirates.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://ecupirates.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://ecupirates.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Coastal-Carolina",
+      "stable_team_id": "cb:5e6edb5a-e66d-51ce-8350-a815cde5a288",
+      "name": "Coastal Carolina",
+      "season": 2025,
+      "conference": "Sun Belt",
+      "regional": "Conway Regional hosted by Coastal Carolina",
+      "seed": 1,
+      "candidate_origin": "https://goccusports.com",
+      "probes": [
+        {
+          "key": "Coastal-Carolina_robots.txt",
+          "url": "https://goccusports.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Coastal-Carolina_schedule.html",
+          "url": "https://goccusports.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Coastal-Carolina_cumulative.html",
+          "url": "https://goccusports.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://goccusports.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://goccusports.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Fairfield",
+      "stable_team_id": "cb:98627259-fa54-576d-93cc-ad0291137cc1",
+      "name": "Fairfield",
+      "season": 2025,
+      "conference": "MAAC",
+      "regional": "Conway Regional hosted by Coastal Carolina",
+      "seed": 4,
+      "candidate_origin": "https://fairfieldstags.com",
+      "probes": [
+        {
+          "key": "Fairfield_robots.txt",
+          "url": "https://fairfieldstags.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Fairfield_schedule.html",
+          "url": "https://fairfieldstags.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Fairfield_cumulative.html",
+          "url": "https://fairfieldstags.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://fairfieldstags.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://fairfieldstags.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Wake-Forest",
+      "stable_team_id": "cb:394114f9-2f5e-5a0a-827d-8c83461aafd9",
+      "name": "Wake Forest",
+      "season": 2025,
+      "conference": "ACC",
+      "regional": "Knoxville Regional hosted by Tennessee",
+      "seed": 2,
+      "candidate_origin": "https://godeacs.com",
+      "probes": [
+        {
+          "key": "Wake-Forest_robots.txt",
+          "url": "https://godeacs.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Wake-Forest_schedule.html",
+          "url": "https://godeacs.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Wake-Forest_cumulative.html",
+          "url": "https://godeacs.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://godeacs.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://godeacs.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Cincinnati",
+      "stable_team_id": "cb:77115b2d-1ae2-5c80-bb6b-de686b0c8532",
+      "name": "Cincinnati",
+      "season": 2025,
+      "conference": "Big 12",
+      "regional": "Knoxville Regional hosted by Tennessee",
+      "seed": 3,
+      "candidate_origin": "https://gobearcats.com",
+      "probes": [
+        {
+          "key": "Cincinnati_robots.txt",
+          "url": "https://gobearcats.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Cincinnati_schedule.html",
+          "url": "https://gobearcats.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Cincinnati_cumulative.html",
+          "url": "https://gobearcats.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gobearcats.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gobearcats.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Tennessee",
+      "stable_team_id": "cb:86ef5697-af21-5b29-8a2c-9297be39e537",
+      "name": "Tennessee",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Knoxville Regional hosted by Tennessee",
+      "seed": 1,
+      "candidate_origin": "https://utsports.com",
+      "probes": [
+        {
+          "key": "Tennessee_robots.txt",
+          "url": "https://utsports.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Tennessee_schedule.html",
+          "url": "https://utsports.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Tennessee_cumulative.html",
+          "url": "https://utsports.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://utsports.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://utsports.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Miami-OH",
+      "stable_team_id": "cb:e9b4162a-919e-52eb-9720-7bbb6b65e2d4",
+      "name": "Miami (OH)",
+      "season": 2025,
+      "conference": "Mid-American",
+      "regional": "Knoxville Regional hosted by Tennessee",
+      "seed": 4,
+      "candidate_origin": "https://miamiredhawks.com",
+      "probes": [
+        {
+          "key": "Miami-OH_robots.txt",
+          "url": "https://miamiredhawks.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Miami-OH_schedule.html",
+          "url": "https://miamiredhawks.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Miami-OH_cumulative.html",
+          "url": "https://miamiredhawks.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://miamiredhawks.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://miamiredhawks.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:UCLA",
+      "stable_team_id": "cb:cda214d3-01fd-5323-8d5e-9fc9d9b05023",
+      "name": "UCLA",
+      "season": 2025,
+      "conference": "Big Ten",
+      "regional": "Los Angeles Regional hosted by UCLA",
+      "seed": 1,
+      "candidate_origin": "https://uclabruins.com",
+      "probes": [
+        {
+          "key": "UCLA_robots.txt",
+          "url": "https://uclabruins.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "UCLA_schedule.html",
+          "url": "https://uclabruins.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "UCLA_cumulative.html",
+          "url": "https://uclabruins.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://uclabruins.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://uclabruins.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Fresno-State",
+      "stable_team_id": "cb:711110dc-14aa-5b49-96be-7565c4cac26e",
+      "name": "Fresno State",
+      "season": 2025,
+      "conference": "Mountain West",
+      "regional": "Los Angeles Regional hosted by UCLA",
+      "seed": 4,
+      "candidate_origin": "https://gobulldogs.com",
+      "probes": [
+        {
+          "key": "Fresno-State_robots.txt",
+          "url": "https://gobulldogs.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Fresno-State_schedule.html",
+          "url": "https://gobulldogs.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Fresno-State_cumulative.html",
+          "url": "https://gobulldogs.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gobulldogs.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gobulldogs.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:UC-Irvine",
+      "stable_team_id": "cb:95757f80-0f8d-521a-a685-59b57c886291",
+      "name": "UC Irvine",
+      "season": 2025,
+      "conference": "Big West",
+      "regional": "Los Angeles Regional hosted by UCLA",
+      "seed": 2,
+      "candidate_origin": "https://ucirvinesports.com",
+      "probes": [
+        {
+          "key": "UC-Irvine_robots.txt",
+          "url": "https://ucirvinesports.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "UC-Irvine_schedule.html",
+          "url": "https://ucirvinesports.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "UC-Irvine_cumulative.html",
+          "url": "https://ucirvinesports.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://ucirvinesports.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://ucirvinesports.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Arizona-State",
+      "stable_team_id": "cb:c8d48ba7-517d-5d2d-b416-89303c9e0b23",
+      "name": "Arizona State",
+      "season": 2025,
+      "conference": "Big 12",
+      "regional": "Los Angeles Regional hosted by UCLA",
+      "seed": 3,
+      "candidate_origin": "https://thesundevils.com",
+      "probes": [
+        {
+          "key": "Arizona-State_robots.txt",
+          "url": "https://thesundevils.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Arizona-State_schedule.html",
+          "url": "https://thesundevils.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Arizona-State_cumulative.html",
+          "url": "https://thesundevils.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://thesundevils.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://thesundevils.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Alabama",
+      "stable_team_id": "cb:4d47c40b-57b9-5c72-bf69-fd21e43fda55",
+      "name": "Alabama",
+      "season": 2025,
+      "conference": "SEC",
+      "regional": "Hattiesburg Regional hosted by Southern Miss.",
+      "seed": 2,
+      "candidate_origin": "https://rolltide.com",
+      "probes": [
+        {
+          "key": "Alabama_robots.txt",
+          "url": "https://rolltide.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Alabama_schedule.html",
+          "url": "https://rolltide.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Alabama_cumulative.html",
+          "url": "https://rolltide.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://rolltide.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://rolltide.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Miami-FL",
+      "stable_team_id": "cb:b9180382-c969-5459-8640-38c03468a97c",
+      "name": "Miami (FL)",
+      "season": 2025,
+      "conference": "ACC",
+      "regional": "Hattiesburg Regional hosted by Southern Miss.",
+      "seed": 3,
+      "candidate_origin": "https://miamihurricanes.com",
+      "probes": [
+        {
+          "key": "Miami-FL_robots.txt",
+          "url": "https://miamihurricanes.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Miami-FL_schedule.html",
+          "url": "https://miamihurricanes.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Miami-FL_alternate.html",
+          "url": "https://miamihurricanes.com/sports/baseball/schedule/season/2024-25/",
+          "kind": "schedule"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://miamihurricanes.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://miamihurricanes.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Southern-Miss",
+      "stable_team_id": "cb:d235a2d0-a61f-5ee8-990f-a8b64c3c6c48",
+      "name": "Southern Miss",
+      "season": 2025,
+      "conference": "Sun Belt",
+      "regional": "Hattiesburg Regional hosted by Southern Miss.",
+      "seed": 1,
+      "candidate_origin": "https://southernmiss.com",
+      "probes": [
+        {
+          "key": "Southern-Miss_robots.txt",
+          "url": "https://southernmiss.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Southern-Miss_schedule.html",
+          "url": "https://southernmiss.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Southern-Miss_cumulative.html",
+          "url": "https://southernmiss.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://southernmiss.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://southernmiss.com/sports/baseball/stats/2025"
+    },
+    {
+      "team_id": "wn:Columbia",
+      "stable_team_id": "cb:0607fba2-acbe-5e35-926e-42f6efab8334",
+      "name": "Columbia",
+      "season": 2025,
+      "conference": "Ivy League",
+      "regional": "Hattiesburg Regional hosted by Southern Miss.",
+      "seed": 4,
+      "candidate_origin": "https://gocolumbialions.com",
+      "probes": [
+        {
+          "key": "Columbia_robots.txt",
+          "url": "https://gocolumbialions.com/robots.txt",
+          "kind": "robots"
+        },
+        {
+          "key": "Columbia_schedule.html",
+          "url": "https://gocolumbialions.com/sports/baseball/schedule/2025",
+          "kind": "schedule"
+        },
+        {
+          "key": "Columbia_cumulative.html",
+          "url": "https://gocolumbialions.com/sports/baseball/stats/2025",
+          "kind": "cumulative"
+        }
+      ],
+      "bulk_collection_enabled": false,
+      "candidate_schedule_url": "https://gocolumbialions.com/sports/baseball/schedule/2025",
+      "candidate_cumulative_url": "https://gocolumbialions.com/sports/baseball/stats/2025"
+    }
+  ]
+}

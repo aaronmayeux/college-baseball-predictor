@@ -1,6 +1,6 @@
 # College Baseball Predictor — Project Brief
 
-Current state: September 20, 2026.
+Current state: September 21, 2026.
 
 ## Purpose and current status
 
@@ -41,7 +41,7 @@ A mobile-friendly web app with an on-demand pre-tournament data import, one comp
 
 The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Aaron approved prioritizing hitting profiles and pitching quality/depth. Individual features, quality-arm/ace thresholds and scaling are not selected or fitted.
 
-The [historical player audit](Historical_Player_Data_Coverage.md) now covers four complete sampled team-seasons: LSU 2025, Towson 2024, Davidson 2024 and Missouri State 2022. All pitching counts reconcile; specific batting/date exceptions remain flagged. A source registry and shared parser support expansion. Missing pitch counts, actual-work dates and nationwide coverage still limit workload modeling. Final season totals remain audit targets only.
+The [historical player audit](Historical_Player_Data_Coverage.md) now covers four complete sampled team-seasons: LSU 2025, Towson 2024, Davidson 2024 and Missouri State 2022. All pitching counts reconcile. Dunagan’s non-batting appearance is independently confirmed but the cumulative batting omission remains flagged. The Missouri State date conflict is resolved as start versus completion in separate annotations; the baseline date was correct. The [2025 field source map](Tournament_Source_Availability_2025.md) includes all 64 teams, but only LSU has reconciled counts in that field. Provider access/volume remains a gate before bulk collection. Missing pitch counts, actual-work dates and nationwide coverage still limit workload modeling. Final season totals remain audit targets only.
 
 Carry these product requirements forward:
 
@@ -52,7 +52,7 @@ Carry these product requirements forward:
 
 ## Spreadsheet cautions and research hypotheses
 
-The original weights, styles and formulas are not validated. The research PDF owns the inherited audit; the discovery report records current reference inspection. Postseason-contaminated totals, uncertain advanced-stat provenance, inconsistent weights, cached errors, flawed DIRTY_DER/HAVOC definitions and incorrect series logic preclude treating workbook results as forecast evidence. Keep originals untouched.
+The research PDF and discovery report own the workbook audit. Postseason-contaminated totals, uncertain advanced-stat provenance, inconsistent weights, cached errors, flawed DIRTY_DER/HAVOC definitions and incorrect series logic preclude treating workbook results as forecast evidence. Keep originals untouched.
 
 Retain the hypotheses of home/park effects, power sensitivity, opponent-specific HAVOC, and tournament pitching depletion. Distinguish actual home park from host selection and batting last. Do not infer spin or contact quality from batted-ball labels, or universal recovery rules from pitcher workload. Implement only after the relevant coverage and evaluation gates.
 
@@ -109,14 +109,12 @@ Recheck access and applicable-year rules before production use.
 - [Official Charles Schwab Field information](https://charlesschwabfieldomaha.com/plan-your-visit/stadium-information/) — venue dimensions.
 - [2025–26 NCAA pre-championship manual](https://ncaaorg.s3.amazonaws.com/championships/sports/baseball/d1/2025-26D1MBA_PreChampsManual.pdf).
 - [Study of batting last in NCAA tournament baseball](https://pubmed.ncbi.nlm.nih.gov/16195017/) — narrower question than total home-field advantage.
-- [baseballr function reference](https://billpetti.github.io/baseballr/reference/index.html).
-- [LSU 2025 official schedule](https://lsusports.net/sports/bsb/schedule/season/2025/) — example official historical source.
 
 ## Next work
 
-Use current repository code and [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
+Use [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
-Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next resolve the new audit exceptions and map source availability for the entire 2025 development tournament field before feature fitting. Every eventual tournament team needs explicit coverage/fallback status. Broader independent phase checks and prospective holdout locking remain outstanding. Preserve the separate daily-mode contract as deferred research, not a prerequisite for the one-run product. Actual appearance dates still matter when reconstructing pitching workload at bracket lock.
+Timing/seed work is complete in `historical/validation_v2/`; baseline preservation and recovery are documented in the v2 report and DATA.md. Next establish permitted provider access/volume, resolve the full-field archive/parser gaps, and reconcile additional 2025 team-seasons before feature fitting. Validate the declared team-level fallback before a full-bracket run. Broader independent phase checks and prospective holdout locking remain outstanding. Preserve the separate daily-mode contract as deferred research, not a prerequisite for the one-run product. Actual appearance dates still matter when reconstructing pitching workload at bracket lock.
 
 ## Open decisions
 

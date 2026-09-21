@@ -23,3 +23,5 @@ __pycache__/
 !.env.example
 .DS_Store
 /deliverables/
+
+!historical/tournament_sources_2025.json

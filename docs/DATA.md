@@ -145,16 +145,36 @@ SHA-256:
 33fb20a46b46c81cc372865aa28baec8e51701b89d72b9803c2bcf3ae7973a6f
 ```
 
-Restore the original baseline, verify this hash, then extract into a fresh directory and use current repository code:
+Restore the original baseline and use the exact-hash recovery command below. This supplied archive is truncated within its final `audit.json` and lacks a ZIP central directory. All 234 raw/metadata members are complete; the recovery script verifies ZIP CRCs and source SHA-256 values before writing. The original attachment is preserved, and the partial derived audit is discarded and rebuilt:
 
 ```sh
 sha256sum /absolute/path/to/College_Baseball_Source_Expansion_Evidence.zip
-python3 -m zipfile -e /absolute/path/to/College_Baseball_Source_Expansion_Evidence.zip /tmp/baseball-source-expansion
+python3 scripts/restore_source_expansion.py /absolute/path/to/College_Baseball_Source_Expansion_Evidence.zip /tmp/baseball-source-expansion
 python3 scripts/audit_player_source_expansion.py --raw-dir /tmp/baseball-source-expansion/raw --output /tmp/source-expansion-rerun.json
-cmp /tmp/source-expansion-rerun.json /tmp/baseball-source-expansion/audit.json
 python3 scripts/test_player_source_expansion.py
 ```
 
-The audit verifies hashes, historical payload paths, season labels, game identities, participation flags and mapped player counts. Inspect `comparisons`, per-game `issues`, and mode-specific completeness: Davidson's batting-list omission and Missouri State's May 24/25 date conflict remain explicit failures, not automatic corrections. Cumulative season values are audit targets only. [Coverage report](Historical_Player_Data_Coverage.md#structured-source-expansion-davidson-2024-and-missouri-state-2022) owns detailed findings.
+The audit verifies hashes, historical payload paths, season labels, game identities, participation flags and mapped player counts. Inspect `comparisons`, per-game `issues`, and mode-specific completeness. The original audit retains Davidson's batting-list omission and Missouri State's May 24/25 date conflict. Separate exception annotations below resolve only the result-date join; they never overwrite this audit. Cumulative season values are audit targets only. [Coverage report](Historical_Player_Data_Coverage.md#structured-source-expansion-davidson-2024-and-missouri-state-2022) owns detailed findings.
 
 `historical/player_sources.json` is source configuration, not raw data. Its four entries retain original season/conference identity and parser families. The optional `python3 scripts/collect_player_source_expansion.py --evidence-dir /tmp/new-source-expansion` command collects only the two reviewed embedded-SIDEARM entries, one request per host, caching failures without automatic retries. A fresh collection is a new snapshot; it does not establish bulk permission. The prior LSU/Towson collector and checkpoint remain separate and reproducible.
+
+## Full-field source map and exception evidence
+
+`College_Baseball_Field_Source_Evidence.zip` retains the new bounded discovery responses, failed-request metadata, full-field availability audit and separate exception annotations. It also contains all 117 recovered source-expansion responses/metadata plus the rebuilt expansion audit, so the truncated prior ZIP is not needed to read those bytes. Keep the original baseline, timing/seed and season-appearance checkpoints. No raw evidence belongs in Git.
+
+SHA-256: `37eccf733470e236ae5a5d721c19b256db43e7a30b20999aae004941f99216cd`.
+
+After restoring the baseline and timing/seed checkpoints, verify that hash and extract into a fresh directory. Restore the season-appearance checkpoint as above; use repository code:
+
+```sh
+python3 -m zipfile -e /absolute/path/to/College_Baseball_Field_Source_Evidence.zip /tmp/baseball-field
+python3 scripts/audit_player_source_expansion.py --raw-dir /tmp/baseball-field/expansion/raw --output /tmp/expansion-rebuilt.json
+cmp /tmp/expansion-rebuilt.json /tmp/baseball-field/expansion/audit.json
+python3 scripts/audit_player_exceptions.py --original-audit /tmp/baseball-field/expansion/audit.json --raw-dir /tmp/baseball-field/field/raw --output /tmp/exceptions-rebuilt.json
+cmp /tmp/exceptions-rebuilt.json /tmp/baseball-field/field/exception_annotations.json
+python3 scripts/audit_tournament_sources.py --raw-dir /tmp/baseball-field/field/raw --lsu-audit /tmp/baseball-season-appearances/audit.json --output /tmp/field-rebuilt.json
+cmp /tmp/field-rebuilt.json /tmp/baseball-field/field/field_audit.json
+python3 scripts/test_tournament_sources.py
+```
+
+These commands are offline. The registry lists exact tested URLs and retains failures; it is not a national downloader or a permission grant. No collection command is added for the full field. The [source map](Tournament_Source_Availability_2025.md) owns access/coverage limits. The exception annotations preserve original records and unknown work dates. The original strict audit remains reproducible; there is no baseline correction.
