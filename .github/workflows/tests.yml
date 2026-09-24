@@ -12,3 +12,5 @@ jobs:
           python-version: '3.12'
       - name: Run offline chronology tests
         run: python -m unittest discover -s historical -p 'test_*.py' -v
+      - name: Run offline source and parser tests
+        run: python -m unittest discover -s scripts -p 'test_*.py' -v

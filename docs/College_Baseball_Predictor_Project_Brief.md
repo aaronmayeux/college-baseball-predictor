@@ -12,7 +12,7 @@ Fixed neutral Elo selected 68.9% of NCAA winners across 411 games in 2022–2024
 
 Exact pre-NCAA cutoffs are now recorded: Wednesday 12:00 UTC before regionals, with a two-calendar-day assumed availability delay for date-only results. Regular-only and conference-inclusive inputs are separate. Point-in-time publication/completion is not certified. 2026 cannot be called untouched because prior probes exposed outcomes; discovery also encountered a default current-year player leaderboard. It was not used for model fitting or evaluation.
 
-The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. No simulator or interface exists yet. Aaron approved building the bracket engine and usable app next with existing team strength; richer hitting and pitching features follow after their data is qualified.
+The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. A complete team-only tournament engine and mobile-friendly browser app now use the retained 2025 field. Both frozen modes produce exact advancement odds, a full picked bracket, comparisons and CSV exports. A standalone HTML copy works offline; hosted access is the next step. Richer inputs follow after qualification. See [engine and app](Tournament_Engine.md).
 
 ## Working references
 
@@ -26,7 +26,7 @@ GitHub `main` is authoritative. `AGENTS.md` owns working rules; `historical/SPEC
 
 ## Intended product
 
-A mobile-friendly web app with an on-demand pre-tournament data import, one complete bracket, game/advancement/championship probabilities, short explanations and spreadsheet exports. Recurring refresh and live tournament updates are not required for the primary product. Include a selectable two-team radar chart like the DYNAMIC workbook's MATCHUPS chart: contact, power, speed, pitching and defense. Define comparable scales and explain each measure; the original formulas are not validated. Interface implementation is authorized; tools and hosting remain undecided. Start with bracket picks, probabilities and comparisons from verified team-strength inputs. Add the radar dimensions when their inputs are qualified; do not invent values.
+A mobile-friendly web app with an on-demand pre-tournament data import, one complete bracket, game/advancement/championship probabilities, short explanations and spreadsheet exports. Recurring refresh and live tournament updates are not required for the primary product. Include a selectable two-team radar chart like the DYNAMIC workbook's MATCHUPS chart: contact, power, speed, pitching and defense. Define comparable scales and explain each measure; the original formulas are not validated. Interface implementation is authorized; the first app uses plain HTML/JavaScript with a Python export, and hosting remains undecided. Start with bracket picks, probabilities and comparisons from verified team-strength inputs. Add the radar dimensions when their inputs are qualified; do not invent values.
 
 ## Decisions to carry forward
 
@@ -41,7 +41,7 @@ A mobile-friendly web app with an on-demand pre-tournament data import, one comp
 
 The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Aaron approved prioritizing hitting profiles and pitching quality/depth. Individual features, quality-arm/ace thresholds and scaling are not selected or fitted.
 
-The [historical player audit](Historical_Player_Data_Coverage.md) covers four sampled team-seasons. The [2025 field map](Tournament_Source_Availability_2025.md) has 64 schedule sources and 50 player-group sources, but only LSU has reconciled core appearances. The embedded-schedule audit reconciles 11 teams; Clemson and Little Rock have separate archive checks. These are result inventories, not appearance histories. Access limits and remaining parser gaps belong in those reports. The team-only fallback checks all 64 teams and every pairing in both modes, reproducing v2 probabilities exactly; availability uncertainty and complete-bracket behavior remain unvalidated. Missing pitch counts and actual-work dates limit workload modeling. Final season totals are audit targets only.
+The [historical player audit](Historical_Player_Data_Coverage.md) covers four sampled team-seasons. The [2025 field map](Tournament_Source_Availability_2025.md) has 64 schedule sources and 50 player-group sources, but only LSU has reconciled core appearances. Schedule-result inventories are not appearance histories; detailed gaps remain in those reports. The team-only fallback checks all 64 teams and every pairing in both modes, reproducing v2 probabilities exactly; availability uncertainty remains unmodeled; the separate engine now verifies complete-bracket mechanics, not predictive calibration. Missing pitch counts and actual-work dates limit workload modeling. Final season totals are audit targets only.
 
 Carry these product requirements forward:
 
@@ -70,7 +70,7 @@ Retain the hypotheses of home/park effects, power sensitivity, opponent-specific
 
 National player-data coverage remains unverified. baseballr is an access tool, not an independent source. MLB-derived metrics require college-specific validation.
 
-Every normalized record should retain provider, provider ID, stable internal team/player ID where available, season, game timestamp, venue, retrieval timestamp, and raw-record reference. Handle missing data explicitly. Cache responses, avoid duplicate games, validate baseball innings notation, and make reruns safe. A reliable on-demand command supports the primary one-run workflow. Scheduled refresh is out of the primary scope; no scheduler has been configured.
+Every normalized record should retain provider, provider ID, stable internal team/player ID where available, season, game timestamp, venue, retrieval timestamp, and raw-record reference. Handle missing data explicitly. Cache responses, avoid duplicate games, validate baseball innings notation, and make reruns safe. On-demand ingestion supports the one-run workflow; scheduled refresh is out of scope.
 
 ## Build milestones and acceptance criteria
 
@@ -114,7 +114,7 @@ Recheck access and applicable-year rules before production use.
 
 Use [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
-Build and test the complete tournament engine using frozen team-only Elo, then deliver an app Aaron can open. Verify 2025 rules, field placement, reset games, series stopping and probability totals. Preserve both forecast modes and all 64 teams. Label the first version a 2025 development demonstration; player availability is unmodeled. Broader source work, richer features and prospective holdout locking remain later work; daily updates stay deferred.
+Finish browser/phone interaction checks, make the first app accessible through a hosted URL and get Aaron’s usability feedback. Keep all 64 teams and both modes. Engine/routing/probability mechanics are tested; the offline app is a 2025 development demonstration with unmodeled player availability. Follow [Tournament_Engine.md](Tournament_Engine.md) for reproduction. Do not resume broad source audits before delivering usable access. Richer features, fresh imports and prospective holdout locking remain later work; daily updates stay deferred.
 
 ## Open decisions
 

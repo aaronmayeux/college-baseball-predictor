@@ -26,3 +26,7 @@ __pycache__/
 /deliverables/
 
 !historical/tournament_sources_2025.json
+
+# Generated development forecasts / exports; rebuild from retained evidence.
+/app/data/
+/tournament/output/

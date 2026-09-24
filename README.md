@@ -1,6 +1,17 @@
 # College Baseball Predictor
 
-A college baseball bracket predictor with a Python results pipeline and chronological game baseline. Next: a complete tournament engine and usable mobile-friendly app using existing team strength. Richer player features follow. No simulator or interface is implemented yet; see the [project brief](docs/College_Baseball_Predictor_Project_Brief.md) for the approved build order.
+A college baseball bracket predictor with a complete 64-team tournament engine and mobile-friendly browser app. The first version uses frozen team-only Elo and the retained 2025 development field. It includes every round through the champion, advancement odds, comparisons and CSV exports. Richer player features follow.
+
+## Open the app
+
+After restoring the baseline and timing/seed checkpoints from [DATA.md](docs/DATA.md):
+
+```sh
+python3 -m tournament.build
+python3 -m http.server 8000 --bind 127.0.0.1 --directory app
+```
+
+Open `http://localhost:8000`. Or create an offline browser copy with `python3 -m tournament.build --standalone /absolute/path/College_Baseball_Predictor.html`. Hosted access is not configured yet. See [engine/app rules and limitations](docs/Tournament_Engine.md).
 
 ## Current checkpoint
 
@@ -16,6 +27,7 @@ Python 3.10+; standard library only. From the repository root:
 
 ```sh
 python3 -m unittest discover -s historical -p 'test_*.py' -v
+python3 -m unittest discover -s scripts -p 'test_*.py' -v
 ```
 
 Tests use synthetic games and require no downloads. GitHub Actions runs the same tests.
@@ -37,6 +49,8 @@ The restore command verifies the pinned bundle checksum, restores data without r
 
 ## Layout
 
+- `tournament/`: verified field routing, exact tournament probabilities and offline app export.
+- `app/`: responsive browser interface; generated data is ignored.
 - `historical/`: original audited Python pipeline, season adapters, Elo and tests.
 - `historical/cutoffs.json`: exact forecast cutoffs and recorded model assumptions.
 - `scripts/restore_data.py`: restore the separately retained snapshot.
@@ -44,7 +58,7 @@ The restore command verifies the pinned bundle checksum, restores data without r
 
 ## Next work
 
-Begin broad statistics discovery and joint triage with Aaron, beyond the original spreadsheets, following the project brief. Preserve the baseline; daily suspended-game handling, broader phase checks and a prospective holdout protocol remain outstanding.
+Publish usable access to the first app and get Aaron’s feedback. Keep broad collection audits deferred; add qualified player features and fresh imports later, following the project brief.
 
 ## Source boundaries
 
