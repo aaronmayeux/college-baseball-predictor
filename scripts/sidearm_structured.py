@@ -46,6 +46,10 @@ def payload(text,url):
     return data['pinia']
 
 
+def opponent_name(title):
+    return re.sub(r'^(?:#\d+|\[\d+\])\s+', '', title.strip())
+
+
 def schedule(text,config):
     year=config['season'];url=config['schedule_url']
     data=payload(text,url)['schedule']['schedules'][f'schedules-baseball,{year}']
@@ -67,7 +71,7 @@ def schedule(text,config):
             excluded.append(dict(source_game=game,reason=reason));continue
         box=result.get('boxscore');box_url=urljoin(url,box['url']) if box else None
         if box_url and (urlparse(box_url).netloc!=urlparse(url).netloc or f'/stats/{year}/' not in box_url):raise ValueError('Box outside historical source scope')
-        completed.append(dict(date=date,teams=[config['team_name'],re.sub(r'^(?:#\d+|\[\d+\])\s+','',game['opponent']['title'].strip())],
+        completed.append(dict(date=date,teams=[config['team_name'],opponent_name(game['opponent']['title'])],
             runs=[count(result['team_score']),count(result['opponent_score'])],box_url=box_url,
             source_opponent=game['opponent']['title'],source_game_id=str(game['id']),source_start=game['date'],source_end=game.get('enddate'),
             source_type=game.get('type'),source_result=result['status']))

@@ -138,7 +138,23 @@ The [OVC archive](https://ovcsports.com/custompages/stats/baseball/2025/lr.htm) 
 
 `audit_retained_inventories.py` applies the shared embedded schedule parser to the retained full-field pages. Louisville joins **66/66** results and Mississippi State **59/59**. Their regular-only / conference-inclusive inventories reconcile **55/56** and **54/55** games, respectively. These are result inventories only; **LSU remains the sole field team with fully reconciled core appearances**.
 
-Louisville's completed May 11 Georgia Tech loss retains “Postponed to 5/11.” The parser accepts only this explicit rescheduling form when its destination matches the source row date, retaining the original label. Canceled, suspended and conflicting-date labels still fail. Louisville's five opponent aliases are scoped to its retained website/location metadata; “Miami” requires the Coral Gables/Hurricanes record, never a global name guess. Other retained schedules yield 30 unresolved result joins, 16 parser/inventory gaps and 16 without a supported embedded schedule. These statuses do not erase existing LSU/StatCrew qualifications. No additional boxes were downloaded or appearances certified.
+Louisville's completed May 11 Georgia Tech loss retains “Postponed to 5/11.” The parser accepts only this explicit rescheduling form when its destination matches the source row date, retaining the original label. Canceled, suspended and conflicting-date labels still fail. Louisville's five opponent aliases are scoped to its retained website/location metadata; “Miami” requires the Coral Gables/Hurricanes record, never a global name guess. With the additional scoped identity reviews below, this audit yields 11 reconciled inventories, 21 unresolved result joins, 16 parser/inventory gaps and 16 without a supported embedded schedule. These statuses do not erase existing LSU/StatCrew qualifications. No additional boxes were downloaded or appearances certified.
+
+The reviewed configuration in `historical/schedule_aliases_2025.json` resolves nine more embedded schedules using exact source titles, school websites and locations. Each mapping applies only to its named 2025 schedule. Changed metadata, unreviewed title variants, missing reviewed records, unknown targets and identity collisions block qualification; date, score and duplicate checks remain strict. Raw labels are preserved. No global “Miami” alias is added.
+
+| Additional reconciled team | Full-season games | Regular-only eligible | Conference-inclusive eligible |
+|---|---:|---:|---:|
+| Texas | 58 | 53 | 54 |
+| Kansas | 60 | 56 | 58 |
+| North Carolina | 61 | 51 | 54 |
+| Duke | 62 | 54 | 56 |
+| TCU | 59 | 54 | 57 |
+| Ole Miss | 64 | 55 | 59 |
+| Cal Poly | 62 | 53 | 58 |
+| Oregon | 58 | 54 | 56 |
+| UC Irvine | 60 | 52 | 56 |
+
+All expected results match in each displayed scope. This expansion was reproduced using the supplied access/parser checkpoint; its 64-team field audit represents the older 62-schedule discovery snapshot, not a replacement for the current 64-source map. The conference checkpoint was not supplied this session, so the current field/access/StatCrew audits were not rerun. No sources were fetched, and no player appearances, actual work dates or collection permissions were newly qualified.
 
 `audit_collection_scope.py` reviews each retained probe path and robots-host root separately. It distinguishes explicit robots denials, missing/error/HTML responses, unresolved pattern/precedence handling and personal-use terms. Bot-specific exclusions are not applied to unrelated agents. Retained redirects to static OVC, Binghamton, Texas and Kansas State origins remain separately flagged; origin rules cannot be transferred. The current SIDEARM terms still state personal-use copying, with no numeric automation allowance found. This is not a blanket automation prohibition. **Zero new bulk requests is the project's current gate, not a provider-declared quota.** No provider contact occurred. Further nationwide scope remains unresolved.
 

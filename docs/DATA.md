@@ -232,3 +232,11 @@ python3 scripts/audit_team_fallback.py --field-audit /tmp/baseball-conference/fi
 ```
 
 All commands are offline and leave baseline/v2 outputs unchanged. Outputs include source/input fingerprints; keep their game/matchup-level records outside Git. The fallback checks baseline gates, independent schedules, timing evidence and the NCAA field before comparing probabilities. It never uses season player totals as predictors. The [field report](Tournament_Source_Availability_2025.md#retained-source-expansion-and-team-only-fallback) owns results and remaining limitations. Tests remain runnable without the evidence bundles.
+
+The nine additional schedule identity reviews can also be reproduced with the earlier access/parser checkpoint (hash above), whose retained pages contain all nine schedules. After restoring the baseline and extracting that checkpoint to `/tmp/baseball-access`:
+
+```sh
+python3 scripts/audit_retained_inventories.py --raw-dir /tmp/baseball-access/raw --field-audit /tmp/baseball-access/field_audit.json --output /tmp/inventory_audit.json
+```
+
+Expected summary: 11 reconciled, 21 unresolved joins, 16 parser/inventory gaps, 16 unsupported schedules. The output fingerprints the reviewed alias configuration as well as source and baseline inputs. This older field audit is sufficient for these inventory checks only; it does not reproduce the later full source/access map. No new raw checkpoint is required.

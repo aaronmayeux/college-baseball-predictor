@@ -1,19 +1,17 @@
 # Current handoff
 
-Updated September 21, 2026. Git history owns prior sessions.
+Updated September 24, 2026. Git history owns prior sessions.
 
 ## Latest work
 
-The frozen team-only fallback now represents all 64 development-field teams and checks every 2,016 possible pairings per mode. Probabilities exactly match fixed v2 Elo on all 136 observed 2025 NCAA games. Missing eligible team results block a matchup; missing player data never implies rest. Numeric availability uncertainty and complete-bracket behavior are not validated.
+Nine additional 2025 result inventories reconcile: Texas, Kansas, North Carolina, Duke, TCU, Ole Miss, Cal Poly, Oregon and UC Irvine. Both pre-NCAA modes reconcile for each. Scoped identity configuration checks original titles, school websites and locations before matching results; changed or ambiguous metadata fails closed. The shared embedded audit now has 11 reconciled inventories. See the field report for counts and DATA.md for reproduction.
 
-Shared-parser checks reconcile Louisville's 66 and Mississippi State's 59 results, including both pre-NCAA inventories. Louisville's completed rescheduling label and five source-metadata-backed opponent aliases are handled explicitly. No additional full appearance histories: LSU remains 1/64. Other schedules retain explicit parser/identity gaps.
-
-Access triage separates actual robots denials, unknown responses and unresolved terms. OVC's archive redirects to a separate static host whose rules remain unverified. Other cross-origin redirects are flagged. No bulk collection or provider contact; no nationwide automation allowance established. See the field report for current detail.
+These are schedule checks only. LSU remains the sole field team with reconciled core appearances. Missing workload remains unknown. No source requests, feature fitting, simulator, interface or 2026 modeling occurred. Existing all-field team-only fallback findings remain unchanged; availability uncertainty and full-bracket behavior are still unvalidated.
 
 ## Verification
 
-106 tests pass. New audits reproduce offline; Davidson/Missouri State audit remains byte-identical. All 3,212 baseline files remain identical. Existing checkpoints suffice; DATA.md includes new reproduction commands.
+112 tests pass. Inventory expansion reproduces offline from the supplied access/parser checkpoint and is deterministic. All 3,212 baseline files match the preserved archive. No baseline/model changes. The newer conference checkpoint was not supplied; its full field/access/StatCrew audits were not rerun. No new evidence archive is needed.
 
 ## Next action and limitations
 
-Resolve permitted collection scope, including redirect destinations; qualify remaining source schemas/identities and expand full appearance reconciliation. Validate availability uncertainty and tournament behavior beyond the team-only mechanics. Preserve missing-workload flags, cutoffs and source restrictions. No feature fitting, thresholds/scaling, simulator, interface or 2026 modeling changes.
+Resolve remaining schedule schemas and identities, then expand full appearance reconciliation subject to collection scope. Bulk allowance and redirect-host rules remain unresolved; no bulk collection is authorized by these checks. Use the conference checkpoint for current full-map/access reproduction. Preserve cutoff rules and actual-work-date gaps; validate availability uncertainty and tournament behavior before a complete-bracket claim.

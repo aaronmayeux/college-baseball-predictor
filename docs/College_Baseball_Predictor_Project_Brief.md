@@ -1,6 +1,6 @@
 # College Baseball Predictor — Project Brief
 
-Current state: September 21, 2026.
+Current state: September 24, 2026.
 
 ## Purpose and current status
 
@@ -41,7 +41,7 @@ A mobile-friendly web app with an on-demand pre-tournament data import, one comp
 
 The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Aaron approved prioritizing hitting profiles and pitching quality/depth. Individual features, quality-arm/ace thresholds and scaling are not selected or fitted.
 
-The [historical player audit](Historical_Player_Data_Coverage.md) covers LSU 2025, Towson 2024, Davidson 2024 and Missouri State 2022; all pitching counts reconcile. Davidson's non-batting appearance omission remains flagged; Missouri State's start/completion exception preserves the correct baseline date. The [2025 field map](Tournament_Source_Availability_2025.md) has 64 schedule sources and 50 player-group sources, but only LSU has reconciled core appearances. Clemson, Little Rock, Louisville and Mississippi State have reconciled result inventories, not appearance histories. Three WMT links remain untested. Bulk scope and redirect-host access remain unresolved. The team-only fallback checks all 64 teams and every pairing in both modes, reproducing v2 probabilities exactly; availability uncertainty and complete-bracket behavior remain unvalidated. Missing pitch counts and actual-work dates limit workload modeling. Final season totals are audit targets only.
+The [historical player audit](Historical_Player_Data_Coverage.md) covers LSU 2025, Towson 2024, Davidson 2024 and Missouri State 2022; all pitching counts reconcile. Davidson's non-batting appearance omission remains flagged; Missouri State's start/completion exception preserves the correct baseline date. The [2025 field map](Tournament_Source_Availability_2025.md) has 64 schedule sources and 50 player-group sources, but only LSU has reconciled core appearances. The shared embedded-schedule audit now reconciles 11 teams; Clemson and Little Rock have separate archive result checks. These are result inventories, not appearance histories. Three WMT links remain untested. Bulk scope and redirect-host access remain unresolved. The team-only fallback checks all 64 teams and every pairing in both modes, reproducing v2 probabilities exactly; availability uncertainty and complete-bracket behavior remain unvalidated. Missing pitch counts and actual-work dates limit workload modeling. Final season totals are audit targets only.
 
 Carry these product requirements forward:
 

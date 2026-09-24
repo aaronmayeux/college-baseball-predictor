@@ -4,6 +4,7 @@ historical/**/*.json
 !historical/cutoffs.json
 # Reviewed source configuration; raw and generated JSON remain excluded.
 !historical/player_sources.json
+!historical/schedule_aliases_2025.json
 historical/**/*.csv
 historical/**/*.sqlite*
 historical/**/*.txt

@@ -1,0 +1,171 @@
+{
+  "wn:Texas": {
+    "season": 2025,
+    "schedule_url": "https://texassports.com/sports/baseball/schedule/2025",
+    "aliases": {
+      "Texas A&M - Corpus Christi": {
+        "team_id": "wn:Texas-AM-Corpus-Christi",
+        "website": "http://www.goislanders.com/",
+        "location": "Corpus Christi, TX"
+      },
+      "UT Arlington": {
+        "team_id": "wn:UTA",
+        "website": "http://www.utamavs.com/",
+        "location": "Arlington, TX"
+      }
+    }
+  },
+  "wn:Kansas": {
+    "season": 2025,
+    "schedule_url": "https://kuathletics.com/sports/baseball/schedule/2025",
+    "aliases": {
+      "St. Thomas": {
+        "team_id": "wn:Saint-Thomas",
+        "website": "https://tommiesports.com/index.aspx",
+        "location": "St. Paul, Minn."
+      }
+    }
+  },
+  "wn:North-Carolina": {
+    "season": 2025,
+    "schedule_url": "https://goheels.com/sports/baseball/schedule/2025",
+    "aliases": {
+      "NC A&T": {
+        "team_id": "wn:North-Carolina-AT",
+        "website": "http://www.ncataggies.com/",
+        "location": "Greensboro, NC"
+      },
+      "UConn": {
+        "team_id": "wn:Connecticut",
+        "website": "http://www.uconnhuskies.com/",
+        "location": "Storrs, CT"
+      },
+      "Miami": {
+        "team_id": "wn:Miami-FL",
+        "website": "http://www.hurricanesports.com/",
+        "location": "Coral Gables, FL"
+      },
+      "#16 NC State": {
+        "team_id": "wn:North-Carolina-State",
+        "website": "http://gopack.com/",
+        "location": "Raleigh, NC"
+      }
+    }
+  },
+  "wn:Duke": {
+    "season": 2025,
+    "schedule_url": "https://goduke.com/sports/baseball/schedule/2025",
+    "aliases": {
+      "UNC Wilmington": {
+        "team_id": "wn:UNCW",
+        "website": "http://www.uncwsports.com/",
+        "location": "Wilmington, NC"
+      },
+      "UConn": {
+        "team_id": "wn:Connecticut",
+        "website": "http://www.uconnhuskies.com/",
+        "location": "Storrs, CT"
+      },
+      "NC State": {
+        "team_id": "wn:North-Carolina-State",
+        "website": "http://gopack.com/",
+        "location": "Raleigh, NC"
+      },
+      "Miami": {
+        "team_id": "wn:Miami-FL",
+        "website": "http://www.hurricanesports.com/",
+        "location": "Coral Gables, FL"
+      },
+      "Pitt": {
+        "team_id": "wn:Pittsburgh",
+        "website": "http://www.pittsburghpanthers.com",
+        "location": "Pittsburgh, PA"
+      }
+    }
+  },
+  "wn:TCU": {
+    "season": 2025,
+    "schedule_url": "https://gofrogs.com/sports/baseball/schedule/2025",
+    "aliases": {
+      "UT Arlington": {
+        "team_id": "wn:UTA",
+        "website": "http://www.utamavs.com/",
+        "location": "Arlington, TX"
+      }
+    }
+  },
+  "wn:Ole-Miss": {
+    "season": 2025,
+    "schedule_url": "https://olemisssports.com/sports/baseball/schedule/2025",
+    "aliases": {
+      "UT Martin": {
+        "team_id": "wn:Tennessee-Martin",
+        "website": "http://www.utmsports.com",
+        "location": "Martin, TN"
+      }
+    }
+  },
+  "wn:Cal-Poly": {
+    "season": 2025,
+    "schedule_url": "https://gopoly.com/sports/baseball/schedule/2025",
+    "aliases": {
+      "LMU": {
+        "team_id": "wn:Loyola-Marymount",
+        "website": "http://www.lmulions.com/",
+        "location": "Los Angeles, Calif."
+      },
+      "Hawai'i": {
+        "team_id": "wn:Hawaii",
+        "website": "http://hawaiiathletics.com/",
+        "location": "Manoa, HI"
+      },
+      "CSUN": {
+        "team_id": "wn:Cal-State-Northridge",
+        "website": "http://www.gomatadors.com",
+        "location": "Northridge, CA"
+      },
+      "#4 Hawai'i": {
+        "team_id": "wn:Hawaii",
+        "website": "http://hawaiiathletics.com/",
+        "location": "Manoa, HI"
+      }
+    }
+  },
+  "wn:Oregon": {
+    "season": 2025,
+    "schedule_url": "https://goducks.com/sports/baseball/schedule/2025",
+    "aliases": {
+      "Saint Mary's": {
+        "team_id": "wn:Saint-Marys-College",
+        "website": "http://www.smcgaels.com/",
+        "location": "Moraga, CA"
+      }
+    }
+  },
+  "wn:UC-Irvine": {
+    "season": 2025,
+    "schedule_url": "https://ucirvinesports.com/sports/baseball/schedule/2025",
+    "aliases": {
+      "CSUN": {
+        "team_id": "wn:Cal-State-Northridge",
+        "website": "http://www.gomatadors.com",
+        "location": "Northridge, CA"
+      },
+      "LMU": {
+        "team_id": "wn:Loyola-Marymount",
+        "website": "http://www.lmulions.com/",
+        "location": "Los Angeles, Calif."
+      },
+      "Hawai'i": {
+        "team_id": "wn:Hawaii",
+        "website": "http://hawaiiathletics.com/",
+        "location": "Honolulu. O'ahu"
+      },
+      "[4] Hawai'i": {
+        "team_id": "wn:Hawaii",
+        "website": "http://hawaiiathletics.com/",
+        "location": "Honolulu. O'ahu"
+      }
+    }
+  }
+}
