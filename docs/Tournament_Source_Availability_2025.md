@@ -98,7 +98,7 @@ Nuxt empty refs now decode without turning missing values into workload zeros. F
 
 The Clemson 2025-26 response and Conference USA’s default DBU 2026 schedule link are quarantined discovery evidence only; no 2026 outcome was used for modeling or evaluation, and 2026 remains uncertified. Final cumulative pages include postseason and must never become pre-NCAA features. Preserve regular-only and conference-inclusive cutoffs.
 
-Next resolve provider scope and redirect-host rules, remaining player-source/parser gaps and full appearance histories. Extend the mechanically checked fallback with validated uncertainty/tournament behavior before any complete-bracket claim. All schedule sources are now identified; most game inventories and nearly all player histories remain unverified. No live refresh or scheduler is needed.
+Deferred source work: provider scope, redirect-host rules, remaining parsers and full appearance histories. The project brief prioritizes the team-only engine and usable app first. Verify tournament behavior and disclose unmodeled availability; these source gaps do not block a retained-data development app. All schedule sources are identified; nearly all player histories remain unverified. No live refresh or scheduler is needed.
 
 ## Collection volume (offline planning only)
 

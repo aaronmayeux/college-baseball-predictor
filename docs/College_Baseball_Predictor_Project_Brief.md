@@ -4,7 +4,7 @@ Current state: September 24, 2026.
 
 ## Purpose and current status
 
-Build a college baseball tournament predictor whose primary use is **one run immediately before the NCAA tournament to fill out the entire bracket, from regionals through the national champion**. Automatically collect the eligible starting data, produce game and advancement probabilities, and explain the picks. Optional late-season conference-game comparisons are for fun; they are secondary to the complete bracket. Tournament pitching usage is simulated forward from the initial snapshot, not dependent on live updates.
+Build a college baseball tournament predictor whose primary use is **one run immediately before the NCAA tournament to fill out the entire bracket, from regionals through the national champion**. Automatically collect the eligible starting data, produce game and advancement probabilities, and explain the picks. Optional late-season conference-game comparisons are for fun; they are secondary to the complete bracket. Later pitching availability will be simulated from the initial snapshot; the first app uses team strength only.
 
 The historical pilot covers **2021–2025: 40,615 completed D1 games, 1,520 team-season records and 310 stable team identities**. Records reconcile after documented corrections; three games use official-school supplements. V2 resolves two timing quarantines while preserving the original baseline. Provider agreement is not independent national certification.
 
@@ -12,7 +12,7 @@ Fixed neutral Elo selected 68.9% of NCAA winners across 411 games in 2022–2024
 
 Exact pre-NCAA cutoffs are now recorded: Wednesday 12:00 UTC before regionals, with a two-calendar-day assumed availability delay for date-only results. Regular-only and conference-inclusive inputs are separate. Point-in-time publication/completion is not certified. 2026 cannot be called untouched because prior probes exposed outcomes; discovery also encountered a default current-year player leaderboard. It was not used for model fitting or evaluation.
 
-The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. No simulator or interface exists. Hitting profiles and pitching quality/depth are approved priorities; historical player-data qualification is underway before feature implementation.
+The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. No simulator or interface exists yet. Aaron approved building the bracket engine and usable app next with existing team strength; richer hitting and pitching features follow after their data is qualified.
 
 ## Working references
 
@@ -26,7 +26,7 @@ GitHub `main` is authoritative. `AGENTS.md` owns working rules; `historical/SPEC
 
 ## Intended product
 
-A mobile-friendly web app with an on-demand pre-tournament data import, one complete bracket, game/advancement/championship probabilities, short explanations and spreadsheet exports. Recurring refresh and live tournament updates are not required for the primary product. Include a selectable two-team radar chart like the DYNAMIC workbook's MATCHUPS chart: contact, power, speed, pitching and defense. Define comparable scales and explain each measure; the original formulas are not validated. Interface tools and hosting remain undecided. No interface implementation is authorized yet.
+A mobile-friendly web app with an on-demand pre-tournament data import, one complete bracket, game/advancement/championship probabilities, short explanations and spreadsheet exports. Recurring refresh and live tournament updates are not required for the primary product. Include a selectable two-team radar chart like the DYNAMIC workbook's MATCHUPS chart: contact, power, speed, pitching and defense. Define comparable scales and explain each measure; the original formulas are not validated. Interface implementation is authorized; tools and hosting remain undecided. Start with bracket picks, probabilities and comparisons from verified team-strength inputs. Add the radar dimensions when their inputs are qualified; do not invent values.
 
 ## Decisions to carry forward
 
@@ -41,7 +41,7 @@ A mobile-friendly web app with an on-demand pre-tournament data import, one comp
 
 The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Aaron approved prioritizing hitting profiles and pitching quality/depth. Individual features, quality-arm/ace thresholds and scaling are not selected or fitted.
 
-The [historical player audit](Historical_Player_Data_Coverage.md) covers LSU 2025, Towson 2024, Davidson 2024 and Missouri State 2022; all pitching counts reconcile. Davidson's non-batting appearance omission remains flagged; Missouri State's start/completion exception preserves the correct baseline date. The [2025 field map](Tournament_Source_Availability_2025.md) has 64 schedule sources and 50 player-group sources, but only LSU has reconciled core appearances. The shared embedded-schedule audit now reconciles 11 teams; Clemson and Little Rock have separate archive result checks. These are result inventories, not appearance histories. Three WMT links remain untested. Bulk scope and redirect-host access remain unresolved. The team-only fallback checks all 64 teams and every pairing in both modes, reproducing v2 probabilities exactly; availability uncertainty and complete-bracket behavior remain unvalidated. Missing pitch counts and actual-work dates limit workload modeling. Final season totals are audit targets only.
+The [historical player audit](Historical_Player_Data_Coverage.md) covers four sampled team-seasons. The [2025 field map](Tournament_Source_Availability_2025.md) has 64 schedule sources and 50 player-group sources, but only LSU has reconciled core appearances. The embedded-schedule audit reconciles 11 teams; Clemson and Little Rock have separate archive checks. These are result inventories, not appearance histories. Access limits and remaining parser gaps belong in those reports. The team-only fallback checks all 64 teams and every pairing in both modes, reproducing v2 probabilities exactly; availability uncertainty and complete-bracket behavior remain unvalidated. Missing pitch counts and actual-work dates limit workload modeling. Final season totals are audit targets only.
 
 Carry these product requirements forward:
 
@@ -81,10 +81,10 @@ Every normalized record should retain provider, provider ID, stable internal tea
 | 3. Baseline | Simple game model, such as regularized logistic regression or Elo | Evaluated chronologically against simple benchmarks; probabilities and limitations reported |
 | 3a. Statistics discovery and triage | Broad candidate inventory and prioritized shortlist | Follow the statistics discovery contract above; Aaron and assistant review priorities before feature implementation |
 | 4. Tournament engine | Regionals, supers, Omaha groups, final series | Reset games, series stopping rules, advancement, and shared simulation state behave correctly; probabilities reconcile |
-| 5. Added features | Measured home/park effects, power/HAVOC, then pitching availability | Each addition is compared with the baseline on unseen seasons and retained only with a justified benefit |
-| 6. Interface and bracket export | Mobile-friendly complete bracket, explanations, exports and on-demand run status | One pre-tournament run fills the bracket through the champion; predictions trace to model/data versions and timestamps; missing data and uncertainty are visible |
+| 5. First usable app | Mobile-friendly bracket, probabilities, team comparisons, explanations and export | Aaron can open and use a complete 64-team development bracket through the champion; model/data versions, cutoffs and limitations are visible |
+| 6. Richer inputs and production readiness | Qualified hitting profiles, pitching depth/aces and availability; reliable fresh import | Validate additions against the baseline chronologically; qualify source access and coverage for inputs actually used |
 
-Python and SQLite implement the results pipeline, cutoff reconstruction, Elo and separate seed benchmark. Milestones 1–3 remain partial: broader coverage, exact timing, player data and advancement evaluation are incomplete. Statistics discovery is documented; the two approved priority families are undergoing coverage audit. Milestones 4–6 have not started. Hosting remains undecided.
+Python and SQLite implement the existing pipeline and baseline. Remaining audit gaps do not block milestones 4–5 using retained 2025 development data. Build order is engine → usable app → richer inputs. Pause broad collection/access and player-history expansion unless needed for the first app. This does not certify fresh nationwide ingestion or player features.
 
 ## Evaluation rules
 
@@ -114,7 +114,7 @@ Recheck access and applicable-year rules before production use.
 
 Use [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
-Next establish permitted collection volume, resolve remaining archives/parsers, and reconcile additional 2025 team-seasons. Validate the team-level fallback before a full-bracket claim. Independent phase checks and prospective holdout locking remain outstanding. Daily-mode research is deferred; actual appearance dates still matter at bracket lock.
+Build and test the complete tournament engine using frozen team-only Elo, then deliver an app Aaron can open. Verify 2025 rules, field placement, reset games, series stopping and probability totals. Preserve both forecast modes and all 64 teams. Label the first version a 2025 development demonstration; player availability is unmodeled. Broader source work, richer features and prospective holdout locking remain later work; daily updates stay deferred.
 
 ## Open decisions
 

@@ -1,6 +1,6 @@
 # College Baseball Predictor
 
-A Python research pilot for automated college baseball results collection and chronological game predictions. No interface or tournament simulator yet.
+A college baseball bracket predictor with a Python results pipeline and chronological game baseline. Next: a complete tournament engine and usable mobile-friendly app using existing team strength. Richer player features follow. No simulator or interface is implemented yet; see the [project brief](docs/College_Baseball_Predictor_Project_Brief.md) for the approved build order.
 
 ## Current checkpoint
 

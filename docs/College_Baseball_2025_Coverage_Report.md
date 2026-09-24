@@ -89,7 +89,7 @@ The pilot uses Python standard-library collection/parsing and SQLite, with immut
 4. Test sustained collection/retry behavior and correction handling before scheduling refresh. Successful one-time downloads establish access, not a provider service guarantee or redistribution license.
 5. Re-run stratified player/box/play-by-play coverage only when pursuing power, HAVOC and pitching features. Missing data must not become zeros.
 
-**Session outcome:** the 2025 results portion of the coverage milestone is complete against the selected provider, with a reproducible inventory and explicitly limited independent checks. Historical player coverage remains inherited, and broader historical/independent verification is pending. Next is earlier-season collection and cutoff validation, then a simple Elo evaluation—not an interface.
+**Session outcome:** the 2025 results portion of the coverage milestone is complete against the selected provider, with a reproducible inventory and explicitly limited independent checks. Historical player coverage remains inherited, and broader historical/independent verification is pending. Earlier-season collection, cutoff validation and Elo are covered in the historical and timing reports; the project brief owns the current build order.
 
 ## Conference reconciliation
 

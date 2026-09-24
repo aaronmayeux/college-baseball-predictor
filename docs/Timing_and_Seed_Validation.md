@@ -48,4 +48,4 @@ Resolving the two quarantined games changes probabilities slightly through chron
 
 Six original and seven new offline tests pass. The original pipeline rebuilt successfully; original predictions, metrics and eligibility match the baseline bundle byte-for-byte. All ten v2 outputs reproduced byte-for-byte on a cached rerun. The evidence add-on restores without overwriting different local files.
 
-Next: implement separate start/completion events for daily forecasts, extend independent phase coverage beyond the targeted sample, and lock a prospective holdout protocol before model or bracket-engine expansion. No interface was built.
+Deferred research: separate start/completion events for daily forecasts, broader independent phase coverage and a prospective holdout protocol before any untouched evaluation claim. The project brief owns the current engine-first, then app build order. These research gaps do not block a labeled 2025 development app.

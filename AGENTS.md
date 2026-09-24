@@ -9,7 +9,7 @@ Read `docs/College_Baseball_Predictor_Project_Brief.md` and `historical/SPEC.md`
 - Never commit raw downloads, game-level exports, databases, evidence ZIPs, credentials or the original spreadsheets. Do not use `git add -f` to bypass these exclusions.
 - Keep tests runnable without external data. Use the separately retained bundle for full pipeline checks.
 - Keep `docs/SESSION_LOG.md` as a short rolling handoff: latest meaningful change, verification, unresolved blockers and next action. Replace stale entries instead of appending a diary.
-- Do not build an interface until that milestone is authorized. This repository is separate from the bridge game.
+- Aaron authorized the tournament engine and first usable interface. Follow the build order in the project brief; broad player-data/access audits must not block the team-only app. This repository is separate from the bridge game.
 
 ## Standing rule: keep context lean
 
