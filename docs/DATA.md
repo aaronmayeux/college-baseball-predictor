@@ -257,13 +257,16 @@ Output: ignored `historical/model_inputs/hitting_inputs.json`. Custom JSON outpu
 
 ## Offline pitching-input pilot
 
-Uses the same restored baseline and field checkpoint as the hitting pilot. No new downloads or evidence ZIP are needed:
+Uses the same restored baseline, field checkpoint and season-appearance checkpoint as the hitting pilot. No new downloads or evidence ZIP are needed:
 
 ```sh
 python3 scripts/extract_pitching_inputs.py \
+  --season-raw-dir /tmp/baseball-season-appearances/raw \
   --expansion-raw-dir /tmp/baseball-field/expansion/raw \
   --exception-raw-dir /tmp/baseball-field/field/raw
-python3 -m unittest discover -s scripts -p 'test_pitching_inputs.py'
+python3 -m unittest discover -s scripts -p 'test_*pitching_inputs.py'
 ```
+
+Omitting `--season-raw-dir` retains the two structured-source pilots only. Including it also verifies LSU’s explicit starting lineup, pitcher BF components and play-derived sacrifices/interference.
 
 Output: ignored `historical/model_inputs/pitching_inputs.json`; custom outputs must also be JSON files under that directory. Check `full_season_pass`, per-mode `complete`, and per-game `BF_check`/`issues`. Source metadata, original timing annotations, scoped player names, raw appearance counts and input/code hashes are retained. Repeated runs are byte-identical. Missing pitch counts stay null; known-pitch subtotals are explicitly partial. Work dates/rest remain unknown. Results and role definitions belong in [qualification](Model_Input_Qualification.md#pitcher-bf-roles-and-workload-pilot). No model/app input is replaced.

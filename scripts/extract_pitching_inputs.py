@@ -13,9 +13,9 @@ from extract_hitting_inputs import fingerprint
 from pitching_inputs import structured_game, aggregate
 
 
-def run(raw, exception_raw):
+def run(raw, exception_raw, season_raw=None):
     paths = [REPO/'historical/cutoffs.json', REPO/'historical/player_sources.json'] + [
-        REPO/f'historical/{year}/{kind}.json' for year in (2022, 2024) for kind in ('games', 'teams')]
+        REPO/f'historical/{year}/{kind}.json' for year in ((2022, 2024, 2025) if season_raw else (2022, 2024)) for kind in ('games', 'teams')]
     before = {str(p.relative_to(REPO)): fingerprint(p) for p in paths}
     contract = json.loads(paths[0].read_text())
     original = audit(raw)
@@ -53,23 +53,27 @@ def run(raw, exception_raw):
         teams.append(dict(team_id=config['team_id'], season=year, sources=a['sources'], records=records,
             pitching_season_check=a['comparisons']['pitching'], full_season_pass=bool(season_ok),
             forecast_modes=modes, batting_check_pass=a['comparisons']['batting']['totals_match']))
+    if season_raw is not None:
+        from lsu_pitching_inputs import run as lsu_run
+        teams.append(lsu_run(season_raw, contract))
     if any(fingerprint(REPO/p) != sha for p, sha in before.items()):
         raise ValueError('Baseline/config changed during extraction')
-    return dict(schema_version=1, dataset_version='pitching_inputs_pilot_v1', input_sha256=before,
+    return dict(schema_version=1, dataset_version='pitching_inputs_pilot_v2', input_sha256=before,
         code_sha256={p.name:fingerprint(p) for p in sorted((REPO/'scripts').glob('*.py'))},
         point_in_time_certified=False, model_adjustments_enabled=False,
-        limitation='Two structured-source pilots; observed roles only, no ace/depth thresholds or rest inference.', teams=teams)
+        limitation='Selected cached pilots; observed roles only, no ace/depth thresholds or rest inference.', teams=teams)
 
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--season-raw-dir', type=Path, help='Include LSU from the season-appearance checkpoint')
     p.add_argument('--expansion-raw-dir', type=Path, required=True)
     p.add_argument('--exception-raw-dir', type=Path, required=True)
     p.add_argument('--output', type=Path, default=REPO/'historical/model_inputs/pitching_inputs.json')
     args = p.parse_args(); output = args.output.resolve()
     if not output.is_relative_to((REPO/'historical/model_inputs').resolve()) or output.suffix != '.json':
         p.error('--output must be a JSON file under historical/model_inputs/')
-    result = run(args.expansion_raw_dir, args.exception_raw_dir)
+    result = run(args.expansion_raw_dir, args.exception_raw_dir, args.season_raw_dir)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2)+'\n')
     for t in result['teams']:

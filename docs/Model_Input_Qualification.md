@@ -1,6 +1,6 @@
 # Focused model-input qualification
 
-Milestone 6 now has a focused qualification plan and offline hitting and structured pitching extractors, verified September 25, 2026. No feature weights, quality-arm thresholds or prediction changes are selected. The [triage](Statistics_Discovery_and_Triage.md) owns the broader inventory; [SPEC](../historical/SPEC.md) owns cutoff and holdout rules.
+Milestone 6 now has a focused qualification plan and offline hitting and pitching extractors, verified September 25, 2026. No feature weights, quality-arm thresholds or prediction changes are selected. The [triage](Statistics_Discovery_and_Triage.md) owns the broader inventory; [SPEC](../historical/SPEC.md) owns cutoff and holdout rules.
 
 ## Smallest useful experiments
 
@@ -23,7 +23,7 @@ Rebuilt both appearance audits from hash-verified checkpoints and reran the sepa
 
 | Team-season | Eligible boxes: regular / conference-inclusive | Hitting counts | Pitching counts and limits |
 |---|---|---|---|
-| LSU 2025 | 55/55; 57/57 | Core counts plus team extra bases/HBP/sacrifices reconcile; PA checks against opposing BF pass in all 68 boxes | Core counts reconcile; BF parsed but not independently reconciled to cumulative BF; pitching starts/roles and HR allowed unqualified |
+| LSU 2025 | 55/55; 57/57 | Core counts plus team extra bases/HBP/sacrifices reconcile; PA checks against opposing BF pass in all 68 boxes | Core counts, BF components and explicit lineup starts now reconcile; per-player sacrifices and starts match cumulative targets, with two play-derived CI awards supplementing BF; HR allowed remains unqualified |
 | Towson 2024 | 54/54; 54/54 | Same six fields as LSU | Same core fields/BF limitation; starts/roles unqualified |
 | Davidson 2024 | 52/52; 52/52 | Fourteen count fields exist, including extra bases/HBP/sacrifices; batting completeness still fails for the retained zero-PA substitute | Sixteen mapped counts reconcile, including starts and HR allowed; BF reconciles per appearance and against opposing PA; explicit pitching GS and observed roles qualified in the separate extractor |
 | Missouri State 2022 | 51/51; 57/57 with separate completion annotation | Fourteen mapped counts reconcile; cutoff-specific ISO/OBP now extracted; PA-based rates remain unavailable | Sixteen mapped counts reconcile; BF and explicit pitching GS checks pass in the separate extractor. Original conference-inclusive strict join stays 56/57; annotation does not establish pitcher work dates |
@@ -47,7 +47,7 @@ The Missouri State adapter sums already reconciled structured batting rows and p
 
 These are unadjusted descriptive inputs, **not evidence of improved predictions**. Both team/mode inventories are complete. A missing or invalid eligible game blocks that mode's rates; a PA mismatch blocks PA-based rates while retaining reconciled power counts. Failed full-season count checks also block rates. Input hashes, source metadata, game exclusions and original date annotations remain in the output. No player-level hitting features or weights are enabled.
 
-Next, extend BF and explicit pitching-start verification to LSU’s cached StatCrew boxes; its existing pitching parser has no per-game GS field, so table order must not supply starts. Investigate explicit lineup or play evidence and reconcile against cumulative APP-GS, retaining unknown roles where evidence is insufficient. Then identify the smallest permitted multi-season expansion needed for the evaluation contract below. Existing LSU 2021–2024 indexes/sample boxes are candidates, not qualified seasons. Qualify both sides of evaluation matchups; one school's seasons alone cannot validate a national feature. Reuse caches/shared boxes and resolve access scope for the exact selected source before requests. Broad discovery and bulk collection remain paused.
+LSU’s cached StatCrew pitching qualification is now implemented below. Next identify the smallest permitted multi-season expansion needed for the evaluation contract below. Existing LSU 2021–2024 indexes/sample boxes are candidates, not qualified seasons. Qualify both sides of evaluation matchups; one school's seasons alone cannot validate a national feature. Reuse caches/shared boxes and resolve access scope for the exact selected source before requests. Broad discovery and bulk collection remain paused.
 
 ## Pitcher BF, roles and workload pilot
 
@@ -63,7 +63,20 @@ The existing structured audit reconciles each pitcher’s starts, appearances an
 
 Each player summary includes outs, BF, starts, relief appearances, maximum appearance outs, unadjusted (SO−BB)/BF, ERA and RA9. Counts are summed before division; zero denominators yield null. Pitch totals are null if any appearance lacks a count; separately labeled known-pitch subtotals and coverage remain available. A missing/bad eligible game or failed season pitching check blocks the mode’s player summaries.
 
-The Missouri State completion annotation is preserved along with original dates/issues; it does not establish actual pitcher work dates. Rest and availability remain unknown for both teams. Davidson’s existing batting omission remains visible and does not invalidate its independently checked pitching records. Final cumulative counts serve only as audit targets. LSU and Towson pitching BF/roles are still unqualified by this extractor; no 2025 field coverage gain is claimed. No quality/depth thresholds, weights, national validation or prediction adjustments are enabled.
+The Missouri State completion annotation is preserved along with original dates/issues; it does not establish actual pitcher work dates. Rest and availability remain unknown for both teams. Davidson’s existing batting omission remains visible and does not invalidate its independently checked pitching records. Final cumulative counts serve only as audit targets. Towson pitching BF/roles remain unqualified by this extractor. LSU’s separate adapter is described below; only one 2025 team has these descriptive inputs, so no nationwide predictive qualification is claimed. No quality/depth thresholds, weights, national validation or prediction adjustments are enabled.
+
+### LSU StatCrew verification
+
+With `--season-raw-dir`, the pitching extractor also checks all **68 LSU 2025 boxes / 274 appearances**. The explicit `LSU starters` lineup identifies the pitcher by position `p`; the label must match exactly one pitcher’s surname token suffix. It never uses pitching-table order. Each pitcher’s starts and appearances reconcile to cumulative APP-GS. Labels, source bytes/hashes and original timing issues remain in the output.
+
+Sacrifice flies, sacrifice hits and catcher-interference awards are allocated along explicit play-by-play pitching changes. Pitch-code letters and repeated review commentary are excluded. Every pitcher’s BF must equal AB+BB+HBP+SF+SH+CI, and every game’s summed BF must equal opposing PA components. Allocated sacrifices also reconcile per player against cumulative SFA/SHA. The cumulative table lacks CI: two source-play awards (one each during Kade Anderson and Zac Cowan appearances) supplement its denominator; no direct cumulative BF/CI field is claimed. One pitching change enters another batting slot and explicitly removes the prior pitcher; this is verified rather than assuming “for” always names the prior pitcher.
+
+| LSU mode | Games | Pitchers: starter-only / relief-only / mixed | Appearances | Outs | BF | Appearances with pitch counts |
+|---|---:|---:|---:|---:|---:|---:|
+| Regular-only | 55 | 2 / 11 / 5 | 233 | 1,406 | 2,046 | 232 |
+| Conference-inclusive | 57 | 1 / 11 / 6 | 238 | 1,460 | 2,115 | 237 |
+
+Both modes are complete. The original LSU–UCLA postseason date mismatch stays visible and excluded; it does not prevent count-only season reconciliation. A missing pitch count stays unknown. Actual work dates, rest, pitcher quality thresholds and national feature validation remain unqualified. This is within-source count/role verification, not evidence of improved predictions.
 
 ## Chronological evaluation contract
 
@@ -77,6 +90,6 @@ Start with one added feature at a time, then only supported combinations. Primar
 
 ## Reproduction and boundaries
 
-[DATA.md](DATA.md#offline-hitting-input-pilot) owns restoration and both extraction commands. Repeated outputs are byte-identical. All **146 tests** pass (116 scripts, 30 historical), including 13 hitting tests for count formulas, unknown denominators, interference, replay comments, pitch-code confusion, missing/duplicate events, incomplete modes and chronological exclusions. Twelve pitching tests cover BF/interference, role flags versus generic lineup starts/order, missing counts, zero-out appearances, rates, incomplete modes and cutoff exclusions. Tests need no external data.
+[DATA.md](DATA.md#offline-hitting-input-pilot) owns restoration and both extraction commands. Repeated outputs are byte-identical. All **154 tests** pass (124 scripts, 30 historical), including 13 hitting tests for count formulas, unknown denominators, interference, replay comments, pitch-code confusion, missing/duplicate events, incomplete modes and chronological exclusions. Twelve pitching tests cover BF/interference, role flags versus generic lineup starts/order, missing counts, zero-out appearances, rates, incomplete modes and cutoff exclusions. Eight LSU tests additionally check explicit starter matching, ambiguity, event allocation, batting-slot changes, BF mismatches and cumulative interference/start reconciliation. Tests need no external data.
 
 The original LSU/Towson audit remains unchanged; the new extractor calls it without modifying its output contract. Input/config fingerprints remain unchanged during extraction. No fresh collection, 2026 evaluation, model/app change or raw-data commit occurred. The unavailable conference-archive checkpoint is unnecessary for these pilots; its newer field/access results were not rerun. Spreadsheet comparison, UI changes and hosting migration remain deferred.

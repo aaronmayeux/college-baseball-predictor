@@ -4,16 +4,16 @@ Updated September 25, 2026. Git history owns prior sessions.
 
 ## Completed
 
-Added the separate offline pitching extractor (`extract_pitching_inputs.py`, `pitching_inputs.py`). All 112 Davidson 2024/Missouri State 2022 boxes and 435 pitching appearances pass BF component/opponent-PA/team-total checks. Explicit pitching GS and cumulative per-player starts support mutually exclusive observed starter-only, relief-only and mixed summaries. Both modes produce complete workload summaries; partial pitch-count coverage stays explicit. [Qualification](Model_Input_Qualification.md) owns results; [DATA](DATA.md#offline-pitching-input-pilot) owns restoration/commands.
+Extended the offline pitching extractor with `lsu_pitching_inputs.py` and optional `--season-raw-dir`. All 68 LSU 2025 boxes / 274 appearances reconcile explicit lineup starts, per-pitcher BF components and cumulative starts/appearances/sacrifices. Two catcher-interference plays supplement cumulative BF components; one different-batting-slot pitching change requires explicit prior-pitcher removal. No table-order starter inference. [Qualification](Model_Input_Qualification.md) owns results; [DATA](DATA.md#offline-pitching-input-pilot) owns commands.
 
-Model, app, baseline, existing appearance audits and hitting extractor are unchanged. No thresholds, fitting, fresh collection or 2026 evaluation. The existing field checkpoint supplies all new extraction evidence.
+Together with Davidson/Missouri State, the pilot covers 180 boxes / 709 pitching appearances. Model, app, baseline, existing appearance audits and hitting extractor remain unchanged. No weights, thresholds, fresh collection or 2026 evaluation.
 
 ## Verification
 
-All 146 tests pass (116 scripts, 30 historical), including 12 pitching regression tests. Full cached extraction repeats byte-for-byte; baseline/config fingerprints remain unchanged. Davidson: 52/52 games in both modes. Missouri State: 51/51 regular-only, 57/57 conference-inclusive with the existing separate completion annotation. Actual pitcher work dates and rest remain unknown. Davidson’s batting omission remains visible.
+All 154 tests pass (124 scripts, 30 historical), including eight new LSU regressions. Full three-team extraction repeats byte-for-byte; baseline/config hashes stay unchanged and previous structured-team outputs match. LSU has 55/55 regular-only and 57/57 conference-inclusive games. Pitch counts cover 232/233 and 237/238 appearances respectively. Actual work dates/rest remain unknown. The LSU–UCLA postseason date mismatch and Missouri State completion annotation remain visible.
 
 ## Next action and limits
 
-Extend BF and explicit pitching-start verification to LSU’s cached StatCrew boxes. Its original parser lacks per-game GS; investigate explicit lineup/play evidence and reconcile against cumulative APP-GS, never use table order. Then follow the qualification report’s targeted multi-season expansion and chronological evaluation plan. No national predictive validation is supported yet; preserve all 64 teams and unchanged Elo fallback.
+Define the smallest permitted multi-season expansion covering both teams in evaluation matchups, following the qualification report’s 2021–2022 training / 2023 selection / 2024 retrospective validation plan before collection or fitting. Existing LSU historical indexes/sample boxes are candidates, not qualified seasons. Do not tune depth/ace thresholds on the convenience sample.
 
-Depth/ace thresholds remain open. Broader collection/access audits, spreadsheet comparison, app redesign, Cloudflare migration and daily updates remain deferred. The unavailable conference-archive checkpoint is unnecessary for this step.
+National predictive validation remains unsupported; preserve all 64 teams and unchanged Elo fallback. Broader access audits, spreadsheet comparison, app redesign, Cloudflare migration and daily updates remain deferred. The unavailable conference-archive checkpoint is unnecessary for current extraction.
