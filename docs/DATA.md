@@ -254,3 +254,16 @@ python3 -m unittest discover -s scripts -p 'test_hitting_inputs.py'
 ```
 
 Output: ignored `historical/model_inputs/hitting_inputs.json`. Custom JSON output paths are restricted to that directory to prevent overwriting sources/baseline inputs. The command verifies source bytes via the existing audits and records input/code fingerprints, source metadata, count checks and cutoff-specific game IDs/rates. Check each team's `full_season_check.pass_counts`, each mode's `complete` and `PA_complete`, and per-game issues; successful execution can report unqualified inputs. Failed checks never publish partial-season rates. Missouri State PA-based rates remain null. Cumulative totals are audit targets only; model and app outputs are untouched. Definitions, results and limits: [focused qualification](Model_Input_Qualification.md).
+
+## Offline pitching-input pilot
+
+Uses the same restored baseline and field checkpoint as the hitting pilot. No new downloads or evidence ZIP are needed:
+
+```sh
+python3 scripts/extract_pitching_inputs.py \
+  --expansion-raw-dir /tmp/baseball-field/expansion/raw \
+  --exception-raw-dir /tmp/baseball-field/field/raw
+python3 -m unittest discover -s scripts -p 'test_pitching_inputs.py'
+```
+
+Output: ignored `historical/model_inputs/pitching_inputs.json`; custom outputs must also be JSON files under that directory. Check `full_season_pass`, per-mode `complete`, and per-game `BF_check`/`issues`. Source metadata, original timing annotations, scoped player names, raw appearance counts and input/code hashes are retained. Repeated runs are byte-identical. Missing pitch counts stay null; known-pitch subtotals are explicitly partial. Work dates/rest remain unknown. Results and role definitions belong in [qualification](Model_Input_Qualification.md#pitcher-bf-roles-and-workload-pilot). No model/app input is replaced.

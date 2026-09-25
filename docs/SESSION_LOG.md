@@ -4,16 +4,16 @@ Updated September 25, 2026. Git history owns prior sessions.
 
 ## Completed
 
-Implemented the separate offline hitting extractor in `scripts/extract_hitting_inputs.py` and `hitting_inputs.py`. LSU's 68 boxes reconcile extra-base hits, HBP, sacrifices and PA against play-by-play, box summaries, opposing BF and cumulative count targets. Missouri State's 60 structured boxes provide a second-format power/OBP check; its PA-based rates stay null. Both cutoff modes produce complete pilot outputs. Definitions/results: [qualification report](Model_Input_Qualification.md). Restore/run command: [DATA.md](DATA.md#offline-hitting-input-pilot).
+Added the separate offline pitching extractor (`extract_pitching_inputs.py`, `pitching_inputs.py`). All 112 Davidson 2024/Missouri State 2022 boxes and 435 pitching appearances pass BF component/opponent-PA/team-total checks. Explicit pitching GS and cumulative per-player starts support mutually exclusive observed starter-only, relief-only and mixed summaries. Both modes produce complete workload summaries; partial pitch-count coverage stays explicit. [Qualification](Model_Input_Qualification.md) owns results; [DATA](DATA.md#offline-pitching-input-pilot) owns restoration/commands.
 
-Predictions, app, baseline and original appearance-audit output contracts are unchanged. No feature weights or thresholds selected. New output is ignored, separate from model inputs used by the app.
+Model, app, baseline, existing appearance audits and hitting extractor are unchanged. No thresholds, fitting, fresh collection or 2026 evaluation. The existing field checkpoint supplies all new extraction evidence.
 
 ## Verification
 
-All 134 tests pass (104 scripts, 30 historical), including 13 new synthetic failure/cutoff checks. Extraction repeats byte-for-byte; input/config fingerprints remain unchanged. LSU eligible coverage is 55/55 regular-only and 57/57 conference-inclusive; Missouri State is 51/51 and 57/57 using the existing completion annotation. Original LSU postseason date mismatch and unknown player work dates remain visible. No new source requests or 2026 evaluation.
+All 146 tests pass (116 scripts, 30 historical), including 12 pitching regression tests. Full cached extraction repeats byte-for-byte; baseline/config fingerprints remain unchanged. Davidson: 52/52 games in both modes. Missouri State: 51/51 regular-only, 57/57 conference-inclusive with the existing separate completion annotation. Actual pitcher work dates and rest remain unknown. Davidson’s batting omission remains visible.
 
 ## Next action and limits
 
-Qualify pitcher BF and explicit starter/relief roles using these same cached boxes, then summarize workload before choosing depth/ace thresholds. Follow the documented chronological plan before targeted multi-season collection or fitting. Current pilots do not support national predictive validation; retain all 64 teams, both modes and unchanged Elo fallback.
+Extend BF and explicit pitching-start verification to LSU’s cached StatCrew boxes. Its original parser lacks per-game GS; investigate explicit lineup/play evidence and reconcile against cumulative APP-GS, never use table order. Then follow the qualification report’s targeted multi-season expansion and chronological evaluation plan. No national predictive validation is supported yet; preserve all 64 teams and unchanged Elo fallback.
 
-No broader collection/access audit is needed now. The conference-archive checkpoint remains unavailable and unnecessary for this step. Spreadsheet comparisons, app redesign, Cloudflare migration and daily updates remain deferred. Hosting reproduction remains in [Tournament_Engine.md](Tournament_Engine.md).
+Depth/ace thresholds remain open. Broader collection/access audits, spreadsheet comparison, app redesign, Cloudflare migration and daily updates remain deferred. The unavailable conference-archive checkpoint is unnecessary for this step.
