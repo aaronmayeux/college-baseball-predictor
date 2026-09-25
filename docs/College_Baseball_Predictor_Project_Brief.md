@@ -84,7 +84,7 @@ Every normalized record should retain provider, provider ID, stable internal tea
 | 5. First usable app | Mobile-friendly bracket, probabilities, team comparisons, explanations and export | Aaron can open and use a complete 64-team development bracket through the champion; model/data versions, cutoffs and limitations are visible |
 | 6. Richer inputs and production readiness | Qualified hitting profiles, pitching depth/aces and availability; reliable fresh import | Validate additions against the baseline chronologically; qualify source access and coverage for inputs actually used |
 
-Python and SQLite implement the existing pipeline and baseline. Remaining audit gaps do not block milestones 4–5 using retained 2025 development data. Build order is engine → usable app → richer inputs. Pause broad collection/access and player-history expansion unless needed for the first app. This does not certify fresh nationwide ingestion or player features.
+Python and SQLite implement the existing pipeline and baseline. Remaining audit gaps do not block milestones 4–5 using retained 2025 development data. Build order is engine → usable app → richer inputs. Aaron accepts the first app’s appearance and behavior. Move to milestone 6 with focused input qualification; broad collection/access audits remain paused unless needed for a selected feature. This does not certify fresh nationwide ingestion or player features.
 
 ## Evaluation rules
 
@@ -114,11 +114,17 @@ Recheck access and applicable-year rules before production use.
 
 Use [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
-Get Aaron’s usability feedback on the [hosted app](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site). Desktop Chrome and narrow-viewport interaction checks are complete; physical-phone testing remains with Aaron. Keep all 64 teams and both modes. Engine/routing/probability mechanics are tested; the offline app is a 2025 development demonstration with unmodeled player availability. Follow [Tournament_Engine.md](Tournament_Engine.md) for reproduction. Do not resume broad source audits before delivering usable access. Richer features, fresh imports and prospective holdout locking remain later work; daily updates stay deferred.
+Aaron confirmed the [hosted app](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site) looks and works fine. No redesign is needed now. Next is focused prediction-model improvement:
+
+1. Qualify cutoff-safe hitting inputs for contact, power and HR dependence, then pitching quality/depth inputs for dependable starters, bullpen arms and ace identification. Reuse the existing triage and coverage findings; do not restart broad discovery. First deliver a concrete feature/data qualification plan identifying the smallest reliable inputs, field coverage, remaining gaps and chronological evaluation sample.
+2. Implement qualified additions separately from the preserved baseline and test them individually on common chronological samples. Keep improvements supported by validation; do not promise higher accuracy or tune against the 2025 bracket. Thresholds and scaling remain open.
+3. Model later-round pitcher availability after basic pitching quality/depth is qualified.
+
+Preserve all 64 teams and both cutoff-separated modes; retain the existing team-only fallback where richer inputs are unqualified. Spreadsheet comparisons, interface redesign, Cloudflare migration and daily updates remain deferred. Aaron has a Cloudflare account and prefers it as a future hosting option; migration is separate from model work. The current app remains a 2025 development demo. See [Tournament_Engine.md](Tournament_Engine.md) for reproduction and [DATA.md](DATA.md) for retained evidence.
 
 ## Open decisions
 
-- Future production execution environment; development app hosting is Sites. Repository: https://github.com/aaronmayeux/college-baseball-predictor (public).
+- Future production execution environment; Cloudflare is Aaron’s preferred future hosting option, with migration deferred. Development app hosting remains Sites. Repository: https://github.com/aaronmayeux/college-baseball-predictor (public).
 - Further training-season expansion beyond the implemented 2021–2025 pilot; assess scoring-environment changes before adding complexity.
 - A future prospectively reserved holdout; 2026 is not certified untouched. Current exact cutoffs and regular-only/conference-inclusive rules are settled in cutoffs.json.
 - Whether a paid source becomes necessary after testing free coverage.

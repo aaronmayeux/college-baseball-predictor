@@ -14,4 +14,6 @@ Restored baseline and timing/seed checkpoints and rebuilt both 64-team forecasts
 
 ## Next action and limits
 
-Get Aaron’s phone usability feedback and address concrete issues. Spreadsheet comparisons and richer inputs remain deferred. Preserve the existing engine and cutoff-separated modes. This is still a 2025 development demo: no fresh nationwide import, player availability, venue adjustments, strength uncertainty or qualified radar inputs. Predictive bracket calibration and untouched holdout remain unestablished. No new collection or model tuning occurred.
+Aaron accepts the app’s appearance and behavior. Begin milestone 6 in a new chat: follow the project brief’s focused model-improvement path. First reuse triage/coverage findings to specify and qualify the smallest cutoff-safe hitting and pitching quality/depth inputs, with field gaps and a chronological evaluation plan. Then test qualified additions against the preserved baseline; later-round pitcher availability follows basic quality/depth. Thresholds/scaling remain open.
+
+Spreadsheet comparisons, redesign, Cloudflare migration and daily updates remain deferred. Aaron has a Cloudflare account; hosting migration is separate. Preserve all 64 teams, both forecast modes and the existing fallback. Current limits remain: no certified fresh nationwide import, qualified player adjustments, bracket calibration or untouched holdout. This closeout changes documentation only; no new collection or model tuning.
