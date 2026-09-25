@@ -1,0 +1,1 @@
+{"name":"college-baseball-predictor-preview","private":true,"type":"module","scripts":{"dev":"vite app --config vite.config.js"},"devDependencies":{"vite":"7.3.1"}}

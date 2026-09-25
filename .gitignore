@@ -30,3 +30,8 @@ __pycache__/
 # Generated development forecasts / exports; rebuild from retained evidence.
 /app/data/
 /tournament/output/
+
+# Local preview dependencies and temporary viewport fixture.
+node_modules/
+/app/qa.html
+/dist/

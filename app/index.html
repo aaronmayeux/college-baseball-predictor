@@ -65,6 +65,6 @@ el('export-picks').addEventListener('click',()=>{const rows=[['Season','Mode','C
 (async()=>{try{data=JSON.parse(el('embedded-forecast').textContent);if(!data){const response=await fetch('data/forecast.json');if(!response.ok)throw new Error('Missing forecast');data=await response.json();}if(data.schema_version!==1||Object.keys(data.teams).length!==64)throw new Error('Unsupported forecast');
  const teams=Object.keys(data.teams).sort((a,b)=>name(a).localeCompare(name(b)));for(const id of ['team-a','team-b'])for(const t of teams){const option=node('option',name(t));option.value=t;el(id).append(option);}el('team-a').value=teams.find(t=>name(t)==='LSU')||teams[0];el('team-b').value=teams.find(t=>name(t)==='Arkansas')||teams[1];
  el('version').textContent='Model: '+data.model+' · Engine '+data.engine_version+' · Exact fixed-strength probabilities. No simulated results are used to update ratings.';for(const text of data.limitations)el('limitations').append(node('li',text));render();el('app').hidden=false;el('loading').hidden=true;
- }catch(error){el('loading').className='error';el('loading').textContent='Forecast unavailable. From the repository root, run python3 -m tournament.build, then serve the app folder. For an offline copy, build with --standalone. '+error.message;}})();
+ }catch(error){el('loading').className='error';el('loading').textContent='The forecast could not be loaded. Please reload this page or try again later.';}})();
 </script>
 </body></html>

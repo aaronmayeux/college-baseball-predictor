@@ -1,6 +1,6 @@
 # College Baseball Predictor — Project Brief
 
-Current state: September 24, 2026.
+Current state: September 25, 2026.
 
 ## Purpose and current status
 
@@ -12,7 +12,7 @@ Fixed neutral Elo selected 68.9% of NCAA winners across 411 games in 2022–2024
 
 Exact pre-NCAA cutoffs are now recorded: Wednesday 12:00 UTC before regionals, with a two-calendar-day assumed availability delay for date-only results. Regular-only and conference-inclusive inputs are separate. Point-in-time publication/completion is not certified. 2026 cannot be called untouched because prior probes exposed outcomes; discovery also encountered a default current-year player leaderboard. It was not used for model fitting or evaluation.
 
-The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. A complete team-only tournament engine and mobile-friendly browser app now use the retained 2025 field. Both frozen modes produce exact advancement odds, a full picked bracket, comparisons and CSV exports. A standalone HTML copy works offline; hosted access is the next step. Richer inputs follow after qualification. See [engine and app](Tournament_Engine.md).
+The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. A complete team-only tournament engine and mobile-friendly browser app now use the retained 2025 field. Both frozen modes produce exact advancement odds, a full picked bracket, comparisons and CSV exports. A standalone HTML copy works offline; the first app is now privately hosted on Sites. Richer inputs follow after qualification. See [engine and app](Tournament_Engine.md).
 
 ## Working references
 
@@ -26,7 +26,7 @@ GitHub `main` is authoritative. `AGENTS.md` owns working rules; `historical/SPEC
 
 ## Intended product
 
-A mobile-friendly web app with an on-demand pre-tournament data import, one complete bracket, game/advancement/championship probabilities, short explanations and spreadsheet exports. Recurring refresh and live tournament updates are not required for the primary product. Include a selectable two-team radar chart like the DYNAMIC workbook's MATCHUPS chart: contact, power, speed, pitching and defense. Define comparable scales and explain each measure; the original formulas are not validated. Interface implementation is authorized; the first app uses plain HTML/JavaScript with a Python export, and hosting remains undecided. Start with bracket picks, probabilities and comparisons from verified team-strength inputs. Add the radar dimensions when their inputs are qualified; do not invent values.
+A mobile-friendly web app with an on-demand pre-tournament data import, one complete bracket, game/advancement/championship probabilities, short explanations and spreadsheet exports. Recurring refresh and live tournament updates are not required for the primary product. Include a selectable two-team radar chart like the DYNAMIC workbook's MATCHUPS chart: contact, power, speed, pitching and defense. Define comparable scales and explain each measure; the original formulas are not validated. Interface implementation is authorized; the first app uses plain HTML/JavaScript with a Python export, with private Sites hosting. Start with bracket picks, probabilities and comparisons from verified team-strength inputs. Add the radar dimensions when their inputs are qualified; do not invent values.
 
 ## Decisions to carry forward
 
@@ -114,11 +114,11 @@ Recheck access and applicable-year rules before production use.
 
 Use [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
-Finish browser/phone interaction checks, make the first app accessible through a hosted URL and get Aaron’s usability feedback. Keep all 64 teams and both modes. Engine/routing/probability mechanics are tested; the offline app is a 2025 development demonstration with unmodeled player availability. Follow [Tournament_Engine.md](Tournament_Engine.md) for reproduction. Do not resume broad source audits before delivering usable access. Richer features, fresh imports and prospective holdout locking remain later work; daily updates stay deferred.
+Get Aaron’s usability feedback on the [hosted app](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site). Desktop Chrome and narrow-viewport interaction checks are complete; physical-phone testing remains with Aaron. Keep all 64 teams and both modes. Engine/routing/probability mechanics are tested; the offline app is a 2025 development demonstration with unmodeled player availability. Follow [Tournament_Engine.md](Tournament_Engine.md) for reproduction. Do not resume broad source audits before delivering usable access. Richer features, fresh imports and prospective holdout locking remain later work; daily updates stay deferred.
 
 ## Open decisions
 
-- Eventual execution/hosting environment. Repository: https://github.com/aaronmayeux/college-baseball-predictor (public).
+- Future production execution environment; development app hosting is Sites. Repository: https://github.com/aaronmayeux/college-baseball-predictor (public).
 - Further training-season expansion beyond the implemented 2021–2025 pilot; assess scoring-environment changes before adding complexity.
 - A future prospectively reserved holdout; 2026 is not certified untouched. Current exact cutoffs and regular-only/conference-inclusive rules are settled in cutoffs.json.
 - Whether a paid source becomes necessary after testing free coverage.

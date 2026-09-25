@@ -1,17 +1,17 @@
 # Current handoff
 
-Updated September 24, 2026. Git history owns prior sessions.
+Updated September 25, 2026. Git history owns prior sessions.
 
 ## Completed
 
-Built the full 2025 tournament engine and first browser app using existing frozen team Elo. Verified NCAA format and placement. Regionals/Omaha handle reset games; supers/final stop at two wins. Exact advancement probabilities integrate all possible opponents; a separate game-by-game favorites path fills the entire bracket. Both forecast modes retain all 64 teams.
+Published the first usable app privately for Aaron: https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site
 
-The app has round navigation, conditional game odds, overall advancement/title odds, team comparisons and CSV exports. `python3 -m tournament.build --standalone /absolute/path/College_Baseball_Predictor.html` creates an offline browser copy. Code, contracts and reproduction: [Tournament_Engine.md](Tournament_Engine.md). No public hosting yet.
+GitHub remains authoritative. `.openai/hosting.json` retains the Site identity; reuse it. Added pinned Vite preview tooling and `scripts/build_static_app.py` to stage only HTML/forecast data in ignored `dist/`. Forecast loading errors now use plain language. Hosting reproduction and detailed checks: [Tournament_Engine.md](Tournament_Engine.md).
 
 ## Verification
 
-121 tests pass. All elimination paths, fair-team probabilities, the 60%/64.8% series benchmark, stopping and routing are covered. The retained-data build matches v2 matchup probabilities for 136 games per mode within 1.12e-16; stage totals reconcile to 16/8/2/1. Original baseline and v2 checkpoint data are byte-identical. JavaScript syntax and standalone DOM checks pass for stage/mode controls, comparisons and both CSV exports. Actual visual/browser layout verification remains pending: the browser binary was unavailable and its download failed.
+Restored baseline and timing/seed checkpoints and rebuilt both 64-team forecasts offline. All 121 tests pass. Chrome checked both modes, every stage, game details, comparisons, same-team guard and the 64-team table. Downloaded CSVs parsed correctly: 64 team rows and 126 bracket-game rows, correct mode/cutoff. Desktop/phone-width visuals inspected; narrow iframe controls and no-overflow checks passed at 320/390/768 px nominal widths, including the expanded small-phone odds table. These are viewport checks, not physical-phone/Safari tests. Sites confirmed deployment succeeded.
 
 ## Next action and limits
 
-Finish real-browser phone/desktop checks and provide hosted access, then get Aaron’s feedback. The standalone copy is a development preview, not a deployed site. Continue engine → usable app → richer inputs; do not resume broad player/access audits. No fresh nationwide import, player availability, venue adjustments, strength uncertainty or unqualified radar dimensions. Predictive bracket calibration and untouched holdout remain unestablished. Source restrictions and cutoff separation are unchanged.
+Get Aaron’s phone usability feedback and address concrete issues. Spreadsheet comparisons and richer inputs remain deferred. Preserve the existing engine and cutoff-separated modes. This is still a 2025 development demo: no fresh nationwide import, player availability, venue adjustments, strength uncertainty or qualified radar inputs. Predictive bracket calibration and untouched holdout remain unestablished. No new collection or model tuning occurred.
