@@ -97,28 +97,15 @@ Python and SQLite implement the existing pipeline and baseline. Remaining audit 
 - Represent uncertainty about team strength and availability separately from game randomness. Carry a consistent team-strength draw through a simulated tournament when using that approach.
 - A synthetic fair four-team regional should give each team a 25% initial title chance. A fixed independent 60% game favorite wins a best-of-three series 64.8% of the time. Use such checks alongside actual format edge cases.
 
-## Research starting points
-
-Recheck access and applicable-year rules before production use.
-
-- [SABR: The PING Ratings](https://sabr.org/journal/article/the-ping-ratings-a-model-for-rating-ncaa-baseball-teams/) — existing opponent-adjusted college ratings research; distinguishes ISR and Warren Nolan's ratings.
-- [D1Baseball Terms of Service](https://d1baseball.com/terms-of-service/) — automation restrictions checked during the 2025 audit; any licensed feed requires separate verification.
-- [Warren Nolan](https://www.warrennolan.com/) and [Boyd's World](http://boydsworld.com/) — candidate ratings sources.
-- [FanGraphs college leaderboards](https://www.fangraphs.com/leaders/college) and [SIERA definition](https://library.fangraphs.com/pitching/siera/).
-- [Driveline: introduction to cWAR](https://drivelinebaseball.com/blogs/blog/an-introduction-to-cwar) — prior college-specific park/schedule-adjusted work.
-- [Official Charles Schwab Field information](https://charlesschwabfieldomaha.com/plan-your-visit/stadium-information/) — venue dimensions.
-- [2025–26 NCAA pre-championship manual](https://ncaaorg.s3.amazonaws.com/championships/sports/baseball/d1/2025-26D1MBA_PreChampsManual.pdf).
-- [Study of batting last in NCAA tournament baseball](https://pubmed.ncbi.nlm.nih.gov/16195017/) — narrower question than total home-field advantage.
-
 ## Next work
 
 Use [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
 Aaron confirmed the [hosted app](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site) looks and works fine. No redesign is needed now. Next is focused prediction-model improvement:
 
-1. Qualify cutoff-safe hitting inputs for contact, power and HR dependence, then pitching quality/depth inputs for dependable starters, bullpen arms and ace identification. Reuse the existing triage and coverage findings; do not restart broad discovery. First deliver a concrete feature/data qualification plan identifying the smallest reliable inputs, field coverage, remaining gaps and chronological evaluation sample.
-2. Implement qualified additions separately from the preserved baseline and test them individually on common chronological samples. Keep improvements supported by validation; do not promise higher accuracy or tune against the 2025 bracket. Thresholds and scaling remain open.
-3. Model later-round pitcher availability after basic pitching quality/depth is qualified.
+The [focused input qualification plan](Model_Input_Qualification.md) now records the minimum features, verified pilot coverage and chronological evaluation gate. The four retained season audits reproduce, but none supplies a sufficient national training/validation sample. No prediction changes are qualified yet.
+
+Next: extend the **cached LSU box parser** for extra-base hits and plate-appearance components, produce separate cutoff-specific counts/rates, and cross-check ISO on Missouri State's structured boxes. Then qualify pitcher BF and explicit roles using the same cache. The plan owns exact gates and subsequent multi-season expansion; thresholds/scaling remain open.
 
 Preserve all 64 teams and both cutoff-separated modes; retain the existing team-only fallback where richer inputs are unqualified. Spreadsheet comparisons, interface redesign, Cloudflare migration and daily updates remain deferred. Aaron has a Cloudflare account and prefers it as a future hosting option; migration is separate from model work. The current app remains a 2025 development demo. See [Tournament_Engine.md](Tournament_Engine.md) for reproduction and [DATA.md](DATA.md) for retained evidence.
 

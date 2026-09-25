@@ -4,16 +4,16 @@ Updated September 25, 2026. Git history owns prior sessions.
 
 ## Completed
 
-Published the first usable app privately for Aaron: https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site
-
-GitHub remains authoritative. `.openai/hosting.json` retains the Site identity; reuse it. Added pinned Vite preview tooling and `scripts/build_static_app.py` to stage only HTML/forecast data in ignored `dist/`. Forecast loading errors now use plain language. Hosting reproduction and detailed checks: [Tournament_Engine.md](Tournament_Engine.md).
+Delivered the first milestone-6 step: [focused model-input qualification](Model_Input_Qualification.md). It specifies minimal contact/power, HR-frequency, pitching-quality/depth inputs, per-pilot gaps, all-field fallback and chronological comparison rules. True HR-run dependence remains separate from HR frequency. No weights or thresholds selected; predictions unchanged.
 
 ## Verification
 
-Restored baseline and timing/seed checkpoints and rebuilt both 64-team forecasts offline. All 121 tests pass. Chrome checked both modes, every stage, game details, comparisons, same-team guard and the 64-team table. Downloaded CSVs parsed correctly: 64 team rows and 126 bracket-game rows, correct mode/cutoff. Desktop/phone-width visuals inspected; narrow iframe controls and no-overflow checks passed at 320/390/768 px nominal widths, including the expanded small-phone odds table. These are viewport checks, not physical-phone/Safari tests. Sites confirmed deployment succeeded.
+Restored hash-verified baseline and timing/seed checkpoints. Rebuilt LSU 2025/Towson 2024 and Davidson 2024/Missouri State 2022 appearance audits from retained evidence: all 234 boxes parse. LSU/Towson output and separate exception annotations reproduce byte-for-byte. Current registry fingerprint is retained in the expansion rerun. All 121 tests pass (91 scripts, 30 historical). No new sources collected or 2026 outcomes evaluated. Conference-archive checkpoint was not supplied and its newer field/access audits were not rerun.
 
 ## Next action and limits
 
-Aaron accepts the app’s appearance and behavior. Begin milestone 6 in a new chat: follow the project brief’s focused model-improvement path. First reuse triage/coverage findings to specify and qualify the smallest cutoff-safe hitting and pitching quality/depth inputs, with field gaps and a chronological evaluation plan. Then test qualified additions against the preserved baseline; later-round pitcher availability follows basic quality/depth. Thresholds/scaling remain open.
+Implement the plan's small offline extraction step: extend cached LSU boxes for extra-base hits, HBP and sacrifices; reconcile new fields and plate-appearance denominators, then export separate cutoff-specific rates. Cross-check ISO using Missouri State's structured boxes. Qualify pitcher BF and explicit roles next, before choosing depth/ace thresholds.
 
-Spreadsheet comparisons, redesign, Cloudflare migration and daily updates remain deferred. Aaron has a Cloudflare account; hosting migration is separate. Preserve all 64 teams, both forecast modes and the existing fallback. Current limits remain: no certified fresh nationwide import, qualified player adjustments, bracket calibration or untouched holdout. This closeout changes documentation only; no new collection or model tuning.
+Only LSU has reconciled core appearance histories in the 2025 field; no team has the entire richer feature package qualified. The current pilots cannot support a fair chronological model comparison. Broader collection stays paused until the targeted extractor and exact source scope are established. Preserve both modes, all 64 teams and unchanged Elo fallback.
+
+Aaron accepted the hosted app; no redesign is needed. [Tournament_Engine.md](Tournament_Engine.md) owns hosting/reproduction. Spreadsheet comparisons, Cloudflare migration and daily updates remain deferred.
