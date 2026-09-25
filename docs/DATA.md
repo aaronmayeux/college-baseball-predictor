@@ -240,3 +240,17 @@ python3 scripts/audit_retained_inventories.py --raw-dir /tmp/baseball-access/raw
 ```
 
 Expected summary: 11 reconciled, 21 unresolved joins, 16 parser/inventory gaps, 16 unsupported schedules. The output fingerprints the reviewed alias configuration as well as source and baseline inputs. This older field audit is sufficient for these inventory checks only; it does not reproduce the later full source/access map. No new raw checkpoint is required.
+
+## Offline hitting-input pilot
+
+Restore the baseline, season-appearance checkpoint and field checkpoint using the exact hashes above. No additional evidence archive or fresh downloads are needed. The field checkpoint supplies both structured boxes (`expansion/raw`) and independent timing evidence (`field/raw`). Run:
+
+```sh
+python3 scripts/extract_hitting_inputs.py \
+  --season-raw-dir /tmp/baseball-season-appearances/raw \
+  --expansion-raw-dir /tmp/baseball-field/expansion/raw \
+  --exception-raw-dir /tmp/baseball-field/field/raw
+python3 -m unittest discover -s scripts -p 'test_hitting_inputs.py'
+```
+
+Output: ignored `historical/model_inputs/hitting_inputs.json`. Custom JSON output paths are restricted to that directory to prevent overwriting sources/baseline inputs. The command verifies source bytes via the existing audits and records input/code fingerprints, source metadata, count checks and cutoff-specific game IDs/rates. Check each team's `full_season_check.pass_counts`, each mode's `complete` and `PA_complete`, and per-game issues; successful execution can report unqualified inputs. Failed checks never publish partial-season rates. Missouri State PA-based rates remain null. Cumulative totals are audit targets only; model and app outputs are untouched. Definitions, results and limits: [focused qualification](Model_Input_Qualification.md).

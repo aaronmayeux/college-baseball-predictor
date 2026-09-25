@@ -4,16 +4,16 @@ Updated September 25, 2026. Git history owns prior sessions.
 
 ## Completed
 
-Delivered the first milestone-6 step: [focused model-input qualification](Model_Input_Qualification.md). It specifies minimal contact/power, HR-frequency, pitching-quality/depth inputs, per-pilot gaps, all-field fallback and chronological comparison rules. True HR-run dependence remains separate from HR frequency. No weights or thresholds selected; predictions unchanged.
+Implemented the separate offline hitting extractor in `scripts/extract_hitting_inputs.py` and `hitting_inputs.py`. LSU's 68 boxes reconcile extra-base hits, HBP, sacrifices and PA against play-by-play, box summaries, opposing BF and cumulative count targets. Missouri State's 60 structured boxes provide a second-format power/OBP check; its PA-based rates stay null. Both cutoff modes produce complete pilot outputs. Definitions/results: [qualification report](Model_Input_Qualification.md). Restore/run command: [DATA.md](DATA.md#offline-hitting-input-pilot).
+
+Predictions, app, baseline and original appearance-audit output contracts are unchanged. No feature weights or thresholds selected. New output is ignored, separate from model inputs used by the app.
 
 ## Verification
 
-Restored hash-verified baseline and timing/seed checkpoints. Rebuilt LSU 2025/Towson 2024 and Davidson 2024/Missouri State 2022 appearance audits from retained evidence: all 234 boxes parse. LSU/Towson output and separate exception annotations reproduce byte-for-byte. Current registry fingerprint is retained in the expansion rerun. All 121 tests pass (91 scripts, 30 historical). No new sources collected or 2026 outcomes evaluated. Conference-archive checkpoint was not supplied and its newer field/access audits were not rerun.
+All 134 tests pass (104 scripts, 30 historical), including 13 new synthetic failure/cutoff checks. Extraction repeats byte-for-byte; input/config fingerprints remain unchanged. LSU eligible coverage is 55/55 regular-only and 57/57 conference-inclusive; Missouri State is 51/51 and 57/57 using the existing completion annotation. Original LSU postseason date mismatch and unknown player work dates remain visible. No new source requests or 2026 evaluation.
 
 ## Next action and limits
 
-Implement the plan's small offline extraction step: extend cached LSU boxes for extra-base hits, HBP and sacrifices; reconcile new fields and plate-appearance denominators, then export separate cutoff-specific rates. Cross-check ISO using Missouri State's structured boxes. Qualify pitcher BF and explicit roles next, before choosing depth/ace thresholds.
+Qualify pitcher BF and explicit starter/relief roles using these same cached boxes, then summarize workload before choosing depth/ace thresholds. Follow the documented chronological plan before targeted multi-season collection or fitting. Current pilots do not support national predictive validation; retain all 64 teams, both modes and unchanged Elo fallback.
 
-Only LSU has reconciled core appearance histories in the 2025 field; no team has the entire richer feature package qualified. The current pilots cannot support a fair chronological model comparison. Broader collection stays paused until the targeted extractor and exact source scope are established. Preserve both modes, all 64 teams and unchanged Elo fallback.
-
-Aaron accepted the hosted app; no redesign is needed. [Tournament_Engine.md](Tournament_Engine.md) owns hosting/reproduction. Spreadsheet comparisons, Cloudflare migration and daily updates remain deferred.
+No broader collection/access audit is needed now. The conference-archive checkpoint remains unavailable and unnecessary for this step. Spreadsheet comparisons, app redesign, Cloudflare migration and daily updates remain deferred. Hosting reproduction remains in [Tournament_Engine.md](Tournament_Engine.md).

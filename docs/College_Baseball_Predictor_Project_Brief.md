@@ -26,7 +26,7 @@ GitHub `main` is authoritative. `AGENTS.md` owns working rules; `historical/SPEC
 
 ## Intended product
 
-A mobile-friendly web app with an on-demand pre-tournament data import, one complete bracket, game/advancement/championship probabilities, short explanations and spreadsheet exports. Recurring refresh and live tournament updates are not required for the primary product. Include a selectable two-team radar chart like the DYNAMIC workbook's MATCHUPS chart: contact, power, speed, pitching and defense. Define comparable scales and explain each measure; the original formulas are not validated. Interface implementation is authorized; the first app uses plain HTML/JavaScript with a Python export, with private Sites hosting. Start with bracket picks, probabilities and comparisons from verified team-strength inputs. Add the radar dimensions when their inputs are qualified; do not invent values.
+A mobile-friendly web app with an on-demand pre-tournament data import, one complete bracket, game/advancement/championship probabilities, short explanations and spreadsheet exports. Recurring refresh and live tournament updates are not required for the primary product. The authorized first app uses HTML/JavaScript, a Python export and private Sites hosting. Add the DYNAMIC workbook-inspired two-team radar chart—contact, power, speed, pitching and defense—only after qualifying its inputs and defining comparable scales. Original chart formulas are not validated.
 
 ## Decisions to carry forward
 
@@ -101,11 +101,11 @@ Python and SQLite implement the existing pipeline and baseline. Remaining audit 
 
 Use [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
-Aaron confirmed the [hosted app](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site) looks and works fine. No redesign is needed now. Next is focused prediction-model improvement:
+The accepted [hosted app](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site) remains unchanged during model improvement.
 
-The [focused input qualification plan](Model_Input_Qualification.md) now records the minimum features, verified pilot coverage and chronological evaluation gate. The four retained season audits reproduce, but none supplies a sufficient national training/validation sample. No prediction changes are qualified yet.
+The [focused input qualification](Model_Input_Qualification.md) now includes a verified offline hitting extractor: LSU contact/power/OBP and Missouri State power/OBP, with both cutoff modes and explicit missing denominators. These descriptive inputs do not yet support national model validation; predictions are unchanged.
 
-Next: extend the **cached LSU box parser** for extra-base hits and plate-appearance components, produce separate cutoff-specific counts/rates, and cross-check ISO on Missouri State's structured boxes. Then qualify pitcher BF and explicit roles using the same cache. The plan owns exact gates and subsequent multi-season expansion; thresholds/scaling remain open.
+Next: qualify **pitcher batters faced and explicit starter/relief roles** using the same cached boxes, then summarize workload. The qualification plan owns the subsequent targeted multi-season expansion and fair evaluation; depth/ace thresholds and scaling remain open.
 
 Preserve all 64 teams and both cutoff-separated modes; retain the existing team-only fallback where richer inputs are unqualified. Spreadsheet comparisons, interface redesign, Cloudflare migration and daily updates remain deferred. Aaron has a Cloudflare account and prefers it as a future hosting option; migration is separate from model work. The current app remains a 2025 development demo. See [Tournament_Engine.md](Tournament_Engine.md) for reproduction and [DATA.md](DATA.md) for retained evidence.
 
