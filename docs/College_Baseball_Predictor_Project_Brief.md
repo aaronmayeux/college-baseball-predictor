@@ -89,7 +89,7 @@ Python and SQLite implement the pipeline and baseline. Build order remains engin
 ## Evaluation rules
 
 - Split by season in chronological order. Fit preprocessing and tune features using only training data. Keep a final period untouched until evaluation.
-- Use the recorded Wednesday 12:00 UTC pre-NCAA cutoffs and two-calendar-day assumed availability rule from cutoffs.json. Regular-only is primary; conference-inclusive is separately labeled. Daily in-tournament updates are a separate mode. These are retrospective date-based reconstructions, not point-in-time-certified snapshots.
+- Use the recorded Wednesday 12:00 UTC pre-NCAA cutoffs and two-calendar-day assumed availability rule from cutoffs.json. The preserved baseline keeps both modes; the new component experiment prioritizes explicitly labeled conference-inclusive inputs under the practical contract in SPEC. Daily in-tournament updates are a separate mode. These are retrospective date-based reconstructions, not point-in-time-certified snapshots.
 - Use log loss and Brier score to assess probability quality, plus calibration: events assigned roughly 60% should happen roughly 60% of the time. Report winner accuracy as a secondary measure.
 - Compare against simple team-strength and seed baselines. Compare only on common evaluation samples when a feature reduces coverage.
 - Evaluate game and advancement probabilities; uncertainty intervals should respect clustering by season/tournament. Omaha's small annual sample limits conclusions.
@@ -107,11 +107,11 @@ Reproduction: [DATA.md](DATA.md).
 
 The [team-run experiment](Team_Run_Experiment.md) tested retained Nolan results and official/v2 corrections across all 256 tournament team-seasons in 2021–2024. Its net-runs/game candidate failed regional advancement validation and is **closed without promotion; Elo remains in the app**. No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
 
-Aaron selected **Warren Nolan, NCAA and D1Baseball**, for personal, noncommercial use with no spending. The [source report](Team_Component_Source_Decision.md) records populated national NCAA OBP/ERA snapshots for 2021–2024 (293/301/305/305 teams). The latest tested 2021/2022 dates are empty; populated earlier dates omit later eligible games. In 2024 all 64 field identities map, 63 records and 59 runs-allowed totals reconcile after accounting for retained non-D1 games; five discrepancies remain. Conference-tournament and non-D1 scope prevent regular-only qualification. Neither mode has qualified component features.
+Aaron selected **Warren Nolan, NCAA and D1Baseball**, with zero spending. The [source report](Team_Component_Source_Decision.md) retains NCAA OBP/ERA samples for 2021–2024, snapshot gaps and five unresolved 2024 count discrepancies. These are evidence to assess, not a requirement to perfect the archive before testing.
 
-The national date/phase planner rules out a complete four-season solution using one cumulative snapshot per team: known empty dates leave regular-only coverage at 50/64 in 2021 and 61/64 in 2022. Army and Columbia also played a regular game after their 2022 conference tournaments, so no single snapshot isolates their full regular-only totals. 2023/2024 are date-feasible, not component-qualified.
+**Current direction: run a practical batting/pitching model experiment.** Aaron accepts small documented gaps and conference-tournament stats. Use usable dated pre-NCAA reports and supported seasons; compare against Elo on identical games. Keep missing/invalid inputs on Elo fallback, disclose snapshot age and all-opponent scope, and quantify sensitivity to flagged data. Do not require four perfect seasons, exact regular-only reconstruction or another earlier-window study.
 
-Next: assess a separately defined earlier regular-season feature window and quantify omitted results before collection or fitting. This alternative is not adopted; preserve the existing forecast/mode rules, all 64 teams and non-D1 limitations. No school sweep or paid detour; D1 stays reference-only.
+[The practical experiment contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) owns inclusion, leakage, chronology and promotion safeguards. Start with retained OBP/ERA, lock a small experiment before scoring, then report whether it improves predictions. No fitting or promotion has occurred yet. D1 remains reference-only; no school sweep or paid detour.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
 

@@ -76,8 +76,7 @@ The planner computes the smallest number of dates covering the compatible interv
 
 **Decision:** stop treating one cumulative pre-conference snapshot per team as a complete four-season solution. Do not download the date sets merely to produce a known-incomplete training matrix, and do not drop Army/Columbia or relabel conference totals. Elo remains the usable model.
 
-Next: specify and assess a **separate, explicitly earlier regular-season feature window** using national reports, quantifying the results it would omit before any collection or fitting. This is an alternative research design, not an adopted change to forecast cutoffs, phase rules or the existing full-season qualification gate. Preserve all 64 teams, disclose non-D1 scope, and reject it if required dates/rows cannot be qualified. The existing five 2024 reconciliation discrepancies remain open; no school sweep is queued.
-
+**Current product decision:** Aaron accepts small documented gaps and explicitly conference-inclusive pre-NCAA stats. The earlier-window planning proposal is superseded by an actual OBP/ERA experiment using usable reports, supported seasons and Elo fallback. The strict date/phase findings above remain valid for exact full-season reconstruction; they no longer block practical model testing. Follow the [practical experiment contract](../historical/SPEC.md#practical-team-component-experiment--current-priority), including scope disclosure and sensitivity checks.
 [DATA.md](DATA.md#ncaa-dated-team-report-sample) owns evidence checkpoints and reproduction. D1 remains reference-only under its recorded automation prohibition; no paid source or provider contact is involved.
 
 ## Warren Nolan sample
@@ -115,10 +114,10 @@ The separate [ncaa_bbStats provenance page](https://collegebaseballstatspackage.
 
 The mirror findings above were documentation/metadata checks only; the direct NCAA sample is separately retained. Search/provenance pages exposed incidental current-year metadata; no 2026 games or features were ingested or evaluated.
 
-## Gate for any later free dataset
+## Input checks for the practical experiment
 
-Require a 2021–2024 coverage manifest, stable team/game/opponent identities, dates/completion annotations, phase labels, provenance, explicit missing values and usable terms. Qualify team batting AB/H/2B/3B/HR/BB/HBP/SO/SF/SH/PA and team pitching outs/H/R/ER/BB/HBP/SO/HR/BF as needed by the exact selected feature. Missing PA/BF or interference components block dependent rates; do not invent zeros or average game rates. Team ER need not equal summed pitcher ER. Individual pitcher histories are unnecessary for this gate.
+The [practical experiment contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) supersedes the earlier four-season/full-field exact-reconciliation prerequisite. Preserve source bytes, dates, identities, denominators, missing values and provenance. Qualify only fields required by the selected candidate; no need to acquire every proposed statistic first. Missing PA/BF still prevents dependent rates; OBP/ERA use their own retained denominators.
 
-Reconcile eligible inventories and available count evidence. Apply unchanged [cutoffs](../historical/cutoffs.json), v2 completion corrections, two-day availability assumption and separate regular-only/conference-inclusive modes. Final totals are audit-only. Require complete selected-field feature coverage and common samples before a full-field experiment; no silent loss of teams.
+Use the existing pre-NCAA cutoffs and availability assumption. Dated, older reports and all-opponent counts can be tested with scope/gaps disclosed; final/post-cutoff totals cannot become historical predictors. Use common comparison games and explicit Elo fallback instead of silently dropping bracket teams. Quantify flagged discrepancies and their sensitivity rather than stopping for minor imperfections.
 
-The [qualification](Model_Input_Qualification.md#fitting-and-promotion-boundaries) and [SPEC](../historical/SPEC.md) own evaluation. Net-run remains closed; no new fitting, predictions or metrics occurred. Prior 2024 validation exposure must remain explicit, 2025 stays development, 2026 excluded, and individual pitchers remain deferred. The app continues with retained Elo while richer components are blocked; no paid approval is needed to keep using it.
+Net-run remains closed. Prior 2024 exposure stays explicit, 2025 development, 2026 excluded, individual pitchers deferred. The app remains Elo pending measured improvement and promotion checks; no new fitting occurred in this documentation update.
