@@ -57,6 +57,36 @@ class LsuPitchingTests(unittest.TestCase):
         apps[0]['counts']['BF'] = 4
         with self.assertRaises(ValueError): game(text, EXPECTED, apps)
 
+    def test_generic_team_preserves_counts_and_inputs(self):
+        from audit_season_appearances import statcrew_box
+        from hitting_inputs import statcrew_team
+        text=fixture().replace('LSU','Arkansas').replace('<a name="GAME.PLY">',
+            '<td>Arkansas starters: 1/p Pitcher;</td><a name="GAME.PLY">')
+        expected=dict(EXPECTED,teams=['Arkansas' if t=='LSU' else t for t in EXPECTED['teams']])
+        apps=statcrew_box(text,expected,'Arkansas')['pitching']
+        before=copy.deepcopy(apps)
+        pitchers,check=game(text,expected,apps,'Arkansas')
+        self.assertEqual(apps,before)
+        self.assertEqual(pitchers[0]['counts']['GS'],1)
+        self.assertEqual(check['BF'],3)
+        self.assertEqual(statcrew_team(text,expected,'Arkansas')['counts'],
+                         statcrew_team(fixture(),EXPECTED)['counts'])
+        with self.assertRaises(ValueError):game(text,expected,apps,'Unknown')
+
+    def test_defensive_throw_is_not_a_pitching_change(self):
+        body='B out at home c to p. Relief to p for Start. B flied out, SF.'
+        extras=pitcher_extras(play(body),'Other','bob start',players())
+        self.assertEqual(extras['alex relief']['SF'],1)
+        self.assertEqual(extras['bob start']['SF'],0)
+
+    def test_removed_review_and_multiple_spaces_before_change(self):
+        body='B flied out. Previous play reviewed, call confirmed.   Relief to p for Start. B flied out, SF.'
+        self.assertEqual(pitcher_extras(play(body),'Other','bob start',players())['alex relief']['SF'],1)
+
+    def test_other_teams_lineup_is_not_a_substitute(self):
+        text='<td>LSU starters: 1/p Start;</td>'
+        with self.assertRaises(ValueError):starter(text,players(),'Arkansas')
+
     def test_season_interference_supplement_and_start_difference(self):
         targets = {'bob start':dict(raw={'APP-GS':'1-1', 'AB':'3', 'BB':'1', 'HBP':'0', 'SFA':'1', 'SHA':'0'})}
         records = [dict(BF_check={'opponent_counts':{'CI':1}}, pitchers=[

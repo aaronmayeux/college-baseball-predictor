@@ -4,18 +4,18 @@ Updated September 26, 2026. Git history owns prior sessions.
 
 ## Completed
 
-Added an offline team game-log hitting extractor using the existing preflight checkpoint. Oklahoma State 2022 (64 games) and Grand Canyon 2022 (62) reconcile all ten batting fields against season footer/individual totals; available overall counts and retained first boxes also match. All 126 games pass opposing PA/BF component checks, including interference. Both cutoff modes now qualify ISO, OBP, strikeout rate and HR/PA. The exact Oklahoma State self-name alias is scoped and documented.
+Extended the shared StatCrew adapters to a named team while preserving LSU defaults. Both sides of the retained Arkansas–Illinois State first box now pass hitting/PA, pitcher BF components and explicit lineup starter checks (ten pitchers). Fixed a defensive catcher-to-pitcher throw being mistaken for a substitution.
 
-This qualifies descriptive team hitting, not player appearance histories or predictive improvement. Missouri State retains its prior ISO/OBP inputs; Arkansas hitting and remaining pitching/PA gaps stay open. Final totals remain audit-only. No new requests, fitting, outcome metrics, bulk permission, model/app change or 2026 evaluation.
+The preflight report now records cache coverage and distinguishes links from retained bytes. Arkansas's index links to dated counts and season totals, but those reports are absent. The preflight cache has one box per new school; it cannot qualify their season pitcher histories or Arkansas season hitting. The existing Oklahoma State/Grand Canyon hitting inputs remain qualified and unchanged.
 
-[Qualification](Model_Input_Qualification.md#retained-team-hitting-logs) owns results and limitations. [DATA](DATA.md#retained-team-game-log-hitting) owns the offline command; no new ZIP is needed.
+[Qualification](Model_Input_Qualification.md#arkansas-retained-evidence-limit-and-sample-qualification) owns findings; [DATA](DATA.md#multi-season-preflight-evidence) owns reproduction. No new requests or ZIP, fitting, outcome metrics, model/app change or 2026 evaluation.
 
 ## Verification
 
-All 175 tests pass (145 scripts, 30 historical). Twelve new synthetic tests cover missing/duplicate/wrong-year rows, count and denominator failures, identity aliases and qualification gates. Two full extraction reports repeat byte-for-byte; 3,249 preserved data/app JSON, CSV and HTML hashes remain unchanged.
+All 182 tests pass (152 scripts, 30 historical). Seven new regressions cover named teams, lineup identity, defensive throws, replay spacing and cache failures. All 68 LSU hitting outputs and complete pitching report match the previous adapters exactly. Structured hitting results remain unchanged. Two preflight runs are byte-identical; 3,249 preserved data/app hashes remain unchanged.
 
 ## Next action and limits
 
-Test whether retained Arkansas evidence can qualify team hitting, then finish the four-team preflight's remaining pitching/appearance reconciliation. Source-specific bulk scope remains unverified; no provider contact is authorized.
+Review acceptable access for the two exact linked Arkansas reports (`teamgbg.htm`, `teamcume.htm`), then retrieve/reconcile them if permitted. Full-season box scope remains unverified; no provider contact is authorized. Finish remaining four-team pitching/appearance qualification before candidate scoring.
 
-Preserve 2021–2022 training / 2023 selection / 2024 retrospective validation, common both-team samples and Elo fallback. No sufficient chronological feature sample exists yet. Rest/depth thresholds and historical advancement routing remain unqualified. Spreadsheet comparisons, UI changes and hosting migration stay deferred.
+Preserve 2021–2022 training / 2023 selection / 2024 retrospective validation, common both-team samples and Elo fallback. No sufficient chronological feature sample exists. Rest/depth thresholds and historical routing remain unqualified. UI/hosting/spreadsheet work stays deferred.

@@ -90,6 +90,42 @@ class SelectionTests(unittest.TestCase):
         self.assertEqual(result['games'][0]['actual_player_work_dates'],'unknown')
         with self.assertRaises(ValueError):annotate_arkansas(original,[dict(game,runs_a=12)],[])
 
+    def test_retained_links_are_not_cached_counts(self):
+        from tempfile import TemporaryDirectory
+        import hashlib
+        from audit_expansion_preflight import retained_coverage, SOURCES
+        with TemporaryDirectory() as directory:
+            root=Path(directory);cfg=SOURCES['arkansas']
+            text='<a href="teamcume.htm">Totals</a><a href="teamgbg.htm">Games</a>'
+            raw=root/'arkansas_index.html';raw.write_text(text)
+            raw.with_name(raw.name+'.meta.json').write_text(json.dumps(dict(
+                url=cfg['url'],http_status=200,sha256=hashlib.sha256(raw.read_bytes()).hexdigest())))
+            r=retained_coverage(root,[dict(box_url=cfg['first'])],cfg)
+            self.assertEqual(r['missing_box_count'],1)
+            self.assertFalse(r['season_hitting_qualified'])
+            self.assertTrue(all(not x['retained'] for x in r['linked_count_reports'].values()))
+            raw.write_text('corrupt')
+            with self.assertRaises(ValueError):retained_coverage(root,[],cfg)
+
+    def test_success_metadata_requires_source_bytes(self):
+        from tempfile import TemporaryDirectory
+        from audit_expansion_preflight import retained_coverage, SOURCES
+        with TemporaryDirectory() as directory:
+            root=Path(directory);cfg=SOURCES['okstate']
+            m=dict(url=cfg['first'],http_status=200,sha256='not-a-valid-hash')
+            (root/'box.html.meta.json').write_text(json.dumps(m))
+            with self.assertRaises(ValueError):retained_coverage(root,[],cfg)
+
+    def test_failed_response_never_counts_as_retained(self):
+        from tempfile import TemporaryDirectory
+        from audit_expansion_preflight import retained_coverage, SOURCES
+        with TemporaryDirectory() as directory:
+            root=Path(directory);cfg=SOURCES['okstate']
+            (root/'box.html.meta.json').write_text(json.dumps(dict(url=cfg['first'],http_status=404)))
+            r=retained_coverage(root,[dict(box_url=cfg['first'])],cfg)
+            self.assertEqual(r['retained_box_urls'],[])
+            self.assertFalse(r['full_season_appearances_qualified'])
+
     def test_statcrew_does_not_substitute_other_team(self):
         with self.assertRaises(ValueError):
             statcrew_box('<title>A vs B (Feb 18, 2022)</title>',

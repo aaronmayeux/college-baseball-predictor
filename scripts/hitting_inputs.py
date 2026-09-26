@@ -2,7 +2,7 @@
 from collections import Counter
 import re
 from audit_official_pitching import plain
-from audit_season_appearances import rows, tables, count, lsu_box
+from audit_season_appearances import rows, tables, count, statcrew_box
 
 FIELDS = ('AB', 'H', 'BB', 'SO', '2B', '3B', 'HR', 'HBP', 'SF', 'SH')
 EXTRA = ('2B', '3B', 'HR', 'HBP', 'SF', 'SH', 'CI')
@@ -112,9 +112,9 @@ def play_counts(text, teams):
     return counts
 
 
-def statcrew_team(text, expected):
-    """Extend the existing LSU identity/core-count parser without changing it."""
-    core = lsu_box(text, expected)
+def statcrew_team(text, expected, team_name="LSU"):
+    """Check one named team; the default preserves the LSU pilot contract."""
+    core = statcrew_box(text, expected, team_name)
     plays = play_counts(text, expected['teams'])
     batting = {}; pitching = {}; batting_team = None; header = None; pitch_team = None; ph = None
     for table in tables(text):
@@ -154,9 +154,9 @@ def statcrew_team(text, expected):
             c['PA'] = None
         rates(c)
         output[team] = dict(counts=c, opponent_BF=bf, denominator_issues=issues)
-    if any(sum(p['counts'][f] for p in core['batting']) != output['LSU']['counts'][f] for f in ('AB', 'H', 'BB', 'SO')):
+    if any(sum(p['counts'][f] for p in core['batting']) != output[team_name]['counts'][f] for f in ('AB', 'H', 'BB', 'SO')):
         raise ValueError('Existing batting parser disagrees')
-    return output['LSU']
+    return output[team_name]
 
 
 def cumulative_team(text):

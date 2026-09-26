@@ -11,10 +11,10 @@ from hitting_inputs import play_counts
 from pitching_inputs import aggregate
 
 
-def starter(text, players):
-    blocks = re.findall(r'LSU starters:(.*?)(?:</td>|</p>)', text, re.S | re.I)
+def starter(text, players, team_name="LSU"):
+    blocks = re.findall(re.escape(team_name) + r' starters:(.*?)(?:</td>|</p>)', text, re.S | re.I)
     if len(blocks) != 1:
-        raise ValueError('Missing/duplicate LSU starting lineup')
+        raise ValueError('Missing/duplicate ' + team_name + ' starting lineup')
     entries = [re.fullmatch(r'\s*\d+/([^ ]+) (.+?)\s*', entry)
                for entry in plain(blocks[0]).split(';') if entry.strip()]
     if not entries or any(e is None for e in entries):
@@ -47,7 +47,9 @@ def pitcher_extras(text, opponent, start, players):
         body = re.sub(r'\(\d+-\d+ [A-Z ]+\)', '', body[match.end():])
         body = re.sub(r'Previous play reviewed,[^.]*\.', '', body)
         body = re.sub(r'\b[A-Za-z][A-Za-z ]* challenged (?:the previous play|previous call),[^.]*\.', '', body)
-        events = re.finditer(r"(?P<change>[A-Za-z]+) to p(?: for (?P<old>[A-Za-z]+))?\.|"
+        body = re.sub(r'\s+', ' ', body).strip()
+        # Substitutions start a sentence; a defensive 'c to p' throw does not.
+        events = re.finditer(r"(?:^|(?<=\. ))(?P<change>[A-Za-z]+) to p(?: for (?P<old>[A-Za-z]+))?\.|"
                              r"(?P<SF>\bSF\b)|(?P<SH>\bSAC\b)|"
                              r"(?P<CI>\breached on (?:catcher's )?interference\b)", body)
         changes = 0
@@ -64,18 +66,24 @@ def pitcher_extras(text, opponent, start, players):
                 active = new
             else:
                 extra[active][event.lastgroup] += 1
-        if changes != len(re.findall(r'\bto p(?: for |\.)', body)):
+        if changes != len(re.findall(r'(?:^|(?<=\. ))\S+ to p(?: for |\.)', body)):
             raise ValueError('Unparsed pitching change')
     return extra
 
 
-def game(text, row, appearances):
-    players = [dict(p, match_key=key(p['name'], 'lsu'), counts=dict(p['counts'])) for p in appearances]
+def game(text, row, appearances, team_name="LSU"):
+    from audit_official_pitching import player_key
+    if team_name not in row['teams']:
+        raise ValueError('Requested pitching team absent from game')
+    # LSU retains its reviewed aliases; other teams use exact normalized names.
+    normalize = (lambda name: key(name, 'lsu')) if team_name == 'LSU' else (
+        lambda name: player_key(re.sub(r'\s+(?:W|L|S),.*$', '', name)))
+    players = [dict(p, match_key=normalize(p['name']), counts=dict(p['counts'])) for p in appearances]
     if not players or len({p['match_key'] for p in players}) != len(players):
         raise ValueError('Missing/duplicate pitchers')
-    start, label = starter(text, players)
+    start, label = starter(text, players, team_name)
     plays = play_counts(text, row['teams'])
-    opponent = next(t for t in row['teams'] if t != 'LSU')
+    opponent = next(t for t in row['teams'] if t != team_name)
     totals = {}; team = None; header = None
     for table in tables(text):
         for cells in rows(table):
@@ -95,7 +103,7 @@ def game(text, row, appearances):
             raise ValueError('Opponent totals disagree: ' + f)
     pa = sum(c[f] for f in ('AB', 'BB', 'HBP', 'SF', 'SH', 'CI'))
     if sum(p['counts']['BF'] for p in players) != pa:
-        raise ValueError('LSU BF disagrees with opponent PA')
+        raise ValueError(team_name + ' BF disagrees with opponent PA')
     extras = pitcher_extras(text, opponent, start, players)
     for f in ('SF', 'SH', 'CI'):
         if sum(v[f] for v in extras.values()) != c[f]:

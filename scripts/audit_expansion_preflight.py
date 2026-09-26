@@ -22,6 +22,8 @@ from audit_source_access import inspect_robots
 from audit_player_exceptions import checked
 from evidence import overlay, verify_timing
 from eligibility import reject
+from hitting_inputs import statcrew_team
+from lsu_pitching_inputs import game as statcrew_pitching_game
 from pitching_inputs import structured_game
 import selection_2021
 import sidearm_structured as sidearm
@@ -72,6 +74,35 @@ def annotate_arkansas(inventory, games, evidence):
     return result
 
 
+
+def retained_coverage(raw, rows, config):
+    """Cache inventory only. Links are leads, never proof of retained bytes."""
+    successful={}
+    for mp in sorted(raw.glob('*.meta.json')):
+        m=json.loads(mp.read_text())
+        if m.get('http_status')==200:
+            path=raw/mp.name.removesuffix('.meta.json')
+            if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest()!=m.get('sha256'):
+                raise ValueError('Retained response missing or corrupt: '+path.name)
+            successful[m['url']]=m['sha256']
+    boxes={r['box_url'] for r in rows}
+    cached=sorted(boxes & successful.keys())
+    report=dict(scope='supplied_preflight_raw_directory_only', expected_season_boxes=len(boxes),
+        retained_box_urls=cached,missing_box_count=len(boxes)-len(cached),
+        full_season_appearances_qualified=False)
+    if config['team_name']=='Arkansas':
+        text,_=source(raw,'arkansas_index.html',config['url'])
+        required={label:urljoin(config['url'],filename) for label,filename in
+                  [('season_counts','teamcume.htm'),('dated_team_counts','teamgbg.htm')]}
+        links={urljoin(config['url'],href) for href in re.findall(r'href=["\']([^"\']+)["\']',text,re.I)}
+        if not set(required.values())<=links:
+            raise ValueError('Arkansas count-report links changed')
+        report['linked_count_reports']={k:dict(url=u,retained=u in successful) for k,u in required.items()}
+        report['season_hitting_qualified']=False
+        report['block_reason']='Only sample counts checked; linked season reports and full histories require separate qualification.'
+    return report
+
+
 def audit(raw):
     games = overlay(json.loads((ROOT/'historical/2022/games.json').read_text()), verify_timing())
     teams = json.loads((ROOT/'historical/2022/teams.json').read_text())
@@ -101,14 +132,17 @@ def audit(raw):
         box, box_meta=source(raw,key+'_first_box.html',config['first'])
         sample=[]
         for name in first['teams']:
+            hitting=None
             if key=='arkansas':
-                parsed=statcrew_box(box,first,name);bf=None
+                parsed=statcrew_box(box,first,name)
+                hitting=statcrew_team(box,first,name)
+                _,bf=statcrew_pitching_game(box,first,parsed['pitching'],name)
             else:
                 cfg=dict(config,team_name=name)
                 parsed,_=sidearm.box(box,config['first'],first,cfg)
                 _,bf=structured_game(box,config['first'],cfg,parsed['pitching'])
             sample.append(dict(team=name, batting_rows=len(parsed['batting']),
-                pitching_rows=len(parsed['pitching']),core_counts_pass=True,BF_check=bf,
+                pitching_rows=len(parsed['pitching']),core_counts_pass=True,BF_check=bf,statcrew_hitting_check=hitting,
                 BF_roles_qualified_for_sample=bf is not None))
         rb,rb_meta=source(raw,key+'_robots.txt')
         access=inspect_robots(rb,rb_meta['url'],[config['url'],config['first']],rb_meta['final_url'])
@@ -126,7 +160,8 @@ def audit(raw):
         for mode,stages in contract['modes'].items():
             ids={g['game_id'] for g in games if config['team_id'] in (g['team_a_id'],g['team_b_id']) and reject(g,cutoff,stages) is None}
             mode_counts[mode]=dict(expected=len(ids),matched=len(ids & joined),complete_inventory=bool(ids) and ids<=joined)
-        output.append(dict(key=key,team=config['team_name'],season=2022,source=meta,
+        retained_scope=retained_coverage(raw,rows,config)
+        output.append(dict(retained_scope=retained_scope,key=key,team=config['team_name'],season=2022,source=meta,
             explicit_aliases=config['aliases'],inventory=inv,completion_annotated_inventory=annotated,modes=mode_counts,
             cumulative_player_rows=counts,first_box=box_meta,sample_sides=sample,
             robots=access,robots_evidence=rb_meta,full_season_features_qualified=False,
@@ -141,7 +176,7 @@ def audit(raw):
            ROOT/'historical/2021/games.json',ROOT/'historical/2021/teams.json']
     paths+=sorted((ROOT/'scripts').glob('*.py'))
     paths+=sorted((ROOT/'historical/validation_v2').glob('*.py'))
-    return dict(schema_version=1,requests_performed=0,schools=output,
+    return dict(schema_version=2,requests_performed=0,schools=output,
         selection_2021=selection_2021.audit(raw,ROOT),evidence=evidence,
         input_code_sha256={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
         collection_scope='retained_single_game_probes_only_no_season_sweep',

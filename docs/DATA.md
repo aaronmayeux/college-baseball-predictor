@@ -295,12 +295,12 @@ sha256sum /absolute/path/to/College_Baseball_Multiseason_Preflight_Evidence.zip
 python3 -m zipfile -e /absolute/path/to/College_Baseball_Multiseason_Preflight_Evidence.zip /tmp/baseball-preflight
 mkdir -p historical/model_inputs
 python3 scripts/audit_expansion_preflight.py --raw-dir /tmp/baseball-preflight/raw > historical/model_inputs/preflight_audit.json
-cmp historical/model_inputs/preflight_audit.json /tmp/baseball-preflight/audit.json
+python3 scripts/audit_expansion_preflight.py --raw-dir /tmp/baseball-preflight/raw > historical/model_inputs/preflight_audit_repeat.json
+cmp historical/model_inputs/preflight_audit.json historical/model_inputs/preflight_audit_repeat.json
 python3 scripts/plan_model_expansion.py --preflight-raw-dir /tmp/baseball-preflight/raw > historical/model_inputs/expansion_plan.json
-cmp historical/model_inputs/expansion_plan.json /tmp/baseball-preflight/expansion_plan.json
 ```
 
-Both commands are offline and emit JSON to stdout; keep redirected outputs in ignored directories. Audit/code fingerprints deliberately change if their inputs or implementation change. The strict Arkansas result inventory stays 66/67; the separate completion annotation reaches 67/67 without editing baseline dates or assuming pitcher work dates. Only three boxes, not complete feature histories, were parsed. The 2021 selection check does not rewrite v2 metrics. Detailed access, timing and qualification limits belong in [qualification](Model_Input_Qualification.md#verified-preflight-september-26-2026).
+Both commands are offline and emit JSON to stdout; keep redirected outputs in ignored directories. Audit/code fingerprints deliberately change if their inputs or implementation change. The strict Arkansas result inventory stays 66/67; the separate completion annotation reaches 67/67 without editing baseline dates or assuming pitcher work dates. Only three boxes, not complete feature histories, were parsed. Current preflight schema v2 adds both-sided Arkansas hitting/BF/start checks and `retained_scope`: exact cached box URLs and whether the linked Arkansas count reports are present. The archived audit predates those additions; do not compare current output byte-for-byte to that older schema. No new raw checkpoint is required. The 2021 selection check does not rewrite v2 metrics. Detailed access, timing and qualification limits belong in [qualification](Model_Input_Qualification.md#verified-preflight-september-26-2026).
 
 ## Retained team game-log hitting
 
