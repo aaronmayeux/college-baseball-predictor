@@ -359,3 +359,17 @@ python3 -m unittest discover -s scripts -p 'test_ncaa*.py'
 The reconciliation rechecks original gates, dated selection identities and timing corrections, retains separate mode inventories, and fingerprints code/data. Read `summary.unresolved`; 59 complete record/run matches do not qualify component features. Baseline, app and model outputs remain unchanged. Keep all raw responses and generated game-level reports outside Git.
 
 Optional fresh access checks use `scripts/collect_ncaa_archive.py --raw-dir <new-directory>`, limited to 2021–2023 latest eligible national pairs. `--sample previous` requests only the two reviewed earlier dates; `--sample weekly` requests only May 23, 2021. Use a separate directory per sample. Cached responses/failures are never automatically retried or overwritten. A new request produces a new evidence snapshot, not exact restoration. Findings, five count discrepancies, partial earlier-season scope and next work belong in the [source report](Team_Component_Source_Decision.md).
+
+## National NCAA snapshot date/phase plan
+
+Uses the combined NCAA field/archive checkpoint immediately above plus restored baseline and timing/seed v2. No new evidence ZIP or network access is required:
+
+```sh
+mkdir -p historical/model_inputs
+python3 scripts/plan_ncaa_snapshots.py --evidence-dir /tmp/baseball-ncaa > historical/model_inputs/ncaa_snapshot_plan.json
+python3 scripts/plan_ncaa_snapshots.py --evidence-dir /tmp/baseball-ncaa > historical/model_inputs/ncaa_snapshot_plan_repeat.json
+cmp historical/model_inputs/ncaa_snapshot_plan.json historical/model_inputs/ncaa_snapshot_plan_repeat.json
+python3 -m unittest discover -s scripts -p 'test_ncaa_snapshots.py'
+```
+
+The deterministic plan fingerprints menus, retained samples, code and result inventories; rechecks source/baseline/timing gates; and retains per-team target game IDs, compatible dates, non-D1 evidence and phase-interleaving blockers. No predictions or outcome metrics are computed. Read each mode's `summary` and `date_plan`; neither menu feasibility nor a populated national report qualifies team components. The 2021 result-participant field is explicitly provisional for this planning use. Findings and the closed single-snapshot strategy belong in the [source report](Team_Component_Source_Decision.md#national-snapshot-datephase-feasibility). Keep generated JSON ignored; repository code plus existing checkpoints reproduce it.

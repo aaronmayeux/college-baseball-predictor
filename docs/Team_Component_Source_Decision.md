@@ -48,7 +48,35 @@ Northern Kentucky's extra game is unexplained by the retained non-D1 row. The ot
 
 **Neither forecast mode is qualified.** All-opponent NCAA counts cannot silently replace D1-only features; known non-D1 scores cannot subtract unknown AB/H/BB/ER/outs. A shared cumulative snapshot cannot remove conference tournaments. The older 2021/2022 snapshots introduce additional timing gaps, and no new fitting or evaluation is authorized by this access check.
 
-Next: use the same national archive to test a **team-specific pre-conference snapshot strategy**, starting with a bounded multi-season menu/retained-game inventory plan. Quantify whether available dates can cover all 64 teams in each mode before collecting more categories. Carry the five 2024 discrepancies and older-season timing gaps as explicit blockers; do not restart a school sweep or treat 2024 as fresh validation.
+## National snapshot date/phase feasibility
+
+`scripts/plan_ncaa_snapshots.py` compares every retained NCAA Division I menu date with the v2-corrected Nolan inventory for all 256 tournament team-seasons. A compatible date must include **every** eligible D1 result for that mode and **no** excluded D1 result. It rejects final reports, respects the unchanged two-day delay, and keeps missing dates, timing conflicts and mixed phases blocking. Existing empty reports are removed from possible dates; unrequested options remain untested. No new source requests or metrics were run.
+
+| Season | Regular-only menu-feasible teams | After excluding known empty reports | Compatible retained populated date* | Inclusive after excluding known empty reports |
+|---|---:|---:|---:|---:|
+| 2021 | 64/64 | 50/64 | 43/64 | 7/64 |
+| 2022 | 62/64 | 61/64 | 22/64 | 4/64 |
+| 2023 | 64/64 | 64/64 | 1/64 | 64/64 |
+| 2024 | 64/64 | 64/64 | 2/64 | 64/64 |
+
+*Date compatibility only: a populated national table does not yet establish a mapped, reconciled row for each counted team. These columns are not qualified feature coverage. The 2021 field uses retained NCAA result participants for planning, matching the existing expansion planner; the optional dated 2021 selection checkpoint is not consumed here. No seed evaluation is performed.
+
+**Structural exception:** Army and Columbia played one retained regular-season game against each other on May 29, 2022, after their conference tournaments. A pre-conference snapshot misses it; a later snapshot includes tournament statistics. This prevents a single cumulative snapshot per team from reproducing the full regular-only scope, even if every menu option were populated. Original phase labels and results are unchanged.
+
+The minimum date sets below cover only the date-feasible teams after removing known empty reports, not the complete field in the first two seasons:
+
+| Season | Regular-only report dates | Compatible teams covered |
+|---|---|---:|
+| 2021 | May 13, 19, 24 | 50/64 |
+| 2022 | May 18, 23 | 61/64 |
+| 2023 | May 11, 18, 22, 28 | 64/64 |
+| 2024 | May 8, 20, 26 | 64/64 |
+
+The planner computes the smallest number of dates covering the compatible intervals, not the smallest number of new requests. No listed untested date is claimed populated. Known non-D1 games occur before the last target result for 3/2/4/4 regular-only field teams respectively (4/2/4/4 inclusive); those component-scope gaps also remain. The seven retained national sample pairs are insufficient for complete four-season features in either mode.
+
+**Decision:** stop treating one cumulative pre-conference snapshot per team as a complete four-season solution. Do not download the date sets merely to produce a known-incomplete training matrix, and do not drop Army/Columbia or relabel conference totals. Elo remains the usable model.
+
+Next: specify and assess a **separate, explicitly earlier regular-season feature window** using national reports, quantifying the results it would omit before any collection or fitting. This is an alternative research design, not an adopted change to forecast cutoffs, phase rules or the existing full-season qualification gate. Preserve all 64 teams, disclose non-D1 scope, and reject it if required dates/rows cannot be qualified. The existing five 2024 reconciliation discrepancies remain open; no school sweep is queued.
 
 [DATA.md](DATA.md#ncaa-dated-team-report-sample) owns evidence checkpoints and reproduction. D1 remains reference-only under its recorded automation prohibition; no paid source or provider contact is involved.
 

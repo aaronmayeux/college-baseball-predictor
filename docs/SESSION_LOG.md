@@ -4,18 +4,18 @@ Updated September 26, 2026. Git history owns prior sessions.
 
 ## Verified progress
 
-Reconciled the NCAA May 26, 2024 OBP/ERA sample against the verified tournament field and v2 Nolan results: **64/64 identities, 63/64 records, 59/64 runs-allowed totals**. Seven retained non-D1 games explain some differences without entering model inputs. Five residual discrepancies remain; 62 teams have conference-tournament games. Neither forecast mode is qualified.
+Completed the offline national NCAA snapshot date/phase plan across all 256 tournament team-seasons. **One cumulative snapshot per team cannot supply complete four-season regular-only features.** Army and Columbia played a regular-season game after their 2022 conference tournaments. Known empty reports leave date-feasible regular-only coverage at **50/64 in 2021, 61/64 in 2022**; 2023/2024 menus cover 64/64 but most required reports remain untested. Inclusive date coverage is 7/4/64/64 after removing known empty reports.
 
-Checked earlier NCAA menus and national reports. Populated pairs: **2021 May 23 (293 teams), 2022 May 25 (301), 2023 May 28 (305)**. Later tested 2021 May 28/30 and 2022 May 30 reports explicitly return no rankings. All populated rates/records reconcile internally. Earlier 2021/2022 snapshots omit later eligible results; no national completeness claim.
+The planner retains target game IDs, compatible dates, minimum date sets, non-D1 evidence and explicit blockers. 2021 uses result participants for planning, not dated seed qualification. It never substitutes partial totals, drops teams or changes phase/cutoff rules.
 
-The [source report](Team_Component_Source_Decision.md) owns scope, discrepancy table and source decisions. [DATA](DATA.md#ncaa-dated-team-report-sample) owns the combined evidence ZIP and offline reproduction. Code derives report IDs from season menus, distinguishes empty reports from zero data, and retains strict identity/count checks.
+The [source report](Team_Component_Source_Decision.md#national-snapshot-datephase-feasibility) owns findings and the decision to stop the single-snapshot approach. [DATA](DATA.md#national-ncaa-snapshot-datephase-plan) gives reproduction with existing evidence; no new archive or requests. Prior 2024 identity/count reconciliation and five discrepancies remain intact.
 
 ## Verification
 
-215 tests pass (167 scripts, 48 historical). Offline reconciliation repeats byte-identically; baseline/v2 gates pass. No model fitting, candidate metrics, app changes or 2026 ingestion. Raw evidence remains outside Git; all access was free.
+223 tests pass (175 scripts, 48 historical). Plan repeats byte-identically; baseline/v2 and source gates pass. No new collection, fitting, candidate metrics, app changes or 2026 ingestion.
 
 ## Next
 
-Plan a bounded national-archive test of team-specific pre-conference snapshots across seasons. Compare available dates to retained Nolan phase inventories and all 64 field teams before fetching more categories. Carry five 2024 count discrepancies and 2021/2022 timing gaps as blockers; no school sweep.
+Assess a separately defined earlier regular-season feature window using national reports. Quantify omitted results and non-D1 scope before collection/fitting; this alternative is **not adopted** and does not change existing evaluation rules. Preserve all 64 teams; no school sweep.
 
-Keep Elo; net-run stays closed. Preserve evaluation/advancement rules and prior 2024 exposure. 2025 remains development; 2026 excluded. Individual pitchers, Stillwater, UI/hosting/spreadsheet work remain deferred. D1 reference-only; no paid detours.
+Elo stays; net-run closed; individual pitchers and Stillwater deferred. 2024 exposure remains explicit, 2025 development, 2026 excluded. D1 reference-only, zero spending; UI/hosting/spreadsheet work deferred.

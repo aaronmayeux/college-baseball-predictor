@@ -105,13 +105,13 @@ Reproduction: [DATA.md](DATA.md).
 
 **Team-level-first plan:** defer individual pitcher roles, workload, depth/aces, availability and the Stillwater preflight. Prioritize practical team data and measured prediction comparisons.
 
-The [team-run experiment](Team_Run_Experiment.md) selects the retained Warren Nolan results plus official corrections/v2 timing for an immediate four-season test. A repeatable offline import covers all 256 tournament team-seasons in 2021–2024. It tests scoring and run prevention, not component hitting or pitching quality; nationwide component-stat collection remains unqualified.
-
-The locked net-runs/game addition slightly improved 2024 game probability scores but picked fewer winners. Its regional advancement validation then worsened both probability scores in both modes: regular-only still picked 10/16 champions, while conference-inclusive fell from 10/16 to 9/16. **Candidate closed without promotion; Elo remains in the app.** No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
+The [team-run experiment](Team_Run_Experiment.md) tested retained Nolan results and official/v2 corrections across all 256 tournament team-seasons in 2021–2024. Its net-runs/game candidate failed regional advancement validation and is **closed without promotion; Elo remains in the app**. No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
 
 Aaron selected **Warren Nolan, NCAA and D1Baseball**, for personal, noncommercial use with no spending. The [source report](Team_Component_Source_Decision.md) records populated national NCAA OBP/ERA snapshots for 2021–2024 (293/301/305/305 teams). The latest tested 2021/2022 dates are empty; populated earlier dates omit later eligible games. In 2024 all 64 field identities map, 63 records and 59 runs-allowed totals reconcile after accounting for retained non-D1 games; five discrepancies remain. Conference-tournament and non-D1 scope prevent regular-only qualification. Neither mode has qualified component features.
 
-Next: plan a bounded test of team-specific pre-conference national snapshots across seasons, quantifying date/field coverage against retained Nolan inventories before collecting more categories. Preserve the timing and count gaps; no school sweep. D1 remains reference-only under recorded automation restrictions; no paid detours.
+The national date/phase planner rules out a complete four-season solution using one cumulative snapshot per team: known empty dates leave regular-only coverage at 50/64 in 2021 and 61/64 in 2022. Army and Columbia also played a regular game after their 2022 conference tournaments, so no single snapshot isolates their full regular-only totals. 2023/2024 are date-feasible, not component-qualified.
+
+Next: assess a separately defined earlier regular-season feature window and quantify omitted results before collection or fitting. This alternative is not adopted; preserve the existing forecast/mode rules, all 64 teams and non-D1 limitations. No school sweep or paid detour; D1 stays reference-only.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
 
