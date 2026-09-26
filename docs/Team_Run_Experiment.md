@@ -25,6 +25,8 @@ Restore/rebuild baseline and v2 as described in [DATA](DATA.md), then:
 ```sh
 python3 historical/team_runs.py prepare
 python3 historical/team_runs.py evaluate
+python3 historical/regional_validation.py prepare
+python3 historical/regional_validation.py evaluate
 python3 -m unittest discover -s historical -p 'test_*.py'
 ```
 
@@ -50,6 +52,41 @@ All three candidates improved both probability scores in 2023. **Net runs/game**
 
 The primary paired change is −0.005759 log loss and −0.000809 Brier, with three fewer correct winners. This is **mixed, inconclusive promotion evidence**, not a demonstrated bracket improvement. Regular-only regional Brier worsens by 0.002264 over 100 games; super-regional log loss/Brier worsen by 0.003949/0.001060 over 18 games. Much of the aggregate gain comes from twelve Omaha games (log-loss delta −0.061538). Only eight of sixteen regional groups improve either probability score. Conference-inclusive Brier is slightly worse overall (+0.000147). Calibration bins and grouped losses remain in the reproducible report; the small correlated samples do not justify a significance claim.
 
-**Decision: retain Elo in the app.** Keep the locked candidate as a research result; do not tune it against 2024. Next, test its unchanged probabilities on historical regional advancement with selection-day routing and a locked scoring protocol. If that evidence is also mixed, close this candidate without promoting it. Component hitting/pitching inputs still require a separate bounded source decision; this result does not qualify them.
+**Decision: retain Elo in the app.** The regional advancement check below closes this candidate without promotion. Do not retune against 2024 or extend it to a national-title test. Component hitting/pitching inputs still require a separate bounded source decision; this result does not qualify them.
 
 Verification: 192 external-data-free tests pass (152 scripts, 40 historical), including ten new cutoff, conservation, duplicate, fitting, symmetry and fallback checks. Baseline and v2 pipelines rebuilt successfully. Repeated preparation/evaluation outputs are byte-identical; protected baseline/v2 inputs and the app remain unchanged.
+
+## Locked regional advancement check
+
+Before calculating advancement scores: use all sixteen selection-day regional groups in each of 2023 and 2024, separately by mode. 2024 is primary retrospective validation; 2023 is a selection-exposed diagnostic. Reuse the original 2021–2022 fit for 2023 and the locked refit for 2024. No fitting, selection, new feature, altered coefficient or pooling of modes is allowed.
+
+Use the unchanged engine's exact four-team double-elimination enumeration, opening 1–4 and 2–3. Only within-regional routing is needed; no historical supers/Omaha placement is inferred. The retained 2023 and 2024 NCAA manuals (printed page 15) specify the same pairings, elimination sequence and reset as the engine. Verify their bytes against retained metadata and requalify the selection articles' identities/timestamps. Rebuild frozen Elo and verify each observed matchup against the prior experiment; calculate all hypothetical within-regional pairings from frozen team values.
+
+Persist forecasts and source/code/model fingerprints before scoring. Validate each observed regional's complete six/seven-game elimination path, with dates constraining each team's sequence rather than inventing same-day ordering. Require an unambiguous champion and agreement with the field of super-regional participants. Block incomplete, tied, cross-group or illegal paths rather than scoring a partial sample.
+
+Score each regional as one four-outcome event: mean negative log probability of the actual champion; mean sum of four squared probability errors (multiclass Brier, not divided by four); and fraction of regional champions picked by highest advancement probability, with equal credit across exact ties. Compare Elo, the unchanged candidate and seed probabilities on the same sixteen regionals. Report per-regional paired differences and descriptive 10%-bin team advancement calibration. Use 5,000 paired regional-cluster bootstrap resamples, fixed seed 20240926, for exploratory 95% percentile intervals on candidate-minus-Elo loss differences. Four teams are not four independent tournaments; one validation season does not certify future-season uncertainty. No threshold tuning or automatic app promotion follows from this check.
+
+
+### Regional evidence and result
+
+Both season selection articles are reparsed with the existing timestamp/identity guards. The format evidence is the [2023 manual](https://ncaaorg.s3.amazonaws.com/championships/sports/baseball/d1/2022-23D1MBA_PreChampsManual.pdf) (SHA-256 `18b8663ef74868e8141170186b1e5458509c829c11ac118785e9693d6c81da05`) and [2024 manual](https://ncaaorg.s3.amazonaws.com/championships/sports/baseball/d1/2023-24D1MBA_PreChampsManual.pdf) (`58b92b356ad24627eb6e8de70829b5ad156854f02afd837b5903bc52c7ca996c`), printed page 15. Both are already in the baseline evidence checkpoint. No requests or new archive were needed.
+
+All **32 regionals / 128 team-seasons** qualify in both modes. The 101 regional games in 2023 (five resets) and 100 in 2024 (four resets) each reconstruct to one legal path. Every champion matches a participant in the following super-regional field. This is a within-inventory consistency check, not independent national outcome certification. All 540 observed game probabilities across the two seasons/modes match the locked prior experiment within `1e-14`; every hypothetical regional pairing uses the same frozen team values. Forecasting is exact enumeration, with no simulation noise or new parameters.
+
+2024 retrospective regional validation (16 regionals per row; lower losses are better):
+
+| Mode / model | Champion log loss | Multiclass Brier | Champions picked |
+|---|---:|---:|---:|
+| Regular-only Elo | 1.051040 | 0.576852 | 10/16 |
+| Regular-only Elo + net runs | 1.133873 | 0.589449 | 10/16 |
+| Conference-inclusive Elo | 1.157268 | 0.636643 | 10/16 |
+| Conference-inclusive Elo + net runs | 1.238698 | 0.641153 | 9/16 |
+| Seed comparator (both modes) | 1.429963 | 0.637239 | 10/16 |
+
+Regular-only paired candidate-minus-Elo differences are **+0.082832 log loss** and **+0.012597 Brier**. Exploratory paired regional bootstrap intervals are [−0.095788, +0.276830] and [−0.076830, +0.101333], respectively. Conference-inclusive differences are +0.081430 and +0.004510, with intervals [−0.099385, +0.272311] and [−0.080505, +0.090300]. These include zero: the result does not prove universal inferiority, but provides no basis for promotion. Regionals share a season's scoring environment and model fit; the intervals are not uncertainty across future seasons.
+
+2023 diagnostic results were better: regular-only champion log loss fell 0.991923 → 0.884585 and Brier 0.560274 → 0.499649, with both models picking 9/16. Conference-inclusive losses also improved (1.065144 → 0.947937; 0.598209 → 0.534103), still 9/16. Because 2023 selected the candidate, those gains cannot override the later validation. Descriptive calibration bins and per-regional scores are retained in the ignored report; no calibration claim is made from 64 dependent team probabilities.
+
+**Close the net-run candidate without promotion. Keep the existing Elo app.** Do not collect more individual pitcher data or tune this candidate to rescue its 2024 performance. The next model-input decision is whether one source can provide dated team batting/pitching component tables across 2021–2024, with a bounded sample, coverage and access terms established before any batch collection. If no practical source qualifies, explicitly compare retaining Elo with a licensed-data option; purchase/contact still requires authorization.
+
+Verification: **200 tests pass** (152 scripts, 48 historical). Eight new tests exercise all 128 binary elimination sequences, reversed input order, complete/invalid result gates, date dependencies, same-day resets, seed-group identity, multiclass scoring and paired-cluster behavior. Forecast/report reruns are byte-identical; baseline, v2, original experiment and app are unchanged. `historical/regional_validation.py prepare` writes `historical/regional_output/forecast_lock.json` before scoring; `evaluate` requires matching fingerprints and writes only the ignored regional report. These outputs remain reproducible from existing checkpoints and Git, not committed game-level exports.

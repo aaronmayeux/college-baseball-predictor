@@ -4,7 +4,7 @@ Milestone 6 has a focused qualification plan and offline hitting and pitching ex
 
 ## Current priority
 
-The [team-run experiment](Team_Run_Experiment.md) owns the completed practical-source decision, locked comparison and next regional-advancement check. The player/component-count gaps below do not block that score-based experiment and remain deferred.
+The [team-run experiment](Team_Run_Experiment.md) owns the completed practical-source decision, locked comparison and completed regional-advancement check. The net-run candidate is closed without promotion; the Elo app remains unchanged. The player/component-count gaps below do not block that score-based experiment and remain deferred.
 
 The [brief’s team-level-first plan](College_Baseball_Predictor_Project_Brief.md#next-work) supersedes the player-first collection sequence. Individual pitcher roles, workload, depth/aces and availability are deferred. The unfinished Stillwater preflight and Arkansas report retrieval are retained evidence gaps, not required next steps. All cutoff, source, reconciliation and evaluation rules below remain binding.
 

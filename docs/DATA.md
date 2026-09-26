@@ -317,3 +317,5 @@ The offline report verifies the two structured 2022 pages and retained first box
 ## Team scoring and run-prevention experiment
 
 No new checkpoint is required. Restore/rebuild the original baseline and timing/seed v2 using the commands above, then run `python3 historical/team_runs.py prepare` and `python3 historical/team_runs.py evaluate`. Both commands are offline; they write only ignored `historical/team_run_output/` files. The [experiment report](Team_Run_Experiment.md) owns the source decision, locked protocol, results and limitations. Preparation retains source/config/code hashes, eligible input IDs, exclusions, team totals and exact common samples; evaluation locks selection before 2024 scoring. No raw/game exports should be committed or published.
+
+For the completed regional validation, then run `python3 historical/regional_validation.py prepare` and `python3 historical/regional_validation.py evaluate`. These commands reuse the same checkpoints, including the retained 2023/2024 manuals, and write only ignored `historical/regional_output/` forecasts/report. They never refit the candidate, alter the engine/app or acquire new data.

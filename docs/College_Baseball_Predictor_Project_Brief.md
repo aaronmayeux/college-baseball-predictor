@@ -4,7 +4,7 @@ Updated September 26, 2026.
 
 ## Purpose and current status
 
-Build a predictor whose primary use is **one run immediately before the NCAA tournament to fill the entire bracket through the champion**. Automatically import eligible data, produce game/advancement probabilities and explain picks. Optional late-season conference comparisons are secondary. The current app uses team strength; future pitching availability would be simulated from the initial snapshot.
+Build a predictor whose primary use is **one run immediately before the NCAA tournament to fill the entire bracket through the champion**. Automatically import eligible data, produce game/advancement probabilities and explain picks. Optional late-season conference comparisons are secondary.
 
 The historical pilot covers **2021–2025: 40,615 completed D1 games, 1,520 team-season records and 310 stable team identities**. Records reconcile after documented corrections; three games use official-school supplements. V2 resolves two timing quarantines while preserving the original baseline. Provider agreement is not independent national certification.
 
@@ -107,9 +107,9 @@ The accepted [app](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.
 
 The [team-run experiment](Team_Run_Experiment.md) selects the retained Warren Nolan results plus official corrections/v2 timing for an immediate four-season test. A repeatable offline import covers all 256 tournament team-seasons in 2021–2024. It tests scoring and run prevention, not component hitting or pitching quality; nationwide component-stat collection remains unqualified.
 
-The locked 2021–2022 training / 2023 selection / 2024 retrospective comparison selected net runs/game added to unchanged Elo. In 2024 regular-only, probability scores improved slightly but winner picks fell from 93/133 to 90/133; conference-inclusive and tournament-group results were mixed. **Elo remains in the app.** No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
+The locked net-runs/game addition slightly improved 2024 game probability scores but picked fewer winners. Its regional advancement validation then worsened both probability scores in both modes: regular-only still picked 10/16 champions, while conference-inclusive fell from 10/16 to 9/16. **Candidate closed without promotion; Elo remains in the app.** No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
 
-Next: evaluate the unchanged candidate’s historical regional advancement using qualified selection-day routing and a locked scoring protocol. Do not promote it without convincing advancement evidence; close the candidate if results remain mixed. Richer hitting/pitching components require a bounded source/sample decision, not renewed school-by-school collection. No purchase or provider contact is authorized.
+Next: make a bounded source/sample decision for dated team batting/pitching components across 2021–2024. Verify sample coverage, cutoff support and access terms before collection. If no practical route qualifies, compare retaining Elo with a licensed-data option. Avoid renewed school-by-school probes or efforts to rescue the closed candidate. No purchase or provider contact is authorized.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Individual pitching requirements remain future goals; thresholds remain open. Source selection, experiment details, metrics and reproduction belong in the experiment report.
 
