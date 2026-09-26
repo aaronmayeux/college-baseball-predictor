@@ -301,3 +301,15 @@ cmp historical/model_inputs/expansion_plan.json /tmp/baseball-preflight/expansio
 ```
 
 Both commands are offline and emit JSON to stdout; keep redirected outputs in ignored directories. Audit/code fingerprints deliberately change if their inputs or implementation change. The strict Arkansas result inventory stays 66/67; the separate completion annotation reaches 67/67 without editing baseline dates or assuming pitcher work dates. Only three boxes, not complete feature histories, were parsed. The 2021 selection check does not rewrite v2 metrics. Detailed access, timing and qualification limits belong in [qualification](Model_Input_Qualification.md#verified-preflight-september-26-2026).
+
+## Retained team game-log hitting
+
+Uses the original baseline, timing/seed extension and exact preflight ZIP above; no new evidence or downloads. After restoring them, run from the repository root:
+
+```sh
+mkdir -p historical/model_inputs
+python3 scripts/extract_retained_hitting.py --raw-dir /tmp/baseball-preflight/raw > historical/model_inputs/retained_hitting.json
+python3 -m unittest discover -s scripts -p 'test_retained_hitting.py'
+```
+
+The offline report verifies the two structured 2022 pages and retained first boxes, reconciles the full-season dated batting logs, and separately checks PA against opponent pitching components/BF. Inspect `full_season_check.pass_counts`, `PA_pass`, `inventory_pass`, `sample_check.pass_counts` and both `forecast_modes`. Outputs may report unavailable rates; do not equate process success with qualification. Keep the game-level JSON ignored. Repeat runs are byte-identical. Original sources, baseline/v2 predictions and app remain unchanged. [Qualification](Model_Input_Qualification.md#retained-team-hitting-logs) owns results, exact alias evidence and limitations.

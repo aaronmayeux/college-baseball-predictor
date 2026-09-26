@@ -1,6 +1,6 @@
 # Focused model-input qualification
 
-Milestone 6 now has a focused qualification plan and offline hitting and pitching extractors, verified September 25, 2026. No feature weights, quality-arm thresholds or prediction changes are selected. The [triage](Statistics_Discovery_and_Triage.md) owns the broader inventory; [SPEC](../historical/SPEC.md) owns cutoff and holdout rules.
+Milestone 6 has a focused qualification plan and offline hitting and pitching extractors, including retained team game logs verified September 26, 2026. No feature weights, quality-arm thresholds or prediction changes are selected. The [triage](Statistics_Discovery_and_Triage.md) owns the broader inventory; [SPEC](../historical/SPEC.md) owns cutoff and holdout rules.
 
 ## Smallest useful experiments
 
@@ -80,7 +80,7 @@ Both modes are complete. The original LSU–UCLA postseason date mismatch stays 
 
 ## Chronological evaluation contract
 
-The current four team-seasons provide **no sufficient common chronological evaluation sample**. There is no 2023 player pilot, and only LSU covers the 2025 field. Do not fit on this convenience sample or claim improvement from it.
+The retained pilots, including two additional 2022 team hitting logs, provide **no sufficient common chronological evaluation sample**. There is no 2023 player pilot, and only LSU covers the 2025 field. Do not fit on this convenience sample or claim improvement from it.
 
 Target qualified training inputs from 2021–2022, development selection on 2023, and a fixed later comparison on 2024. Fit all scaling, opponent adjustment, sample-size shrinkage and thresholds within the earlier training period; refit through 2023 only after choosing the candidate. Prior published baseline metrics mean 2024 is retrospective validation, not an untouched holdout. If these seasons cannot be qualified, report the shortfall and revise the plan **before** inspecting candidate outcome metrics. 2025 remains a development diagnostic; 2026 stays excluded from this work.
 
@@ -140,7 +140,26 @@ Arkansas's index dates the 11–6 Vanderbilt game May 14; the baseline correctly
 
 The article reports publication 13:42 and modification 13:50:31 on May 31 without a timezone; even the conservative UTC−12 interpretation precedes the June 2 cutoff. PDF creation/modification metadata are May 31 08:48:20 UTC−04. This supports retrospective eligibility, not point-in-time certification. The article link and school-hosted filename match; its historical redirect chain was not observed. A guessed NCAA article returned 404; search also encountered an NCAA challenge page, which was not bypassed. Existing v2 seeds/metrics and historical routing remain unchanged. The planner's default without the new checkpoint still labels 2021 provisional; use its optional preflight directory to enable this evidence.
 
-Next: establish acceptable source-specific season scope before expanding boxes, qualify Arkansas's richer counts/roles, and finish full-season count checks for all four preflight teams. A bounded alternative worth testing offline is whether the retained structured cumulative pages' **dated game-by-game counts** can support ISO/OBP after reconciliation; final aggregate totals remain audit-only. Do not assume that path qualifies pitcher histories or weaken the existing appearance gates.
+Next: qualify Arkansas's retained team hitting evidence if sufficient, then finish the remaining four-team pitching/appearance gates. Establish acceptable source-specific season scope before any additional collection. The structured team-log result below does not qualify pitcher histories or weaken appearance gates.
+
+### Retained team hitting logs
+
+`extract_retained_hitting.py` qualifies Oklahoma State and Grand Canyon 2022 **team hitting only**, with no new source requests. All 64 and 62 dated rows respectively join the preserved result inventory by exact date, mapped teams and reciprocal scores. Box URLs uniquely identify rows, including doubleheaders; row order never determines identity.
+
+Ten batting fields sum exactly to both the game-log footer and cumulative individual batting sums; six available overall team counts also agree. Each school's retained first box independently parses to the same ten game counts. These are within-source consistency checks, not independent-provider certification. This separate team-level adapter meets full-season count reconciliation using complete dated logs; it does not replace or relax player appearance checks.
+
+Every game's AB, hits, walks, strikeouts, extra bases, HBP, sacrifices and catcher interference agree with the matching opponent pitching row. PA components sum to explicit opposing BF in **126/126 games** and both season footers. Three Oklahoma State and one Grand Canyon interference awards are retained. Eight Oklahoma State opponent rows use the exact self-name `Oklahoma St.`; an explicit scoped alias is reviewed against matching box URLs, dates and reversed scores. Unreviewed aliases fail; no fuzzy identity matching.
+
+| Team / mode | Eligible games | ISO | OBP | Strikeouts/PA | HR/PA |
+|---|---:|---:|---:|---:|---:|
+| Oklahoma State regular-only | 54 | .191591 | .389388 | 21.3268% | 3.3393% |
+| Oklahoma State conference-inclusive | 59 | .186706 | .389187 | 21.4227% | 3.2706% |
+| Grand Canyon regular-only | 56 | .173320 | .384071 | 15.4183% | 2.9347% |
+| Grand Canyon conference-inclusive | 60 | .168004 | .384013 | 15.7423% | 2.7732% |
+
+Both modes sum eligible game counts before division, using the unchanged cutoff and availability rule. Full-season/postseason totals are audit targets only. Missing counts, a failed season/sample check or an incomplete inventory blocks rates. An unqualified PA denominator blocks strikeout rate and HR/PA separately, preserving otherwise reconciled ISO/OBP. Source hashes, exact aliases, per-game failures, eligible IDs and code/input fingerprints remain in the ignored report.
+
+These are unadjusted descriptive inputs, not predictive improvement. The four-team preflight now has power/OBP for three teams (including the existing Missouri State box-derived inputs), and PA-based hitting rates for two. Arkansas hitting remains unqualified; Missouri State PA and the new schools' pitcher histories remain separate gaps. No feature fitting, outcome metrics, national qualification, new bulk permission or app adjustment follows from this result. [DATA.md](DATA.md#retained-team-game-log-hitting) owns reproduction; no new evidence ZIP is needed.
 
 ### Fitting and promotion boundaries
 
@@ -152,6 +171,6 @@ Advancement validation is a separate promotion gate. `tournament/field.py` curre
 
 ## Reproduction and boundaries
 
-[DATA.md](DATA.md#offline-hitting-input-pilot) owns restoration and both extraction commands. Repeated outputs are byte-identical. All **163 tests** pass (133 scripts, 30 historical; nine new preflight/selection regressions), including 13 hitting tests for count formulas, unknown denominators, interference, replay comments, pitch-code confusion, missing/duplicate events, incomplete modes and chronological exclusions. Twelve pitching tests cover BF/interference, role flags versus generic lineup starts/order, missing counts, zero-out appearances, rates, incomplete modes and cutoff exclusions. Eight LSU tests additionally check explicit starter matching, ambiguity, event allocation, batting-slot changes, BF mismatches and cumulative interference/start reconciliation. Tests need no external data.
+[DATA.md](DATA.md#offline-hitting-input-pilot) owns restoration and both extraction commands. Repeated outputs are byte-identical. All **175 tests** pass (145 scripts, 30 historical; twelve new retained-log regressions), including 13 hitting tests for count formulas, unknown denominators, interference, replay comments, pitch-code confusion, missing/duplicate events, incomplete modes and chronological exclusions. Twelve pitching tests cover BF/interference, role flags versus generic lineup starts/order, missing counts, zero-out appearances, rates, incomplete modes and cutoff exclusions. Eight LSU tests additionally check explicit starter matching, ambiguity, event allocation, batting-slot changes, BF mismatches and cumulative interference/start reconciliation. Tests need no external data.
 
 The LSU/Towson audit output contract remains unchanged; the generic StatCrew core reader preserves the LSU wrapper behavior. Input/config fingerprints remain unchanged during extraction. The input-extractor pilots used retained evidence; the bounded preflight requests above are a separate checkpoint. No 2026 evaluation, model/app change or raw-data commit occurred. The unavailable conference-archive checkpoint is unnecessary for these pilots; its newer field/access results were not rerun. Spreadsheet comparison, UI changes and hosting migration remain deferred.
