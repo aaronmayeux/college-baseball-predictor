@@ -66,7 +66,7 @@ Retain the hypotheses of home/park effects, power sensitivity, opponent-specific
 | Warren Nolan plus targeted official-school corrections | 2021–2025 results pilot: 40,615 games; all 1,520 team-season records reconcile after documented corrections | Independent national completeness, precise historical timing, broader phase verification, ongoing access/usage terms; original workbook attribution remains uncertain |
 | D1Baseball | Potential separately licensed source; direct public HTML retrieval tested successfully | Published terms prohibit automated monitoring/mining/copying; supported feed, license, historical completeness and price are unverified |
 | FanGraphs college leaderboards | Advanced-stat comparisons and possible inputs | Export access, historical coverage, definitions, and usage terms |
-| Commercial provider if needed | More consistent coverage | Verify sample coverage and terms before considering cost |
+| Commercial providers | Prior research only; paid acquisition out of scope | Zero-budget rule in AGENTS.md |
 
 National player-data coverage remains unverified. baseballr is an access tool, not an independent source. MLB-derived metrics require college-specific validation.
 
@@ -109,7 +109,7 @@ The [team-run experiment](Team_Run_Experiment.md) selects the retained Warren No
 
 The locked net-runs/game addition slightly improved 2024 game probability scores but picked fewer winners. Its regional advancement validation then worsened both probability scores in both modes: regular-only still picked 10/16 champions, while conference-inclusive fell from 10/16 to 9/16. **Candidate closed without promotion; Elo remains in the app.** No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
 
-The [component-source decision](Team_Component_Source_Decision.md) selects **retaining Elo now and College Splits as the sole prospective licensed-sample route**. No reviewed source qualifies for component ingestion yet. Public discovery and school collection are paused. The report defines one eight-team-season sample, full-field coverage manifest and license requirements. Next is Aaron’s decision on authorizing that single provider inquiry; no contact, signup or purchase is authorized. Do not reopen the closed net-run candidate.
+The [component-source decision](Team_Component_Source_Decision.md) now follows Aaron’s **zero-budget rule** in AGENTS.md: retain Elo and use only retained/free data. The free SportsDataverse team-stat manifest has no 2021–2023 rows, so it cannot support the four-season test. Component acquisition stays blocked pending a qualifying free dated dataset. No paid inquiry or renewed school sweep is queued; keep the net-run candidate closed.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Individual pitching requirements remain future goals; thresholds remain open. Source selection, experiment details, metrics and reproduction belong in the experiment report.
 
@@ -120,5 +120,5 @@ Preserve all 64 teams and both cutoff-separated modes; retain the existing team-
 - Future production execution environment; Cloudflare is Aaron’s preferred future hosting option, with migration deferred. Development app hosting remains Sites. Repository: https://github.com/aaronmayeux/college-baseball-predictor (public).
 - Further training-season expansion beyond the implemented 2021–2025 pilot; assess scoring-environment changes before adding complexity.
 - A future prospectively reserved holdout; 2026 is not certified untouched. Current exact cutoffs and regular-only/conference-inclusive rules are settled in cutoffs.json.
-- Whether a paid source becomes necessary after testing free coverage.
+- A qualifying free source for dated team components; paid acquisition is out of scope.
 - Bracket scoring system if optimizing a contest entry rather than simply reporting the most likely outcomes.

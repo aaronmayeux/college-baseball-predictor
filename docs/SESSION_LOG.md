@@ -2,20 +2,18 @@
 
 Updated September 26, 2026. Git history owns prior sessions.
 
-## Completed decision
+## Decision
 
-**Retain Elo; pause component acquisition. College Splits is the single prospective licensed-sample route.** The [source decision](Team_Component_Source_Decision.md) owns evidence, alternatives, sample scope and acceptance requirements.
+**Zero budget: use retained/free sources only. Keep Elo.** [AGENTS.md](../AGENTS.md) records Aaron’s instruction. Paid acquisition and the College Splits inquiry are removed from active work; do not ask for paid-data authorization again.
 
-Public documentation confirms College Splits supplies FanGraphs and advertises NCAA event data. Neither historical completeness nor suitable delivery/license terms are verified. FanGraphs season history/member exports do not establish both cutoff modes. Highlightly's team-stat endpoint describes MLB; NCAA historical coverage remains unverified. Existing NCAA/ESPN/school gaps were not reprobed. No school collection, provider contact, signup, purchase or authenticated sample occurred.
-
-The prepared scope asks for a 256-team-season field manifest plus one package of LSU/Towson dated batting/pitching logs for 2021–2024. Passing eight sample histories would not certify nationwide coverage. Rights, price and cutoff-compatible completeness must qualify before batch ingestion.
+The [component-source report](Team_Component_Source_Decision.md) records a bounded free-source check. SportsDataverse `baseballr-data` at `e2800f16906104b771210c1aba4eeb975baad202` publishes zero team-stat rows for 2021–2023. Its builder confirms empty legacy team-stat families. The 2024 manifest count is not measured game coverage. Season-total alternatives do not establish cutoff-safe components.
 
 ## Verification
 
-Documentation-only change; source URLs and advertised-versus-tested limits recorded. Local links and diff checked; 200 external-data-free tests pass (152 scripts, 48 historical). Model code, cutoffs, preserved evidence, engine and app unchanged. No pipeline rebuild or new metrics claimed.
+Reviewed pinned manifests, builder, license and documentation; no game payloads, school requests, provider contact, signup or purchase. Documentation-only changes; local links/diff checked. The unchanged code passed all 200 tests earlier this session (152 scripts, 48 historical); no new pipeline run or metrics claimed. Cutoffs, evidence, model, engine and app unchanged.
 
 ## Next
 
-Aaron decides whether to authorize one College Splits sample-and-license inquiry, with no purchase commitment. Otherwise keep Elo and acquisition paused. Do not restart public-source discovery or school-by-school probes without new evidence.
+Keep using the existing free Elo app. Richer component testing is blocked until a free dated 2021–2024 source meets the report’s coverage/denominator/cutoff requirements. Reopen on concrete new data evidence, not another general source hunt or school sweep. No immediate data import is qualified; do not fabricate progress by importing final totals.
 
-Net-run candidate remains closed without promotion. Preserve both modes, common samples and advancement gate; acknowledge prior 2024 validation exposure. 2025 stays development; 2026 excluded. Individual pitchers, Stillwater, UI/hosting/spreadsheet work remain deferred.
+Net-run stays closed. Preserve both modes, common samples and advancement gate; prior 2024 validation exposure remains explicit. 2025 is development, 2026 excluded. Individual pitchers, Stillwater, UI/hosting/spreadsheet work remain deferred.

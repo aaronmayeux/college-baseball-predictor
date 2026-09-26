@@ -4,7 +4,7 @@ Reviewed September 20, 2026. **Aaron approved prioritizing hitting profiles and 
 
 ## Recommendation for joint review
 
-The active [team-component source decision](Team_Component_Source_Decision.md) supersedes this inventory’s original player-first ordering: keep Elo, defer individual pitchers, and pause acquisition pending a single College Splits sample/license decision. The table below preserves candidate research priorities, not authorization to resume collection. Baserunning, defense, availability and park interactions remain future proposals.
+The active [team-component source decision](Team_Component_Source_Decision.md) supersedes this inventory’s original player-first ordering: keep Elo, defer individual pitchers, and use retained/free sources only under Aaron’s zero-budget rule. The table below preserves candidate research priorities, not authorization to resume collection. Baserunning, defense, availability and park interactions remain future proposals.
 
 | Priority | Proposed work | Reason |
 |---|---|---|

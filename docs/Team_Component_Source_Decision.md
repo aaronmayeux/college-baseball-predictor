@@ -1,48 +1,48 @@
 # Historical team-component source decision
 
-Reviewed September 26, 2026. This is a source decision, not a data qualification or model experiment.
+Reviewed September 26, 2026. Source qualification only; no new model experiment.
 
-## Decision and stop rule
+## Decision
 
-**Keep Elo and do not start component-stat collection. Select College Splits as the single prospective licensed-sample route.** Its role supplying FanGraphs and its advertised NCAA event data make it a better targeted inquiry than another school sweep. This is an engineering judgment, not verified coverage, an available license, or a purchase recommendation.
+**Keep Elo and use only retained or free data. No component source qualifies for the planned 2021–2024 test yet.** Aaron's zero-budget instruction supersedes the prospective College Splits inquiry; budget authority is in [AGENTS.md](../AGENTS.md). No provider inquiry, purchase, subscription or chargeable trial is queued.
 
-No reviewed route currently establishes all three requirements: complete 2021–2024 team components, reconstruction of both forecast modes, and permitted acquisition/use. Stop public-source discovery here. Do not retry NCAA access, expand school probes, buy a FanGraphs membership for this purpose, or implement a speculative importer. Reopen only on a provider response or an authorized supplied dataset meeting the requirements below. No provider contact, account signup, purchase or authenticated sample request occurred.
+A bounded free-source check found SportsDataverse's published NCAA archive, but its pinned team-stat manifest has zero rows for 2021–2023. Do not acquire its 2024 data alone for a four-season experiment or reopen piecemeal school collection. Stop this search after the evidence below. Reopen component acquisition only when a free dated dataset demonstrably fills the required years; otherwise retain Elo. This is not a claim that no suitable free dataset can ever exist.
 
-## Evidence and limits
+## Verified free-source evidence
 
-Public documentation was read through web retrieval; these are documentation observations, not retained API payloads or measured coverage. URLs below are the provenance for this decision. No new raw source bytes or game exports were downloaded into the project; existing evidence remains unchanged. General searches returned substantial irrelevant material, which was not used. No 2026 game feed or model inputs were collected.
+Inspected the public `sportsdataverse/baseballr-data` repository at commit **e2800f16906104b771210c1aba4eeb975baad202**, using GitHub metadata and source files, not game data. These immutable references allow rechecking the decision without retaining new raw downloads:
 
-| Route | Evidence reviewed | Decision |
+- [Team-stat manifest](https://github.com/sportsdataverse/baseballr-data/blob/e2800f16906104b771210c1aba4eeb975baad202/ncaa/team_stats/manifest.csv), Git blob `6ab6378f00d58107299cd224ce45b267095cf470`.
+- [Dataset builder](https://github.com/sportsdataverse/baseballr-data/blob/e2800f16906104b771210c1aba4eeb975baad202/python/ncaa_baseball_data_build/builders.py), Git blob `3adf8dcb970e01768a4b29ca6add0b113781b802`.
+- [License](https://github.com/sportsdataverse/baseballr-data/blob/e2800f16906104b771210c1aba4eeb975baad202/LICENSE.md) and [runbook](https://github.com/sportsdataverse/baseballr-data/blob/e2800f16906104b771210c1aba4eeb975baad202/RUNBOOK.md).
+
+| Season | Published team-stat row count | Qualification |
+|---|---:|---|
+| 2021 | 0 | No team-stat table rows |
+| 2022 | 0 | No team-stat table rows |
+| 2023 | 0 | No team-stat table rows |
+| 2024 | 5,614,266 | Advertised manifest count only; unique games, completeness and denominators not verified |
+
+The builder explicitly says its legacy 2012–2023 payloads have empty team/player/linescore/situational families. Historical play-by-play and schedule existence therefore does not establish a ready team-component table. Reconstructing and qualifying every count from play text would be separate substantial work, not a simple bulk import. The builder also notes missing legacy division information; counts must not be presented as verified D1 game coverage.
+
+The MIT file covers software and associated documentation; it is not blanket certification of upstream data rights. The public loader/release path is a practical free access mechanism, but coverage already fails before an ingestion decision. No upstream NCAA collector, proxy workflow or live school request was run. The repository's backfill instructions are not project instructions.
+
+The separate [ncaa_bbStats provenance page](https://collegebaseballstatspackage.readthedocs.io/en/latest/data_provenance.html) advertises season-level NCAA team tables. It does not establish dated game components or both cutoff modes. Its default player cache also discloses FanGraphs-export provenance; no such data were acquired. Final totals cannot become pre-tournament inputs merely because download access is free.
+
+## Other source findings retained
+
+| Route | Evidence / limit | Current decision |
 |---|---|---|
-| College Splits | Its [About page](https://collegesplits.com/about) advertises NCAA event-level data and data-distribution services. FanGraphs identifies it as its college supplier. No delivered sample, historical completeness matrix, price or applicable license was obtained. | Sole prospective sample/license inquiry; unqualified for ingestion. |
-| FanGraphs | [March 2025 announcement](https://blogs.fangraphs.com/weve-got-college-data/) advertises D1 history from 2021 and member exports. It does not establish dated team-game exports, both project phase filters or our automated-use rights. | Do not infer forecast-safe availability from season coverage or membership. Approach the upstream supplier instead. |
-| Highlightly | [API documentation](https://highlightly.net/mlb-api/documentation/) describes team match statistics as MLB and warns fields can be absent. Its wider NCAA offering does not establish this endpoint's NCAA coverage in 2021–2024. No authenticated sample tested. | Not selected: extra coverage/schema uncertainty. |
-| Highlightly terms | [Published terms](https://highlightly.net/terms/), updated July 24, 2026, allow application data storage/use but restrict API resale, competing databases and gambling/gaming operations. | Bracket-product suitability would need clarification; no license-fit conclusion. |
-| NCAA, ESPN, schools, D1Baseball | Existing [source findings](Statistics_Discovery_and_Triage.md#sourceaccess-findings): NCAA access unresolved, ESPN historical gaps, school-specific work, D1 automation prohibition. No fresh endpoint probes. | Not reopened. Retained examples do not establish a national component feed. |
+| College Splits / FanGraphs | [College Splits](https://collegesplits.com/about) advertises NCAA event data; [FanGraphs](https://blogs.fangraphs.com/weve-got-college-data/) names it as supplier and advertises history from 2021/member exports. Dated sample, complete fields and rights unverified. | Paid path removed; no inquiry queued. |
+| Highlightly | [Docs](https://highlightly.net/mlb-api/documentation/) describe team match stats as MLB, with possible missing fields; historical NCAA support unverified. [Terms](https://highlightly.net/terms/) constrain gaming use. | Not selected; no signup or paid plan. |
+| NCAA, ESPN, schools, D1Baseball | [Existing findings](Statistics_Discovery_and_Triage.md#sourceaccess-findings): access gaps, uneven histories, school-specific work and D1 automation prohibition. | No new probes or school sweep. |
 
-These findings mean **not qualified**, not that historical data do not exist. Source quality, licensing and cost remain distinct questions.
+Source facts above were read from public documentation/metadata. No API game payload, historical stat table or new evidence archive was acquired. Search/provenance pages exposed incidental current-year metadata; no 2026 games or features were ingested or evaluated.
 
-## One bounded provider sample
+## Gate for any later free dataset
 
-This specification is ready for an authorized inquiry; it has not been sent. Ask College Splits whether it can deliver:
+Require a 2021–2024 coverage manifest, stable team/game/opponent identities, dates/completion annotations, phase labels, provenance, explicit missing values and usable terms. Qualify team batting AB/H/2B/3B/HR/BB/HBP/SO/SF/SH/PA and team pitching outs/H/R/ER/BB/HBP/SO/HR/BF as needed by the exact selected feature. Missing PA/BF or interference components block dependent rates; do not invent zeros or average game rates. Team ER need not equal summed pitcher ER. Individual pitcher histories are unnecessary for this gate.
 
-1. A coverage manifest for all 64 NCAA tournament teams in each of 2021–2024 (256 team-seasons): stable provider/team IDs, dated game inventory, available batting/pitching fields, missing games and known corrections. Request inventory metadata before bulk stats.
-2. One machine-readable sample package containing complete dated team batting and team pitching logs for **LSU and Towson in each of 2021–2024** (eight team-seasons), including conference-tournament games where played. These contrast programs/conferences, reuse existing reference experience, and are selected without candidate outcomes. They test schema and season coverage, not national completeness or predictive performance. No substitution of a more convenient school/year and no sequential school requests; missing sample history is a reported failure. Include postseason rows only as exclusion/audit checks.
-3. Counts, definitions and explicit missing values: batting AB, H, 2B, 3B, HR, BB, HBP, SO, SF, SH, PA and interference/other PA awards; team pitching outs, H, R, ER, BB, HBP, SO, HR and BF. Provide team ER directly rather than assuming summed pitcher ER equals it. Do not require individual pitcher histories, roles, pitch counts or availability.
-4. Game ID, opponent ID, season, game date/time and timezone, completion/resumption information, status, phase, source provenance and correction policy. Unavailable historical publication times must be disclosed; retrieval today never proves availability then.
-5. Written permitted delivery/automation, local raw-cache retention and reproducible model-research rights, plus use of derived predictions/stat summaries in Aaron's bracket app. Clarify duration, historical package price, future on-demand updates and restrictions. Do not request player histories or a recurring live feed. No price or budget is assumed.
+Reconcile eligible inventories and available count evidence. Apply unchanged [cutoffs](../historical/cutoffs.json), v2 completion corrections, two-day availability assumption and separate regular-only/conference-inclusive modes. Final totals are audit-only. Require complete selected-field feature coverage and common samples before a full-field experiment; no silent loss of teams.
 
-Acceptance: reconcile the sample against retained result inventories and any existing independent count evidence; explicitly disclose where only within-provider checks are possible. Reject duplicates, unresolved identities/dates, missing eligible games and invented zeros. Aggregate counts before rates, validate innings as outs, and check PA/BF including interference. A missing denominator blocks its rate, not every unrelated count. Final-season totals are audit-only.
-
-Apply unchanged [cutoffs.json](../historical/cutoffs.json), v2 completion corrections and two-calendar-day availability assumption; keep regular-only and conference-inclusive separate. A generic provider “regular season” label is insufficient until conference-tournament classification agrees. Snapshots must independently support both modes and their exact eligible game sets; a single pre-NCAA total cannot replace dated logs. Eight passing histories would clear only the sample gate. Require manifest reconciliation and complete selected-field component coverage before a full-field experiment; no partial rows silently changing the common sample.
-
-## Retain Elo versus licensed data
-
-| Choice | Benefit | Cost / remaining limit |
-|---|---|---|
-| Retain Elo now (selected) | Usable full-field app and established evaluations; no new acquisition needed | Does not distinguish component hitting/pitching styles. Fresh production ingestion remains separately unqualified. |
-| College Splits sample, only after authorization | One centralized delivery could make component testing practical | Price, permissions, sample delivery and all-field completeness unknown; even qualified data may not improve predictions. |
-
-Next concrete step is Aaron's decision whether to authorize **one College Splits sample-and-license inquiry**, using the scope above, with no purchase commitment. Otherwise retain Elo and leave component acquisition paused; do not replace this decision with another open-ended source search.
-
-The net-run candidate stays closed. [SPEC](../historical/SPEC.md) and [qualification](Model_Input_Qualification.md#fitting-and-promotion-boundaries) retain evaluation authority. No fitting or metrics were run. Any later component experiment must lock its recipe before fitting, retain common samples and advancement validation, and acknowledge 2024's prior validation exposure; it is not a fresh untouched holdout. 2025 remains development, 2026 excluded, and individual pitchers remain deferred.
+The [qualification](Model_Input_Qualification.md#fitting-and-promotion-boundaries) and [SPEC](../historical/SPEC.md) own evaluation. Net-run remains closed; no new fitting, predictions or metrics occurred. Prior 2024 validation exposure must remain explicit, 2025 stays development, 2026 excluded, and individual pitchers remain deferred. The app continues with retained Elo while richer components are blocked; no paid approval is needed to keep using it.
