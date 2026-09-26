@@ -280,4 +280,24 @@ mkdir -p historical/model_inputs
 python3 scripts/plan_model_expansion.py > historical/model_inputs/expansion_plan.json
 ```
 
-The report rechecks retained selection-source hashes/dates and timing evidence, fingerprints source/config/code inputs, and counts both modes for the proposed 2021–2024 fields and four-team preflight. It reads no candidate metrics and performs no fitting or collection. The 2021 field is explicitly provisional because selection/seed evidence is missing. Result-game counts exclude non-D1 workload and audit-only postseason inputs; they are not a request budget or qualified feature coverage. Keep the generated team-level report ignored. Scope, gates and verified counts belong in [qualification](Model_Input_Qualification.md#multi-season-expansion-plan).
+The report rechecks retained selection-source hashes/dates and timing evidence, fingerprints source/config/code inputs, and counts both modes for the proposed 2021–2024 fields and four-team preflight. It reads no candidate metrics and performs no fitting or collection. Without the optional preflight checkpoint below, the 2021 field remains explicitly provisional; with it, the planner checks the dated selection evidence. Result-game counts exclude non-D1 workload and audit-only postseason inputs; they are not a request budget or qualified feature coverage. Keep the generated team-level report ignored. Scope, gates and verified counts belong in [qualification](Model_Input_Qualification.md#multi-season-expansion-plan).
+
+## Multi-season preflight evidence
+
+`College_Baseball_Multiseason_Preflight_Evidence.zip` retains 18 bounded source-request records (17 successful responses and one 404), including three 2022 sample boxes, source inventories/access pages, Arkansas/Vanderbilt timing recaps and the 2021 selection evidence. It also contains the derived audit and expansion plan. No full-season sweep occurred. Keep the baseline and timing/seed checkpoints; this archive does not replace them or the earlier player evidence.
+
+SHA-256: `41559fdbb883f7af0e98443d0fbbd24cc5330adfdfefa06aa08bb4b118ef814b`.
+
+Verify that hash, then extract to a new directory. The selection audit needs Poppler's `pdfinfo` and `pdftotext` on PATH; tests need neither the PDF nor Poppler. From the repository root:
+
+```sh
+sha256sum /absolute/path/to/College_Baseball_Multiseason_Preflight_Evidence.zip
+python3 -m zipfile -e /absolute/path/to/College_Baseball_Multiseason_Preflight_Evidence.zip /tmp/baseball-preflight
+mkdir -p historical/model_inputs
+python3 scripts/audit_expansion_preflight.py --raw-dir /tmp/baseball-preflight/raw > historical/model_inputs/preflight_audit.json
+cmp historical/model_inputs/preflight_audit.json /tmp/baseball-preflight/audit.json
+python3 scripts/plan_model_expansion.py --preflight-raw-dir /tmp/baseball-preflight/raw > historical/model_inputs/expansion_plan.json
+cmp historical/model_inputs/expansion_plan.json /tmp/baseball-preflight/expansion_plan.json
+```
+
+Both commands are offline and emit JSON to stdout; keep redirected outputs in ignored directories. Audit/code fingerprints deliberately change if their inputs or implementation change. The strict Arkansas result inventory stays 66/67; the separate completion annotation reaches 67/67 without editing baseline dates or assuming pitcher work dates. Only three boxes, not complete feature histories, were parsed. The 2021 selection check does not rewrite v2 metrics. Detailed access, timing and qualification limits belong in [qualification](Model_Input_Qualification.md#verified-preflight-september-26-2026).

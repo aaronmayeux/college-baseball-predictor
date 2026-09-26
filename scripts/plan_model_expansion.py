@@ -4,6 +4,7 @@ Restore baseline and timing/seed checkpoints per docs/DATA.md. JSON goes to
 stdout; redirect only to an ignored analysis directory. Counts are result-game
 inventories, not qualified boxes, permitted requests, or statistical power.
 """
+import argparse
 import collections
 import datetime as dt
 import hashlib
@@ -37,10 +38,14 @@ def inventory(games, field, year, contract):
     return dict(team_count=len(field), modes=result, potential_ncaa_games=len(targets))
 
 
-def run():
+def run(preflight_raw=None):
     contract = json.loads((ROOT / 'historical/cutoffs.json').read_text())
     selected = seeds.load(contract)  # Recheck selection bytes, dates and identities.
     refs = verify_timing()
+    selection = None
+    if preflight_raw is not None:
+        from selection_2021 import audit
+        selection = audit(preflight_raw, ROOT)
     seasons = []
     roles = {2021: 'training_initialization_year', 2022: 'training',
              2023: 'selection', 2024: 'retrospective_validation'}
@@ -48,6 +53,8 @@ def run():
         games = overlay(load_games(year), refs)
         field = ({t for g in games if g['stage'] in NCAA for t in (g['a'], g['b'])}
                  if year == 2021 else {r['team_id'] for r in selected if r['season'] == year})
+        if year == 2021 and selection is not None:
+            field = {r['team_id'] for r in selection['seeds']}
         if len(field) != 64:
             raise ValueError(f'Unexpected field inventory for {year}: {len(field)}')
         teams = json.loads((ROOT / f'historical/{year}/teams.json').read_text())
@@ -55,7 +62,7 @@ def run():
         if not field <= by_id.keys():
             raise ValueError('Unmapped field team')
         seasons.append(dict(season=year, role=role,
-            field_basis='result_participants_provisional' if year == 2021 else 'dated_selection_article',
+            field_basis=('dated_school_selection_bracket' if selection is not None else 'result_participants_provisional') if year == 2021 else 'dated_selection_article',
             teams=[dict(team_id=t, name=by_id[t]['name'],
                         conference=by_id[t].get('conference')) for t in sorted(field)],
             **inventory(games, field, year, contract)))
@@ -70,6 +77,8 @@ def run():
              ROOT / 'historical/baseline.py', ROOT / 'historical/eligibility.py',
              ROOT / 'historical/reconcile.py', ROOT / 'historical/validation_v2/seeds.py',
              ROOT / 'historical/validation_v2/evidence.py']
+    if selection is not None:
+        paths.append(ROOT / 'scripts/selection_2021.py')
     paths += [ROOT / f'historical/{y}/{f}.json' for y in roles for f in ('games', 'teams')]
     return dict(schema_version=1, status='planning_only_no_qualified_feature_sample',
         collection_authorized=False, feature_metrics_computed=False,
@@ -77,11 +86,14 @@ def run():
                           for p in paths},
         selection_provenance={str(y): next(r['provenance'] for r in selected if r['season'] == y)
                               for y in (2022, 2023, 2024)}, timing_evidence=refs,
-        seasons=seasons,
+        selection_2021=selection, seasons=seasons,
         preflight=dict(season=2022, regional=region, new_team_seasons=3,
             purpose='parser_access_feasibility_only_not_model_selection',
             **inventory(overlay(load_games(2022), refs), pilot, 2022, contract)))
 
 
 if __name__ == '__main__':
-    print(json.dumps(run(), indent=2, sort_keys=True))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--preflight-raw-dir', type=pathlib.Path)
+    args = parser.parse_args()
+    print(json.dumps(run(args.preflight_raw_dir), indent=2, sort_keys=True))

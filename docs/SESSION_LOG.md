@@ -4,16 +4,20 @@ Updated September 26, 2026. Git history owns prior sessions.
 
 ## Completed
 
-Planned the smallest staged expansion in [qualification](Model_Input_Qualification.md#multi-season-expansion-plan): start with the complete 2022 Stillwater regional (reuse Missouri State; three new team-seasons), then target the 2021–2024 NCAA fields for full-field testing. This is a coverage scope, not a statistical minimum or collection authorization. Training/selection/validation remains 2021–2022 / 2023 / 2024; 2025 is development and 2026 excluded.
+Ran the three-new-school 2022 preflight. Oklahoma State 64/64 and Grand Canyon 62/62 result inventories reconcile. Arkansas reaches 67/67 via a separate May 14 start / May 15 completion annotation supported by both schools; the strict 66/67 inventory stays intact. All eligible inventories now match both modes.
 
-Added an offline inventory command, `scripts/plan_model_expansion.py`; [DATA](DATA.md#offline-multi-season-expansion-inventory) owns reproduction. The four-season inclusive inventory has 14,175 team-game rows / 12,072 distinct D1 input games. These are not qualified boxes or request counts. No fitting, thresholds, fresh collection, model/app changes or new evidence archive.
+Three earliest-game boxes pass two-sided core count checks (23 pitchers, 82 batting rows). Oklahoma State/Grand Canyon also pass BF, opposing PA and explicit pitching-start checks. Arkansas richer counts/roles and all full-season feature packages remain unqualified. The generic StatCrew core reader preserves LSU wrapper behavior.
+
+Separate 2021 selection evidence now qualifies 64 regional seeds and 32 opening matchups retrospectively. The expansion planner accepts it through optional `--preflight-raw-dir`; frozen v2 metrics and 2025 routing remain unchanged.
+
+[Qualification](Model_Input_Qualification.md#verified-preflight-september-26-2026) owns findings and restrictions. [DATA](DATA.md#multi-season-preflight-evidence) owns restoration of the new retained evidence ZIP and commands.
 
 ## Verification
 
-Restored exact-hash baseline and timing/seed checkpoints. All 154 existing tests pass (124 scripts, 30 historical). The new report repeats byte-for-byte, checks retained selection/timing evidence, and preserves all existing historical JSON/CSV and app HTML hashes. Scope/count assertions pass. Other evidence audits were not rerun; their prior findings remain unchanged.
+All 163 tests pass (133 scripts, 30 historical). Both new reports repeat byte-for-byte. Existing baseline/v2 JSON/CSV and app HTML hashes remain unchanged. ZIP integrity passes. No fitting, season sweep, model/app change or 2026 evaluation.
 
 ## Next action and limits
 
-Review exact-source access/volume and cached or permitted sample boxes for Oklahoma State, Arkansas and Grand Canyon 2022; complete the four-team preflight only after access clears. All registry bulk permissions remain unverified. No provider contact is authorized.
+Review whether the retained structured pages' dated game-by-game counts can qualify ISO/OBP offline, preserving final totals as audit-only. Establish source-specific acceptable automation scope before expanding boxes; all three bulk permissions remain unverified. No provider contact is authorized. Finish Arkansas richer-count/role parsing and four-team full-season reconciliation before any candidate scoring.
 
-Before freezing the multi-season sample, qualify missing 2021 selection/seed evidence; its inventory is provisional. Before advancement validation, qualify historical routing (current routing is 2025-only). Preserve per-feature, both-team common samples and full Elo fallback. Do not tune on preflight outcomes or 2024. National predictive validation, actual work dates/rest and depth/ace thresholds remain unqualified. Broader audits, spreadsheet comparisons, UI changes and hosting migration stay deferred.
+Preserve chronological 2021–2022 training / 2023 selection / 2024 retrospective validation, both-team common samples and Elo fallback. Rest/depth thresholds remain unknown. Historical routing still needs qualification before advancement evaluation. Broader audits, spreadsheet comparisons, UI changes and hosting migration stay deferred.

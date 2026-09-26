@@ -36,3 +36,9 @@ Additional holdout exposure: requesting Columbia's official 2021 schedule silent
 `validation_v2/run.py` is a separate frozen-forecast evaluation; it never rewrites baseline games, predictions or metrics. Its contract and evidence are in [the v2 report](../docs/Timing_and_Seed_Validation.md). Original quarantine rules remain part of v1 reproduction; v2 applies verified timing resolutions to copies. Completion dates drive the unchanged two-day result-availability assumption. Do not feed suspended-game completion dates into a new daily prediction target: model start and completion events separately first.
 
 The seed comparator uses cutoff-eligible NCAA selection announcements and a fixed regional-seed odds rule, with no fitting or national-seed inputs. Both published and modified timestamps must precede the forecast cutoff. Require complete identity mappings and compare on identical samples. Preserve development/holdout labels and reconstruction caveats.
+
+## Separate preflight selection evidence
+
+The 2021 school-hosted NCAA selection PDF and dated school article now pass a separate retrospective eligibility/identity check; see [qualification](../docs/Model_Input_Qualification.md#verified-preflight-september-26-2026). This does not change v1 or v2 seeds, predictions, metrics or the initialization label. The expansion planner accepts this evidence optionally; future seed scoring must retain common samples and cutoff rules.
+
+September 26 discovery/search results exposed incidental 2026 scores and current-year summaries while locating historical sources. They were not ingested as features or used for fitting, selection or evaluation; the existing no-untouched-2026 decision remains binding.

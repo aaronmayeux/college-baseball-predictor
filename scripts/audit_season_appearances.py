@@ -78,7 +78,7 @@ def season_totals(text, school):
     return result
 
 
-def lsu_box(text, expected):
+def statcrew_box(text, expected, team_name):
     title = re.search(r'<title[^>]*>(.*?)</title>',text,re.S|re.I)
     date = re.search(r'\(([A-Z][a-z]+ +\d{1,2}, \d{4})\)',plain(title[1])) if title else None
     if not date or dt.datetime.strptime(date[1],'%b %d, %Y').date().isoformat()!=expected['date']: raise ValueError('Box date mismatch')
@@ -89,32 +89,35 @@ def lsu_box(text, expected):
             if not cells: continue
             if re.fullmatch(r'.+ \d+ \([\d-]+[^)]*\)',cells[0]):
                 m=re.fullmatch(r'(.+) (\d+) \([\d-]+[^)]*\)',cells[0]); batting_team=m[1]
-                if batting_team=='LSU' and int(m[2])!=expected['runs'][expected['teams'].index('LSU')]:
-                    raise ValueError('LSU box score mismatch')
+                if batting_team==team_name and int(m[2])!=expected['runs'][expected['teams'].index(team_name)]:
+                    raise ValueError('StatCrew box score mismatch')
             if cells[0]=='Player' and 'ab' in cells: header=[v.upper() for v in cells];continue
             if header and cells[0]=='Totals' and len(cells)==len(header):batting_totals[batting_team]=dict(zip(header,cells))
             if len(cells)>1 and cells[1]=='ip':
                 pitching_team=cells[0];ph=[v.upper() for v in cells]; continue
-            if ph and len(cells)==len(ph) and pitching_team=='LSU' and re.fullmatch(r'\d+\.[012]',cells[1]):
+            if ph and len(cells)==len(ph) and pitching_team==team_name and re.fullmatch(r'\d+\.[012]',cells[1]):
                 raw=dict(zip(ph[1:],cells[1:])); values={f:outs(raw['IP']) if f=='outs' else count(raw[f]) for f in PITCH_FIELDS}
                 values['BF']=count(raw['BF']); np=None if raw['NP'] in ('','--','0') else count(raw['NP'])
                 result['pitching'].append(dict(name=cells[0],counts=values,pitch_count=np or None,raw=raw))
-            elif header and batting_team=='LSU' and len(cells)==len(header) and cells[0]!='Totals' and re.fullmatch(r'\d+',cells[1]):
+            elif header and batting_team==team_name and len(cells)==len(header) and cells[0]!='Totals' and re.fullmatch(r'\d+',cells[1]):
                 raw=dict(zip(header,cells)); name=re.sub(r'\s+(?:[123]b|ss|[lcr]f|[pc]|dh|ph|pr)(?:/(?:[123]b|ss|[lcr]f|[pc]|dh|ph|pr))*$', '', cells[0])
                 values={f:count(raw[f]) for f in BAT_FIELDS}
                 result['batting'].append(dict(name=name,counts=values,raw=raw))
-    if not all(result.values()): raise ValueError('Missing LSU player tables')
+    if not all(result.values()): raise ValueError('Missing StatCrew player tables')
     if set(batting_totals)!=set(expected['teams']):raise ValueError('Box opponents mismatch')
     for team,score in zip(expected['teams'],expected['runs']):
         if count(batting_totals[team]['R'])!=score:raise ValueError('Box score mismatch')
     for f in BAT_FIELDS:
-        if sum(p['counts'][f] for p in result['batting'])!=count(batting_totals['LSU'][f]):raise ValueError('Batting sum mismatch')
-    opponent=next(t for t in expected['teams'] if t!='LSU')
+        if sum(p['counts'][f] for p in result['batting'])!=count(batting_totals[team_name][f]):raise ValueError('Batting sum mismatch')
+    opponent=next(t for t in expected['teams'] if t!=team_name)
     for f in ['H','R','BB','SO']:
         if sum(p['counts'][f] for p in result['pitching'])!=count(batting_totals[opponent][f]):raise ValueError('Pitching versus opponent mismatch')
-    if sum(p['counts']['outs'] for p in result['pitching'])!=count(batting_totals['LSU']['PO']):raise ValueError('Pitching outs versus putouts mismatch')
+    if sum(p['counts']['outs'] for p in result['pitching'])!=count(batting_totals[team_name]['PO']):raise ValueError('Pitching outs versus putouts mismatch')
     return result
 
+
+def lsu_box(text, expected):
+    return statcrew_box(text, expected, "LSU")
 
 def towson_box(text, expected):
     title=re.search(r'<title[^>]*>(.*?)</title>',text,re.S|re.I)
