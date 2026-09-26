@@ -1,6 +1,6 @@
 # College Baseball Predictor — Project Brief
 
-Current state: September 25, 2026.
+Current state: September 26, 2026.
 
 ## Purpose and current status
 
@@ -12,7 +12,7 @@ Fixed neutral Elo selected 68.9% of NCAA winners across 411 games in 2022–2024
 
 Exact pre-NCAA cutoffs are now recorded: Wednesday 12:00 UTC before regionals, with a two-calendar-day assumed availability delay for date-only results. Regular-only and conference-inclusive inputs are separate. Point-in-time publication/completion is not certified. 2026 cannot be called untouched because prior probes exposed outcomes; discovery also encountered a default current-year player leaderboard. It was not used for model fitting or evaluation.
 
-The preserved baseline and separate v2 evidence checkpoints are documented in DATA.md. V2 resolves the timing conflicts, checks 1,019 official schedule entries, and adds a cutoff-safe 2022–2025 seed benchmark. A complete team-only tournament engine and mobile-friendly browser app now use the retained 2025 field. Both frozen modes produce exact advancement odds, a full picked bracket, comparisons and CSV exports. A standalone HTML copy works offline; the first app is now privately hosted on Sites. Richer inputs follow after qualification. See [engine and app](Tournament_Engine.md).
+[DATA.md](DATA.md) owns the preserved checkpoints. V2 resolves timing conflicts, checks 1,019 official schedule entries and adds a cutoff-safe 2022–2025 seed benchmark. The [engine and app](Tournament_Engine.md) use the retained 2025 field in both frozen modes, with advancement odds, a complete bracket, comparisons and CSV exports. The app works offline or privately hosted on Sites.
 
 ## Working references
 
@@ -26,7 +26,7 @@ GitHub `main` is authoritative. `AGENTS.md` owns working rules; `historical/SPEC
 
 ## Intended product
 
-A mobile-friendly web app with an on-demand pre-tournament data import, one complete bracket, game/advancement/championship probabilities, short explanations and spreadsheet exports. Recurring refresh and live tournament updates are not required for the primary product. The authorized first app uses HTML/JavaScript, a Python export and private Sites hosting. Add the DYNAMIC workbook-inspired two-team radar chart—contact, power, speed, pitching and defense—only after qualifying its inputs and defining comparable scales. Original chart formulas are not validated.
+The mobile-friendly app needs on-demand pre-tournament import, a complete bracket, game/advancement/championship probabilities, short explanations and spreadsheet exports; no recurring refresh or live updates. The authorized first app uses HTML/JavaScript, a Python export and private Sites hosting. Add the DYNAMIC workbook-inspired two-team radar chart—contact, power, speed, pitching and defense—only after qualifying its inputs and defining comparable scales. Original chart formulas are not validated.
 
 ## Decisions to carry forward
 
@@ -84,7 +84,7 @@ Every normalized record should retain provider, provider ID, stable internal tea
 | 5. First usable app | Mobile-friendly bracket, probabilities, team comparisons, explanations and export | Aaron can open and use a complete 64-team development bracket through the champion; model/data versions, cutoffs and limitations are visible |
 | 6. Richer inputs and production readiness | Qualified hitting profiles, pitching depth/aces and availability; reliable fresh import | Validate additions against the baseline chronologically; qualify source access and coverage for inputs actually used |
 
-Python and SQLite implement the existing pipeline and baseline. Remaining audit gaps do not block milestones 4–5 using retained 2025 development data. Build order is engine → usable app → richer inputs. Aaron accepts the first app’s appearance and behavior. Move to milestone 6 with focused input qualification; broad collection/access audits remain paused unless needed for a selected feature. This does not certify fresh nationwide ingestion or player features.
+Python and SQLite implement the pipeline and baseline. Build order remains engine → usable app → richer inputs. Aaron accepts the first app’s appearance and behavior. Move to milestone 6 with focused input qualification; broad collection/access audits remain paused unless needed for a selected feature. This does not certify fresh nationwide ingestion or player features.
 
 ## Evaluation rules
 
@@ -105,9 +105,9 @@ The accepted [hosted app](https://aaron-college-baseball-predictor.aaronmayeux.c
 
 The [focused input qualification](Model_Input_Qualification.md) now includes a verified offline hitting extractor: LSU contact/power/OBP and Missouri State power/OBP, with both cutoff modes and explicit missing denominators. These descriptive inputs do not yet support national model validation; predictions are unchanged.
 
-The separate pitching extractor now verifies BF and explicit starts across 180 LSU/Davidson/Missouri State boxes and produces complete cutoff-specific workload/role summaries. Missing pitch counts and actual work dates prevent rest claims. Next: define the smallest permitted multi-season expansion covering both sides of evaluation matchups, following the qualification report’s chronological plan before collection or fitting. Depth/ace thresholds and scaling remain open.
+The separate pitching extractor now verifies BF and explicit starts across 180 LSU/Davidson/Missouri State boxes and produces complete cutoff-specific workload/role summaries. Missing pitch counts and actual work dates prevent rest claims. The [staged expansion plan](Model_Input_Qualification.md#multi-season-expansion-plan) now starts with the four-team 2022 Stillwater regional (three new team-seasons), then targets the 2021–2024 NCAA fields for full-field testing. Next: qualify exact source access and the preflight input package before any season sweep; resolve the missing 2021 selection/seed evidence before freezing the multi-season sample. No new bulk collection is cleared. Depth/ace thresholds and scaling remain open.
 
-Preserve all 64 teams and both cutoff-separated modes; retain the existing team-only fallback where richer inputs are unqualified. Spreadsheet comparisons, interface redesign, Cloudflare migration and daily updates remain deferred. Aaron has a Cloudflare account and prefers it as a future hosting option; migration is separate from model work. The current app remains a 2025 development demo. See [Tournament_Engine.md](Tournament_Engine.md) for reproduction and [DATA.md](DATA.md) for retained evidence.
+Preserve all 64 teams and both cutoff-separated modes; retain the existing team-only fallback where richer inputs are unqualified. Spreadsheet comparisons, interface redesign, Cloudflare migration and daily updates remain deferred. The current app remains a 2025 development demo. See [Tournament_Engine.md](Tournament_Engine.md) for reproduction and [DATA.md](DATA.md) for retained evidence.
 
 ## Open decisions
 

@@ -47,7 +47,7 @@ The Missouri State adapter sums already reconciled structured batting rows and p
 
 These are unadjusted descriptive inputs, **not evidence of improved predictions**. Both team/mode inventories are complete. A missing or invalid eligible game blocks that mode's rates; a PA mismatch blocks PA-based rates while retaining reconciled power counts. Failed full-season count checks also block rates. Input hashes, source metadata, game exclusions and original date annotations remain in the output. No player-level hitting features or weights are enabled.
 
-LSU’s cached StatCrew pitching qualification is now implemented below. Next identify the smallest permitted multi-season expansion needed for the evaluation contract below. Existing LSU 2021–2024 indexes/sample boxes are candidates, not qualified seasons. Qualify both sides of evaluation matchups; one school's seasons alone cannot validate a national feature. Reuse caches/shared boxes and resolve access scope for the exact selected source before requests. Broad discovery and bulk collection remain paused.
+LSU’s cached StatCrew pitching qualification is now implemented below. The staged expansion below now defines the next work for the evaluation contract. Existing LSU 2021–2024 indexes/sample boxes are candidates, not qualified seasons. Qualify both sides of evaluation matchups; one school's seasons alone cannot validate a national feature. Reuse caches/shared boxes and resolve access scope for the exact selected source before requests. Broad discovery and bulk collection remain paused pending the exact-source access gate below.
 
 ## Pitcher BF, roles and workload pilot
 
@@ -87,6 +87,46 @@ Target qualified training inputs from 2021–2022, development selection on 2023
 Freeze eligibility and common game IDs before fitting. Score NCAA games whose two teams have qualified pre-NCAA features; record eligible games, teams, conferences and exclusions by season and mode. Compare unchanged Elo, seed benchmark and one-feature challengers on exactly those same games, and also report full-sample fallback coverage. Do not compare a selected-subset challenger against the published all-game 68.9% baseline.
 
 Start with one added feature at a time, then only supported combinations. Primary measures: log loss and Brier score; also calibration, winner accuracy, and results by season. Report season/tournament-cluster uncertainty with the few-season limitation explicit. Retain an addition only when probability-quality evidence supports it without an unexplained material regression; otherwise keep Elo. Game-level gains do not establish bracket gains: evaluate advancement probabilities separately using the unchanged tournament engine before promotion. Freeze any future untouched test prospectively.
+
+## Multi-season expansion plan
+
+Planning decision, September 26, 2026: qualify a **four-team preflight**, then target **the 64 NCAA field teams in each of 2021–2024 (256 team-seasons)** for the full-field experiment. This restricts new player histories to tournament participants; keep the existing nationwide results for Elo. Do not recursively collect every opponent's season or build cross-season player identities. The 256 is a scope choice for complete tournament coverage, **not a statistically proven minimum or permission to collect**. A smaller predeclared subset could support exploratory matchup research, but cannot answer the full-field/advancement question. No collection or fitting is enabled by this plan.
+
+### First bounded step
+
+Use the **2022 Stillwater regional: Oklahoma State, Arkansas, Grand Canyon and Missouri State**. Missouri State's retained season makes this three new team-seasons, with additional qualification still needed for Missouri State. Selection is based on reusable evidence and a complete four-team group, not results or feature performance. Do not replace difficult schools with convenient winners or inspect challenger metrics in this preflight.
+
+The cached inventory contains 215 regular-only team-game rows (213 distinct games), or 232 conference-inclusive rows (230 games). These are **result inventories**, not fresh-request counts or qualified feature rows. The group's seven NCAA games are potential matchup targets; the preflight is too narrow for national validation. Begin with access review and one representative permitted/cached box per new source, then complete histories only if the gate passes. Reuse shared boxes only when both sides independently pass their count/identity checks. A box containing an opponent does not qualify that opponent's season.
+
+### Bounded expansion and verified volume
+
+An offline plan rebuilt from the hash-verified baseline and timing/seed checkpoints gives:
+
+| Season / use | Field teams | Eligible team-game rows, regular / inclusive | Distinct input games, regular / inclusive | Potential NCAA targets |
+|---|---:|---:|---:|---:|
+| 2021 training; baseline initialization year | 64 provisional | 3,118 / 3,309 | 2,668 / 2,825 | 139 |
+| 2022 training | 64 | 3,395 / 3,621 | 2,894 / 3,086 | 141 |
+| 2023 candidate selection | 64 | 3,399 / 3,643 | 2,878 / 3,072 | 137 |
+| 2024 locked retrospective comparison | 64 | 3,387 / 3,602 | 2,907 / 3,089 | 133 |
+
+Across the four seasons, conference-inclusive inputs cover 14,175 team-game rows in 12,072 distinct result games. The modes overlap; do not add their volumes. Actual requests also depend on cache reuse, two-sided parsing, schedules, cumulative audit targets, failed sources and full-season reconciliation. Non-D1 appearances must be retained for physical workload/audit purposes even when excluded from D1 quality features; these inventory counts do not include them. Final-total reconciliation may require postseason boxes, which remain audit-only and outside forecast features. The current extractors require full-season checks; do not silently weaken that gate to meet the smaller pre-cutoff count.
+
+Only Missouri State 2022 among these 256 has a completed retained appearance pilot. Its ISO/OBP and pitching summaries can be reused, but PA remains unqualified. LSU 2021–2024 indexes and one sample box per season are leads, not complete histories. Towson/Davidson 2024 are outside the NCAA field. LSU 2025 remains a parser regression/development reference, outside this experiment.
+
+### Gates before expansion or fitting
+
+1. **Exact access scope:** record source host, historical paths, redirect destinations, terms/robots evidence, acceptable automated use/volume, cache coverage and proposed request budget. Existing successful probes and robots pacing do not establish bulk permission. All retained player-source registry entries still have unverified bulk permission; no fresh full-season sweep is presently cleared. Use permitted school/conference/opponent sources if available; record failures without bypassing restrictions. Do not contact providers without Aaron's authorization. D1Baseball remains excluded. If no route qualifies, report the blocker before collection.
+2. **2021 field and comparators:** current seed code supports only 2022–2025. The 2021 inventory above is provisional, inferred from NCAA-labeled result participants. Obtain and verify a cutoff-eligible 2021 selection field, seeds and identity mappings before freezing the sample; result-derived participants are not a certified selection snapshot. Preserve 2021's initialization label and fixed Elo state; its richer-input training role does not rewrite published baseline results.
+3. **Per-feature qualification:** reconcile every required eligible game and cumulative audit target. Start with ISO, OBP as the comparator, and an aggregate staff (SO−BB)/BF challenger derived by summing qualified pitcher counts. Contact and HR/PA require separately qualified PA. Depth/aces follow only after quality, sample-size handling and roles qualify; choose workload/quality thresholds on training data only. Zero/missing denominators never become zero quality. Work dates/rest, park interactions and depletion remain deferred.
+4. **Freeze before outcome scoring:** write a versioned manifest with source/code hashes, all planned teams and season-specific conferences, feature/mode qualification, both-team common game IDs, seeds and explicit exclusions. Decide missing-data and experiment rules before candidate metrics. Different feature packages need their own common-sample baseline; combinations use their intersection. A failed optional PA field need not invalidate ISO, but missing eligible ISO counts block ISO. Keep excluded teams in the app with unchanged Elo fallback. A coverage shortfall cannot silently redefine the full-field experiment: revise this plan before scoring.
+
+### Fitting and promotion boundaries
+
+Follow the chronological contract above: train on 2021–2022, select on 2023, lock the candidate and preprocessing/refit recipe, then refit through 2023 and compare once on 2024. Regular-only decides selection; conference-inclusive is a separately reported sensitivity run using the same selected feature recipe, not extra independent observations. Lock the exact small candidate/threshold grid before fitting; this planning step chooses no numerical cutoffs, weights, shrinkage or scaling. Start with one added input at a time; postpone opponent-adjusted player features requiring more opponent histories. Existing Elo remains the team-strength control, not proof the raw input is opponent-adjusted.
+
+Use paired log-loss/Brier differences on the frozen common games, calibration and secondary accuracy. Report each season and tournament grouping; one retrospective validation season cannot supply a credible multi-season uncertainty estimate. Do not treat two modes, repeated team appearances or all games as independent replicates. No minimum gain or sample size is certified here. Inconclusive probability-quality evidence means retain Elo, not tune on 2024. No 2025/2026 expansion is required; 2025 stays development and 2026 excluded.
+
+Advancement validation is a separate promotion gate. `tournament/field.py` currently hard-codes 2025 routing: qualify historical selection-day routing for the tested years before using the unchanged engine mechanics. A complete four-team group can test regional advancement; it cannot validate national title probabilities. Full-field paired game gains alone do not authorize changing the app.
 
 ## Reproduction and boundaries
 

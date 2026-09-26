@@ -270,3 +270,14 @@ python3 -m unittest discover -s scripts -p 'test_*pitching_inputs.py'
 Omitting `--season-raw-dir` retains the two structured-source pilots only. Including it also verifies LSU’s explicit starting lineup, pitcher BF components and play-derived sacrifices/interference.
 
 Output: ignored `historical/model_inputs/pitching_inputs.json`; custom outputs must also be JSON files under that directory. Check `full_season_pass`, per-mode `complete`, and per-game `BF_check`/`issues`. Source metadata, original timing annotations, scoped player names, raw appearance counts and input/code hashes are retained. Repeated runs are byte-identical. Missing pitch counts stay null; known-pitch subtotals are explicitly partial. Work dates/rest remain unknown. Results and role definitions belong in [qualification](Model_Input_Qualification.md#pitcher-bf-roles-and-workload-pilot). No model/app input is replaced.
+
+## Offline multi-season expansion inventory
+
+Restore the original baseline and timing/seed checkpoints above; no player archive or new request is required for this planning command:
+
+```sh
+mkdir -p historical/model_inputs
+python3 scripts/plan_model_expansion.py > historical/model_inputs/expansion_plan.json
+```
+
+The report rechecks retained selection-source hashes/dates and timing evidence, fingerprints source/config/code inputs, and counts both modes for the proposed 2021–2024 fields and four-team preflight. It reads no candidate metrics and performs no fitting or collection. The 2021 field is explicitly provisional because selection/seed evidence is missing. Result-game counts exclude non-D1 workload and audit-only postseason inputs; they are not a request budget or qualified feature coverage. Keep the generated team-level report ignored. Scope, gates and verified counts belong in [qualification](Model_Input_Qualification.md#multi-season-expansion-plan).
