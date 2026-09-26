@@ -41,7 +41,7 @@ The mobile-friendly app needs on-demand pre-tournament import, a complete bracke
 
 The [statistics inventory](Statistics_Discovery_and_Triage.md) owns candidate definitions, source findings, coverage, cutoff safety, thresholds and scaling alternatives, including both workbooks and the research PDF. Aaron prioritized hitting profiles and pitching quality/depth; individual features, thresholds and scaling remain unselected.
 
-The [historical player audit](Historical_Player_Data_Coverage.md) and [2025 field map](Tournament_Source_Availability_2025.md) own detailed coverage gaps. Schedule inventories are not appearance histories; national player coverage remains unverified. The team-only fallback checks all 64 teams and pairings in both modes and reproduces v2 probabilities exactly. Engine checks establish bracket mechanics, not predictive calibration. Missing pitch counts/work dates limit availability modeling; final season totals are audit-only.
+The [player audit](Historical_Player_Data_Coverage.md) and [field map](Tournament_Source_Availability_2025.md) own coverage gaps. National player coverage remains unverified. The fallback preserves all 64 teams and v2 probabilities in both modes. Engine checks establish mechanics, not calibration; missing workload limits availability modeling. Final totals are audit-only.
 
 Carry these product requirements forward:
 
@@ -109,9 +109,9 @@ The [team-run experiment](Team_Run_Experiment.md) tested retained Nolan results 
 
 Aaron selected **Warren Nolan, NCAA and D1Baseball**, with zero spending. The [source report](Team_Component_Source_Decision.md) retains NCAA OBP/ERA samples for 2021–2024, snapshot gaps and five unresolved 2024 count discrepancies. These are evidence to assess, not a requirement to perfect the archive before testing.
 
-**Current direction: run a practical batting/pitching model experiment.** Aaron accepts small documented gaps and conference-tournament stats. Use usable dated pre-NCAA reports and supported seasons; compare against Elo on identical games. Keep missing/invalid inputs on Elo fallback, disclose snapshot age and all-opponent scope, and quantify sensitivity to flagged data. Do not require four perfect seasons, exact regular-only reconstruction or another earlier-window study.
+**Practical batting/pitching experiment completed.** The [OBP/ERA experiment](Team_Component_Experiment.md) used dated, all-opponent, conference-inclusive NCAA snapshots with small discrepancies retained and exact Elo fallback. All 64 teams had usable inputs in both evaluation seasons. The combined model won 2023 selection but failed 2024: game log loss 0.620988 → 0.630395, Brier 0.215786 → 0.221404, winners 89 → 88 of 133; regional champions 10 → 9 of 16 with worse advancement scores. Flagged-input fallback and excluding 2021 from fitting did not reverse the decision. **Raw OBP/ERA candidate closed without promotion; Elo stays.**
 
-[The practical experiment contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) owns inclusion, leakage, chronology and promotion safeguards. Start with retained OBP/ERA, lock a small experiment before scoring, then report whether it improves predictions. No fitting or promotion has occurred yet. D1 remains reference-only; no school sweep or paid detour.
+[The practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) remains in force: small gaps are acceptable, leakage is not. Next is a separately locked, bounded schedule-adjusted team-component experiment using retained opponent/Elo histories and these NCAA inputs. Define adjustment and chronology before fitting; 2024 is exposed development evidence, never a new holdout. No broad source audit, school sweep, paid detour or raw-candidate retuning. D1 remains reference-only.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
 
@@ -122,5 +122,5 @@ Preserve all 64 teams and both cutoff-separated modes; retain the existing team-
 - Future production execution environment; Cloudflare is Aaron’s preferred future hosting option, with migration deferred. Development app hosting remains Sites. Repository: https://github.com/aaronmayeux/college-baseball-predictor (public).
 - Further training-season expansion beyond the implemented 2021–2025 pilot; assess scoring-environment changes before adding complexity.
 - A future prospectively reserved holdout; 2026 is not certified untouched. Current exact cutoffs and regular-only/conference-inclusive rules are settled in cutoffs.json.
-- A qualifying free source for dated team components; paid acquisition is out of scope.
+- Fresh-year NCAA input availability and schedule/park adjustments; retained reports are usable for the documented experiment, not certified nationwide production ingestion.
 - Bracket scoring system if optimizing a contest entry rather than simply reporting the most likely outcomes.

@@ -1,12 +1,12 @@
 # Historical team-component source decision
 
-Reviewed September 26, 2026. Source qualification only; no new model experiment.
+Reviewed September 26, 2026. Source evidence is retained below; the [completed practical experiment](Team_Component_Experiment.md) now owns feature inclusion and model results. Its raw OBP/ERA candidate failed validation; Elo remains.
 
 ## Decision
 
 **Use Aaron’s selected sources: Warren Nolan for the retained results backbone, NCAA for dated team batting/pitching reports, and D1Baseball for permitted reference use.** This is a personal, noncommercial, zero-budget project; [AGENTS.md](../AGENTS.md) owns those constraints. Elo stays; the net-run candidate stays closed and individual pitchers remain deferred.
 
-The direct NCAA route supplies populated national OBP/ERA samples in all four seasons, but **not yet complete, cutoff-qualified features**. Earlier dated snapshots are necessary in 2021/2022. The proposed SportsDataverse audit is superseded; no paid inquiry or school sweep is queued.
+The direct NCAA route supplies populated national OBP/ERA samples in all four seasons. These are **usable inputs under the practical contract, with the exact-reconstruction limitations below**. Earlier dated snapshots are necessary in 2021/2022. The proposed SportsDataverse audit is superseded; no paid inquiry or school sweep is queued.
 
 ## Direct NCAA archive: verified access and counts
 
@@ -120,4 +120,4 @@ The [practical experiment contract](../historical/SPEC.md#practical-team-compone
 
 Use the existing pre-NCAA cutoffs and availability assumption. Dated, older reports and all-opponent counts can be tested with scope/gaps disclosed; final/post-cutoff totals cannot become historical predictors. Use common comparison games and explicit Elo fallback instead of silently dropping bracket teams. Quantify flagged discrepancies and their sensitivity rather than stopping for minor imperfections.
 
-Net-run remains closed. Prior 2024 exposure stays explicit, 2025 development, 2026 excluded, individual pitchers deferred. The app remains Elo pending measured improvement and promotion checks; no new fitting occurred in this documentation update.
+Net-run remains closed. Prior 2024 exposure stays explicit, 2025 development, 2026 excluded, individual pitchers deferred. The app remains Elo: the separately documented practical experiment fitted OBP/ERA but failed game and advancement validation. The strict audit findings above were not rewritten.

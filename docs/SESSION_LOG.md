@@ -2,20 +2,32 @@
 
 Updated September 26, 2026. Git history owns prior sessions.
 
-## Current decision — act on usable data
+## Completed — practical OBP/ERA experiment
 
-Aaron directed us to stop letting minor data imperfections stall predictor development. **Next: run the batting/pitching experiment, not another archive-coverage or earlier-window study.** Small documented gaps are acceptable; assess their impact instead of demanding perfect reconciliation. Conference-tournament stats are allowed in explicitly labeled pre-NCAA inputs.
+[Protocol/results](Team_Component_Experiment.md) owns the experiment; [DATA](DATA.md#practical-team-component-experiment)
+owns restoration. Used retained NCAA conference-inclusive/all-opponent snapshots,
+including small count gaps. Trained 2021–2022, selected 2023, refit through 2023,
+evaluated previously exposed 2024. Five earlier identity gaps used Elo fallback;
+2023/2024 each cover all 64 teams.
 
-AGENTS.md records the priority. [SPEC's practical experiment contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) owns the revised boundaries: usable dated reports and supported seasons, all-opponent scope disclosed, minor gaps flagged/sensitivity-tested, missing inputs on Elo fallback. Four perfect seasons and exact regular-only reconstruction are no longer prerequisites. Future-data leakage, wrong identities and invalid denominators remain unacceptable.
+Combined OBP/ERA won selection but **failed 2024**: game log loss 0.620988 → 0.630395,
+Brier 0.215786 → 0.221404; winners 89 → 88/133. Regional advancement worsened too;
+champions 10 → 9/16. Flagged-pair Elo fallback and omitting 2021 from fitting did not
+reverse the conclusion. **Close raw OBP/ERA without promotion; keep Elo.** Minor gaps
+did not block the test and do not justify another cleanup round.
 
-## Available work
+## Verification
 
-Retained NCAA OBP/ERA snapshots cover 2021–2024; older 2021/2022 dates and five 2024 discrepancies are documented. [Source report](Team_Component_Source_Decision.md) owns findings; [DATA](DATA.md#ncaa-dated-team-report-sample) owns restoration. Keep evidence and strict historical audit results unchanged.
+230 tests pass; baseline/v2 rebuild succeeds; experiment reruns byte-identically.
+270 observed/hypothetical pairing checks agree; all 32 regional paths qualify.
+App, baseline, both modes and source evidence unchanged. Free retained inputs only;
+no new evidence ZIP, paid service, 2025 candidate evaluation or 2026 modeling.
 
 ## Next concrete step
 
-Prepare usable OBP/ERA features, lock a small chronological experiment and compare batting/pitching additions with matching conference-inclusive Elo on identical games. Report probability scores, calibration, winner accuracy, coverage/fallback and sensitivity to flagged inputs. No fitting or promotion yet; retain Elo unless improvement survives the required checks.
-
-## Closeout
-
-Documentation-only direction change; reviewed for conflicting instructions. Last code verification: 223 tests passed. Model/app unchanged. Net-run closed; pitchers/Stillwater deferred. Prior 2024 exposure explicit, 2025 development, 2026 excluded. Everything free; D1 reference-only; no school sweep, hosting or UI work.
+Lock one bounded **schedule-adjusted team-component** experiment using retained
+opponent/Elo histories and NCAA snapshots. Define adjustment and chronology before
+fitting; 2024 remains exposed development evidence, not an untouched test. Preserve
+small-gap tolerance, leakage checks and Elo fallback. Do not retune raw OBP/ERA,
+reopen net-run, resume broad coverage audits or individual pitchers/Stillwater.
+D1 remains reference-only; UI/hosting work deferred.

@@ -373,3 +373,24 @@ python3 -m unittest discover -s scripts -p 'test_ncaa_snapshots.py'
 ```
 
 The deterministic plan fingerprints menus, retained samples, code and result inventories; rechecks source/baseline/timing gates; and retains per-team target game IDs, compatible dates, non-D1 evidence and phase-interleaving blockers. No predictions or outcome metrics are computed. Read each mode's `summary` and `date_plan`; neither menu feasibility nor a populated national report qualifies team components. The 2021 result-participant field is explicitly provisional for this planning use. Findings and the closed single-snapshot strategy belong in the [source report](Team_Component_Source_Decision.md#national-snapshot-datephase-feasibility). Keep generated JSON ignored; repository code plus existing checkpoints reproduce it.
+
+## Practical team-component experiment
+
+Reuse the baseline/v2 and combined NCAA field/archive checkpoints above; no new archive
+is required. [Experiment protocol/results](Team_Component_Experiment.md) owns inclusion,
+chronology, metrics and limitations. After baseline/v2 restoration and rebuild:
+
+```sh
+python3 historical/team_components.py prepare --evidence-dir /absolute/path/to/baseball-ncaa
+python3 historical/team_components.py evaluate --evidence-dir /absolute/path/to/baseball-ncaa
+python3 -m unittest discover -s historical -p 'test_team_components.py'
+```
+
+The evidence root contains `raw/`, `previous/`, `weekly/`. The command verifies the
+selected snapshot metadata and source hashes, builds usable OBP/ERA plus per-team
+reasons/flags, locks selection before 2024 scoring and regional probabilities before
+advancement scoring. It writes only ignored `historical/team_component_output/*.json`.
+Identical reruns reuse matching locks; differing inputs/code/protocol refuse silent
+replacement. Source fingerprints are portable relative paths. The report's source-covered
+subsets describe available inputs; strict sensitivity additionally routes flagged pairs
+to Elo. Preserve the existing checkpoints; do not commit generated game-level outputs.
