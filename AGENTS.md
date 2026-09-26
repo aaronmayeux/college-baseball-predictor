@@ -11,6 +11,8 @@ Read `docs/College_Baseball_Predictor_Project_Brief.md` and `historical/SPEC.md`
 - Keep `docs/SESSION_LOG.md` as a short rolling handoff: latest meaningful change, verification, unresolved blockers and next action. Replace stale entries instead of appending a diary.
 - Aaron authorized the tournament engine and first usable interface. Follow the build order in the project brief; broad player-data/access audits must not block the team-only app. This repository is separate from the bridge game.
 
+- Current model-improvement priority is team-level hitting and pitching. Follow the brief’s team-level-first plan; individual pitcher histories and the unfinished Stillwater preflight are deferred, not prerequisites. Avoid open-ended school-by-school collection.
+
 ## Standing rule: keep context lean
 
 - Documentation describes current truth. Update existing sections in place; remove superseded decisions, repeated summaries, obsolete plans and routine execution chatter.

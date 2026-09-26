@@ -2,20 +2,18 @@
 
 Updated September 26, 2026. Git history owns prior sessions.
 
-## Completed
+## Direction approved by Aaron
 
-Extended the shared StatCrew adapters to a named team while preserving LSU defaults. Both sides of the retained Arkansas–Illinois State first box now pass hitting/PA, pitcher BF components and explicit lineup starter checks (ten pitchers). Fixed a defensive catcher-to-pitcher throw being mistaken for a substitution.
+Advance model improvement with **team-level hitting and pitching first**. Stop the open-ended sequence of isolated school/game collection checks. Defer individual pitcher roles, workload, depth/aces and availability. Completing the Stillwater player preflight or retrieving Arkansas's missing reports is no longer the next task.
 
-The preflight report now records cache coverage and distinguishes links from retained bytes. Arkansas's index links to dated counts and season totals, but those reports are absent. The preflight cache has one box per new school; it cannot qualify their season pitcher histories or Arkansas season hitting. The existing Oklahoma State/Grand Canyon hitting inputs remain qualified and unchanged.
+The [brief](College_Baseball_Predictor_Project_Brief.md#next-work) owns the active plan. Make one focused source decision for a practical, cutoff-safe multi-season team dataset. Reuse known source evidence and determine coverage, permitted access and collection effort. Deliver a concrete go/no-go and defined scope; if viable, build a repeatable batch import and test a small locked set of additions against Elo. If free sources are impractical, present the paid-data-versus-existing-model tradeoff rather than continuing piecemeal probes. No purchase or provider contact is authorized.
 
-[Qualification](Model_Input_Qualification.md#arkansas-retained-evidence-limit-and-sample-qualification) owns findings; [DATA](DATA.md#multi-season-preflight-evidence) owns reproduction. No new requests or ZIP, fitting, outcome metrics, model/app change or 2026 evaluation.
+## Preserved progress and verification
 
-## Verification
+Reusable extractors and all raw evidence remain intact. Oklahoma State/Grand Canyon 2022 hitting inputs qualify in both modes; Arkansas only has sample qualification, not a full season. Detailed results/gaps belong in [qualification](Model_Input_Qualification.md); restoration is in [DATA](DATA.md).
 
-All 182 tests pass (152 scripts, 30 historical). Seven new regressions cover named teams, lineup identity, defensive throws, replay spacing and cache failures. All 68 LSU hitting outputs and complete pitching report match the previous adapters exactly. Structured hitting results remain unchanged. Two preflight runs are byte-identical; 3,249 preserved data/app hashes remain unchanged.
+This closeout changes documentation only. Checked the revised instructions for consistency; no code/data/model/app changes or new collection. Last implementation verification remains 182 passing tests, unchanged prior qualified outputs and preserved baseline/app hashes.
 
-## Next action and limits
+## Evaluation limits
 
-Review acceptable access for the two exact linked Arkansas reports (`teamgbg.htm`, `teamcume.htm`), then retrieve/reconcile them if permitted. Full-season box scope remains unverified; no provider contact is authorized. Finish remaining four-team pitching/appearance qualification before candidate scoring.
-
-Preserve 2021–2022 training / 2023 selection / 2024 retrospective validation, common both-team samples and Elo fallback. No sufficient chronological feature sample exists. Rest/depth thresholds and historical routing remain unqualified. UI/hosting/spreadsheet work stays deferred.
+Preserve 2021–2022 training / 2023 selection / 2024 retrospective validation, both cutoff modes, common both-team samples, qualified denominators and Elo fallback. Final postseason totals cannot become forecast inputs. No sufficient chronological feature dataset exists yet. 2025 remains development; 2026 stays excluded. Advancement validation is required before promotion. UI/hosting/spreadsheet work remains deferred.
