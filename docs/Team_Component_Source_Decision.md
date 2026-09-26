@@ -6,26 +6,51 @@ Reviewed September 26, 2026. Source qualification only; no new model experiment.
 
 **Use Aaron’s selected sources: Warren Nolan for the retained results backbone, NCAA for dated team batting/pitching reports, and D1Baseball for permitted reference use.** This is a personal, noncommercial, zero-budget project; [AGENTS.md](../AGENTS.md) owns those constraints. Elo stays; the net-run candidate stays closed and individual pitchers remain deferred.
 
-A failed four-season mirror does not block a useful single-season access/schema check. NCAA’s public archive now provides a successful 2024 national sample. No feature or forecast mode is qualified by this discovery alone. The proposed SportsDataverse 2024 audit is superseded by this direct NCAA route; no paid inquiry or school sweep is queued.
+The direct NCAA route supplies populated national OBP/ERA samples in all four seasons, but **not yet complete, cutoff-qualified features**. Earlier dated snapshots are necessary in 2021/2022. The proposed SportsDataverse audit is superseded; no paid inquiry or school sweep is queued.
 
-## Direct NCAA sample: verified access and counts
+## Direct NCAA archive: verified access and counts
 
-The [official baseball statistics page](https://www.ncaa.org/championships/statistics-and-records/baseball/) links to the [historical archive](https://web1.ncaa.org/stats/StatsSrv/rankings?doWhat=archive&sportCode=MBA). Its public form accepts `sportCode=MBA`, `academicYear=2024`, `doWhat=display`. The returned menu offers Division I reporting dates, team categories and HTML/ASCII/PDF/CSV exports.
+The [official baseball statistics page](https://www.ncaa.org/championships/statistics-and-records/baseball/) links to the [historical archive](https://web1.ncaa.org/stats/StatsSrv/rankings?doWhat=archive&sportCode=MBA). Its public POST form accepts `sportCode=MBA`, `academicYear=<season>`, `doWhat=display`. The returned Division I menu pairs report dates with IDs. CSV POSTs to the same route use `doWhat=showrankings`, `div=1`, `rptType=CSV`, the menu-derived `rptWeeks`, and team `statSeq` 589 (OBP) / 211 (ERA), with the other three selectors -1.
 
-Two CSV POST responses succeeded from `https://web1.ncaa.org/stats/StatsSrv/rankings`, using `doWhat=showrankings`, `div=1`, `rptWeeks=90`, `rptType=CSV`, and team `statSeq` 589 (OBP) / 211 (ERA). The other three statistic selectors remain -1, as in the form. Both response headings confirm **through games May 26, 2024**; neither is a final-season report.
+`scripts/audit_ncaa_archive.py` verifies retained hashes, menu/request scope, response season/date/division/statistic, CSV schema, duplicate teams, records, counts and rate arithmetic. Each populated pair has matching names and records; every OBP and ERA reconciles. OBP supplies AB/H/BB/HBP/SF/SH; ERA supplies IP/R/team ER. Innings `.1/.2` mean one/two outs. These are source rows, not counts of tournament-eligible teams.
 
-`scripts/audit_ncaa_archive.py` verifies retained hashes, request fields, response season/date/division/statistic, CSV schema, duplicate teams, counts, records and displayed rates. It handles the archive’s reclassifying section and trailing analytics HTML without treating either as missing data. The result:
+| Season | Through date | Report ID | OBP / ERA rows | Reclassifying rows per table | Finding |
+|---|---|---:|---:|---:|---|
+| 2021 | May 30 | 73 | 0 / 0 | 0 | Both explicitly return “No rankings for this category” |
+| 2021 | May 28 | 72 | 0 / 0 | 0 | Same explicit empty response |
+| 2021 | May 23 | 67 | 293 / 293 | 7 | Populated earlier weekly snapshot; later eligible games omitted |
+| 2022 | May 30 | 75 | 0 / 0 | 0 | Both explicitly empty |
+| 2022 | May 25 | 72 | 301 / 301 | 8 | Populated; stops during conference tournaments |
+| 2023 | May 28 | 75 | 305 / 305 | 10 | Populated pre-NCAA date; field/game reconciliation pending |
+| 2024 | May 26 | 90 | 305 / 305 | 10 | Populated; 64-team reconciliation below |
 
-- **305 source team names in each table**, including ten reclassifying rows; all names and game records agree between tables. These are source rows, not 305 certified eligible tournament teams.
-- OBP includes AB, H, BB, HBP, SF and SH; all 305 displayed OBPs match the proper count formula at three decimals.
-- ERA includes IP, R and team ER; all 305 displayed ERAs match 27×ER/outs at two decimals. Baseball `.1/.2` innings convert to one/two outs, not decimal fractions.
-- The through-date passes the existing assumed two-day lag at the May 29 cutoff. Actual historical publication time, individual game inclusion and stable internal identities remain unverified.
+All tested through-dates pass the existing two-day availability assumption. That does not certify publication time or individual component-game inclusion. Empty reports are preserved as source availability findings, never zero-valued team data. The bounded earlier checks show that an empty latest menu option does **not** establish an empty season. No full archive sweep occurred. Missing SO/PA and pitching BF/K/BB also prevent dependent contact/strikeout-rate features.
 
-The data likely include conference-tournament games and may include non-D1 opponents. Do not equate NCAA records with the D1-only Nolan inventory without reconciliation. Neither forecast mode is qualified yet. A regular-only feature needs eligible game components or proven team-specific snapshots/adjustments; one shared May 26 total cannot strip conference tournaments. Missing hitting SO/PA or pitching BF/K/BB means these two tables alone do not support contact or pitching strikeout-rate features.
+## 2024 tournament-field reconciliation
 
-Next: map the 2024 NCAA names to the retained 64-team field and reconcile games/cutoff/phase scope against Nolan. Then check the same public report route for 2021–2023; verify each year’s menu rather than reuse report IDs. Keep access/schema qualification separate from fitting. Preserve the evaluation contract and do not relabel conference-inclusive totals as regular-only.
+`scripts/reconcile_ncaa_archive.py` rechecks baseline/v2 gates and the dated selection sources, reuses the verified selection-name mappings, and joins all **64 of 64** tournament teams to both tables. Only straight/curly apostrophe normalization is added; no fuzzy institution matching. None maps to a reclassifying row. It compares G/W/L/T and runs allowed against v2-corrected Nolan results, retaining game IDs, non-D1 source rows and fingerprints. Ties remain ties.
 
-[DATA.md](DATA.md#ncaa-dated-team-report-sample) owns the evidence checkpoint and offline reproduction. No automated D1 statistics collection occurred. A fresh terms-page web lookup failed; the existing documented prohibition remains, rather than assuming personal use grants automated access.
+- **63/64 records and 59/64 runs-allowed totals agree** after adding seven explicitly retained non-D1 games for four teams. **59/64 agree on all five checks.** This is reconciliation evidence, not certification of component completeness.
+- Non-D1 evidence: Grambling–Wiley (one), Nicholls–Dillard/Southeastern Baptist (four), Northern Kentucky–Miami-Hamilton (one), Western Michigan–Goshen (one). These remain excluded from the D1 model; no baseline edits.
+- **62/64 teams have conference-tournament games** in the inclusive inventory. UC Irvine and UC Santa Barbara have none. No field team has a cutoff-eligible D1 result after May 26. The snapshot is conference-inclusive in scope, not a regular-only feature source.
+
+Residual differences below are **NCAA minus Nolan D1 plus retained non-D1 totals**. No source is silently declared correct:
+
+| Team | Record difference | Runs allowed difference |
+|---|---|---:|
+| Southeast Missouri State | None | -1 |
+| Evansville | None | -5 |
+| VCU | None | +5 |
+| Northern Kentucky | +1 game, +1 win | +3 |
+| Western Michigan | None | -4 |
+
+Northern Kentucky's extra game is unexplained by the retained non-D1 row. The other four discrepancies persist despite identical records. Team totals alone cannot identify the conflicting game or distinguish scoring corrections from statistical exclusions. No school requests were made to resolve them. OBP components, earned runs and pitching outs have not been independently reconciled game by game.
+
+**Neither forecast mode is qualified.** All-opponent NCAA counts cannot silently replace D1-only features; known non-D1 scores cannot subtract unknown AB/H/BB/ER/outs. A shared cumulative snapshot cannot remove conference tournaments. The older 2021/2022 snapshots introduce additional timing gaps, and no new fitting or evaluation is authorized by this access check.
+
+Next: use the same national archive to test a **team-specific pre-conference snapshot strategy**, starting with a bounded multi-season menu/retained-game inventory plan. Quantify whether available dates can cover all 64 teams in each mode before collecting more categories. Carry the five 2024 discrepancies and older-season timing gaps as explicit blockers; do not restart a school sweep or treat 2024 as fresh validation.
+
+[DATA.md](DATA.md#ncaa-dated-team-report-sample) owns evidence checkpoints and reproduction. D1 remains reference-only under its recorded automation prohibition; no paid source or provider contact is involved.
 
 ## Warren Nolan sample
 

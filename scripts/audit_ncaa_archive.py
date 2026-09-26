@@ -1,4 +1,4 @@
-"""Offline schema/count preflight for the retained NCAA 2024 CSV sample.
+"""Offline schema/count preflight for the retained NCAA 2021–2024 CSV samples.
 
 Reads only a supplied evidence directory; never collects or publishes features.
 """
@@ -15,6 +15,10 @@ SPECS = {
     'obp': ('On Base Percentage', ['Rank', 'Name', 'G', 'W-L', 'AB', 'H', 'BB', 'HBP', 'SF', 'SH', 'PCT']),
     'era': ('Earned Run Average', ['Rank', 'Name', 'G', 'W-L', 'IP', 'R', 'ER', 'ERA']),
 }
+
+
+class NoRankings(ValueError):
+    """A correctly scoped source explicitly contains no team rows."""
 
 
 def parse_report(text, kind, season, through):
@@ -36,6 +40,10 @@ def parse_report(text, kind, season, through):
             continue
         if line.startswith('<script'):
             break  # NCAA appends analytics HTML to its CSV response.
+        if line == 'No rankings for this category':
+            if rows:
+                raise ValueError('Unexpected no-rankings marker after data')
+            raise NoRankings('Source reports no rankings for this category')
         if line == 'Reclassifying':
             reclassifying = True
             continue
@@ -78,33 +86,87 @@ def parse_report(text, kind, season, through):
     return rows, issues
 
 
-def audit(raw_dir):
-    through = date(2024, 5, 26)
+def menu_dates(text, season):
+    """Read Division I date IDs from this season's menu, never infer IDs."""
+    if not re.search(r'name="academicYear" value=["\']?' + str(season) + r'\b', text):
+        raise ValueError('Menu season mismatch')
+    arrays = []
+    for key in ('div1txt', 'div1val'):
+        matches = re.findall(r'var\s+' + key + r'\s*=\s*new Array\((.*?)\);', text)
+        if len(matches) != 1:
+            raise ValueError('Missing or ambiguous Division I menu')
+        arrays.append(next(csv.reader([matches[0]])))
+    if len(arrays[0]) != len(arrays[1]) or not arrays[0]:
+        raise ValueError('Menu date/id length mismatch')
+    result = []
+    for label, report_id in zip(*arrays):
+        match = re.fullmatch(r'Through Games (\d{2}/\d{2}/\d{4})(\(Final\))?', label)
+        if not match or not report_id.isdigit():
+            raise ValueError('Invalid menu date/id')
+        day = datetime.strptime(match[1], '%m/%d/%Y').date()
+        if day.year != season:
+            raise ValueError('Wrong-year menu date')
+        result.append((day, report_id, bool(match[2])))
+    if len({r[1] for r in result}) != len(result):
+        raise ValueError('Duplicate menu ID')
+    return result
+
+
+def selected_date(raw_dir, season, cutoff, through=None):
+    meta = json.loads((raw_dir / f'{season}_menu.json').read_text())
+    payload = (raw_dir / f'{season}_menu.html').read_bytes()
+    form = dict(meta['form'])
+    if (hashlib.sha256(payload).hexdigest() != meta['sha256']
+            or meta['url'] != 'https://web1.ncaa.org/stats/StatsSrv/rankings'
+            or meta['method'] != 'POST'
+            or any(form.get(k) != v for k, v in {'sportCode': 'MBA',
+                'academicYear': str(season), 'doWhat': 'display'}.items())):
+        raise ValueError('Invalid menu provenance')
+    options = [r for r in menu_dates(payload.decode(), season)
+               if not r[2] and r[0] + timedelta(days=2) <= cutoff.date()]
+    if not options:
+        raise ValueError('No eligible non-final report date')
+    latest = through if through is not None else max(r[0] for r in options)
+    candidates = [r for r in options if r[0] == latest]
+    if len(candidates) != 1:
+        raise ValueError('Ambiguous latest eligible report')
+    return candidates[0][:2]
+
+
+def audit(raw_dir, season=2024, through=None):
+    if season not in range(2021, 2025):
+        raise ValueError('Only 2021–2024 samples permitted')
     cutoff_file = Path(__file__).resolve().parents[1] / 'historical/cutoffs.json'
-    cutoff = datetime.fromisoformat(json.loads(cutoff_file.read_text())['seasons']['2024']['forecast_cutoff'])
+    cutoff = datetime.fromisoformat(json.loads(cutoff_file.read_text())['seasons'][str(season)]['forecast_cutoff'])
+    through, report_id = selected_date(raw_dir, season, cutoff, through)
     tables, checks = {}, {}
     for kind in SPECS:
-        metadata = json.loads((raw_dir / f'2024_{kind}.json').read_text())
-        payload = (raw_dir / f'2024_{kind}.response').read_bytes()
+        metadata = json.loads((raw_dir / f'{season}_{kind}.json').read_text())
+        payload = (raw_dir / f'{season}_{kind}.response').read_bytes()
         if hashlib.sha256(payload).hexdigest() != metadata['sha256']:
             raise ValueError('Source hash mismatch')
-        if metadata['status'] != 200 or metadata['requested_season'] != 2024 or metadata['requested_through_date'] != through.isoformat():
+        if metadata['status'] != 200 or metadata['requested_season'] != season or metadata['requested_through_date'] != through.isoformat():
             raise ValueError('Unexpected request metadata')
         form = dict(metadata['form'])
         expected_stat = '589' if kind == 'obp' else '211'
         stats = [v for k, v in metadata['form'] if k == 'statSeq']
         if (metadata['url'] != 'https://web1.ncaa.org/stats/StatsSrv/rankings'
                 or metadata['method'] != 'POST'
-                or any(form.get(k) != v for k, v in {'sportCode': 'MBA', 'academicYear': '2024',
-                       'div': '1', 'rptWeeks': '90', 'rptType': 'CSV', 'doWhat': 'showrankings'}.items())
+                or any(form.get(k) != v for k, v in {'sportCode': 'MBA', 'academicYear': str(season),
+                       'div': '1', 'rptWeeks': report_id, 'rptType': 'CSV', 'doWhat': 'showrankings'}.items())
                 or stats != ['-1', '-1', expected_stat, '-1']):
             raise ValueError('Unexpected source/form provenance')
-        rows, issues = parse_report(payload.decode(), kind, 2024, through)
+        try:
+            rows, issues = parse_report(payload.decode(), kind, season, through)
+            availability = 'populated'
+        except NoRankings:
+            rows, issues, availability = [], [], 'explicit_no_rankings'
         tables[kind] = {row['Name']: row for row in rows}
-        checks[kind] = {'rows': len(rows), 'reclassifying_rows': sum(r['reclassifying'] for r in rows), 'issues': issues, 'source_sha256': metadata['sha256']}
+        checks[kind] = {'availability': availability, 'rows': len(rows), 'reclassifying_rows': sum(r['reclassifying'] for r in rows), 'issues': issues, 'source_sha256': metadata['sha256']}
     common = set(tables['obp']) & set(tables['era'])
     mismatches = sorted(n for n in common if any(tables['obp'][n][k] != tables['era'][n][k] for k in ('G', 'W-L')))
-    return {'season': 2024, 'through': through.isoformat(), 'tables': checks,
+    return {'season': season, 'through': through.isoformat(), 'report_id': report_id,
+            'national_tables_populated': all(tables.values()), 'tables': checks,
             'common_source_team_names': len(common), 'batting_only': sorted(set(tables['obp']) - common),
             'pitching_only': sorted(set(tables['era']) - common), 'cross_table_record_mismatches': mismatches,
             'through_date_passes_assumed_lag': through + timedelta(days=2) <= cutoff.date(),
@@ -116,5 +178,7 @@ def audit(raw_dir):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--raw-dir', required=True, type=Path)
+    parser.add_argument('--season', type=int, choices=range(2021, 2025), default=2024)
+    parser.add_argument('--through', type=date.fromisoformat, help='Exact retained menu date; default latest eligible')
     args = parser.parse_args()
-    print(json.dumps(audit(args.raw_dir), indent=2, sort_keys=True))
+    print(json.dumps(audit(args.raw_dir, args.season, args.through), indent=2, sort_keys=True))

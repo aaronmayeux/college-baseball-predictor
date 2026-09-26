@@ -39,7 +39,7 @@ The mobile-friendly app needs on-demand pre-tournament import, a complete bracke
 
 ## Statistics discovery and joint triage
 
-The [statistics inventory and proposed triage](Statistics_Discovery_and_Triage.md) owns candidate definitions, source/access findings, overlap, reliability, coverage, cutoff safety, cost/effort, pitching thresholds and scaling alternatives. It reviews both original workbooks and the research PDF, and extends beyond them. Aaron approved prioritizing hitting profiles and pitching quality/depth. Individual features, quality-arm/ace thresholds and scaling are not selected or fitted.
+The [statistics inventory](Statistics_Discovery_and_Triage.md) owns candidate definitions, source findings, coverage, cutoff safety, thresholds and scaling alternatives, including both workbooks and the research PDF. Aaron prioritized hitting profiles and pitching quality/depth; individual features, thresholds and scaling remain unselected.
 
 The [historical player audit](Historical_Player_Data_Coverage.md) and [2025 field map](Tournament_Source_Availability_2025.md) own detailed coverage gaps. Schedule inventories are not appearance histories; national player coverage remains unverified. The team-only fallback checks all 64 teams and pairings in both modes and reproduces v2 probabilities exactly. Engine checks establish bracket mechanics, not predictive calibration. Missing pitch counts/work dates limit availability modeling; final season totals are audit-only.
 
@@ -109,7 +109,9 @@ The [team-run experiment](Team_Run_Experiment.md) selects the retained Warren No
 
 The locked net-runs/game addition slightly improved 2024 game probability scores but picked fewer winners. Its regional advancement validation then worsened both probability scores in both modes: regular-only still picked 10/16 champions, while conference-inclusive fell from 10/16 to 9/16. **Candidate closed without promotion; Elo remains in the app.** No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
 
-Aaron selected **Warren Nolan, NCAA and D1Baseball**, for personal, noncommercial use with no spending. The [source report](Team_Component_Source_Decision.md) records a successful NCAA May 26, 2024 national OBP/ERA CSV sample: 305 matching team rows with reconciled rates. It qualifies access/schema, not features. Next: reconcile the 64-team field, game coverage and phase scope against retained Nolan results, then test the NCAA archive’s 2021–2023 reports. Keep both modes separate. D1 remains reference-only under recorded automation restrictions; no paid detours or school sweep.
+Aaron selected **Warren Nolan, NCAA and D1Baseball**, for personal, noncommercial use with no spending. The [source report](Team_Component_Source_Decision.md) records populated national NCAA OBP/ERA snapshots for 2021–2024 (293/301/305/305 teams). The latest tested 2021/2022 dates are empty; populated earlier dates omit later eligible games. In 2024 all 64 field identities map, 63 records and 59 runs-allowed totals reconcile after accounting for retained non-D1 games; five discrepancies remain. Conference-tournament and non-D1 scope prevent regular-only qualification. Neither mode has qualified component features.
+
+Next: plan a bounded test of team-specific pre-conference national snapshots across seasons, quantifying date/field coverage against retained Nolan inventories before collecting more categories. Preserve the timing and count gaps; no school sweep. D1 remains reference-only under recorded automation restrictions; no paid detours.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
 

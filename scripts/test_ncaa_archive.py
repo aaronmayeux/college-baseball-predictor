@@ -58,6 +58,57 @@ class NCAAArchiveTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.parse(OBP + 'unexpected line\n')
 
+class MenuTests(unittest.TestCase):
+    def menu(self):
+        return '''<input type="hidden" name="academicYear" value=2024>
+var div1txt = new Array("Through Games 06/24/2024(Final)","Through Games 05/26/2024");
+var div1val = new Array("108","90");'''
+
+    def test_menu_ids_come_from_paired_labels(self):
+        from audit_ncaa_archive import menu_dates
+        self.assertEqual(menu_dates(self.menu(), 2024)[1], (date(2024, 5, 26), '90', False))
+
+    def test_menu_mismatches_rejected(self):
+        from audit_ncaa_archive import menu_dates
+        for text in [self.menu().replace('value=2024', 'value=2023'),
+                     self.menu().replace(',"90"', ''),
+                     self.menu().replace('"90"', '"108"'),
+                     self.menu().replace('05/26/2024', '05/26/2023')]:
+            with self.subTest(text=text), self.assertRaises(ValueError):
+                menu_dates(text, 2024)
+
+    def test_explicit_no_rankings_is_not_valid_empty_dataset(self):
+        from audit_ncaa_archive import NoRankings
+        text = '\n'.join(OBP.splitlines()[:-1]) + '\nNo rankings for this category\n'
+        with self.assertRaises(NoRankings):
+            parse_report(text, 'obp', 2024, date(2024, 5, 26))
+        with self.assertRaises(ValueError):
+            parse_report(OBP + 'No rankings for this category\n', 'obp', 2024, date(2024, 5, 26))
+
+    def test_latest_eligible_selection_checks_provenance(self):
+        import tempfile
+        import json
+        import hashlib
+        from pathlib import Path
+        from datetime import datetime
+        from audit_ncaa_archive import selected_date
+        with tempfile.TemporaryDirectory() as temp:
+            raw = Path(temp)
+            (raw / '2024_menu.html').write_text(self.menu())
+            meta = dict(url='https://web1.ncaa.org/stats/StatsSrv/rankings', method='POST',
+                        form=dict(sportCode='MBA', academicYear='2024', doWhat='display'),
+                        sha256=hashlib.sha256(self.menu().encode()).hexdigest())
+            (raw / '2024_menu.json').write_text(json.dumps(meta))
+            cutoff = datetime.fromisoformat('2024-05-29T12:00:00+00:00')
+            self.assertEqual(selected_date(raw, 2024, cutoff), (date(2024, 5, 26), '90'))
+            with self.assertRaises(ValueError):
+                selected_date(raw, 2024, cutoff, date(2024, 6, 24))
+            with self.assertRaises(ValueError):
+                selected_date(raw, 2024, datetime.fromisoformat('2024-05-27T12:00:00+00:00'))
+            (raw / '2024_menu.html').write_text(self.menu()+'changed')
+            with self.assertRaises(ValueError):
+                selected_date(raw, 2024, cutoff)
+
 
 if __name__ == '__main__':
     unittest.main()

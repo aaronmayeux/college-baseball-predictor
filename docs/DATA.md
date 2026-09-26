@@ -322,13 +322,40 @@ For the completed regional validation, then run `python3 historical/regional_val
 
 ## NCAA dated team report sample
 
-`College_Baseball_NCAA_Dated_Team_Sample.zip` retains the public 2024 NCAA menu, May 26 OBP/ERA CSV responses, request-form/URL/UTC-time/SHA-256 metadata and offline audit. This independent checkpoint does not replace baseline/v2 evidence. SHA-256: `66379c8e4fd365bb7dbb6dcb31331c040b548408bd95c79a4109201ce9065ebd`.
+The original `College_Baseball_NCAA_Dated_Team_Sample.zip` retains the 2024 menu/May 26 OBP/ERA sample and original audit. SHA-256: `66379c8e4fd365bb7dbb6dcb31331c040b548408bd95c79a4109201ce9065ebd`.
 
-Verify the ZIP hash, extract into a fresh directory, then from the repository root:
+**Current combined checkpoint:** `College_Baseball_NCAA_Field_and_Archive_Evidence.zip` (150,973 bytes), SHA-256:
 
-```sh
-python3 scripts/audit_ncaa_archive.py --raw-dir /absolute/path/to/extracted/raw
-python3 -m unittest discover -s scripts -p 'test_ncaa_archive.py'
+```text
+e2ccfa1080451768380a8e3d6a1743d35b12a4fc3a8b69357113d59fc0c92658
 ```
 
-No baseline restoration or network access is needed for this sample audit. It checks source hashes, exact request and response scope, 305 rows per report, records and rate arithmetic. Both mode-qualification flags deliberately remain false; no feature output is generated. The [source report](Team_Component_Source_Decision.md) owns findings and the remaining identity/game/phase checks. Keep raw responses and the ZIP outside Git. Repeated audit output is byte-identical.
+It includes the original 2024 bytes and audit, three earlier-season menus, twelve new CSV responses (including empty reports), updated schema/count audits and the 2024 field reconciliation. `raw/` holds latest eligible menu-date samples; `previous/` holds preceding 2021/2022 samples; `weekly/` holds May 23, 2021. All requests retain exact forms, URLs, UTC times and SHA-256 hashes. Library identity: `libfile_bbc0ccd2a3d881919eb80df8c0bddb29`. This checkpoint supersedes the standalone sample for current reproduction, not the baseline/v2 archives.
+
+Verify the archive hash, extract to a fresh directory, and use current repository code:
+
+```sh
+sha256sum /absolute/path/to/College_Baseball_NCAA_Field_and_Archive_Evidence.zip
+python3 -m zipfile -e /absolute/path/to/College_Baseball_NCAA_Field_and_Archive_Evidence.zip /tmp/baseball-ncaa
+python3 scripts/audit_ncaa_archive.py --raw-dir /tmp/baseball-ncaa/raw --season 2021
+python3 scripts/audit_ncaa_archive.py --raw-dir /tmp/baseball-ncaa/raw --season 2022
+python3 scripts/audit_ncaa_archive.py --raw-dir /tmp/baseball-ncaa/raw --season 2023
+python3 scripts/audit_ncaa_archive.py --raw-dir /tmp/baseball-ncaa/raw --season 2024
+python3 scripts/audit_ncaa_archive.py --raw-dir /tmp/baseball-ncaa/previous --season 2021 --through 2021-05-28
+python3 scripts/audit_ncaa_archive.py --raw-dir /tmp/baseball-ncaa/previous --season 2022 --through 2022-05-25
+python3 scripts/audit_ncaa_archive.py --raw-dir /tmp/baseball-ncaa/weekly --season 2021 --through 2021-05-23
+```
+
+These commands are offline and do not require baseline restoration. Inspect `national_tables_populated`, `tables.*.availability`, issues and both mode flags; process success can mean an explicitly empty source report. Menu IDs are derived and checked for each season/date. No feature output is generated. Current `audit_*.json` files reproduce byte-identically; `original_2024_sample_audit.json` deliberately preserves the prior schema.
+
+For field reconciliation, first restore/rebuild baseline and timing/seed v2 as above:
+
+```sh
+python3 scripts/reconcile_ncaa_archive.py --raw-dir /tmp/baseball-ncaa/raw > /tmp/ncaa-field.json
+cmp /tmp/ncaa-field.json /tmp/baseball-ncaa/reconciliation_2024.json
+python3 -m unittest discover -s scripts -p 'test_ncaa*.py'
+```
+
+The reconciliation rechecks original gates, dated selection identities and timing corrections, retains separate mode inventories, and fingerprints code/data. Read `summary.unresolved`; 59 complete record/run matches do not qualify component features. Baseline, app and model outputs remain unchanged. Keep all raw responses and generated game-level reports outside Git.
+
+Optional fresh access checks use `scripts/collect_ncaa_archive.py --raw-dir <new-directory>`, limited to 2021–2023 latest eligible national pairs. `--sample previous` requests only the two reviewed earlier dates; `--sample weekly` requests only May 23, 2021. Use a separate directory per sample. Cached responses/failures are never automatically retried or overwritten. A new request produces a new evidence snapshot, not exact restoration. Findings, five count discrepancies, partial earlier-season scope and next work belong in the [source report](Team_Component_Source_Decision.md).
