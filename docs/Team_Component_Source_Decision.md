@@ -4,9 +4,32 @@ Reviewed September 26, 2026. Source qualification only; no new model experiment.
 
 ## Decision
 
-**Keep Elo and use only retained or free data. No component source qualifies for the planned 2021–2024 test yet.** Aaron's zero-budget instruction supersedes the prospective College Splits inquiry; budget authority is in [AGENTS.md](../AGENTS.md). No provider inquiry, purchase, subscription or chargeable trial is queued.
+**Use Aaron’s selected sources: Warren Nolan for the retained results backbone, NCAA for dated team batting/pitching reports, and D1Baseball for permitted reference use.** This is a personal, noncommercial, zero-budget project; [AGENTS.md](../AGENTS.md) owns those constraints. Elo stays; the net-run candidate stays closed and individual pitchers remain deferred.
 
-A bounded free-source check found SportsDataverse's published NCAA archive, but its pinned team-stat manifest has zero rows for 2021–2023. Do not acquire its 2024 data alone for a four-season experiment or reopen piecemeal school collection. Stop this search after the evidence below. Reopen component acquisition only when a free dated dataset demonstrably fills the required years; otherwise retain Elo. This is not a claim that no suitable free dataset can ever exist.
+A failed four-season mirror does not block a useful single-season access/schema check. NCAA’s public archive now provides a successful 2024 national sample. No feature or forecast mode is qualified by this discovery alone. The proposed SportsDataverse 2024 audit is superseded by this direct NCAA route; no paid inquiry or school sweep is queued.
+
+## Direct NCAA sample: verified access and counts
+
+The [official baseball statistics page](https://www.ncaa.org/championships/statistics-and-records/baseball/) links to the [historical archive](https://web1.ncaa.org/stats/StatsSrv/rankings?doWhat=archive&sportCode=MBA). Its public form accepts `sportCode=MBA`, `academicYear=2024`, `doWhat=display`. The returned menu offers Division I reporting dates, team categories and HTML/ASCII/PDF/CSV exports.
+
+Two CSV POST responses succeeded from `https://web1.ncaa.org/stats/StatsSrv/rankings`, using `doWhat=showrankings`, `div=1`, `rptWeeks=90`, `rptType=CSV`, and team `statSeq` 589 (OBP) / 211 (ERA). The other three statistic selectors remain -1, as in the form. Both response headings confirm **through games May 26, 2024**; neither is a final-season report.
+
+`scripts/audit_ncaa_archive.py` verifies retained hashes, request fields, response season/date/division/statistic, CSV schema, duplicate teams, counts, records and displayed rates. It handles the archive’s reclassifying section and trailing analytics HTML without treating either as missing data. The result:
+
+- **305 source team names in each table**, including ten reclassifying rows; all names and game records agree between tables. These are source rows, not 305 certified eligible tournament teams.
+- OBP includes AB, H, BB, HBP, SF and SH; all 305 displayed OBPs match the proper count formula at three decimals.
+- ERA includes IP, R and team ER; all 305 displayed ERAs match 27×ER/outs at two decimals. Baseball `.1/.2` innings convert to one/two outs, not decimal fractions.
+- The through-date passes the existing assumed two-day lag at the May 29 cutoff. Actual historical publication time, individual game inclusion and stable internal identities remain unverified.
+
+The data likely include conference-tournament games and may include non-D1 opponents. Do not equate NCAA records with the D1-only Nolan inventory without reconciliation. Neither forecast mode is qualified yet. A regular-only feature needs eligible game components or proven team-specific snapshots/adjustments; one shared May 26 total cannot strip conference tournaments. Missing hitting SO/PA or pitching BF/K/BB means these two tables alone do not support contact or pitching strikeout-rate features.
+
+Next: map the 2024 NCAA names to the retained 64-team field and reconcile games/cutoff/phase scope against Nolan. Then check the same public report route for 2021–2023; verify each year’s menu rather than reuse report IDs. Keep access/schema qualification separate from fitting. Preserve the evaluation contract and do not relabel conference-inclusive totals as regular-only.
+
+[DATA.md](DATA.md#ncaa-dated-team-report-sample) owns the evidence checkpoint and offline reproduction. No automated D1 statistics collection occurred. A fresh terms-page web lookup failed; the existing documented prohibition remains, rather than assuming personal use grants automated access.
+
+## Warren Nolan sample
+
+Its [2024 stats menu](https://www.warrennolan.com/baseball/2024/stats) links to public runs, hits, hits allowed and errors tables. The [hits table](https://www.warrennolan.com/baseball/2024/stats-off-hits-per-game) and [hits-allowed table](https://www.warrennolan.com/baseball/2024/stats-def-hits-per-game) were readable and state D1-only scope. These season tables have not been established as pre-cutoff snapshots; no counts were imported. Reuse the audited dated results for reconciliation and Elo. Do not substitute final RPI, SOS or vendor Elo for the project’s cutoff-safe strength.
 
 ## Verified free-source evidence
 
@@ -35,9 +58,9 @@ The separate [ncaa_bbStats provenance page](https://collegebaseballstatspackage.
 |---|---|---|
 | College Splits / FanGraphs | [College Splits](https://collegesplits.com/about) advertises NCAA event data; [FanGraphs](https://blogs.fangraphs.com/weve-got-college-data/) names it as supplier and advertises history from 2021/member exports. Dated sample, complete fields and rights unverified. | Paid path removed; no inquiry queued. |
 | Highlightly | [Docs](https://highlightly.net/mlb-api/documentation/) describe team match stats as MLB, with possible missing fields; historical NCAA support unverified. [Terms](https://highlightly.net/terms/) constrain gaming use. | Not selected; no signup or paid plan. |
-| NCAA, ESPN, schools, D1Baseball | [Existing findings](Statistics_Discovery_and_Triage.md#sourceaccess-findings): access gaps, uneven histories, school-specific work and D1 automation prohibition. | No new probes or school sweep. |
+| NCAA, ESPN, schools, D1Baseball | [Existing findings](Statistics_Discovery_and_Triage.md#sourceaccess-findings): access gaps, uneven histories, school-specific work and D1 automation prohibition. | Nolan/NCAA focus above supersedes the earlier pause; no school sweep. |
 
-Source facts above were read from public documentation/metadata. No API game payload, historical stat table or new evidence archive was acquired. Search/provenance pages exposed incidental current-year metadata; no 2026 games or features were ingested or evaluated.
+The mirror findings above were documentation/metadata checks only; the direct NCAA sample is separately retained. Search/provenance pages exposed incidental current-year metadata; no 2026 games or features were ingested or evaluated.
 
 ## Gate for any later free dataset
 

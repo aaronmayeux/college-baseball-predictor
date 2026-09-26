@@ -319,3 +319,16 @@ The offline report verifies the two structured 2022 pages and retained first box
 No new checkpoint is required. Restore/rebuild the original baseline and timing/seed v2 using the commands above, then run `python3 historical/team_runs.py prepare` and `python3 historical/team_runs.py evaluate`. Both commands are offline; they write only ignored `historical/team_run_output/` files. The [experiment report](Team_Run_Experiment.md) owns the source decision, locked protocol, results and limitations. Preparation retains source/config/code hashes, eligible input IDs, exclusions, team totals and exact common samples; evaluation locks selection before 2024 scoring. No raw/game exports should be committed or published.
 
 For the completed regional validation, then run `python3 historical/regional_validation.py prepare` and `python3 historical/regional_validation.py evaluate`. These commands reuse the same checkpoints, including the retained 2023/2024 manuals, and write only ignored `historical/regional_output/` forecasts/report. They never refit the candidate, alter the engine/app or acquire new data.
+
+## NCAA dated team report sample
+
+`College_Baseball_NCAA_Dated_Team_Sample.zip` retains the public 2024 NCAA menu, May 26 OBP/ERA CSV responses, request-form/URL/UTC-time/SHA-256 metadata and offline audit. This independent checkpoint does not replace baseline/v2 evidence. SHA-256: `66379c8e4fd365bb7dbb6dcb31331c040b548408bd95c79a4109201ce9065ebd`.
+
+Verify the ZIP hash, extract into a fresh directory, then from the repository root:
+
+```sh
+python3 scripts/audit_ncaa_archive.py --raw-dir /absolute/path/to/extracted/raw
+python3 -m unittest discover -s scripts -p 'test_ncaa_archive.py'
+```
+
+No baseline restoration or network access is needed for this sample audit. It checks source hashes, exact request and response scope, 305 rows per report, records and rate arithmetic. Both mode-qualification flags deliberately remain false; no feature output is generated. The [source report](Team_Component_Source_Decision.md) owns findings and the remaining identity/game/phase checks. Keep raw responses and the ZIP outside Git. Repeated audit output is byte-identical.

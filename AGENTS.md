@@ -11,7 +11,9 @@ Read `docs/College_Baseball_Predictor_Project_Brief.md` and `historical/SPEC.md`
 - Keep `docs/SESSION_LOG.md` as a short rolling handoff: latest meaningful change, verification, unresolved blockers and next action. Replace stale entries instead of appending a diary.
 - Aaron authorized the tournament engine and first usable interface. Follow the build order in the project brief; broad player-data/access audits must not block the team-only app. This repository is separate from the bridge game.
 
-- **Zero-budget project:** Aaron does not want to spend money. Use retained or free sources only; do not propose paid-data acquisition, subscriptions, paid hosting or trials that can incur charges as the next step. No provider contact is authorized.
+- **Personal, noncommercial, zero-budget project:** Aaron does not want to spend money. Use retained or free sources only; do not propose paid-data acquisition, subscriptions, paid hosting or trials that can incur charges as the next step. No provider contact is authorized.
+
+- Aaron selected Warren Nolan, NCAA and D1Baseball as the source focus. Reuse Nolan results; prioritize NCAA dated team-stat reports. D1Baseball remains reference-only under the recorded automation restriction; personal use does not establish automated-feed permission. No paid source detours.
 
 - Current model-improvement priority is team-level hitting and pitching. Follow the brief’s team-level-first plan; individual pitcher histories and the unfinished Stillwater preflight are deferred, not prerequisites. Avoid open-ended school-by-school collection.
 

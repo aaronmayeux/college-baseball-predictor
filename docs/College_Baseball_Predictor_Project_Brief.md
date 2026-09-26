@@ -109,9 +109,9 @@ The [team-run experiment](Team_Run_Experiment.md) selects the retained Warren No
 
 The locked net-runs/game addition slightly improved 2024 game probability scores but picked fewer winners. Its regional advancement validation then worsened both probability scores in both modes: regular-only still picked 10/16 champions, while conference-inclusive fell from 10/16 to 9/16. **Candidate closed without promotion; Elo remains in the app.** No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
 
-The [component-source decision](Team_Component_Source_Decision.md) now follows Aaron’s **zero-budget rule** in AGENTS.md: retain Elo and use only retained/free data. The free SportsDataverse team-stat manifest has no 2021–2023 rows, so it cannot support the four-season test. Component acquisition stays blocked pending a qualifying free dated dataset. No paid inquiry or renewed school sweep is queued; keep the net-run candidate closed.
+Aaron selected **Warren Nolan, NCAA and D1Baseball**, for personal, noncommercial use with no spending. The [source report](Team_Component_Source_Decision.md) records a successful NCAA May 26, 2024 national OBP/ERA CSV sample: 305 matching team rows with reconciled rates. It qualifies access/schema, not features. Next: reconcile the 64-team field, game coverage and phase scope against retained Nolan results, then test the NCAA archive’s 2021–2023 reports. Keep both modes separate. D1 remains reference-only under recorded automation restrictions; no paid detours or school sweep.
 
-[Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Individual pitching requirements remain future goals; thresholds remain open. Source selection, experiment details, metrics and reproduction belong in the experiment report.
+[Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
 
 Preserve all 64 teams and both cutoff-separated modes; retain the existing team-only fallback where richer inputs are unqualified. Spreadsheet comparisons, interface redesign, Cloudflare migration and daily updates remain deferred. The app remains a 2025 development demo; [Tournament_Engine.md](Tournament_Engine.md) owns reproduction.
 
