@@ -37,6 +37,10 @@ Additional holdout exposure: requesting Columbia's official 2021 schedule silent
 
 The seed comparator uses cutoff-eligible NCAA selection announcements and a fixed regional-seed odds rule, with no fitting or national-seed inputs. Both published and modified timestamps must precede the forecast cutoff. Require complete identity mappings and compare on identical samples. Preserve development/holdout labels and reconstruction caveats.
 
+## Separate team-run challenger
+
+[Team_Run_Experiment.md](../docs/Team_Run_Experiment.md) owns the locked score-based challenger protocol and results. It uses 2021–2022 frozen NCAA matchups for coefficient training, 2023 selection, and 2024 retrospective validation, with training-only scaling and an unchanged Elo offset. This does not alter 2021's initialization role or any metrics in the preserved baseline. No 2025 candidate evaluation or 2026 modeling; no promotion without separate advancement validation. Component-count qualification and individual pitcher work remain separate.
+
 ## Separate preflight selection evidence
 
 The 2021 school-hosted NCAA selection PDF and dated school article now pass a separate retrospective eligibility/identity check; see [qualification](../docs/Model_Input_Qualification.md#verified-preflight-september-26-2026). This does not change v1 or v2 seeds, predictions, metrics or the initialization label. The expansion planner accepts this evidence optionally; future seed scoring must retain common samples and cutoff rules.

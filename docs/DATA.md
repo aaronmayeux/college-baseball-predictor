@@ -313,3 +313,7 @@ python3 -m unittest discover -s scripts -p 'test_retained_hitting.py'
 ```
 
 The offline report verifies the two structured 2022 pages and retained first boxes, reconciles the full-season dated batting logs, and separately checks PA against opponent pitching components/BF. Inspect `full_season_check.pass_counts`, `PA_pass`, `inventory_pass`, `sample_check.pass_counts` and both `forecast_modes`. Outputs may report unavailable rates; do not equate process success with qualification. Keep the game-level JSON ignored. Repeat runs are byte-identical. Original sources, baseline/v2 predictions and app remain unchanged. [Qualification](Model_Input_Qualification.md#retained-team-hitting-logs) owns results, exact alias evidence and limitations.
+
+## Team scoring and run-prevention experiment
+
+No new checkpoint is required. Restore/rebuild the original baseline and timing/seed v2 using the commands above, then run `python3 historical/team_runs.py prepare` and `python3 historical/team_runs.py evaluate`. Both commands are offline; they write only ignored `historical/team_run_output/` files. The [experiment report](Team_Run_Experiment.md) owns the source decision, locked protocol, results and limitations. Preparation retains source/config/code hashes, eligible input IDs, exclusions, team totals and exact common samples; evaluation locks selection before 2024 scoring. No raw/game exports should be committed or published.

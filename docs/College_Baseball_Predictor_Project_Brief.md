@@ -1,6 +1,6 @@
 # College Baseball Predictor — Project Brief
 
-Current state: September 26, 2026.
+Updated September 26, 2026.
 
 ## Purpose and current status
 
@@ -101,15 +101,17 @@ Python and SQLite implement the pipeline and baseline. Build order remains engin
 
 Use [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
 
-The accepted [hosted app](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site) remains unchanged during model improvement.
+The accepted [app](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site) remains unchanged.
 
-**Team-level-first plan approved September 26:** prioritize a practical historical dataset and a measured prediction comparison. Pause individual pitcher roles, workload, depth/aces and availability work. Completing the Stillwater player preflight or fetching Arkansas's missing reports is no longer the default next action.
+**Team-level-first plan:** defer individual pitcher roles, workload, depth/aces, availability and the Stillwater preflight. Prioritize practical team data and measured prediction comparisons.
 
-1. Make one focused source decision for consistently obtainable **team-level hitting and pitching** across the planned seasons. Reuse existing evidence; check historical cutoff support, field coverage, permitted access and collection effort. Prefer season/team tables or dated team logs over reconstructing every player appearance.
-2. Produce a concrete go/no-go and a defined collection scope. If a free route is feasible, build a repeatable batch import for that agreed dataset. Avoid an open-ended chain of isolated school/game probes. If no practical free route qualifies, clearly compare a paid-data option with keeping Elo; purchasing or provider contact requires separate authorization.
-3. Freeze coverage and a small candidate set, then test additions against unchanged Elo under the existing chronological/common-sample rules. Team counts need reconciliation and valid denominators, but individual pitcher histories are not prerequisites for team features. Postseason-contaminated final totals remain audit-only; use qualified pre-cutoff snapshots or dated counts.
+The [team-run experiment](Team_Run_Experiment.md) selects the retained Warren Nolan results plus official corrections/v2 timing for an immediate four-season test. A repeatable offline import covers all 256 tournament team-seasons in 2021–2024. It tests scoring and run prevention, not component hitting or pitching quality; nationwide component-stat collection remains unqualified.
 
-[Input qualification](Model_Input_Qualification.md) retains reusable hitting/pitching extractors, evidence and gaps. No sufficient chronological feature dataset exists yet. Individual pitching requirements remain future product goals; their thresholds and scaling remain open. Keep the current app until prediction and advancement validation justify promotion.
+The locked 2021–2022 training / 2023 selection / 2024 retrospective comparison selected net runs/game added to unchanged Elo. In 2024 regular-only, probability scores improved slightly but winner picks fell from 93/133 to 90/133; conference-inclusive and tournament-group results were mixed. **Elo remains in the app.** No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
+
+Next: evaluate the unchanged candidate’s historical regional advancement using qualified selection-day routing and a locked scoring protocol. Do not promote it without convincing advancement evidence; close the candidate if results remain mixed. Richer hitting/pitching components require a bounded source/sample decision, not renewed school-by-school collection. No purchase or provider contact is authorized.
+
+[Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Individual pitching requirements remain future goals; thresholds remain open. Source selection, experiment details, metrics and reproduction belong in the experiment report.
 
 Preserve all 64 teams and both cutoff-separated modes; retain the existing team-only fallback where richer inputs are unqualified. Spreadsheet comparisons, interface redesign, Cloudflare migration and daily updates remain deferred. The current app remains a 2025 development demo. See [Tournament_Engine.md](Tournament_Engine.md) for reproduction and [DATA.md](DATA.md) for retained evidence.
 

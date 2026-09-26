@@ -2,18 +2,18 @@
 
 Updated September 26, 2026. Git history owns prior sessions.
 
-## Direction approved by Aaron
+## Completed
 
-Advance model improvement with **team-level hitting and pitching first**. Stop the open-ended sequence of isolated school/game collection checks. Defer individual pitcher roles, workload, depth/aces and availability. Completing the Stillwater player preflight or retrieving Arkansas's missing reports is no longer the next task.
+Followed the team-level-first plan with a concrete experiment, using retained Warren Nolan results plus official corrections and v2 timing. No new collection or individual pitcher work. The [experiment report](Team_Run_Experiment.md) owns source tradeoffs, locked settings, results and reproduction.
 
-The [brief](College_Baseball_Predictor_Project_Brief.md#next-work) owns the active plan. Make one focused source decision for a practical, cutoff-safe multi-season team dataset. Reuse known source evidence and determine coverage, permitted access and collection effort. Deliver a concrete go/no-go and defined scope; if viable, build a repeatable batch import and test a small locked set of additions against Elo. If free sources are impractical, present the paid-data-versus-existing-model tradeoff rather than continuing piecemeal probes. No purchase or provider contact is authorized.
+Added a repeatable offline batch importer and challenger evaluation: all 256 tournament team-seasons in 2021–2024, 550 NCAA matchups in each mode, no missing team features. Locked scoring, run-prevention and net-run candidates before fitting. Trained on 2021–2022, selected net runs/game on 2023, refit through 2023 and checked once on 2024. Both probability metrics improved slightly in primary 2024 scoring, but winner accuracy fell 93/133 → 90/133; group and conference-inclusive results were mixed. **Keep Elo in the app.** Run prevention includes defense; richer component stats remain unqualified.
 
-## Preserved progress and verification
+## Verification
 
-Reusable extractors and all raw evidence remain intact. Oklahoma State/Grand Canyon 2022 hitting inputs qualify in both modes; Arkansas only has sample qualification, not a full season. Detailed results/gaps belong in [qualification](Model_Input_Qualification.md); restoration is in [DATA](DATA.md).
+192 tests pass (152 scripts, 40 historical). Baseline/v2 cached rebuilds succeeded. Repeat preparation/evaluation is byte-identical; protected baseline/v2 inputs and app remain unchanged. No raw data committed or new evidence ZIP needed. Restore the baseline and v2 checkpoints via [DATA](DATA.md), then run `historical/team_runs.py prepare` and `evaluate`.
 
-This closeout changes documentation only. Checked the revised instructions for consistency; no code/data/model/app changes or new collection. Last implementation verification remains 182 passing tests, unchanged prior qualified outputs and preserved baseline/app hashes.
+## Next
 
-## Evaluation limits
+Evaluate the unchanged candidate's historical regional advancement after qualifying selection-day routing and locking scoring. No retuning on 2024; no app promotion from the small game-level gain. If advancement remains mixed, close this candidate. Any richer component-data acquisition needs a bounded sample/access decision, not renewed piecemeal probes.
 
-Preserve 2021–2022 training / 2023 selection / 2024 retrospective validation, both cutoff modes, common both-team samples, qualified denominators and Elo fallback. Final postseason totals cannot become forecast inputs. No sufficient chronological feature dataset exists yet. 2025 remains development; 2026 stays excluded. Advancement validation is required before promotion. UI/hosting/spreadsheet work remains deferred.
+Preserve both modes, common samples, Elo fallback and evaluation rules. 2025 remains development and unused for this candidate; 2026 excluded. Individual pitchers, Stillwater preflight, UI/hosting/spreadsheet work stay deferred.
