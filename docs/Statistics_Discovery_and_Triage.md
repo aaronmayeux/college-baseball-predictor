@@ -4,7 +4,7 @@ Reviewed September 20, 2026. **Aaron approved prioritizing hitting profiles and 
 
 ## Recommendation for joint review
 
-Start with a compact offense profile and individual pitching quality/depth, supported by opponent adjustment. Audit player-game coverage before fitting them. Include simple baserunning and defense as inexpensive challengers. Research recent pitching availability and park interactions next: these are central product ideas but require more complete evidence.
+The active [team-component source decision](Team_Component_Source_Decision.md) supersedes this inventory’s original player-first ordering: keep Elo, defer individual pitchers, and pause acquisition pending a single College Splits sample/license decision. The table below preserves candidate research priorities, not authorization to resume collection. Baserunning, defense, availability and park interactions remain future proposals.
 
 | Priority | Proposed work | Reason |
 |---|---|---|
@@ -16,7 +16,7 @@ Start with a compact offense profile and individual pitching quality/depth, supp
 | Defer | Tracking-derived contact/pitch quality, full defensive runs, weather/travel effects, coach policy and detailed depletion simulation | High effort or unverified historical access; revisit after simpler features |
 | Skip as model inputs | Legacy HAVOC/DIRTY_DER formulas, assumed HR-run share, fixed style bonuses, pitcher wins/saves, clutch labels | Defective, redundant or weakly supported; raw evidence remains preserved |
 
-“Test now” means proposed experiments **after data qualification and approval of the relevant family**. Hitting and pitching quality/depth have priority approval; the remaining families remain proposals. None is already proven predictive. Rank the pitching coverage audit alongside offense, even if simpler team features become testable first.
+“Test now” means proposed experiments **after data qualification and approval of the relevant family**. Hitting and pitching quality/depth have priority approval; the remaining families remain proposals. None is already proven predictive. The current plan prioritizes team-level counts; individual pitching coverage work remains deferred.
 
 ## Original references inspected
 

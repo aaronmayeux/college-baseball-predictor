@@ -99,9 +99,9 @@ Python and SQLite implement the pipeline and baseline. Build order remains engin
 
 ## Next work
 
-Use [DATA.md](DATA.md); cached entry point: `python3 historical/run.py`.
+Reproduction: [DATA.md](DATA.md).
 
-The accepted [app](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site) remains unchanged.
+[App](https://aaron-college-baseball-predictor.aaronmayeux.chatgpt.site) unchanged.
 
 **Team-level-first plan:** defer individual pitcher roles, workload, depth/aces, availability and the Stillwater preflight. Prioritize practical team data and measured prediction comparisons.
 
@@ -109,11 +109,11 @@ The [team-run experiment](Team_Run_Experiment.md) selects the retained Warren No
 
 The locked net-runs/game addition slightly improved 2024 game probability scores but picked fewer winners. Its regional advancement validation then worsened both probability scores in both modes: regular-only still picked 10/16 champions, while conference-inclusive fell from 10/16 to 9/16. **Candidate closed without promotion; Elo remains in the app.** No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
 
-Next: make a bounded source/sample decision for dated team batting/pitching components across 2021–2024. Verify sample coverage, cutoff support and access terms before collection. If no practical route qualifies, compare retaining Elo with a licensed-data option. Avoid renewed school-by-school probes or efforts to rescue the closed candidate. No purchase or provider contact is authorized.
+The [component-source decision](Team_Component_Source_Decision.md) selects **retaining Elo now and College Splits as the sole prospective licensed-sample route**. No reviewed source qualifies for component ingestion yet. Public discovery and school collection are paused. The report defines one eight-team-season sample, full-field coverage manifest and license requirements. Next is Aaron’s decision on authorizing that single provider inquiry; no contact, signup or purchase is authorized. Do not reopen the closed net-run candidate.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Individual pitching requirements remain future goals; thresholds remain open. Source selection, experiment details, metrics and reproduction belong in the experiment report.
 
-Preserve all 64 teams and both cutoff-separated modes; retain the existing team-only fallback where richer inputs are unqualified. Spreadsheet comparisons, interface redesign, Cloudflare migration and daily updates remain deferred. The current app remains a 2025 development demo. See [Tournament_Engine.md](Tournament_Engine.md) for reproduction and [DATA.md](DATA.md) for retained evidence.
+Preserve all 64 teams and both cutoff-separated modes; retain the existing team-only fallback where richer inputs are unqualified. Spreadsheet comparisons, interface redesign, Cloudflare migration and daily updates remain deferred. The app remains a 2025 development demo; [Tournament_Engine.md](Tournament_Engine.md) owns reproduction.
 
 ## Open decisions
 
