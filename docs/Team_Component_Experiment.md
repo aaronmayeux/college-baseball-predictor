@@ -153,8 +153,6 @@ champions match the super-regional fields. Source/protected-input hashes remain 
 during the experiment. The app and both Elo modes are unchanged; no 2025 candidate or
 2026 modeling occurred. No new downloads, paid services or evidence archives were needed.
 
-Next: a separately locked, bounded test of **schedule-adjusted team components**, using
-the retained opponents/Elo histories to address a plausible weakness of raw all-opponent
-rates. Define that adjustment and a chronological development comparison before fitting;
-2024 is already exposed and must not become a new holdout or tuning success claim.
-Reuse these inputs and fallbacks; no broad source audit or individual-pitcher work.
+The [schedule-adjusted extension](Schedule_Adjusted_Components.md) is now complete and
+owns its separate protocol, results and next action. This raw-rate experiment remains
+closed and byte-reproducible; its model and inputs were not changed.

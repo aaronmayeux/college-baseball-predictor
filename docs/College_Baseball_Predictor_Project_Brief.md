@@ -70,7 +70,7 @@ Retain the hypotheses of home/park effects, power sensitivity, opponent-specific
 
 National player-data coverage remains unverified. baseballr is an access tool, not an independent source. MLB-derived metrics require college-specific validation.
 
-Every normalized record should retain provider, provider ID, stable internal team/player ID where available, season, game timestamp, venue, retrieval timestamp, and raw-record reference. Handle missing data explicitly. Cache responses, avoid duplicate games, validate baseball innings notation, and make reruns safe. On-demand ingestion supports the one-run workflow; scheduled refresh is out of scope.
+Normalized records retain source/team/player identities, season, game time, venue, retrieval time and raw references. Preserve missingness, cache responses, deduplicate games and validate baseball innings. Imports are on demand; scheduled refresh is out of scope.
 
 ## Build milestones and acceptance criteria
 
@@ -107,11 +107,13 @@ Reproduction: [DATA.md](DATA.md).
 
 The [team-run experiment](Team_Run_Experiment.md) tested retained Nolan results and official/v2 corrections across all 256 tournament team-seasons in 2021–2024. Its net-runs/game candidate failed regional advancement validation and is **closed without promotion; Elo remains in the app**. No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
 
-Aaron selected **Warren Nolan, NCAA and D1Baseball**, with zero spending. The [source report](Team_Component_Source_Decision.md) retains NCAA OBP/ERA samples for 2021–2024, snapshot gaps and five unresolved 2024 count discrepancies. These are evidence to assess, not a requirement to perfect the archive before testing.
+Aaron selected **Warren Nolan, NCAA and D1Baseball**, with zero spending. The [source report](Team_Component_Source_Decision.md) retains NCAA OBP/ERA samples for 2021–2024, snapshot gaps and five unresolved 2024 count discrepancies.
 
-**Practical batting/pitching experiment completed.** The [OBP/ERA experiment](Team_Component_Experiment.md) used dated, all-opponent, conference-inclusive NCAA snapshots with small discrepancies retained and exact Elo fallback. All 64 teams had usable inputs in both evaluation seasons. The combined model won 2023 selection but failed 2024: game log loss 0.620988 → 0.630395, Brier 0.215786 → 0.221404, winners 89 → 88 of 133; regional champions 10 → 9 of 16 with worse advancement scores. Flagged-input fallback and excluding 2021 from fitting did not reverse the decision. **Raw OBP/ERA candidate closed without promotion; Elo stays.**
+**Component experiments completed; Elo remains in the app.** The [raw OBP/ERA experiment](Team_Component_Experiment.md) failed 2024 game and regional-advancement checks and is closed without promotion. The [schedule-aware extension](Schedule_Adjusted_Components.md) improved 2024 game log loss (0.620988 → 0.592047) and Brier (0.215786 → 0.204155), with 89/133 winners for both models, but primary regional advancement remained slightly worse (9/16 champions versus Elo’s 10/16). Strict fallback changes that advancement conclusion; no diagnostic was promoted after seeing results.
 
-[The practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) remains in force: small gaps are acceptable, leakage is not. Next is a separately locked, bounded schedule-adjusted team-component experiment using retained opponent/Elo histories and these NCAA inputs. Define adjustment and chronology before fitting; 2024 is exposed development evidence, never a new holdout. No broad source audit, school sweep, paid detour or raw-candidate retuning. D1 remains reference-only.
+The schedule-only diagnostic looked stronger in 2024 but worse in 2023. **Next: lock a schedule-only extension for 2025 development using existing Nolan results**, with chronological fitting specified before scoring. No new NCAA collection is required. Keep 2024 exposure and 2025 development explicit; neither is an untouched test. Do not retune weights on 2024.
+
+[The practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) remains in force: accept small documented gaps, preserve leakage safeguards and exact Elo fallback. No broad source audit, school sweep, paid detour or raw-candidate reopening. D1 remains reference-only.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
 

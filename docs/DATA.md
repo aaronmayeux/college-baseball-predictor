@@ -394,3 +394,22 @@ Identical reruns reuse matching locks; differing inputs/code/protocol refuse sil
 replacement. Source fingerprints are portable relative paths. The report's source-covered
 subsets describe available inputs; strict sensitivity additionally routes flagged pairs
 to Elo. Preserve the existing checkpoints; do not commit generated game-level outputs.
+
+## Schedule-aware component extension
+
+After reproducing the raw-component experiment immediately above, reuse the same NCAA
+archive root and baseline/v2 inputs. No additional source bytes or archive are required:
+
+```sh
+python3 historical/schedule_components.py prepare --evidence-dir /absolute/path/to/baseball-ncaa
+python3 historical/schedule_components.py evaluate --evidence-dir /absolute/path/to/baseball-ncaa
+python3 -m unittest discover -s historical -p 'test_schedule_components.py'
+```
+
+[Protocol and results](Schedule_Adjusted_Components.md) owns the statistical choices.
+The commands preserve prior outputs and write only ignored
+`historical/schedule_component_output/*.json`: prepared input, selection/forecast locks,
+predictions and report. The schedule list and current-year opponent rating updates stop
+at the matching NCAA through-date. Previous-year carry and matchup probabilities remain
+identical to the conference-inclusive baseline. Fingerprints reject stale inputs/locks;
+identical reruns are byte-reproducible. No model is automatically deployed.
