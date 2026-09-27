@@ -44,6 +44,11 @@ It remains a locked confirmation candidate, not deployed; intervals cross zero a
 later-round scores regress. Its protocol/results own the scope and next confirmation.
 No retuning on 2024 or reopening closed candidates; Elo remains in the app.
 
+The [standalone offensive HBP-rate test](../docs/Hit_By_Pitch_Experiment.md) failed
+both 2023 selection probability scores. It is closed without 2024 candidate scoring;
+no sign reversal, sensitivity search or stacking after failure. Walk-rate remains
+unchanged and pending its separate confirmation.
+
 ## Holdout decision
 2026 cannot be certified untouched: recovered SESSION_RECORD.md says an earlier ESPN sample included 2026 and its original raw evidence was lost. Exact exposed games and whether outcomes informed choices are unknown. Do not collect or evaluate 2026 under an untouched-holdout claim. Reserve a future season prospectively after locking code, cutoffs and metrics; 2027 is the earliest candidate, not yet a committed test.
 

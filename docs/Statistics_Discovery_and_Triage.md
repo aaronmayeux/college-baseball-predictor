@@ -22,6 +22,8 @@ The inventory's offensive BB/PA candidate now has a distinct
 [locked walk-rate experiment](Walk_Rate_Experiment.md), using recorded-PA counts from
 retained NCAA reports. It is promising retrospective evidence pending confirmation;
 this does not qualify power, batting K%, pitching control or individual-arm inputs.
+The separate [offensive HBP-rate test](Hit_By_Pitch_Experiment.md) failed 2023
+selection and is closed without 2024 scoring; do not stack it into the walk model.
 
 ## Original references inspected
 

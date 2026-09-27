@@ -411,6 +411,21 @@ Independent prepared inputs, selection/forecast locks, predictions and report ar
 under `historical/walk_rate_output/`. Identical runs match bytes; changed source/code/
 protocol reject stale locks. No app output or preserved model is replaced.
 
+## Offensive hit-by-pitch experiment
+
+The [HBP-rate protocol/results](Hit_By_Pitch_Experiment.md) uses the same baseline/v2
+and NCAA checkpoint. No new source archive is required.
+
+```sh
+python3 historical/hit_by_pitch.py prepare --evidence-dir /absolute/path/to/baseball-ncaa
+python3 historical/hit_by_pitch.py evaluate --evidence-dir /absolute/path/to/baseball-ncaa
+python3 -m unittest discover -s historical -p 'test_hit_by_pitch.py'
+```
+
+Independent files remain ignored under `historical/hit_by_pitch_output/`.
+Selection failure produces only preparation, selection lock and report; it stops
+before 2024 candidate predictions or advancement. The walk-rate experiment is unchanged.
+
 ## Schedule-aware component extension
 
 After reproducing the raw-component experiment immediately above, reuse the same NCAA

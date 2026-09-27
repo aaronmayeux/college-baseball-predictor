@@ -140,12 +140,13 @@ no prediction gain is claimed. App data remains unchanged.
 [BB/recorded-PA experiment](Walk_Rate_Experiment.md) improves 2024 game and regional
 probability scores, including both fixed sensitivity checks. Later-round regressions
 and uncertainty crossing zero prevent claiming reliable gains or promoting it now.
-The app remains Elo; prior failed candidates stay closed.
+[Offensive HBP rate](Hit_By_Pitch_Experiment.md) failed 2023 selection and is closed.
+Elo remains in the app; no candidate was retuned.
 
 **Next:** lock this exact model for a 2025 development confirmation before scoring.
-Use eligible dated pre-NCAA walk counts; final workbook totals cannot substitute.
-The retained national checkpoint covers 2021–2024. If necessary, separately scope one
-free national-report acquisition, not another coverage audit or school sweep. Do not
+Use dated pre-NCAA walk counts; final totals are ineligible.
+Retained reports cover 2021–2024. If needed, scope one free national report,
+not another audit or school sweep. Do not
 retune on 2024, use 2026, or reopen failed candidates. The
 [practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority)
 remains in force: accept small documented gaps and preserve exact Elo fallback.

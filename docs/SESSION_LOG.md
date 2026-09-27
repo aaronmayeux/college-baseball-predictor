@@ -2,35 +2,34 @@
 
 Updated September 27, 2026. Git history owns prior sessions.
 
-## Completed — distinct offensive walk-rate experiment
+## Completed — offensive HBP-rate experiment
 
-[Locked protocol, results and reproduction](Walk_Rate_Experiment.md).
-Tested BB/(AB+BB+HBP+SF+SH) from retained NCAA reports as one addition to
-conference-inclusive Elo. Fit 2021–2022, selected on 2023, refit through 2023,
-then scored previously exposed 2024 without retuning. Source preparation reuses
-existing qualifications only; no closed candidate was rescored or modified.
+[Locked protocol/results](Hit_By_Pitch_Experiment.md). Tested offensive
+HBP/(AB+BB+HBP+SF+SH) as a single addition to conference-inclusive Elo using retained
+NCAA reports. Fit on 2021–2022, select on 2023. It failed both probability scores:
+log loss 0.628158 → 0.645132; Brier 0.218569 → 0.226878; winners 91/137 → 89/137.
+Closed at selection, with no 2024 candidate scoring or post-result retuning.
 
-2024: 90/133 winners versus Elo's 89; game log loss 0.620988 → 0.616370 and
-Brier 0.215786 → 0.213651. Regional champion log loss 1.157268 → 1.117877 and
-Brier 0.636643 → 0.613727; both pick 10/16 champions. Both fixed sensitivities
-retain probability-score gains. This is promising retrospective evidence, not
-certified improvement: intervals cross zero and supers/finals regress.
+The prior [walk-rate candidate](Walk_Rate_Experiment.md) stays locked and promising:
+it improved 2024 game/regional probability scores and both fixed sensitivities.
+Its uncertainty intervals cross zero and later-round regressions remain unresolved.
+Elo remains in the app. No automatic stacking of features.
 
 ## Verification
 
-273 data-free tests pass (199 scripts, 74 historical; seven new tests).
-Baseline/v2 rebuilds succeed. Five experiment outputs reproduce byte-for-byte;
-270 matchup equivalence checks and 32 regional paths pass. Source/protected inputs,
-old candidate code and app unchanged. `git diff --check` passes. No new collection,
-coverage audit, cost, 2025/2026 candidate evaluation or app promotion.
+281 data-free tests pass (199 scripts, 82 historical; eight new HBP tests).
+Three HBP outputs reproduce byte-for-byte. Protected inputs, walk-rate code and
+its five outputs, closed model code and app are unchanged. Failed-selection testing
+ensures no validation/advancement scoring follows rejection. `git diff --check` passes.
+No new provider collection, coverage audit, cost or 2025/2026 candidate evaluation.
 
 ## Next concrete step
 
-Lock this exact model for a 2025 development confirmation, before scoring.
-The retained national reports cover 2021–2024; use dated pre-NCAA 2025 walk counts,
-never final workbook totals. If needed, separately scope a bounded free NCAA report
-acquisition, not another coverage audit or school sweep. Review later-round behavior
-and bracket implications before deployment. Keep Elo, both cutoff modes and fallback.
-No 2024 retuning, failed-candidate reopening, individual-pitcher work or 2026 use.
-Evidence-backed score-correction review remains implemented; no actual correction
-has been accepted. Fresh-year export remains a separate roster/cutoff decision.
+Confirm the exact walk-rate model on 2025 development data under a protocol locked
+before scoring. Use dated pre-NCAA walk counts, never final workbook totals. Retained
+national reports cover 2021–2024; if needed, scope one free NCAA report acquisition,
+not another coverage audit or school sweep. Review later-round behavior and bracket
+implications before deployment. Preserve both cutoff modes and exact Elo fallback.
+No failed-candidate reopening, 2024 retuning, individual-pitcher work or 2026 use.
+Evidence-backed correction review remains available; no actual correction accepted.
+Fresh-year export remains a separate roster/cutoff decision.
