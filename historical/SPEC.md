@@ -51,7 +51,7 @@ unchanged and pending its separate confirmation.
 
 Aaron authorized [Guillen and HAVOC benchmark testing](../docs/Guillen_Havoc_Experiment.md),
 superseding the inventory's prior skip recommendation. Guillen is a separate promising
-2024 retrospective candidate; original/net-steals HAVOC remain untested. A [D1Baseball subtraction pilot](../docs/Havoc_Source_Reconstruction.md) reconstructs Virginia 2023. The [bounded expansion](../docs/Havoc_Chronological_Experiment.md) adds Texas and Louisiana Tech 2022 but fails the chronological input minimum; both HAVOC formulas remain untested. Its locked sample, source windows and minimum checks govern continuation. This is source evidence, not a fitted model. Preserve prior models, no post-hoc combination or power penalty, and confirm
+2024 retrospective candidate; original/net-steals HAVOC remain untested. A [D1Baseball subtraction pilot](../docs/Havoc_Source_Reconstruction.md) reconstructs Virginia 2023. The [bounded expansion](../docs/Havoc_Chronological_Experiment.md) now has all 24 final batting tables and twelve reconstructed team-seasons, but its 10 training and two selection matchups fail the chronological input minimum; both HAVOC formulas remain untested. Its locked sample, source windows and minimum checks govern continuation. This is source evidence, not a fitted model. Preserve prior models, no post-hoc combination or power penalty, and confirm
 fixed candidates under a newly locked 2025 development protocol before deployment.
 
 ## Holdout decision

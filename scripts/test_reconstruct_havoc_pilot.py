@@ -13,6 +13,17 @@ def fixture():
 
 
 class HavocReconstructionTests(unittest.TestCase):
+    def test_legacy_composite_caption_identifies_team(self):
+        html = fixture().replace('<h2>Test</h2><table>',
+            '<h2>Visitors -vs- Hosts</h2><table><caption>Test 1'
+            '<span> - Composite Stats</span></caption>')
+        self.assertEqual(box_counts(html, 'Test', '2023-06-02')['K'], 1)
+        with self.assertRaises(ValueError):
+            box_counts(html, 'Hosts', '2023-06-02')
+        with self.assertRaises(ValueError):
+            box_counts(html.replace('<td>Totals</td><td>4</td>',
+                                   '<td>Totals</td><td>5</td>'), 'Test', '2023-06-02')
+
     def test_batting_not_pitching(self):
         html = fixture() + '<h2>Test</h2><table><tr><th>IP</th><th>SO</th></tr></table>'
         self.assertEqual(box_counts(html, 'Test', '2023-06-02')['K'], 1)

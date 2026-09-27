@@ -85,5 +85,32 @@ class BoundedHavocInputsTests(unittest.TestCase):
         excluded[0]['game_date']='2021-06-01'
         with patch('havoc_inputs.read',side_effect=[contract,games,excluded]),self.assertRaises(ValueError):inventory(2021,'wn:Virginia')
 
+    def test_rendered_capture_requires_provenance_and_rejects_conflicts(self):
+        with tempfile.TemporaryDirectory() as d:
+            raw=Path(d);url='https://school.test/box'
+            stem=box_path(raw,url);rendered=raw/'rendered_boxes'/stem.name
+            stem.parent.mkdir(parents=True);rendered.parent.mkdir()
+            body=fixture().replace('<h2>Test</h2>','<h2>Virginia</h2>')
+            body+=fixture().replace('<h2>Test</h2>','<h2>Texas</h2>')
+            game=dict(team_a_id='wn:Virginia',team_b_id='wn:Texas',runs_a=1,runs_b=1,game_date='2023-06-02')
+            def save(path,html,**metadata):
+                path.with_suffix('.html').write_text(html)
+                write(path.with_suffix('.json'),dict(url=url,sha256=digest(path.with_suffix('.html')),
+                    retrieved_at_utc='2026-09-27T00:00:00+00:00',**metadata))
+            save(stem,'unavailable',status=404)
+            save(rendered,body,acquisition='browser_dom',rendered=False)
+            with self.assertRaises(ValueError):verified_box(raw,url,game,'wn:Virginia')
+            save(rendered,body,acquisition='browser_dom',rendered=True)
+            self.assertEqual(verified_box(raw,url,game,'wn:Virginia')['K'],1)
+            with self.assertRaises(ValueError):verified_box(raw,url,dict(game,game_date='2023-06-03'),'wn:Virginia')
+            save(stem,body,status=200)
+            self.assertEqual(verified_box(raw,url,game,'wn:Virginia')['K'],1)
+            # Both player and total strikeouts agree within each capture, but
+            # two individually valid captures disagree with each other.
+            changed=body.replace('<td>0</td><td>1</td><td>1</td><td>1</td><td>0</td>',
+                                 '<td>0</td><td>1</td><td>2</td><td>1</td><td>0</td>')
+            save(rendered,changed,acquisition='browser_dom',rendered=True)
+            with self.assertRaises(RuntimeError):verified_box(raw,url,game,'wn:Virginia')
+
 
 if __name__=='__main__':unittest.main()

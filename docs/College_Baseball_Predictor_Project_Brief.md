@@ -143,15 +143,16 @@ the inventory's earlier skip recommendation, and remain untested. The [D1Basebal
 
 **HAVOC expansion is checkpointed, not tested:** the [locked chronological
 experiment](Havoc_Chronological_Experiment.md) targets eight teams per year in 2021–2023.
-Fourteen final tables were captured; Texas and Louisiana Tech 2022 have complete
-subtractions. D1 browser verification and failed/unsupported official boxes blocked
-completion. Only one training matchup and no selection matchups qualify, so neither
-formula was fitted or scored. Code, tests and raw evidence are retained.
+All 24 final tables are captured; twelve team-seasons have complete subtractions.
+Covered NCAA games are four in 2021, six in 2022 and two in 2023: below the locked
+16-training/eight-selection minimum. Both formulas remain unfitted and unscored.
+Code, tests and original/new evidence are retained; no cutoff or fallback changed.
 
-**Next:** complete missing captures and named postseason exclusions within that same
-sample when access permits, then run both locked formulas against Elo. Do not replace
-teams, expand scope after scoring, or restart a broad audit. Final totals alone remain
-ineligible; unsupported pairs retain Elo.
+**Next:** finish the six named official exclusions in the chronological report,
+including two suspended-game date reconciliations, then rerun the eligibility gate
+and both formulas if it passes. No missing batting captures remain. Do not replace
+teams or restart a broad audit. Final totals alone remain ineligible; unsupported
+pairs retain Elo.
 
 Guillen and walks await separate locked 2025 development confirmation: no refitting,
 post-hoc combinations, 2024 retuning, 2026 use or failed-candidate reopening. Follow

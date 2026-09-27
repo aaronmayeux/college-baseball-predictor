@@ -32,8 +32,12 @@ class Tables(HTMLParser):
         self.current_heading = ''
         self.in_title = False
         self.title = ''
+        self.in_caption = False
+        self.caption = ''
 
     def handle_starttag(self, tag, attrs):
+        if tag == 'caption' and self.table is not None:
+            self.in_caption, self.caption = True, ''
         if tag == 'title':
             self.in_title = True
         if tag == 'h2':
@@ -50,6 +54,14 @@ class Tables(HTMLParser):
             self.cell = True
 
     def handle_endtag(self, tag):
+        if tag == 'caption':
+            self.in_caption = False
+            # Legacy Sidearm identifies each team's complete batting table
+            # by caption, while modern Sidearm uses a preceding h2.
+            caption = ' '.join(self.caption.split())
+            m = re.fullmatch(r'(.+?) \d+\s*(?:-\s*)?Composite Stats', caption)
+            if m and self.tables:
+                self.tables[-1] = (m[1], self.tables[-1][1])
         if tag == 'title':
             self.in_title = False
         if tag == 'h2':
@@ -61,6 +73,8 @@ class Tables(HTMLParser):
             self.cell = False
 
     def handle_data(self, data):
+        if self.in_caption:
+            self.caption += data
         if self.in_title:
             self.title += data
         if self.in_heading:

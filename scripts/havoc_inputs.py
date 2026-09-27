@@ -43,10 +43,10 @@ BOX_ALIASES = {
     'wn:Air-Force': ('Air Force', 'Air Force Academy'),
     'wn:Texas-AM': ('Texas A&M',),
     'wn:Dallas-Baptist': ('DBU', 'Dallas Baptist'),
-    'wn:Southern': ('Southern', 'Southern U.'),
+    'wn:Southern': ('Southern', 'Southern U.', 'Southern University'),
     'wn:Southern-Miss': ('Southern Miss',),
     'wn:South-Carolina': ('South Carolina',),
-    'wn:Southeastern-Louisiana': ('Southeastern', 'Southeastern Louisiana'),
+    'wn:Southeastern-Louisiana': ('Southeastern', 'Southeastern Louisiana', 'Southeastern La.'),
     'wn:Sam-Houston-State': ('Sam Houston', 'Sam Houston State'),
     'wn:Penn': ('Penn', 'Pennsylvania'),
 }
@@ -270,6 +270,18 @@ def linked_boxes(raw):
             needed.update(g['game_id'] for g in inventory(y,t)[2])
         except ValueError:
             continue
+    # Replacement official links may be discovered on school schedules or via
+    # search. Keep that discovery evidence; never replace a failed cached URL.
+    supplemental = raw/'official_links.json'
+    if supplemental.exists():
+        for row in read(supplemental):
+            u = urlparse(row['url'])
+            if (row['game_id'] not in needed or u.scheme != 'https' or not u.hostname
+                    or u.hostname == 'd1baseball.com'
+                    or not row.get('discovery') or not row.get('retrieved_at_utc')):
+                raise ValueError('Invalid bounded supplemental box link')
+            datetime.fromisoformat(row['retrieved_at_utc'].replace('Z', '+00:00'))
+            links[row['game_id']].add(row['url'])
     reverse = defaultdict(set)
     for game_id, urls in links.items():
         for url in urls:
@@ -284,6 +296,12 @@ def box_path(raw, url):
 
 def collect_boxes(raw):
     urls = sorted({u for v in linked_boxes(raw).values() for u in v})
+    collect_urls(raw, urls)
+
+
+def collect_urls(raw, urls):
+    supplemental = raw/'official_links.json'
+    discovery = {r['url']: r['discovery'] for r in read(supplemental)} if supplemental.exists() else {}
     for url in urls:
         stem = box_path(raw, url)
         meta_path, body_path = stem.with_suffix('.json'), stem.with_suffix('.html')
@@ -295,7 +313,7 @@ def collect_boxes(raw):
         if body_path.exists():
             raise ValueError('Unpaired cache file')
         meta = dict(url=url, retrieved_at_utc=datetime.now(timezone.utc).isoformat(),
-                    discovery='retained D1 schedule; HTTP upgraded to HTTPS')
+                    discovery=discovery.get(url, 'retained D1 schedule; HTTP upgraded to HTTPS'))
         try:
             with urlopen(Request(url, headers={'User-Agent':'CollegeBaseballResearch/1.0'}), timeout=25) as res:
                 body = res.read()
@@ -314,10 +332,26 @@ def collect_boxes(raw):
 
 
 def verified_box(raw, url, game, team):
-    stem = box_path(raw, url)
+    results = []
+    for directory in ('boxes', 'rendered_boxes'):
+        stem = raw/directory/hashlib.sha256(url.encode()).hexdigest()
+        try:
+            results.append(verified_box_capture(stem, url, game, team))
+        except (ValueError, FileNotFoundError):
+            continue
+    if not results:
+        raise ValueError('No verified downloaded or rendered box')
+    if any(r != results[0] for r in results):
+        raise RuntimeError('Conflicting downloaded/rendered boxes')
+    return results[0]
+
+
+def verified_box_capture(stem, url, game, team):
     meta_path, body_path = stem.with_suffix('.json'), stem.with_suffix('.html')
     meta = read(meta_path)
-    if meta['url'] != url or meta['status'] != 200 or digest(body_path) != meta['sha256']:
+    available = (meta.get('status') == 200 or
+                 (meta.get('acquisition') == 'browser_dom' and meta.get('rendered') is True))
+    if meta['url'] != url or not available or digest(body_path) != meta['sha256']:
         raise ValueError('Unavailable or changed box')
     datetime.fromisoformat(meta['retrieved_at_utc'])
     text = body_path.read_text(errors='replace')

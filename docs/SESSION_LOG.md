@@ -2,35 +2,33 @@
 
 Updated September 27, 2026. Git history owns prior sessions.
 
-## Completed — bounded HAVOC checkpoint, not a model test
+## Completed — resumed fixed HAVOC checkpoint
 
-[Locked protocol/results](Havoc_Chronological_Experiment.md) target eight teams in each
-of 2021–2023: first two regionals alphabetically. Fourteen complete final batting
-tables retained. Texas and Louisiana Tech 2022 now have complete pre-NCAA subtractions
-(69→61 and 64→61 games), supplementing the separately retained Virginia 2023 pilot.
-Twenty-nine official box requests are cached: 16 HTTP 200, nine 404, four certificate
-502 responses. Failed/missing/unsupported boxes remain explicit exclusions.
-
-D1Baseball repeatedly showed Cloudflare browser verification. One normal reload
-recovered an earlier page; collection stopped when verification returned. No bypass.
-The evidence checkpoint preserves successes, failures and exact remaining game IDs.
+Latest main fetched; baseline/v2 restored and rebuilt. All 24 final batting tables
+are captured. Twelve team-seasons now have complete verified subtractions (previously
+two). [Chronological report](Havoc_Chronological_Experiment.md) owns teams, counts and
+six priority missing exclusions. Original evidence and outputs remain byte-identical;
+new HTTP and browser captures are separate. Legacy composite captions and explicit
+bounded supplemental links are supported without weakening box checks.
 
 ## Verification and limitations
 
-21 focused data-free tests pass. Offline preparation/report repeat byte-for-byte;
-baseline/v2 preservation gates pass. Only one 2022 matchup and no 2021/2023 matchups
-qualify. The coverage gate correctly stops before fitting or scoring either formula.
-**HAVOC is still untested, not rejected.** Elo and the app remain unchanged.
-Reproduction and checkpoint identity: DATA.md. New code: scripts/havoc_inputs.py and
-historical/havoc.py. Tests need no external data.
+23 focused data-free tests pass. Actual preparation/report repeat byte-for-byte;
+baseline/v2 preservation gates pass. Covered games: 2021 four, 2022 six, 2023 two.
+Minimum remains 16 training/eight selection, so both formulas remain **untested**.
+No scoring, promotion, app change or cutoff relaxation. Elo fallback remains exact.
+Empty/truncated browser captures stay excluded. Last browser attempt failed extraction
+and click dispatch despite a visible box score; no bypass or invented counts.
 
 ## Next concrete step
 
-Resume the same fixed sample when public D1 access permits; finish missing captures
-and named excluded-game boxes using the saved checkpoint. Do not retry cached failures
-automatically, replace teams or start a broad coverage audit. Once chronological
-minimums pass, test both authorized formulas under the locked protocol. No later-year
-scoring or deployment is authorized by this preliminary screen alone.
+Restore updated evidence via DATA.md; use a new output version for new captures.
+Complete the six named exclusions: Auburn–UCLA, Auburn–Stanford, Arkansas–Auburn
+2022; Southern Miss–Tennessee, Sam Houston–Tulane, Oregon State–Sam Houston 2023.
+Two suspended games need retained completion-date evidence before any narrow date
+reconciliation. All batting captures are done. Reuse cached successes and saved
+links; do not automatically retry failures, swap teams or start broad audits.
+Only fit both locked formulas after the chronological gate passes.
 
-Guillen and walks still await separate locked 2025 confirmation; no combinations,
+Guillen/walks still await separate locked 2025 confirmation. No combinations,
 2024 retuning, 2026 use or reopening failed candidates. Individual pitchers deferred.

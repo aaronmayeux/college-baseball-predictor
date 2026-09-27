@@ -38,62 +38,64 @@ screen stops this specification. Preserve prior candidates and app outputs.
 
 ## Results
 
-**Blocked before fitting; both formulas remain untested.** Fourteen complete final
-batting captures were retained (eight 2021, six 2022). The bounded collection reached
-2023 but D1Baseball repeatedly presented Cloudflare browser verification. One ordinary
-reload recovered an earlier page; collection stopped when verification returned.
-No paywall, authentication or security control was bypassed. Incidental current-year
-navigation was excluded; no 2026 inputs entered preparation or fitting.
+**Blocked before fitting; both formulas remain untested.** All 24 final Overall
+batting tables are now retained. Twelve team-seasons have complete verified
+pre-NCAA subtractions, up from two in the original checkpoint:
 
-Twenty-nine distinct linked official box URLs were requested once and cached:
-16 returned HTTP 200, nine returned 404 and four returned certificate-related 502
-responses. Successful HTTP access alone does not qualify a box. Unsupported legacy
-formats, missing links and failed responses remain explicit exclusions. No broad
-coverage audit or replacement-team search was performed.
+| Season | Complete final tables | Eligible teams | Covered NCAA games | Elo fallback games |
+|---|---:|---|---:|---:|
+| 2021 training | 8/8 | Arizona State, Fairfield, Texas | 4/139 | 135 |
+| 2022 training | 8/8 | Air Force, Dallas Baptist, Florida State, Louisiana Tech, Southeastern Louisiana, Texas | 6/141 | 135 |
+| 2023 selection | 8/8 | Auburn, Penn, Samford | 2/137 | 135 |
 
-**Two additional teams now have complete verified pre-NCAA counts:**
+Training has 10 of the required 16 covered games, with at least four in each year.
+Selection has two of eight. No coefficient, candidate score, winner or promotion
+was produced. This is missing evidence, not a rejected predictive hypothesis.
+Elo, all 64 bracket teams, prior models and app outputs remain unchanged.
 
-| 2022 team | Final → eligible games | BB | HBP | Batting K | SB | CS | Original HAVOC | Net-steals HAVOC |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Louisiana Tech | 64 → 61 | 270 | 99 | 516 | 62 | 18 | 0.955426 | 0.885659 |
-| Texas | 69 → 61 | 288 | 70 | 484 | 47 | 15 | 0.933884 | 0.871901 |
+The fixed sample now retains 88 official HTTP responses: 45 status 200, 19 status
+404, 14 transport failures, six 403 and four 502. Successful access alone does not
+qualify a box. Additional browser DOM captures preserve document titles, team
+headings and complete batting tables; they do not claim an observed HTTP status.
+Empty/truncated extraction attempts are retained separately. The latest browser
+attempt showed a box score but failed DOM extraction and click dispatch, so it
+was not admitted. No security control was bypassed or failed URL automatically retried.
 
-Both include conference tournaments through May 29, before the June 1 cutoff under
-the existing two-day rule. Their full game counts and runs agree with retained Nolan
-results. Ten distinct verified boxes cover their eleven excluded team-game appearances;
-their shared regional box is reused. Both teams' dates, identities, scores and batting
-player sums are checked in every subtraction. These are input values, not predictions.
-The earlier Virginia 2023 pilot remains separately preserved and outside this locked sample.
+The parser now recognizes legacy composite-table team captions. Supplemental
+official links retain discovery provenance and are restricted to already-needed
+excluded game IDs. Original failed responses stay intact; rendered sources are
+separate. Both-sided identity, exact date, score, required columns, player sums and
+body hashes remain mandatory. Conflicting valid HTTP/rendered counts fail preparation.
+No absent steal, caught-stealing or hit-by-pitch count is inferred as zero.
 
-| Season | Complete final tables | Reconstructed eligible teams | Covered NCAA games | Elo fallback games |
-|---|---:|---:|---:|---:|
-| 2021 training | 8/8 | 0/8 | 0/139 | 139 |
-| 2022 training | 6/8 | 2/8 | 1/141 | 140 |
-| 2023 selection | 0/8 | 0/8 | 0/137 | 137 |
-
-The chronological minimum fails before either coefficient is fitted or any candidate
-score is computed. This is **missing evidence, not a failed predictive hypothesis**.
-No winner comparison, advancement claim or app promotion is justified. All 64 bracket
-teams and existing Elo/app outputs remain intact.
-
-Small final run discrepancies remain uncorrected flags: Fairfield 2021 −9, Old Dominion
-2021 −1, DBU 2022 −1 and UCLA 2022 −3. Southern 2021 +11 exceeds the locked tolerance.
-None of these teams qualifies yet because complete verified subtraction is also missing.
-Full per-team reasons, missing game IDs, source hashes and failed captures are retained
-in the separate evidence checkpoint, not duplicated in Git.
+Small final-run discrepancies remain flags, including eligible Fairfield 2021 −9
+and Dallas Baptist 2022 −1. Southern 2021 +11 remains ineligible under the unchanged
+tolerance. Other incomplete teams' flags and every unresolved game ID remain in
+the evidence report. No source total or game date was silently corrected.
 
 ## Verification and continuation
 
-Twenty-one focused data-free tests pass, covering the original pilot plus new identity,
-season/split, loading/blank-cell parsing, count validation, cutoff/non-D1 handling,
-both-sided box verification, hashes, exact Elo fallback, chronological fitting,
-immutable locks, both candidate evaluation paths and refusal to fit an inadequate sample.
-The real blocked report and prepared inputs reproduce byte-for-byte. Baseline/v2 gates
-pass; earlier model code and app files are unchanged.
+23 focused data-free tests pass, including caption identity, rendered provenance,
+failed-HTTP fallback, conflicting sources, exact dates, hashes, player sums, immutable
+locks, exact Elo fallback and the two chronological evaluation paths. Real preparation
+and report repeat byte-for-byte; baseline/v2 preservation gates pass. All original
+checkpoint files were verified unchanged against their original manifest.
 
-Restore the new checkpoint and baseline/v2 per [DATA.md](DATA.md). Continue only the
-same 24-team-season sample: recover missing D1 captures when access permits and obtain
-working official evidence for the named missing exclusions. Reuse cached successes;
-do not automatically retry failures, replace teams or enlarge the sample. Then rerun
-qualification and, only when its chronological minimum passes, compare both formulas.
-The failed session is a checkpoint, not completion of the requested model test.
+[DATA.md](DATA.md) owns restoration and checkpoint identity. The original output is
+preserved; the resumed run is `output/bounded-v2`. Use the same 24-team-season sample.
+The shortest evidenced continuation is six excluded games:
+
+| Game ID | Required evidence | Remaining issue |
+|---|---|---|
+| wn:2022:42130 | Auburn–UCLA regional final | Complete table and documented June 5 start / June 6 completion reconciliation |
+| wn:2022:44006 | Auburn–Stanford, June 20 | Complete batting table; replacement page lacks usable counts |
+| wn:2022:44009 | Arkansas–Auburn, June 21 | Retained legacy box lacks supported explicit SB/CS columns |
+| wn:2023:46020 | Southern Miss–Tennessee opener | Complete rendered table; saved extraction was empty |
+| wn:2023:45018 | Sam Houston–Tulane | Complete table and documented June 3 start / June 4 completion reconciliation |
+| wn:2023:45022 | Oregon State–Sam Houston, June 4 | Complete rendered table; saved extraction was empty |
+
+If these qualify under unchanged checks, Auburn/UCLA 2022 and Southern Miss,
+Sam Houston/Tulane 2023 can supply the missing coverage. This is a collection
+priority, not permission to relax dates or counts. The full report retains other
+fixed-sample exclusions. Do not replace teams, launch a broad audit, fit below the
+minimum, or score later years. Reuse saved successes and explicit source links.
