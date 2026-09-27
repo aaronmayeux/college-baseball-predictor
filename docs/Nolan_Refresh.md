@@ -85,11 +85,10 @@ experiments or cutoffs changed; no 2026 collection or model scoring occurred.
 The saved refresh now connects to the existing Elo export, using the complete verified
 history as fallback. It reparses saved source bytes and recomputes staged games, rejecting
 altered hashes, generated rows, eligibility flags or stale parser/cutoff contracts.
-It adds refreshed provenance to unchanged reciprocal games. Changed, new, unpaired,
+It adds refreshed provenance to unchanged reciprocal games. Without an explicit acceptance file, changed, new, unpaired,
 conflicting or absent rows retain baseline values and explicit review reasons. Official
 supplements and timing corrections survive intact. No deletions or new default ratings
-are inferred from a partial refresh. This conservative adapter does not yet adopt changed
-scores automatically or qualify a new season.
+are inferred from a partial refresh. The adapter never adopts changed scores automatically or qualifies a new season.
 
 ```sh
 python3 -m tournament.build \
@@ -112,7 +111,66 @@ The eight new adapter tests cover changed inputs, missing/new/conflicting result
 official corrections, raw/generated-row tampering and app-output protection. Full suite:
 **260 tests** (193 scripts, 67 historical). No candidate accuracy scoring or 2026 use.
 
-Next: add explicit evidence-backed acceptance for genuinely changed rows so reviewed
-corrections can update a candidate forecast without rewriting the baseline. Do not
-collect more merely to manufacture a changed example; synthetic fixtures can verify the
-workflow. Current changed rows remain on historical fallback until that path is qualified.
+## Reviewed score-correction acceptance
+
+A candidate export can now accept **score-only corrections** backed by two agreeing
+observations reparsed from saved Nolan pages. This is a retrospective data correction,
+not a model experiment, accuracy improvement claim, or proof that the corrected result
+was published before the historical cutoff. No new collection is required.
+
+```sh
+python3 -m tournament.build --refresh ingestion/output/<saved-version> \
+  --accept-corrections tournament/output/<review>/acceptance.json \
+  --output tournament/output/<review>/forecast.json
+```
+
+Keep the review file outside the immutable refresh folder. Its JSON schema is:
+
+```json
+{
+  "schema": 1,
+  "season": 2024,
+  "refresh_version": "<saved-version>",
+  "refresh_sha256": {"<relative source/staging file>": "<SHA-256 for every refresh file>"},
+  "corrections": [{
+    "game_id": "<existing game ID>",
+    "baseline_sha256": "<exact original row fingerprint>",
+    "candidate_sha256": "<exact verified staged row fingerprint>",
+    "reason": "<specific reason the saved reciprocal scorelines support this correction>"
+  }]
+}
+```
+
+Obtain the verified snapshot with `ingestion.candidate.verified_refresh(folder)`;
+its `source_sha256` supplies `refresh_sha256`. For each reviewed game, use
+`ingestion.candidate.fingerprint(row)` on the complete baseline row and staged row.
+The baseline row must come from `overlay(load_games(year), verify_timing())`, as in
+`tournament/build.py`, including stable identities and any existing corrections.
+Fingerprints bind the full rows, not just scores. A matching hash confirms exact bytes,
+not reviewer identity or independent truth. A reason must record the actual review;
+never approve all changed rows indiscriminately. Review manifests are game-level local
+artifacts and must stay under ignored output directories.
+
+Acceptance rules:
+
+- Only existing, reciprocal-qualified games with changed runs/tie fields qualify.
+  Team identities, date, phase and timing flags must match. Scores must be nonnegative
+  integers and the tie flag must agree. New games and official supplements remain fallback.
+- Existing official correction/timing evidence cannot be overridden by this path.
+- At least one freshly recomputed cutoff mode must qualify. Reconstruction still applies
+  each mode's phase list and two-day lag separately; acceptance cannot make a conference
+  tournament game regular-only or admit a late/NCAA result.
+- Missing, duplicate, stale, unchanged or unsafe approval entries fail the export rather
+  than partially applying a review. Unreviewed changed rows retain historical fallback.
+- Accepted rows keep the full original game, new source references and review. The report
+  embeds the acceptance file and its fingerprint. Raw evidence and baseline files are
+  untouched, and candidate exports remain restricted to `tournament/output/`.
+- The exporter checks the **original** reconstruction against v2 even when candidate
+  probabilities change. Candidate differences are reported separately and permitted only
+  when accepted inputs changed. Default exports keep exact baseline checks.
+
+Synthetic tests exercise raw reciprocal pages through parsing, review, real Elo
+reconstruction and the export, with unrelated historical gates/bracket layout mocked.
+They verify changed probabilities, deterministic reruns, preserved originals, ties,
+mode separation, cutoff exclusion, stale evidence and rejection of official overrides.
+No real changed result has been approved or evaluated; the app remains unchanged.

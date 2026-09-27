@@ -122,12 +122,19 @@ Do not retune closed candidates on exposed 2024/2025. **Elo remains in the app.*
 The bounded three-page snapshot reparses from saved bytes and confirms ten unchanged
 games; 185 unpaired games retain verified historical fallback. All 64 teams, every
 matchup, advancement odds and bracket picks match in both cutoff modes. Candidate
-exports stay separate from app data. Changed/new/conflicting/missing rows retain
+exports stay separate from app data. Unreviewed changed/new/conflicting/missing rows retain
 baseline values and review reasons; official corrections remain intact. No 2026 use.
 
-**Next:** add evidence-backed acceptance of changes to forecasts,
-preserving the original baseline. Use synthetic fixtures; no new collection or coverage
-audit is needed. New model experiments require a distinct hypothesis and chronological lock.
+**Evidence-backed score correction acceptance is implemented:** explicit review files
+bind saved evidence and exact original/replacement rows. Accepted scores update only
+candidate forecasts; unsupported or unreviewed changes retain historical fallback.
+Synthetic tests cover the raw-to-Elo path, cutoff separation and original-v2 verification.
+No actual changed result has been approved, no prediction gain is claimed, and the app
+is unchanged. See [the review contract](Nolan_Refresh.md#reviewed-score-correction-acceptance).
+
+**Next:** use this offline review path when a genuine score correction is available;
+no additional collection or coverage audit is needed to prove it. Fresh-year support
+still needs a separate roster/cutoff decision. New model experiments require a distinct hypothesis and chronological lock.
 [The practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) remains in force: accept small documented gaps, preserve leakage safeguards and exact Elo fallback. No broad source audit, school sweep, paid detour or raw-candidate reopening. D1 remains reference-only.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.

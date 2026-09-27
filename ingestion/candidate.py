@@ -1,8 +1,10 @@
 """Verify a saved refresh and connect corroborated inputs to the fixed Elo export.
 
-Changed/new/unpaired rows retain the verified baseline as an explicit fallback.
+Only explicitly reviewed, evidence-bound score corrections can change candidate inputs.
+Other changed/new/unpaired rows retain the verified baseline as an explicit fallback.
 A refresh cannot silently revoke official corrections or rewrite evaluated history.
 """
+import json
 from collections import Counter
 from copy import deepcopy
 from pathlib import Path
@@ -73,8 +75,53 @@ def verified_refresh(folder):
                 source_sha256=before,version=folder.name)
 
 
-def merge_verified(history, staged):
-    """Attach new corroboration; retain baseline values/provenance for all fallbacks."""
+def fingerprint(value):
+    """Stable exact-row binding, including original provenance/corrections."""
+    return refresh.digest(json.dumps(value, sort_keys=True, separators=(',', ':')).encode())
+
+
+def approvals_for(approval, staged):
+    if approval is None:
+        return {}
+    if (approval.get('schema') != 1 or approval.get('season') != staged['season'] or
+            approval.get('refresh_version') != staged['version'] or
+            approval.get('refresh_sha256') != staged['source_sha256']):
+        raise ValueError('Approval does not match verified refresh evidence')
+    rows = approval.get('corrections')
+    if not isinstance(rows, list) or not rows:
+        raise ValueError('Approval requires explicit corrections')
+    result = {}
+    for row in rows:
+        gid = row['game_id']
+        if gid in result or not isinstance(row.get('reason'), str) or not row['reason'].strip():
+            raise ValueError('Duplicate approval or missing review reason')
+        result[gid] = row
+    return result
+
+
+def accept_score(original, fresh, review, differences):
+    if (review.get('baseline_sha256') != fingerprint(original) or
+            review.get('candidate_sha256') != fingerprint(fresh)):
+        raise ValueError('Approval row fingerprints changed')
+    if not differences or set(differences) - {'runs_a', 'runs_b', 'tie'}:
+        raise ValueError('Only score corrections may be accepted')
+    if (original.get('corrections') or original.get('timing_resolution') or
+            original.get('original_timing_fields') or not original['game_id'].startswith('wn:')):
+        raise ValueError('Official corrections require separate evidence review')
+    if fresh.get('timing_review') or not any(m['eligible'] for m in fresh['modes'].values()):
+        raise ValueError('Correction has no cutoff-eligible mode')
+    if (any(type(fresh[k]) is not int or fresh[k] < 0 for k in ('runs_a', 'runs_b')) or
+            type(fresh['tie']) is not bool or fresh['tie'] != (fresh['runs_a'] == fresh['runs_b'])):
+        raise ValueError('Invalid corrected score/tie')
+    original['refresh_correction'] = dict(
+        original_game=deepcopy(original), review=deepcopy(review),
+        observation_refs=deepcopy(fresh['observation_refs']))
+    for key in ('runs_a', 'runs_b', 'tie'):
+        original[key] = fresh[key]
+
+
+def merge_verified(history, staged, approval=None):
+    """Apply reviewed scores to a copy; preserve baseline values for all fallbacks."""
     year=staged['season']
     if year not in history:
         raise ValueError('Refresh outside available initialization history')
@@ -83,6 +130,9 @@ def merge_verified(history, staged):
     incoming={g['game_id']:g for g in staged['games']}
     if len(base)!=len(result[year]) or len(incoming)!=len(staged['games']):
         raise ValueError('Duplicate game IDs')
+    reviews=approvals_for(approval, staged)
+    if set(reviews) - set(incoming):
+        raise ValueError('Approval references absent refresh game')
     decisions=[]
     for gid,g in sorted(incoming.items()):
         if g['season']!=year:
@@ -99,25 +149,37 @@ def merge_verified(history, staged):
                 status='fallback_baseline_unqualified'
             elif differences:
                 status='fallback_changed_requires_review'
+                if gid in reviews:
+                    accept_score(original, g, reviews[gid], differences)
+                    status='accepted_score_correction'
             else:
                 status='confirmed_unchanged'
                 original['refresh_confirmation']=dict(version=staged['version'],
                     observation_refs=deepcopy(g['observation_refs']))
+        if gid in reviews and status != 'accepted_score_correction':
+            raise ValueError('Approval targets an unqualified or unchanged game')
         decisions.append(dict(game_id=gid,status=status,changed_fields=differences,
-            baseline_preserved=original is not None,
+            baseline_preserved=original is not None and status!='accepted_score_correction',
             fresh_mode_eligibility=deepcopy(g['modes'])))
+        if status == 'accepted_score_correction':
+            decisions[-1]['correction'] = deepcopy(original['refresh_correction'])
+            decisions[-1]['accepted_fields'] = {key: original[key] for key in ('runs_a', 'runs_b', 'tie')}
     requested={'wn:'+slug for slug in staged['teams']}
     missing=[g['game_id'] for g in result[year] if g['game_id'] not in incoming and
              requested.intersection((g['team_a_id'],g['team_b_id']))]
     report=dict(schema=1,season=year,refresh_version=staged['version'],
-        policy='corroborate unchanged; retain verified baseline for changed/new/missing/conflicting rows',
+        policy='explicit evidence-bound score corrections only; historical fallback for other rows',
         counts=dict(Counter(r['status'] for r in decisions)),missing_baseline_game_ids=sorted(missing),
         missing_baseline_games=len(missing),source_failures=staged['failures'],decisions=decisions,
-        numerical_inputs_changed=False,baseline_game_count=len(result[year]),
+        numerical_inputs_changed=any(r['status']=='accepted_score_correction' for r in decisions),baseline_game_count=len(result[year]),
         candidate_game_count=len(result[year]),refresh_sha256=staged['source_sha256'])
+    if approval is not None:
+        report['approval']=deepcopy(approval)
+        report['approval_sha256']=fingerprint(approval)
     return result,report
 
 
-def apply(folder,history):
+def apply(folder,history,approval_path=None):
     staged=verified_refresh(folder)
-    return merge_verified(history,staged)
+    approval=refresh.read(approval_path) if approval_path is not None else None
+    return merge_verified(history,staged,approval)

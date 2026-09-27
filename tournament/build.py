@@ -18,7 +18,9 @@ from tournament.engine import forecast, probability
 from tournament.field import build_regions
 
 
-def build(refresh_path=None):
+def build(refresh_path=None, approval_path=None):
+    if approval_path is not None and refresh_path is None:
+        raise ValueError("Corrections require a saved refresh")
     before = validation.hashes()
     audit = json.loads((ROOT/'historical/coverage_validation.json').read_text())
     if len(audit) != 5 or {r['season'] for r in audit} != set(range(2021, 2026)) or not all(r['pass'] for r in audit):
@@ -35,10 +37,11 @@ def build(refresh_path=None):
     selected = [r for r in selections if r['season'] == 2025]
     regions = build_regions(selected, internal)
     games = {y: overlay(load_games(y), refs) for y in range(2021, 2026)}
+    baseline_games = games
     refresh_report = None
     if refresh_path is not None:
         from ingestion.candidate import apply
-        games, refresh_report = apply(refresh_path, games)
+        games, refresh_report = apply(refresh_path, games, approval_path)
     reference, _, _ = validation.evaluate(contract, refs)
     modes = {}
     for mode in MODES:
@@ -49,12 +52,18 @@ def build(refresh_path=None):
         sample = [r for r in reference if r['season'] == 2025 and r['mode'] == mode]
         if not sample:
             raise ValueError('Missing v2 comparison sample')
+        baseline_state = reconstruct(baseline_games, contract, 2025, mode)[0] if refresh_report else state
+        baseline_error = max(abs(probability(baseline_state.r[r['team_a_id']], baseline_state.r[r['team_b_id']]) - r['elo']) for r in sample)
+        if baseline_error > 1e-12:
+            raise ValueError('Baseline ratings diverged from existing v2 probabilities')
         error = max(abs(probability(ratings[r['team_a_id']], ratings[r['team_b_id']]) - r['elo']) for r in sample)
-        if error > 1e-12:
+        if error > 1e-12 and not (refresh_report and refresh_report['numerical_inputs_changed']):
             raise ValueError('Ratings diverged from existing v2 probabilities')
         modes[mode] = dict(forecast(regions, ratings), ratings=ratings, history=history,
                            eligible_games={t: state.n[t] for t in ratings},
-                           verification=dict(v2_games=len(sample), max_probability_difference=error))
+                           verification=dict(v2_games=len(sample), max_probability_difference=error,
+                               baseline_max_probability_difference=baseline_error,
+                               candidate_inputs_changed=bool(refresh_report and refresh_report['numerical_inputs_changed'])))
     if validation.hashes() != before:
         raise ValueError('Preserved baseline changed')
     code = list((ROOT/'tournament').glob('*.py')) + [ROOT/'historical'/n for n in ('baseline.py', 'team_fallback.py', 'eligibility.py', 'cutoffs.json')]
@@ -76,7 +85,7 @@ def build(refresh_path=None):
         if hashes(Path(refresh_path).resolve()) != refresh_report['refresh_sha256']:
             raise ValueError('Refresh changed while forecasting')
         result['refresh'] = refresh_report
-        result['limitations'].append('Refresh corroboration only; changed/new/missing/conflicting rows retain verified historical fallback.')
+        result['limitations'].append('Only explicitly reviewed, evidence-bound score corrections are accepted; all other changes retain historical fallback. Later retrieved corrections are retrospective, not point-in-time certified.')
         for name in ('ingestion/candidate.py','ingestion/nolan_parser.py','ingestion/nolan_refresh.py'):
             result['provenance']['code_sha256'][name] = hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
     return result
@@ -87,14 +96,17 @@ def main():
     parser.add_argument('--output', type=Path, default=ROOT/'app/data/forecast.json')
     parser.add_argument('--standalone', type=Path, help='Also write a self-contained HTML app')
     parser.add_argument('--refresh', type=Path, help='Saved version to verify and connect using explicit historical fallback')
+    parser.add_argument('--accept-corrections', type=Path, help='Evidence-bound reviewed score-correction JSON; requires --refresh')
     args = parser.parse_args()
+    if args.accept_corrections and not args.refresh:
+        parser.error('--accept-corrections requires --refresh')
     if args.refresh:
         # Candidate exports never silently replace app/data or source evidence.
         base = (ROOT/'tournament/output').resolve()
         targets = [args.output] + ([args.standalone] if args.standalone else [])
         if any(not target.resolve().is_relative_to(base) for target in targets):
             parser.error('--refresh requires outputs under tournament/output; app data remains unchanged')
-    result = build(args.refresh)
+    result = build(args.refresh, args.accept_corrections)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + '\n')
     if args.standalone:
