@@ -33,7 +33,7 @@ def lock(path, value):
 
 def fingerprints(raw):
     result = common.inputs()
-    for p in (Path(__file__), Path(source.__file__), ROOT.parent/'scripts/reconstruct_havoc_pilot.py'):
+    for p in (Path(__file__), Path(source.__file__), ROOT.parent/'scripts/reconstruct_havoc_pilot.py', ROOT.parent/'scripts/havoc_box_extensions.py'):
         result[str(p.relative_to(ROOT.parent))] = common.digest(p)
     result['protocol_text'] = common.fingerprint((ROOT.parent/'docs/Havoc_Chronological_Experiment.md').read_text().split('\n## Results',1)[0])
     result.update({'raw/'+str(p.relative_to(raw)):common.digest(p) for p in sorted(raw.rglob('*')) if p.is_file()})

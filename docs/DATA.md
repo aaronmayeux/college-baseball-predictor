@@ -2,47 +2,45 @@
 
 ## Bounded HAVOC chronological checkpoint
 
-`College_Baseball_HAVOC_Bounded_Evidence.zip` (5,156,397 bytes) supplements the
+`College_Baseball_HAVOC_Bounded_Evidence.zip` (5,660,528 bytes) supplements the
 baseline/v2 and earlier one-team pilot. Library identity:
 `libfile_e05bf98834348191be66146c4c9dc7ac`. SHA-256:
 
 ```text
-390eeee3ca74737e8672d239aaffb81ccbcbe7542983d85726d3af07d2de0c81
+884b38f9ebf36fcc52ccf17f10fc6ae312792000ad0ae5c13860838d53f335ab
 ```
 
-The resumed version retains all 24 final batting tables, 88 cached HTTP box
-responses, separate rendered official-box captures, rejected empty/truncated DOM
-attempts and explicit supplemental link provenance. Twelve team-seasons qualify.
-Original `manifest.json`, README and `output/*.json` remain unchanged; the new
-`manifest-v2.json` covers all retained files and `output/bounded-v2` is current.
-`RESUME.md` documents acquisition and the older generic metadata discovery label.
-Both formulas remain **untested**, not rejected. [Results and six priority
-exclusions](Havoc_Chronological_Experiment.md) own current continuation.
+All 24 final batting tables and the six priority postseason exclusions are retained.
+Seventeen team-seasons qualify; 16 training and eight selection games pass the locked
+minimum. **Both HAVOC formulas failed selection and are closed without promotion.**
+The [chronological report](Havoc_Chronological_Experiment.md) owns metrics and limits.
 
-Restore/rebuild the baseline and timing/seed v2 using the instructions below. Verify
-the archive hash and extract it into a separate directory, then use repository code:
+Original checkpoint files, manifests and outputs are byte-identical. `manifest-v3.json`
+hashes every retained file except itself. `RESUME-v3.md` explains new captures;
+`output/bounded-v3-final` contains current preparation, report and selection lock.
+New evidence includes three Sidearm composite captures, three WMT two-view captures
+with official embedding provenance, three official completion recaps and bound date
+reviews. The adapter uses explicit batting K rather than WMT composite pitching SO.
+The original 88 HTTP responses and unsuccessful DOM captures remain preserved.
+
+Restore/rebuild baseline and timing/seed v2 below. Verify the archive hash and extract
+it into a separate directory. Reproduce with current repository code:
 
 ```sh
-python3 historical/havoc.py prepare --raw-dir /absolute/path/to/checkpoint/raw --output historical/havoc_output/bounded-v2
-python3 historical/havoc.py evaluate --raw-dir /absolute/path/to/checkpoint/raw --output historical/havoc_output/bounded-v2
+python3 historical/havoc.py prepare --raw-dir /absolute/path/to/checkpoint/raw --output historical/havoc_output/bounded-v3-final
+python3 historical/havoc.py evaluate --raw-dir /absolute/path/to/checkpoint/raw --output historical/havoc_output/bounded-v3-final
 python3 -m unittest discover -s scripts -p 'test*havoc*.py'
 python3 -m unittest discover -s historical -p 'test_havoc.py'
 ```
 
-Matching reruns repeat byte-for-byte. Changed source/code/protocol rejects stale locks;
-a future completed source checkpoint needs a new explicitly versioned output directory.
-The current `evaluate` report deliberately says `fitted: false, scored: false`; successful
-command execution is not evidence that the model test occurred. No 2024–2026 candidate
-scoring or app output is written. Raw files and generated reports remain ignored.
+Matching runs repeat byte-for-byte. Changed inputs/code/protocol reject stale locks.
+The report has `fitted: true`, `scored: true`, `promoted: false`, `winner: elo` and
+`status: closed_at_selection`. No 2024–2026 candidate scoring or app output is written.
+Raw files, game-level samples and generated JSON reports stay outside Git.
 
-`python3 scripts/havoc_inputs.py inspect --raw-dir <checkpoint>/raw` lists the bounded
-source inventory; `reconstruct` emits eligible counts and per-team missing game IDs.
-The optional `collect-boxes` command requests only retained-schedule or explicitly registered official exclusions
-needed by captured final tables. It reuses saved responses, including failures, without
-retrying or overwriting them; it never requests D1Baseball. New browser captures must
-contain the full historical Overall batting table or schedule, exact URL, identity,
-selected year and UTC capture time. Blank class/position cells are preserved; loading
-rows, incomplete tables and wrong-season pages cannot qualify.
+`python3 scripts/havoc_inputs.py reconstruct --raw-dir <checkpoint>/raw` emits eligible
+counts and remaining fixed-sample exclusions. No further HAVOC collection is the
+next task. Do not overwrite earlier evidence or use final totals alone as inputs.
 
 ## HAVOC D1Baseball reconstruction pilot
 
@@ -506,7 +504,8 @@ Library identity: `libfile_53c49ab226748191bc070a9074dce845`.
 
 Verify the hash and extract into a fresh directory. `raw/` contains eight dated
 2021–2024 HR/run reports and 2023 SB/CS plus batting-average samples. The latter
-lack batting K, so HAVOC remains untested. Use current repository code:
+lack batting K and did not support HAVOC in that experiment. The completed bounded
+HAVOC checkpoint above owns its later test. Use current repository code:
 
 ```sh
 python3 historical/guillen.py prepare --evidence-dir /absolute/path/to/ncaa --style-dir /absolute/path/to/style

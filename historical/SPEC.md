@@ -51,8 +51,16 @@ unchanged and pending its separate confirmation.
 
 Aaron authorized [Guillen and HAVOC benchmark testing](../docs/Guillen_Havoc_Experiment.md),
 superseding the inventory's prior skip recommendation. Guillen is a separate promising
-2024 retrospective candidate; original/net-steals HAVOC remain untested. A [D1Baseball subtraction pilot](../docs/Havoc_Source_Reconstruction.md) reconstructs Virginia 2023. The [bounded expansion](../docs/Havoc_Chronological_Experiment.md) now has all 24 final batting tables and twelve reconstructed team-seasons, but its 10 training and two selection matchups fail the chronological input minimum; both HAVOC formulas remain untested. Its locked sample, source windows and minimum checks govern continuation. This is source evidence, not a fitted model. Preserve prior models, no post-hoc combination or power penalty, and confirm
-fixed candidates under a newly locked 2025 development protocol before deployment.
+2024 retrospective candidate; original/net-steals HAVOC completed the
+[bounded screen](../docs/Havoc_Chronological_Experiment.md): 16 training and eight
+2023 selection games qualified after all six priority exclusions were verified.
+Both formulas worsened both selection probability scores and are closed without
+promotion. No sign reversal, post-hoc combination, sample expansion or later-year
+HAVOC scoring after failure. The evidence adapters preserve original completion
+dates and only reconcile documented wholly post-cutoff subtraction dates; WMT
+batting K comes from its Hitting view, not mislabeled composite pitching SO.
+Preserve prior models and confirm Guillen/walk-rate candidates under a separately
+locked 2025 development protocol before deployment.
 
 ## Holdout decision
 2026 cannot be certified untouched: recovered SESSION_RECORD.md says an earlier ESPN sample included 2026 and its original raw evidence was lost. Exact exposed games and whether outcomes informed choices are unknown. Do not collect or evaluate 2026 under an untouched-holdout claim. Reserve a future season prospectively after locking code, cutoffs and metrics; 2027 is the earliest candidate, not yet a committed test.

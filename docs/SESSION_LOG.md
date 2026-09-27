@@ -2,33 +2,30 @@
 
 Updated September 27, 2026. Git history owns prior sessions.
 
-## Completed — resumed fixed HAVOC checkpoint
+## Completed — HAVOC tested and closed
 
-Latest main fetched; baseline/v2 restored and rebuilt. All 24 final batting tables
-are captured. Twelve team-seasons now have complete verified subtractions (previously
-two). [Chronological report](Havoc_Chronological_Experiment.md) owns teams, counts and
-six priority missing exclusions. Original evidence and outputs remain byte-identical;
-new HTTP and browser captures are separate. Legacy composite captions and explicit
-bounded supplemental links are supported without weakening box checks.
+Latest main fetched; baseline/v2 restored and rebuilt. All six priority postseason
+exclusions now pass, including three documented start/completion date reconciliations.
+WMT official embedded tables require batting K from the Hitting view; composite SO
+is pitching strikeouts. Adapter verifies player joins, sums, both scores, opposing
+pitching counts, source hashes and exact official embedding provenance.
 
-## Verification and limitations
+The fixed sample has 17 usable team-seasons; covered NCAA games are 4/12/8 in
+2021/2022/2023. Both locked formulas were fit on 16 training games and tested on
+eight 2023 selection games with 129 exact Elo fallback games. Both worsened log loss
+and Brier and added no correct picks. **HAVOC closed without promotion; Elo remains.**
+[Chronological report](Havoc_Chronological_Experiment.md) owns metrics and limitations.
 
-23 focused data-free tests pass. Actual preparation/report repeat byte-for-byte;
-baseline/v2 preservation gates pass. Covered games: 2021 four, 2022 six, 2023 two.
-Minimum remains 16 training/eight selection, so both formulas remain **untested**.
-No scoring, promotion, app change or cutoff relaxation. Elo fallback remains exact.
-Empty/truncated browser captures stay excluded. Last browser attempt failed extraction
-and click dispatch despite a visible box score; no bypass or invented counts.
+## Verification
+
+28 focused data-free tests pass. Actual preparation/evaluation repeat byte-for-byte;
+baseline/v2 preservation gates pass. Earlier checkpoint bytes remain unchanged.
+[DATA.md](DATA.md) owns the updated evidence archive and `output/bounded-v3-final`
+selection lock. No 2024–2026 candidate scoring, cutoff relaxation or app change.
 
 ## Next concrete step
 
-Restore updated evidence via DATA.md; use a new output version for new captures.
-Complete the six named exclusions: Auburn–UCLA, Auburn–Stanford, Arkansas–Auburn
-2022; Southern Miss–Tennessee, Sam Houston–Tulane, Oregon State–Sam Houston 2023.
-Two suspended games need retained completion-date evidence before any narrow date
-reconciliation. All batting captures are done. Reuse cached successes and saved
-links; do not automatically retry failures, swap teams or start broad audits.
-Only fit both locked formulas after the chronological gate passes.
-
-Guillen/walks still await separate locked 2025 confirmation. No combinations,
-2024 retuning, 2026 use or reopening failed candidates. Individual pitchers deferred.
+Lock a separate 2025 development confirmation protocol for the existing Guillen
+and walk-rate candidates, then evaluate their frozen models with game and advancement
+checks when their retained inputs qualify. No refitting, combinations, 2024 retuning,
+2026 use, failed-candidate reopening or broad audits. Individual pitchers deferred.

@@ -54,7 +54,9 @@ The subsequent [D1Baseball source pilot](Havoc_Source_Reconstruction.md) superse
 
 ## Results — September 27, 2026
 
-**Guillen is a promising confirmation candidate; HAVOC remains untested.** The original
+**Guillen is a promising confirmation candidate.** HAVOC was unavailable in this
+NCAA-report experiment; its later [bounded D1 test](Havoc_Chronological_Experiment.md)
+failed selection and is closed. The original
 Guillen proxy passed 2023 selection and improved 2024 game and regional probability
 scores. Both prespecified sensitivity checks retain those gains. Elo remains in the
 app; neither this feature nor a combination with walks was deployed.

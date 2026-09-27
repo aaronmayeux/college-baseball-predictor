@@ -15,6 +15,7 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 
 from reconstruct_havoc_pilot import FIELDS, REPO, box_counts, count, subtract
+from havoc_box_extensions import subtraction_day, verified_wmt
 
 SAMPLES = {
     2021: ('Arizona-State', 'Fairfield', 'Jacksonville', 'Old-Dominion',
@@ -272,8 +273,7 @@ def linked_boxes(raw):
             continue
     # Replacement official links may be discovered on school schedules or via
     # search. Keep that discovery evidence; never replace a failed cached URL.
-    supplemental = raw/'official_links.json'
-    if supplemental.exists():
+    for supplemental in sorted(raw.glob('official_links*.json')):
         for row in read(supplemental):
             u = urlparse(row['url'])
             if (row['game_id'] not in needed or u.scheme != 'https' or not u.hostname
@@ -300,8 +300,7 @@ def collect_boxes(raw):
 
 
 def collect_urls(raw, urls):
-    supplemental = raw/'official_links.json'
-    discovery = {r['url']: r['discovery'] for r in read(supplemental)} if supplemental.exists() else {}
+    discovery = {r['url']: r['discovery'] for p in sorted(raw.glob('official_links*.json')) for r in read(p)}
     for url in urls:
         stem = box_path(raw, url)
         meta_path, body_path = stem.with_suffix('.json'), stem.with_suffix('.html')
@@ -332,11 +331,15 @@ def collect_urls(raw, urls):
 
 
 def verified_box(raw, url, game, team):
+    day = subtraction_day(raw, url, game)
     results = []
+    wmt_path = raw/'wmt_boxes'/(hashlib.sha256(url.encode()).hexdigest()+'.meta.json')
+    if wmt_path.exists():
+        results.append(verified_wmt(raw, url, game, day)[team])
     for directory in ('boxes', 'rendered_boxes'):
         stem = raw/directory/hashlib.sha256(url.encode()).hexdigest()
         try:
-            results.append(verified_box_capture(stem, url, game, team))
+            results.append(verified_box_capture(stem, url, game, team, day))
         except (ValueError, FileNotFoundError):
             continue
     if not results:
@@ -346,7 +349,7 @@ def verified_box(raw, url, game, team):
     return results[0]
 
 
-def verified_box_capture(stem, url, game, team):
+def verified_box_capture(stem, url, game, team, day=None):
     meta_path, body_path = stem.with_suffix('.json'), stem.with_suffix('.html')
     meta = read(meta_path)
     available = (meta.get('status') == 200 or
@@ -361,7 +364,7 @@ def verified_box_capture(stem, url, game, team):
         found = []
         for name in names:
             try:
-                found.append(box_counts(text, name, game['game_date']))
+                found.append(box_counts(text, name, day or game['game_date']))
             except ValueError:
                 pass
         if len(found) != 1 or found[0]['R'] != own_scores(game, t)[0]:

@@ -63,11 +63,10 @@ selection. Retain Elo for any unsupported matchup. No failed model is reopened.
 
 ## Next step
 
-The [bounded chronological expansion](Havoc_Chronological_Experiment.md) now owns
-continuation: a fixed 24-team-season sample, two additional complete 2022 reconstructions,
-retained partial captures and a source-access blocker. Both formulas remain untested
-because training/selection coverage is insufficient. Do not restart collection from
-this one-team pilot or change the locked sample after scoring.
+The [bounded chronological experiment](Havoc_Chronological_Experiment.md) now owns
+the completed follow-up: 17 reconstructed team-seasons met its 16-training/eight-selection
+minimum. Both formulas failed the 2023 screen and are closed without promotion.
+This one-team source proof remains valid; do not restart collection or retune after scoring.
 
 Restore the baseline and the separate HAVOC reconstruction evidence per
 [DATA.md](DATA.md#havoc-d1baseball-reconstruction-pilot), then run:

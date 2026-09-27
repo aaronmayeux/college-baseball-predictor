@@ -38,64 +38,86 @@ screen stops this specification. Preserve prior candidates and app outputs.
 
 ## Results
 
-**Blocked before fitting; both formulas remain untested.** All 24 final Overall
-batting tables are now retained. Twelve team-seasons have complete verified
-pre-NCAA subtractions, up from two in the original checkpoint:
+**Both formulas failed the locked 2023 selection screen; this specification is
+closed without promotion.** All six priority exclusions are complete. Seventeen
+of the fixed 24 team-seasons qualify. Neither the sample nor the minimum changed.
 
-| Season | Complete final tables | Eligible teams | Covered NCAA games | Elo fallback games |
+| Season | Final tables | Eligible teams | Covered NCAA games | Elo fallback |
 |---|---:|---|---:|---:|
 | 2021 training | 8/8 | Arizona State, Fairfield, Texas | 4/139 | 135 |
-| 2022 training | 8/8 | Air Force, Dallas Baptist, Florida State, Louisiana Tech, Southeastern Louisiana, Texas | 6/141 | 135 |
-| 2023 selection | 8/8 | Auburn, Penn, Samford | 2/137 | 135 |
+| 2022 training | 8/8 | All eight locked teams | 12/141 | 129 |
+| 2023 selection | 8/8 | Auburn, Penn, Sam Houston, Samford, Southern Miss, Tulane | 8/137 | 129 |
 
-Training has 10 of the required 16 covered games, with at least four in each year.
-Selection has two of eight. No coefficient, candidate score, winner or promotion
-was produced. This is missing evidence, not a rejected predictive hypothesis.
-Elo, all 64 bracket teams, prior models and app outputs remain unchanged.
+The 16 training games meet the four-per-year requirement; selection meets eight.
+Fit uses only 2021–2022. Training RMS scales are 0.306026656 (original) and
+0.270956655 (net steals); fitted coefficients are −0.500097894 and −0.352623772.
+Those signs are fitted results, not a causal claim or permission to reverse signs.
+2023 is previously exposed retrospective selection, not an untouched holdout.
 
-The fixed sample now retains 88 official HTTP responses: 45 status 200, 19 status
-404, 14 transport failures, six 403 and four 502. Successful access alone does not
-qualify a box. Additional browser DOM captures preserve document titles, team
-headings and complete batting tables; they do not claim an observed HTTP status.
-Empty/truncated extraction attempts are retained separately. The latest browser
-attempt showed a box score but failed DOM extraction and click dispatch, so it
-was not admitted. No security control was bypassed or failed URL automatically retried.
+### 2023 common-sample comparisons
 
-The parser now recognizes legacy composite-table team captions. Supplemental
-official links retain discovery provenance and are restricted to already-needed
-excluded game IDs. Original failed responses stay intact; rendered sources are
-separate. Both-sided identity, exact date, score, required columns, player sums and
-body hashes remain mandatory. Conflicting valid HTTP/rendered counts fail preparation.
-No absent steal, caught-stealing or hit-by-pitch count is inferred as zero.
+Lower log loss and Brier are better. Every unsupported pair uses the exact original
+Elo probability. Full-field accuracy is 91/137 for all three methods.
 
-Small final-run discrepancies remain flags, including eligible Fairfield 2021 −9
-and Dallas Baptist 2022 −1. Southern 2021 +11 remains ineligible under the unchanged
-tolerance. Other incomplete teams' flags and every unresolved game ID remain in
-the evidence report. No source total or game date was silently corrected.
+| Method | Full-field log loss | Full-field Brier | Covered log loss | Covered Brier | Covered winners |
+|---|---:|---:|---:|---:|---:|
+| Elo | 0.628158 | 0.218569 | 0.610390 | 0.209997 | 5/8 |
+| Elo + original HAVOC | 0.632914 | 0.220862 | 0.691837 | 0.249261 | 5/8 |
+| Elo + net-steals HAVOC | 0.631495 | 0.220160 | 0.667539 | 0.237236 | 5/8 |
 
-## Verification and continuation
+Original HAVOC worsens full-field loss/Brier by +0.004756/+0.002293;
+net steals worsens them by +0.003337/+0.001591. Routing flagged selection pairs
+to Elo gives identical results because none of the eight covered selection games
+has a flagged input. Training retains the predeclared small discrepancies,
+including Fairfield 2021, Dallas Baptist 2022 and UCLA 2022; no totals were repaired.
+Calibration bins for full-field, covered and fixed-sensitivity comparisons are
+retained in the reproducible report. Eight selection games are too few to establish
+national effectiveness or stable calibration. No later-year scoring, advancement
+test, app promotion, sign reversal, combination or post-result tuning was performed.
 
-23 focused data-free tests pass, including caption identity, rendered provenance,
-failed-HTTP fallback, conflicting sources, exact dates, hashes, player sums, immutable
-locks, exact Elo fallback and the two chronological evaluation paths. Real preparation
-and report repeat byte-for-byte; baseline/v2 preservation gates pass. All original
-checkpoint files were verified unchanged against their original manifest.
+## Completed evidence and safeguards
 
-[DATA.md](DATA.md) owns restoration and checkpoint identity. The original output is
-preserved; the resumed run is `output/bounded-v2`. Use the same 24-team-season sample.
-The shortest evidenced continuation is six excluded games:
+The six completed game IDs are wn:2022:42130, wn:2022:44006, wn:2022:44009,
+wn:2023:46020, wn:2023:45018 and wn:2023:45022. Original failed HTTP and DOM
+attempts remain intact; no unavailable value became zero.
 
-| Game ID | Required evidence | Remaining issue |
-|---|---|---|
-| wn:2022:42130 | Auburn–UCLA regional final | Complete table and documented June 5 start / June 6 completion reconciliation |
-| wn:2022:44006 | Auburn–Stanford, June 20 | Complete batting table; replacement page lacks usable counts |
-| wn:2022:44009 | Arkansas–Auburn, June 21 | Retained legacy box lacks supported explicit SB/CS columns |
-| wn:2023:46020 | Southern Miss–Tennessee opener | Complete rendered table; saved extraction was empty |
-| wn:2023:45018 | Sam Houston–Tulane | Complete table and documented June 3 start / June 4 completion reconciliation |
-| wn:2023:45022 | Oregon State–Sam Houston, June 4 | Complete rendered table; saved extraction was empty |
+Three games—not the two previously identified—have official start dates one day
+before Nolan's completion dates. Reviewed official recaps bind exact identities,
+scores, original game rows, source URLs and hashes:
 
-If these qualify under unchanged checks, Auburn/UCLA 2022 and Southern Miss,
-Sam Houston/Tulane 2023 can supply the missing coverage. This is a collection
-priority, not permission to relax dates or counts. The full report retains other
-fixed-sample exclusions. Do not replace teams, launch a broad audit, fit below the
-minimum, or score later years. Reuse saved successes and explicit source links.
+| Game | Box start | Completion | Official completion evidence |
+|---|---|---|---|
+| Auburn–UCLA | 2022-06-05 | 2022-06-06 | [UCLA recap](https://uclabruins.com/news/2022/6/6/baseball-ucla-falls-to-auburn-11-4-in-regional-final) |
+| Sam Houston–Tulane | 2023-06-03 | 2023-06-04 | [Tulane recap](https://tulanegreenwave.com/news/2023/6/4/baseball-green-wave-bearkats-halted-in-seventh) |
+| Southern Miss–Tennessee | 2023-06-10 | 2023-06-11 | [Tennessee recap](https://utsports.com/news/2023/6/11/baseball-vols-battle-back-but-fall-short-in-super-regional-opener-at-southern-miss) |
+
+The adapter accepts reviewed start dates only for these bound exclusions, wholly
+after the forecast cutoff, with a one-day start/completion difference. Original
+Nolan dates, outcomes, cutoff rules and Elo inputs are unchanged. Unreviewed boxes
+still require an exact date match.
+
+Auburn's current official pages embed WMT composite tables with explicit SB/CS/HBP.
+Their composite SO column contains pitching strikeouts, despite its batting-table
+placement. The adapter therefore joins explicit K from the separate Hitting view
+by exact player name. Both views must agree on every player's AB/R/H/BB, each
+used column must sum to its published total, and opposing pitching totals must
+match AB/R/H/BB/K/HBP. Composite SO is preserved but never used as batting K.
+Official embedding URLs and both original DOM views are retained and hash-bound.
+The other three exclusions use complete Sidearm composite tables, with explicit
+zeros and verified player totals. Supplemental links are stored separately from
+the earlier checkpoint registry.
+
+## Verification and disposition
+
+28 focused data-free tests pass, including WMT batting-versus-pitching strikeouts,
+player joins, schema/sum conflicts, provenance, date-review tampering, original
+cutoff exclusion, chronological gates and exact fallback. Real prepare/evaluate
+runs repeat byte-for-byte. All earlier checkpoint files remain byte-identical;
+baseline/v2 preservation gates pass. Code fingerprints now include the adapter.
+
+[DATA.md](DATA.md) owns checkpoint restoration. Current output is
+`output/bounded-v3-final`, including the locked selection result; earlier outputs
+are preserved. Stop this specification after its failed screen. The next model
+work is separate locked 2025 development confirmation of the already-promising
+Guillen and walk-rate candidates, without refitting or combining them. Elo remains
+the deployed model; no further broad HAVOC collection is required.
