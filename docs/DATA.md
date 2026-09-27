@@ -455,3 +455,21 @@ from the original live run; normalized rows match. Repeating the same replay com
 is byte-identical. Use [Nolan_Refresh.md](Nolan_Refresh.md) for live usage, exact bounded
 scope and remaining integration work. Raw responses and generated game rows stay out
 of Git; the original offline app and model evidence remain authoritative.
+
+### Refresh-to-forecast reproduction
+
+No additional archive is needed. Use a retained refresh directory above, or replay its
+raw bytes to create one, then:
+
+```sh
+python3 -m tournament.build --refresh ingestion/output/saved-live-replay-001 \
+  --output tournament/output/refreshed/forecast.json
+python3 scripts/check_refresh_export.py ingestion/output/saved-live-replay-001
+```
+
+The adapter validates source and generated staging content again; code/cutoff changes
+require an explicit saved-byte replay into a new version. It preserves baseline fallback
+and all 64 teams, writes only separate candidate outputs, and applies both cutoff modes.
+The comparison checks every ordered matchup and complete advancement/bracket output.
+[Nolan_Refresh.md](Nolan_Refresh.md#connected-candidate-forecast-export) owns policy and
+limits; changed source values are reported but not automatically adopted.

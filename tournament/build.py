@@ -18,7 +18,7 @@ from tournament.engine import forecast, probability
 from tournament.field import build_regions
 
 
-def build():
+def build(refresh_path=None):
     before = validation.hashes()
     audit = json.loads((ROOT/'historical/coverage_validation.json').read_text())
     if len(audit) != 5 or {r['season'] for r in audit} != set(range(2021, 2026)) or not all(r['pass'] for r in audit):
@@ -35,6 +35,10 @@ def build():
     selected = [r for r in selections if r['season'] == 2025]
     regions = build_regions(selected, internal)
     games = {y: overlay(load_games(y), refs) for y in range(2021, 2026)}
+    refresh_report = None
+    if refresh_path is not None:
+        from ingestion.candidate import apply
+        games, refresh_report = apply(refresh_path, games)
     reference, _, _ = validation.evaluate(contract, refs)
     modes = {}
     for mode in MODES:
@@ -54,7 +58,7 @@ def build():
     if validation.hashes() != before:
         raise ValueError('Preserved baseline changed')
     code = list((ROOT/'tournament').glob('*.py')) + [ROOT/'historical'/n for n in ('baseline.py', 'team_fallback.py', 'eligibility.py', 'cutoffs.json')]
-    return dict(schema_version=1, season=2025, development_only=True,
+    result = dict(schema_version=1, season=2025, development_only=True,
         model='fixed_neutral_elo_timing_v2', engine_version=1,
         forecast_cutoff=contract['seasons']['2025']['forecast_cutoff'],
         availability_rule=contract['availability_rule'], regions=regions,
@@ -67,14 +71,30 @@ def build():
             'Fixed neutral team Elo; pitcher availability, home advantage and richer profiles are unmodeled.',
             'Exact odds under independent games and fixed strength; no calibrated strength uncertainty.',
             'Fresh nationwide data ingestion is not certified.'])
+    if refresh_report is not None:
+        from ingestion.candidate import hashes
+        if hashes(Path(refresh_path).resolve()) != refresh_report['refresh_sha256']:
+            raise ValueError('Refresh changed while forecasting')
+        result['refresh'] = refresh_report
+        result['limitations'].append('Refresh corroboration only; changed/new/missing/conflicting rows retain verified historical fallback.')
+        for name in ('ingestion/candidate.py','ingestion/nolan_parser.py','ingestion/nolan_refresh.py'):
+            result['provenance']['code_sha256'][name] = hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
+    return result
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, default=ROOT/'app/data/forecast.json')
     parser.add_argument('--standalone', type=Path, help='Also write a self-contained HTML app')
+    parser.add_argument('--refresh', type=Path, help='Saved version to verify and connect using explicit historical fallback')
     args = parser.parse_args()
-    result = build()
+    if args.refresh:
+        # Candidate exports never silently replace app/data or source evidence.
+        base = (ROOT/'tournament/output').resolve()
+        targets = [args.output] + ([args.standalone] if args.standalone else [])
+        if any(not target.resolve().is_relative_to(base) for target in targets):
+            parser.error('--refresh requires outputs under tournament/output; app data remains unchanged')
+    result = build(args.refresh)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + '\n')
     if args.standalone:

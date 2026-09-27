@@ -2,34 +2,32 @@
 
 Updated September 27, 2026. Git history owns prior sessions.
 
-## Completed — bounded versioned Nolan refresh
+## Completed — refresh connected to full Elo export
 
-[Usage/results](Nolan_Refresh.md); [evidence/reproduction](DATA.md#versioned-nolan-refresh-evidence).
-`python3 -m ingestion.nolan_refresh` imports 1–8 explicitly named schedules into
-immutable ignored versions. It supports live requests and verified cached replay,
-checks season/team/URL/hash, retains failures without automatic retries, and stops
-on access/rate-limit responses. No redirects, crawling, D1 requests or paid services.
+[Usage/results](Nolan_Refresh.md#connected-candidate-forecast-export).
+`tournament.build --refresh <saved-version> --output tournament/output/<name>/forecast.json`
+reparses saved raw bytes, checks input/code hashes and staged rows, then connects
+unchanged corroborated results to the full historical dataset. Changed, new,
+conflicting, unpaired and missing results keep explicit historical fallback. Official
+corrections and original provenance survive. Candidate outputs cannot overwrite app data.
+No model changes, new collection, scoring experiment or 2026 use.
 
-Live LSU/Florida/Tennessee 2024 check: 207 schedule entries, all matching retained
-normalized rows; 195 game IDs, ten with both requested sides, nine regular-only and
-ten conference-inclusive eligible games. The 185 missing counterpart pages reflect
-bounded scope. Partial imports remain staged, not supplied to Elo. New evidence is
-retained separately; historical corrections and app are untouched.
+The saved LSU/Florida/Tennessee 2024 refresh confirms ten games; 185 unpaired games
+retain baseline history. No requested-team baseline game is missing. Both full 2025
+cutoff-mode forecasts preserve all 64 teams and match baseline advancement/bracket picks.
+This is historical refresh integration, not certified nationwide or fresh-year support.
 
 ## Verification
 
-252 data-free tests pass (185 scripts, 67 historical). Ten new checks cover source
-integrity, wrong-year/team rejection, duplicates, reciprocal conflicts, phase/cutoff
-rules, failure caching, request bounds and redirects. Network-disabled rerun is
-byte-identical. Baseline/v2 preservation gates pass. No 2026 collection or modeling.
+260 tests pass (193 scripts, 67 historical). Eight new adapter tests include evidence
+and generated-row tampering, changed scores/dates/phases, official correction preservation,
+missing/conflicting/new rows and app-output protection. All 4,032 ordered matchups per
+mode match exactly; candidate reruns are byte-identical. Baseline/v2 gates pass.
+Reproduce with `python3 scripts/check_refresh_export.py <saved-version>`.
 
 ## Next concrete step
 
-Connect staged versions to the existing Elo export through a candidate dataset adapter.
-Reuse verified unchanged history/corrections with provenance; explicitly handle changed,
-conflicting and missing rows, retaining the verified snapshot as fallback. Verify all
-64 teams and both modes before changing app data. No collection to fill out this
-bounded sample, broad audits, UI/hosting work or paid services.
-
-Elo remains the app model. Schedule-only failed the 2025 development probability
-checks and is closed, as are prior failed candidates. No retuning on exposed 2024/2025.
+Add evidence-backed acceptance of genuinely changed rows into candidate forecasts while
+preserving baseline history. Use synthetic fixtures; do not collect more to find changes.
+Until qualified, actual changed rows remain flagged with historical fallback. No broad
+audits, paid services, UI/hosting changes or retuning the closed model candidates.

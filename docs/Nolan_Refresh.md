@@ -80,11 +80,39 @@ Source evidence: [DATA.md](DATA.md#versioned-nolan-refresh-evidence). No game-le
 outputs or raw pages are committed. No model probabilities, app assets, previous
 experiments or cutoffs changed; no 2026 collection or model scoring occurred.
 
-## Next integration step
+## Connected candidate forecast export
 
-Connect a staged version to the existing Elo export through an explicit candidate
-dataset adapter. Reuse verified unchanged history and corrections with their provenance;
-report changed/conflicting/missing rows and preserve the original snapshot as fallback.
-Verify full-field probabilities and both cutoff modes before changing the app's data.
-Do not expand collection merely to finish this three-team sample, or label this
-bounded importer as certified nationwide/fresh-year support.
+The saved refresh now connects to the existing Elo export, using the complete verified
+history as fallback. It reparses saved source bytes and recomputes staged games, rejecting
+altered hashes, generated rows, eligibility flags or stale parser/cutoff contracts.
+It adds refreshed provenance to unchanged reciprocal games. Changed, new, unpaired,
+conflicting or absent rows retain baseline values and explicit review reasons. Official
+supplements and timing corrections survive intact. No deletions or new default ratings
+are inferred from a partial refresh. This conservative adapter does not yet adopt changed
+scores automatically or qualify a new season.
+
+```sh
+python3 -m tournament.build \
+  --refresh ingestion/output/live-2024-20260927-v1 \
+  --output tournament/output/refresh-2024/forecast.json
+python3 scripts/check_refresh_export.py ingestion/output/live-2024-20260927-v1
+```
+
+The refresh option requires output under `tournament/output/`, including any optional
+standalone HTML, so it cannot overwrite the app's normal data path. Default builds retain
+their existing behavior. The candidate forecast includes source fingerprints and an
+explicit per-game fallback report; keep it ignored, like other generated game exports.
+For a saved-evidence replay, supply its version directory instead; no downloads needed.
+
+The live three-team snapshot confirms ten unchanged games and retains 185 unpaired
+games via historical fallback; no requested-team baseline game is absent. All 64 teams,
+4,032 ordered matchups per mode, advancement probabilities and full bracket picks equal
+the original exporter exactly in both modes. Repeated candidate exports are byte-identical.
+The eight new adapter tests cover changed inputs, missing/new/conflicting results,
+official corrections, raw/generated-row tampering and app-output protection. Full suite:
+**260 tests** (193 scripts, 67 historical). No candidate accuracy scoring or 2026 use.
+
+Next: add explicit evidence-backed acceptance for genuinely changed rows so reviewed
+corrections can update a candidate forecast without rewriting the baseline. Do not
+collect more merely to manufacture a changed example; synthetic fixtures can verify the
+workflow. Current changed rows remain on historical fallback until that path is qualified.

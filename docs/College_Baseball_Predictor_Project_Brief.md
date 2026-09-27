@@ -118,16 +118,16 @@ closed without promotion: it picked one extra game and regional champion but wor
 both probability scores. A fixed missing-game diagnostic did not change the conclusion.
 Do not retune closed candidates on exposed 2024/2025. **Elo remains in the app.**
 
-**Versioned Nolan refresh implemented:** [usage/results](Nolan_Refresh.md). A bounded,
-free three-page live check matched all 207 retained schedule observations. The command
-preserves separate raw evidence, rejects wrong-year/identity changes, caches failures,
-and applies reciprocal checks and both cutoff modes. Partial imports remain staged;
-app and historical snapshots are unchanged. Reviewed 2021–2025 seasons only.
+**Nolan refresh is connected to the Elo export:** [usage/results](Nolan_Refresh.md).
+The bounded three-page snapshot reparses from saved bytes and confirms ten unchanged
+games; 185 unpaired games retain verified historical fallback. All 64 teams, every
+matchup, advancement odds and bracket picks match in both cutoff modes. Candidate
+exports stay separate from app data. Changed/new/conflicting/missing rows retain
+baseline values and review reasons; official corrections remain intact. No 2026 use.
 
-**Next:** connect staged refreshes to the Elo export through a candidate dataset adapter,
-reusing verified unchanged history and corrections with explicit conflict/fallback
-handling. Verify full-field forecasts before changing app data. No further collection is needed for this test. New model experiments require a distinct
-hypothesis and chronological lock.
+**Next:** add evidence-backed acceptance of changes to forecasts,
+preserving the original baseline. Use synthetic fixtures; no new collection or coverage
+audit is needed. New model experiments require a distinct hypothesis and chronological lock.
 [The practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) remains in force: accept small documented gaps, preserve leakage safeguards and exact Elo fallback. No broad source audit, school sweep, paid detour or raw-candidate reopening. D1 remains reference-only.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
