@@ -17,7 +17,7 @@ Read `docs/College_Baseball_Predictor_Project_Brief.md` and `historical/SPEC.md`
 
 - Current model-improvement priority is team-level hitting and pitching. Follow the brief’s team-level-first plan; individual pitcher histories and the unfinished Stillwater preflight are deferred, not prerequisites. Avoid open-ended school-by-school collection.
 
-- **Practical model progress takes priority over perfect historical reconstruction.** Aaron accepts small, documented data gaps. Next work is a batting/pitching experiment with usable dated pre-NCAA stats, including conference tournaments, not another archive-coverage study. Follow the practical experiment contract in `historical/SPEC.md`; assess material impact, preserve leakage safeguards, and keep Elo fallback. Do not require four perfect seasons or full regular-only reconstruction before testing.
+- **Practical model progress takes priority over perfect historical reconstruction.** Aaron accepts small, documented data gaps. Use usable dated pre-NCAA stats, including conference tournaments, for new batting/pitching experiments rather than another archive-coverage study. Completed candidates and the immediate next task are recorded in the brief and handoff. Follow the practical experiment contract in `historical/SPEC.md`; assess material impact, preserve leakage safeguards, and keep Elo fallback. Do not require four perfect seasons or full regular-only reconstruction before testing.
 
 ## Standing rule: keep context lean
 

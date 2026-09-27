@@ -1,33 +1,35 @@
 # Current handoff
 
-Updated September 26, 2026. Git history owns prior sessions.
+Updated September 27, 2026. Git history owns prior sessions.
 
-## Completed — schedule-only 2025 development test
+## Completed — bounded versioned Nolan refresh
 
-[Protocol/results](Schedule_Only_Development.md); [reproduction](DATA.md#schedule-only-2025-development).
-Locked one conference-inclusive schedule correction before scoring 2025: fixed ridge,
-training-only scaling/weight from 417 games in 2021–2023, no 2024 fitting. Full eligible
-Nolan schedules replace earlier NCAA snapshot restrictions; all 64 teams qualify.
-2024 only supplies eligible Elo carry; 2025 remains development, not a holdout.
+[Usage/results](Nolan_Refresh.md); [evidence/reproduction](DATA.md#versioned-nolan-refresh-evidence).
+`python3 -m ingestion.nolan_refresh` imports 1–8 explicitly named schedules into
+immutable ignored versions. It supports live requests and verified cached replay,
+checks season/team/URL/hash, retains failures without automatic retries, and stops
+on access/rate-limit responses. No redirects, crawling, D1 requests or paid services.
 
-**Failed; close without promotion or retuning. Keep Elo in the app.**
-Games: 87/136 versus Elo’s 86, but log loss/Brier worsen
-0.660978/0.233853 → 0.675974/0.237253. Regional champions: 8/16 versus 7,
-but advancement loss/Brier worsen 1.132374/0.633688 → 1.240951/0.677750.
-The predeclared one-missing-appearance diagnostic leaves the decision unchanged.
-Raw OBP/ERA, net-run and schedule-aware primary remain unpromoted; no new sources.
+Live LSU/Florida/Tennessee 2024 check: 207 schedule entries, all matching retained
+normalized rows; 195 game IDs, ten with both requested sides, nine regular-only and
+ten conference-inclusive eligible games. The 185 missing counterpart pages reflect
+bounded scope. Partial imports remain staged, not supplied to Elo. New evidence is
+retained separately; historical corrections and app are untouched.
 
 ## Verification
 
-242 tests pass. Five outputs rerun byte-identically; 136 matchup comparisons match;
-all 16 regional paths qualify. Baseline/v2 gates and protected fingerprints pass.
-App, both baseline modes, raw evidence and prior experiments unchanged. No 2026 modeling.
+252 data-free tests pass (185 scripts, 67 historical). Ten new checks cover source
+integrity, wrong-year/team rejection, duplicates, reciprocal conflicts, phase/cutoff
+rules, failure caching, request bounds and redirects. Network-disabled rerun is
+byte-identical. Baseline/v2 preservation gates pass. No 2026 collection or modeling.
 
 ## Next concrete step
 
-Implement a bounded, free, on-demand Nolan refresh into a separate dataset version,
-using the verified Elo model and existing cutoff/fallback rules. Preserve the offline
-demo; fresh-year import is not yet production-certified. No broad coverage audit,
-paid services, D1 automation, individual pitchers, UI redesign or hosting migration.
-Any further model candidate needs a distinct hypothesis and new chronological lock;
-do not keep trying weights on exposed 2024/2025.
+Connect staged versions to the existing Elo export through a candidate dataset adapter.
+Reuse verified unchanged history/corrections with provenance; explicitly handle changed,
+conflicting and missing rows, retaining the verified snapshot as fallback. Verify all
+64 teams and both modes before changing app data. No collection to fill out this
+bounded sample, broad audits, UI/hosting work or paid services.
+
+Elo remains the app model. Schedule-only failed the 2025 development probability
+checks and is closed, as are prior failed candidates. No retuning on exposed 2024/2025.

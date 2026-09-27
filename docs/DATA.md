@@ -432,3 +432,26 @@ before evaluation. Outputs remain ignored in `historical/schedule_only_output/`:
 `report.json`. Reruns are byte-identical; changed inputs/code/protocol reject stale
 locks. The report includes calibration, stage/group scores, coverage, fallback and
 the fixed one-missing-appearance sensitivity. Existing model/app/evidence remain intact.
+
+## Versioned Nolan refresh evidence
+
+`College_Baseball_Nolan_Refresh_Evidence.zip` (74,212 bytes) preserves the three live
+2024 schedule responses, metadata and staged outputs from the bounded refresh.
+SHA-256: `efe68a438176b9672253702f79d7406474f511288f21ea556ced260dce082bae`.
+Library identity: `libfile_134addaed5d08191826bab2d4ba44dc2`.
+It supplements the baseline/v2 evidence; it does not replace any historical source.
+
+Verify the hash and extract into a fresh temporary directory. To replay those bytes
+using current repository code after baseline restoration:
+
+```sh
+python3 -m ingestion.nolan_refresh --season 2024 \
+  --teams LSU Florida Tennessee --version saved-live-replay-001 \
+  --cached-raw /absolute/path/to/extracted/live-2024-20260927-v1/raw
+```
+
+A replay records its retained acquisition basis, so its source/request metadata differs
+from the original live run; normalized rows match. Repeating the same replay command
+is byte-identical. Use [Nolan_Refresh.md](Nolan_Refresh.md) for live usage, exact bounded
+scope and remaining integration work. Raw responses and generated game rows stay out
+of Git; the original offline app and model evidence remain authoritative.

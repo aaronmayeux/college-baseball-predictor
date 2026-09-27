@@ -35,3 +35,6 @@ __pycache__/
 node_modules/
 /app/qa.html
 /dist/
+
+# Versioned refresh source evidence and generated staging outputs.
+/ingestion/output/

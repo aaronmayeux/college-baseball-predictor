@@ -1,6 +1,6 @@
 # College Baseball Predictor — Project Brief
 
-Updated September 26, 2026.
+Updated September 27, 2026.
 
 ## Purpose and current status
 
@@ -68,7 +68,7 @@ Retain the hypotheses of home/park effects, power sensitivity, opponent-specific
 | FanGraphs college leaderboards | Advanced-stat comparisons and possible inputs | Export access, historical coverage, definitions, and usage terms |
 | Commercial providers | Prior research only; paid acquisition out of scope | Zero-budget rule in AGENTS.md |
 
-National player-data coverage remains unverified. baseballr is an access tool, not an independent source. MLB-derived metrics require college-specific validation.
+National player coverage remains unverified. baseballr is an access tool. MLB-derived metrics need college-specific validation.
 
 Normalized records retain source/team/player identities, season, game time, venue, retrieval time and raw references. Preserve missingness, cache responses, deduplicate games and validate baseball innings. Imports are on demand; scheduled refresh is out of scope.
 
@@ -113,19 +113,21 @@ post-scoring diagnostic was promoted. Detailed metrics and limitations stay in t
 reports. The [source report](Team_Component_Source_Decision.md) retains NCAA samples,
 snapshot gaps and unresolved count discrepancies.
 
-**The [schedule-only 2025 development test](Schedule_Only_Development.md) is complete
-and closed without promotion.** Trained once on 2021–2023 and tested with full
-cutoff-eligible Nolan schedules, it picked 87/136 games versus Elo’s 86 and 8/16
-regional champions versus 7. However, game log loss/Brier worsened to
-0.675974/0.237253 versus 0.660978/0.233853, and regional advancement scores also
-worsened. A fixed one-missing-game diagnostic leaves that conclusion unchanged.
-All 64 teams qualified; no new collection or coverage audit was needed. 2024 motivated
-the hypothesis; 2025 remains development, not an untouched test. Do not retune this
-candidate against either season. **Elo remains in the app.**
+The [schedule-only 2025 development test](Schedule_Only_Development.md) is also
+closed without promotion: it picked one extra game and regional champion but worsened
+both probability scores. A fixed missing-game diagnostic did not change the conclusion.
+Do not retune closed candidates on exposed 2024/2025. **Elo remains in the app.**
 
-**Next concrete product step:** a bounded free, on-demand Nolan refresh into a separate
-dataset version, preserving the verified Elo model, cutoff checks and offline demo.
-Further model experiments require a distinct hypothesis and a new chronological lock.
+**Versioned Nolan refresh implemented:** [usage/results](Nolan_Refresh.md). A bounded,
+free three-page live check matched all 207 retained schedule observations. The command
+preserves separate raw evidence, rejects wrong-year/identity changes, caches failures,
+and applies reciprocal checks and both cutoff modes. Partial imports remain staged;
+app and historical snapshots are unchanged. Reviewed 2021–2025 seasons only.
+
+**Next:** connect staged refreshes to the Elo export through a candidate dataset adapter,
+reusing verified unchanged history and corrections with explicit conflict/fallback
+handling. Verify full-field forecasts before changing app data. No further collection is needed for this test. New model experiments require a distinct
+hypothesis and chronological lock.
 [The practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) remains in force: accept small documented gaps, preserve leakage safeguards and exact Elo fallback. No broad source audit, school sweep, paid detour or raw-candidate reopening. D1 remains reference-only.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
