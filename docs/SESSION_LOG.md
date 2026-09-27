@@ -2,30 +2,30 @@
 
 Updated September 27, 2026. Git history owns prior sessions.
 
-## Completed — HAVOC tested and closed
+## Completed — frozen batting confirmation
 
-Latest main fetched; baseline/v2 restored and rebuilt. All six priority postseason
-exclusions now pass, including three documented start/completion date reconciliations.
-WMT official embedded tables require batting K from the Hitting view; composite SO
-is pitching strikeouts. Adapter verifies player joins, sums, both scores, opposing
-pitching counts, source hashes and exact official embedding provenance.
+Latest main fetched. HAVOC exclusions/test were already completed and committed;
+both formulas failed selection. Separately locked and ran 2025 development
+confirmation for the existing Guillen and walk-rate models, with their exact
+2021–2023 coefficients/scales. No new fitting or combinations.
 
-The fixed sample has 17 usable team-seasons; covered NCAA games are 4/12/8 in
-2021/2022/2023. Both locked formulas were fit on 16 training games and tested on
-eight 2023 selection games with 129 exact Elo fallback games. Both worsened log loss
-and Brier and added no correct picks. **HAVOC closed without promotion; Elo remains.**
-[Chronological report](Havoc_Chronological_Experiment.md) owns metrics and limitations.
+Five bounded free NCAA requests retain the menu and May 25, 2025 OBP/ERA/HR/runs
+reports. Walk rate qualifies 64 teams/136 games; Guillen 63/134, with Bethune-Cookman
+falling back on its −11 runs discrepancy. Both fail confirmation. Guillen worsens
+both game/regional probability scores; walk worsens game scores and narrowly
+regional Brier. Fixed flagged-to-Elo sensitivity does not rescue either.
+[Confirmation report](Batting_Confirmation_2025.md) owns results/limits.
 
 ## Verification
 
-28 focused data-free tests pass. Actual preparation/evaluation repeat byte-for-byte;
-baseline/v2 preservation gates pass. Earlier checkpoint bytes remain unchanged.
-[DATA.md](DATA.md) owns the updated evidence archive and `output/bounded-v3-final`
-selection lock. No 2024–2026 candidate scoring, cutoff relaxation or app change.
+Data-free confirmation, Guillen, walk-rate and engine tests pass. Real preparation
+and evaluation repeat byte-for-byte; regional legal paths/super field and 544
+observed/hypothetical comparisons pass. Baseline/v2 preservation gates pass.
+[DATA.md](DATA.md) owns separate raw evidence and frozen outputs. Elo/app unchanged;
+no paid data, 2026 modeling, cutoff relaxation or broad audit.
 
 ## Next concrete step
 
-Lock a separate 2025 development confirmation protocol for the existing Guillen
-and walk-rate candidates, then evaluate their frozen models with game and advancement
-checks when their retained inputs qualify. No refitting, combinations, 2024 retuning,
-2026 use, failed-candidate reopening or broad audits. Individual pitchers deferred.
+Agree on one distinct team-level hypothesis from the existing inventory before
+another experiment. Do not refit, combine or reopen failed candidates using exposed
+2024/2025 outcomes. Individual pitchers and fresh-year app export remain deferred.

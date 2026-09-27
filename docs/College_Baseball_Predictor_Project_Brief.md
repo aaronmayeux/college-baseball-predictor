@@ -134,10 +134,10 @@ and exact original/replacement rows; unsupported changes retain baseline values.
 Synthetic tests verify integration, provenance and cutoffs. The bounded refresh matches
 original forecasts; no correction or prediction gain has been approved.
 
-**Promising candidates:** [Guillen](Guillen_Havoc_Experiment.md) and
-[walk rate](Walk_Rate_Experiment.md) each improve 2024 game/regional scores and fixed
-sensitivities. Guillen favors higher HR/run ratios; it is not a power penalty. Both
-need later confirmation. [Standalone HBP](Hit_By_Pitch_Experiment.md) failed selection.
+[Guillen](Guillen_Havoc_Experiment.md) and [walk rate](Walk_Rate_Experiment.md)
+improved their 2024 comparisons but both failed the separately locked
+[2025 development confirmation](Batting_Confirmation_2025.md). Neither is promoted;
+no refitting, combinations or retuning on exposed outcomes. [Standalone HBP](Hit_By_Pitch_Experiment.md) failed selection.
 HAVOC's original and caught-stealing formulas completed their authorized
 [bounded chronological test](Havoc_Chronological_Experiment.md). All six priority
 postseason exclusions are verified; 17 of 24 team-seasons qualify, providing
@@ -147,9 +147,9 @@ without promotion.** Small sample limits remain; this is not a universal rejecti
 of the concept. Do not retune, reverse signs or expand collection after these results.
 Code, source evidence and locked outputs are preserved; cutoff rules and Elo remain.
 
-**Next:** separately lock and run 2025 development confirmation for the existing
-Guillen and walk-rate candidates, with game and advancement checks. No refitting,
-combinations or HAVOC reopening. See their existing reports for frozen definitions.
+**Next:** agree on one distinct team-level hypothesis from the existing inventory
+before another experiment. Current fixed candidates are closed; do not reopen them
+or expand collection to rescue exposed results. Elo remains the usable baseline.
 
 Follow the [practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority);
 2024 retuning and 2026 use remain excluded.

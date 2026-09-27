@@ -54,7 +54,11 @@ The subsequent [D1Baseball source pilot](Havoc_Source_Reconstruction.md) superse
 
 ## Results — September 27, 2026
 
-**Guillen is a promising confirmation candidate.** HAVOC was unavailable in this
+Current status: the frozen candidate subsequently failed [2025 development
+confirmation](Batting_Confirmation_2025.md); no promotion or retuning. Original
+2024 results below remain historical evidence.
+
+**Guillen passed this original 2024 comparison.** HAVOC was unavailable in this
 NCAA-report experiment; its later [bounded D1 test](Havoc_Chronological_Experiment.md)
 failed selection and is closed. The original
 Guillen proxy passed 2023 selection and improved 2024 game and regional probability
@@ -164,11 +168,9 @@ byte-for-byte, 270 observed/hypothetical probabilities agree, and 32 legal regio
 paths match the super-regional fields. Protected-input hashes, previous model code/
 outputs and app remain unchanged. `git diff --check` passes.
 
-Keep Guillen and walks as separate locked candidates for a prespecified 2025 development
-confirmation, with dated inputs and no refitting on 2024/2025. Do not select a winning
-combination from these exposed 2024 results. HAVOC needs a focused source of dated
-team batting K before either formula can be tested; its missing input should not
-hold up confirmation of the usable candidates. No school-by-school sweep is queued.
+Guillen and walk rate subsequently failed [2025 confirmation](Batting_Confirmation_2025.md).
+HAVOC obtained its missing batting K, completed the [bounded test](Havoc_Chronological_Experiment.md)
+and failed selection. All remain undeployed; no post-result sample expansion or retuning.
 
 ## Reproduction and evidence
 

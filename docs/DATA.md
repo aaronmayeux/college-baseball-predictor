@@ -1,5 +1,29 @@
 # Data restoration and provenance
 
+
+## Frozen batting confirmation — 2025
+
+`College_Baseball_Batting_Confirmation_2025_Evidence.zip` (177,667 bytes) supplements
+the baseline/v2 bundles. Library identity: `libfile_b85deca3ae588191a7fd2a9122be486e`.
+SHA-256: `8a3f349c78dcb672e7b8f8d60016368eacc7b985bfa3b0ee6778be8670cb08ba`.
+
+Verify the hash and extract to a fresh directory. `raw/` retains five free NCAA
+responses (2025 menu plus May 25 OBP/ERA/HR/runs) with forms, UTC times and hashes;
+`output/` retains the forecast lock, predictions and full report. `recovery/` preserves
+original coefficient-recovery evidence; the confirmation code performs no fitting.
+`manifest.json` hashes every other member. Both candidates failed; Elo remains.
+[Protocol/results](Batting_Confirmation_2025.md) owns decisions and limitations.
+
+```sh
+python3 historical/batting_confirmation.py prepare --raw-dir /absolute/extracted/raw
+python3 historical/batting_confirmation.py evaluate --raw-dir /absolute/extracted/raw
+python3 -m unittest discover -s historical -p 'test_batting_confirmation.py'
+```
+
+Matching reruns reproduce bytes. Existing mismatching locks are rejected; never
+replace an old lock to conceal changed inputs. Outputs stay ignored in
+`historical/batting_confirmation_output/`; do not commit raw data or this archive.
+
 ## Bounded HAVOC chronological checkpoint
 
 `College_Baseball_HAVOC_Bounded_Evidence.zip` (5,660,528 bytes) supplements the

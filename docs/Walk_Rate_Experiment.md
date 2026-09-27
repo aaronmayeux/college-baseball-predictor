@@ -60,7 +60,11 @@ Changed inputs/code/protocol reject stale locks; identical reruns must match byt
 
 ## Results — September 27, 2026
 
-**Promising; retain the locked candidate for confirmation, with Elo still in the app.**
+Current status: the frozen candidate subsequently failed [2025 development
+confirmation](Batting_Confirmation_2025.md); no promotion or retuning. Original
+2024 results below remain historical evidence.
+
+**Walk rate passed this original 2024 comparison.**
 Walk rate passed 2023 selection and improved both primary 2024 game and regional
 probability scores. Both prespecified sensitivity checks retain those improvements.
 This is a distinct successful retrospective comparison, not proof of future accuracy.
@@ -156,9 +160,6 @@ Baseline/v2 rebuilds succeed. All five generated walk-rate outputs reproduce byt
 and their champions agree with the super-regional fields. Protected-input hashes,
 app files and closed-candidate code remain unchanged. `git diff --check` passes.
 
-Next: lock this exact model and a 2025 development confirmation protocol before any
-new scoring. It needs dated pre-NCAA 2025 walk counts; the current national checkpoint
-contains only 2021–2024, and final workbook totals are ineligible. If those counts are
-not already retained, use a bounded free NCAA report acquisition in a separately scoped
-session, not a broad source/coverage audit or school sweep. No 2024 retuning; 2026 remains
-excluded. Review later-round behavior and full-bracket implications before deployment.
+The subsequent [2025 confirmation](Batting_Confirmation_2025.md) is complete and
+failed. Keep the app on Elo; do not retune or combine these candidates on exposed
+2024/2025 results. 2026 remains excluded.

@@ -40,18 +40,17 @@ Further experiments should integrate these bounded checks; earlier-window feasib
 
 The distinct [offensive walk-rate experiment](../docs/Walk_Rate_Experiment.md) is complete:
 BB/recorded-PA passed 2023 selection and improved 2024 game/regional probability scores.
-It remains a locked confirmation candidate, not deployed; intervals cross zero and
-later-round scores regress. Its protocol/results own the scope and next confirmation.
-No retuning on 2024 or reopening closed candidates; Elo remains in the app.
+Its frozen model subsequently failed [2025 development confirmation](../docs/Batting_Confirmation_2025.md),
+as did Guillen; both remain undeployed. No retuning on exposed seasons.
+Elo remains in the app.
 
 The [standalone offensive HBP-rate test](../docs/Hit_By_Pitch_Experiment.md) failed
 both 2023 selection probability scores. It is closed without 2024 candidate scoring;
-no sign reversal, sensitivity search or stacking after failure. Walk-rate remains
-unchanged and pending its separate confirmation.
+no sign reversal, sensitivity search or stacking after failure.
 
 Aaron authorized [Guillen and HAVOC benchmark testing](../docs/Guillen_Havoc_Experiment.md),
-superseding the inventory's prior skip recommendation. Guillen is a separate promising
-2024 retrospective candidate; original/net-steals HAVOC completed the
+superseding the inventory's prior skip recommendation. Guillen improved its 2024
+retrospective comparison but failed 2025 confirmation; original/net-steals HAVOC completed the
 [bounded screen](../docs/Havoc_Chronological_Experiment.md): 16 training and eight
 2023 selection games qualified after all six priority exclusions were verified.
 Both formulas worsened both selection probability scores and are closed without
@@ -59,8 +58,7 @@ promotion. No sign reversal, post-hoc combination, sample expansion or later-yea
 HAVOC scoring after failure. The evidence adapters preserve original completion
 dates and only reconcile documented wholly post-cutoff subtraction dates; WMT
 batting K comes from its Hitting view, not mislabeled composite pitching SO.
-Preserve prior models and confirm Guillen/walk-rate candidates under a separately
-locked 2025 development protocol before deployment.
+Preserve prior models and results; no promotion or post-result retuning.
 
 ## Holdout decision
 2026 cannot be certified untouched: recovered SESSION_RECORD.md says an earlier ESPN sample included 2026 and its original raw evidence was lost. Exact exposed games and whether outcomes informed choices are unknown. Do not collect or evaluate 2026 under an untouched-holdout claim. Reserve a future season prospectively after locking code, cutoffs and metrics; 2027 is the earliest candidate, not yet a committed test.
