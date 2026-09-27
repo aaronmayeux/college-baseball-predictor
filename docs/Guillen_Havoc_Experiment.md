@@ -50,6 +50,8 @@ after results. Exposed historical seasons and repeated experiments cannot consti
 an untouched holdout. A candidate blocked by unavailable counts stays explicitly
 untested; complete any supported candidate without waiting on a coverage audit.
 
+The subsequent [D1Baseball source pilot](Havoc_Source_Reconstruction.md) supersedes the acquisition restriction for new HAVOC work only. This original protocol and Guillen results remain unchanged.
+
 ## Results — September 27, 2026
 
 **Guillen is a promising confirmation candidate; HAVOC remains untested.** The original

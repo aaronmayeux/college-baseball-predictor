@@ -5,7 +5,7 @@ Read `docs/College_Baseball_Predictor_Project_Brief.md` and `historical/SPEC.md`
 - Preserve chronological cutoffs, provenance, raw evidence, known exclusions and original fields on corrections.
 - Keep regular-only, conference-inclusive and daily-updated forecasts separate.
 - Treat 2025 as development and 2026 as not certified untouched.
-- Do not automate D1Baseball collection under the current source restrictions.
+- Aaron explicitly authorized scraping public D1Baseball historical statistics for HAVOC on September 27, 2026, superseding the earlier project-level reference-only rule. Keep collection bounded, free and cached; do not bypass paywalls, authentication or technical access controls.
 - Never commit raw downloads, game-level exports, databases, evidence ZIPs, credentials or the original spreadsheets. Do not use `git add -f` to bypass these exclusions.
 - Keep tests runnable without external data. Use the separately retained bundle for full pipeline checks.
 - Keep `docs/SESSION_LOG.md` as a short rolling handoff: latest meaningful change, verification, unresolved blockers and next action. Replace stale entries instead of appending a diary.
@@ -13,7 +13,7 @@ Read `docs/College_Baseball_Predictor_Project_Brief.md` and `historical/SPEC.md`
 
 - **Personal, noncommercial, zero-budget project:** Aaron does not want to spend money. Use retained or free sources only; do not propose paid-data acquisition, subscriptions, paid hosting or trials that can incur charges as the next step. No provider contact is authorized.
 
-- Aaron selected Warren Nolan, NCAA and D1Baseball as the source focus. Reuse Nolan results; prioritize NCAA dated team-stat reports. D1Baseball remains reference-only under the recorded automation restriction; personal use does not establish automated-feed permission. No paid source detours.
+- Aaron selected Warren Nolan, NCAA and D1Baseball as the source focus. Reuse Nolan results; prioritize NCAA dated team-stat reports. D1Baseball public historical stats may be collected under Aaron’s explicit authorization above. No paid source detours.
 
 - Current model-improvement priority is team-level hitting and pitching. Follow the brief’s team-level-first plan; individual pitcher histories and the unfinished Stillwater preflight are deferred, not prerequisites. Avoid open-ended school-by-school collection.
 

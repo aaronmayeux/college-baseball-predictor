@@ -4,7 +4,7 @@ Reviewed September 26, 2026. Source evidence is retained below; the [completed p
 
 ## Decision
 
-**Use Aaron’s selected sources: Warren Nolan for the retained results backbone, NCAA for dated team batting/pitching reports, and D1Baseball for permitted reference use.** This is a personal, noncommercial, zero-budget project; [AGENTS.md](../AGENTS.md) owns those constraints. Elo stays; the net-run candidate stays closed and individual pitchers remain deferred.
+**Use Aaron’s selected sources: Warren Nolan for the retained results backbone, NCAA for dated team batting/pitching reports, and D1Baseball public historical tables under Aaron’s subsequent explicit authorization.** This is a personal, noncommercial, zero-budget project; [AGENTS.md](../AGENTS.md) owns those constraints. Elo stays; the net-run candidate stays closed and individual pitchers remain deferred.
 
 The direct NCAA route supplies populated national OBP/ERA samples in all four seasons. These are **usable inputs under the practical contract, with the exact-reconstruction limitations below**. Earlier dated snapshots are necessary in 2021/2022. The proposed SportsDataverse audit is superseded; no paid inquiry or school sweep is queued.
 
@@ -77,7 +77,7 @@ The planner computes the smallest number of dates covering the compatible interv
 **Decision:** stop treating one cumulative pre-conference snapshot per team as a complete four-season solution. Do not download the date sets merely to produce a known-incomplete training matrix, and do not drop Army/Columbia or relabel conference totals. Elo remains the usable model.
 
 **Current product decision:** Aaron accepts small documented gaps and explicitly conference-inclusive pre-NCAA stats. The earlier-window planning proposal is superseded by an actual OBP/ERA experiment using usable reports, supported seasons and Elo fallback. The strict date/phase findings above remain valid for exact full-season reconstruction; they no longer block practical model testing. Follow the [practical experiment contract](../historical/SPEC.md#practical-team-component-experiment--current-priority), including scope disclosure and sensitivity checks.
-[DATA.md](DATA.md#ncaa-dated-team-report-sample) owns evidence checkpoints and reproduction. D1 remains reference-only under its recorded automation prohibition; no paid source or provider contact is involved.
+[DATA.md](DATA.md#ncaa-dated-team-report-sample) owns evidence checkpoints and reproduction. The newer [HAVOC source pilot](Havoc_Source_Reconstruction.md) owns D1Baseball access and reconstruction findings; no paid source or provider contact is involved.
 
 ## Warren Nolan sample
 
@@ -110,7 +110,7 @@ The separate [ncaa_bbStats provenance page](https://collegebaseballstatspackage.
 |---|---|---|
 | College Splits / FanGraphs | [College Splits](https://collegesplits.com/about) advertises NCAA event data; [FanGraphs](https://blogs.fangraphs.com/weve-got-college-data/) names it as supplier and advertises history from 2021/member exports. Dated sample, complete fields and rights unverified. | Paid path removed; no inquiry queued. |
 | Highlightly | [Docs](https://highlightly.net/mlb-api/documentation/) describe team match stats as MLB, with possible missing fields; historical NCAA support unverified. [Terms](https://highlightly.net/terms/) constrain gaming use. | Not selected; no signup or paid plan. |
-| NCAA, ESPN, schools, D1Baseball | [Existing findings](Statistics_Discovery_and_Triage.md#sourceaccess-findings): access gaps, uneven histories, school-specific work and D1 automation prohibition. | Nolan/NCAA focus above supersedes the earlier pause; no school sweep. |
+| NCAA, ESPN, schools, D1Baseball | [Existing findings](Statistics_Discovery_and_Triage.md#sourceaccess-findings): access gaps, uneven histories, school-specific work and D1 access caveats; current collection authorization is in AGENTS.md. | Nolan/NCAA focus above supersedes the earlier pause; no school sweep. |
 
 The mirror findings above were documentation/metadata checks only; the direct NCAA sample is separately retained. Search/provenance pages exposed incidental current-year metadata; no 2026 games or features were ingested or evaluated.
 

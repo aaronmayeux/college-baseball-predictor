@@ -74,7 +74,7 @@ Retain the hypotheses of home/park effects, power sensitivity, opponent-specific
 | ESPN scoreboards and game summaries | Game IDs, results, box scores, play-by-play and pitch counts when available | Undocumented interfaces and uneven historical coverage; validate venue flags |
 | Boyd's World | ISR and historical ratings research | Accessible archives, cutoff dates, and permitted automated use |
 | Warren Nolan plus targeted official-school corrections | 2021–2025 results pilot: 40,615 games; all 1,520 team-season records reconcile after documented corrections | Independent national completeness, precise historical timing, broader phase verification, ongoing access/usage terms; original workbook attribution remains uncertain |
-| D1Baseball | Potential separately licensed source; direct public HTML retrieval tested successfully | Published terms prohibit automated monitoring/mining/copying; supported feed, license, historical completeness and price are unverified |
+| D1Baseball | Public historical batting tables plus linked official postseason boxes; Aaron authorized collection | One 2023 team reconstructed; no date filter observed; broader historical coverage and consistent access unverified |
 | FanGraphs college leaderboards | Advanced-stat comparisons and possible inputs | Export access, historical coverage, definitions, and usage terms |
 | Commercial providers | Prior research only; paid acquisition out of scope | Zero-budget rule in AGENTS.md |
 
@@ -141,16 +141,18 @@ no prediction gain is claimed. App data remains unchanged.
 sensitivities. Guillen favors higher HR/run ratios; it is not a power penalty. Both
 need later confirmation. [Standalone HBP](Hit_By_Pitch_Experiment.md) failed selection.
 HAVOC's original and caught-stealing formulas are now authorized benchmarks, superseding
-the inventory's earlier skip recommendation, but lack dated batting-strikeout counts.
+the inventory's earlier skip recommendation, and remain untested. The [D1Baseball reconstruction pilot](Havoc_Source_Reconstruction.md) recovered all pre-NCAA HAVOC counts for Virginia 2023 by subtracting eight postseason boxes from final totals.
 
-**Next:** lock a 2025 development confirmation of the separate Guillen and walk models
-before scoring. Use dated pre-NCAA inputs; final totals are ineligible. If needed,
-scope national reports, not another audit or school sweep. Seek a focused dated
-batting-K source for HAVOC without blocking usable candidates. No 2024 retuning,
-post-hoc combinations, 2026 use or failed-candidate reopening. Preserve the
-[practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority),
-small documented gaps and exact Elo fallback. App remains Elo. Score-correction review
-is available; fresh-year export is a separate roster/cutoff task. D1 stays reference-only.
+**Next:** obtain enough HAVOC inputs through the verified D1Baseball/postseason-subtraction
+route to test the original/net-steals formulas. Lock the source windows and bounded
+training/selection sample before fitting. Unsupported pairs retain Elo; no broad
+coverage audit. Final totals alone are ineligible.
+
+Guillen and walks separately await a locked 2025 development confirmation, without
+refitting or post-hoc combinations. No 2024 retuning, 2026 use or failed-candidate
+reopening. Follow the [practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority)
+and accept small documented gaps. D1 collection authorization is in AGENTS.md.
+Fresh-year export remains a separate roster/cutoff task; the app remains Elo.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
 

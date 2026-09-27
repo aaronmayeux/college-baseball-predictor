@@ -1,5 +1,31 @@
 # Data restoration and provenance
 
+## HAVOC D1Baseball reconstruction pilot
+
+`College_Baseball_HAVOC_Reconstruction_Evidence.zip` (811,282 bytes) preserves
+the Virginia 2023 rendered D1 batting-table capture, eight linked official raw
+postseason box scores and provenance, failed direct D1 request, and reconstructed
+pre-NCAA counts. SHA-256:
+
+```text
+de10c37163d642dc40e29a892585a634c5cf1340eb550efbdb03612546385552
+```
+
+Restore the original baseline below; extract this separate ZIP into a fresh
+directory. No v2 rebuild or previous NCAA component archive is required for this
+source-only pilot. With current repository code:
+
+```sh
+python3 scripts/reconstruct_havoc_pilot.py --raw-dir /absolute/path/to/havoc/raw
+python3 -m unittest discover -s scripts -p 'test_reconstruct_havoc_pilot.py'
+```
+
+[Source findings and next experiment](Havoc_Source_Reconstruction.md) own the
+scope and limits. The archive is not a national model-input dataset; outputs and
+raw responses remain excluded from Git.
+
+## Original baseline
+
 The data checkpoint is `College_Baseball_Historical_Baseline_Bundle.zip` (66.8 MB compressed), retained separately in the project sources. It is not committed to GitHub or published as a release asset.
 
 SHA-256:

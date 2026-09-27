@@ -6,7 +6,7 @@ Extends the recovered 2025 audit. Read `docs/College_Baseball_Predictor_Project_
 - Retain source bytes, URL, UTC retrieval time, SHA-256 and source-specific season metadata.
 - Historical RPI tables are roster/record reconciliation targets only; never feed final ratings or records into predictions.
 - Collect 2021–2024; preserve the 2025 snapshot. No 2026 collection or evaluation in this session.
-- No D1Baseball requests: inherited published automation prohibition remains binding for this pilot.
+- The original results pilot made no D1Baseball requests. For new HAVOC source work, Aaron’s September 27 authorization in AGENTS.md supersedes the previous project-level restriction.
 - Team roster presence is not tournament eligibility. Preserve each season's conference; never propagate the latest affiliation backward.
 - School name changes require explicit aliases with evidence. Do not fuzzy-merge institutions.
 
@@ -51,8 +51,7 @@ unchanged and pending its separate confirmation.
 
 Aaron authorized [Guillen and HAVOC benchmark testing](../docs/Guillen_Havoc_Experiment.md),
 superseding the inventory's prior skip recommendation. Guillen is a separate promising
-2024 retrospective candidate; original/net-steals HAVOC lack dated batting K and are
-untested. Preserve prior models, no post-hoc combination or power penalty, and confirm
+2024 retrospective candidate; original/net-steals HAVOC remain untested. A [D1Baseball subtraction pilot](../docs/Havoc_Source_Reconstruction.md) now reconstructs one pre-NCAA team; this is source evidence, not a fitted model. Preserve prior models, no post-hoc combination or power penalty, and confirm
 fixed candidates under a newly locked 2025 development protocol before deployment.
 
 ## Holdout decision
