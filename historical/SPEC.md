@@ -38,6 +38,12 @@ Aaron explicitly accepts imperfect historical team data to advance the predictor
 
 Further experiments should integrate these bounded checks; earlier-window feasibility planning and broad archive/school audits are not prerequisites. The [completed OBP/ERA experiment](../docs/Team_Component_Experiment.md) applies this contract: its raw-rate candidate failed 2024 game and advancement checks and is closed without promotion. The [schedule-aware extension](../docs/Schedule_Adjusted_Components.md) improved game scores but did not clear its primary regional-advancement check; Elo remains. The [schedule-only 2025 development extension](../docs/Schedule_Only_Development.md) was locked with 2021–2023 fitting and failed both game and regional probability-score comparisons. It is closed without promotion; do not retune these candidates on exposed 2024/2025. Elo remains unchanged.
 
+The distinct [offensive walk-rate experiment](../docs/Walk_Rate_Experiment.md) is complete:
+BB/recorded-PA passed 2023 selection and improved 2024 game/regional probability scores.
+It remains a locked confirmation candidate, not deployed; intervals cross zero and
+later-round scores regress. Its protocol/results own the scope and next confirmation.
+No retuning on 2024 or reopening closed candidates; Elo remains in the app.
+
 ## Holdout decision
 2026 cannot be certified untouched: recovered SESSION_RECORD.md says an earlier ESPN sample included 2026 and its original raw evidence was lost. Exact exposed games and whether outcomes informed choices are unknown. Do not collect or evaluate 2026 under an untouched-holdout claim. Reserve a future season prospectively after locking code, cutoffs and metrics; 2027 is the earliest candidate, not yet a committed test.
 

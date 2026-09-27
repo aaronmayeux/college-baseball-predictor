@@ -6,13 +6,23 @@ Updated September 27, 2026.
 
 Build a predictor whose primary use is **one run immediately before the NCAA tournament to fill the entire bracket through the champion**. Automatically import eligible data, produce game/advancement probabilities and explain picks. Optional late-season conference comparisons are secondary.
 
-The historical pilot covers **2021–2025: 40,615 completed D1 games, 1,520 team-season records and 310 stable team identities**. Records reconcile after documented corrections; three games use official-school supplements. V2 resolves two timing quarantines while preserving the original baseline. Provider agreement is not independent national certification.
+The 2021–2025 pilot retains 40,615 completed D1 games, 1,520 team-seasons and
+310 identities. Documented corrections reconcile provider records; three games use
+official supplements. This is not independent national certification.
 
-Fixed neutral Elo selected 68.9% of NCAA winners across 411 games in 2022–2024 and 63.2% across 136 games in 2025 development. The historical report owns detailed metrics. These are retrospective matchup evaluations, not bracket accuracy or an untouched holdout.
+Neutral Elo picked 68.9% of 411 NCAA winners in 2022–2024 and 63.2% of 136 in
+2025 development: retrospective matchup accuracy, not bracket accuracy or a holdout.
 
-Exact pre-NCAA cutoffs are now recorded: Wednesday 12:00 UTC before regionals, with a two-calendar-day assumed availability delay for date-only results. Regular-only and conference-inclusive inputs are separate. Point-in-time publication/completion is not certified. 2026 cannot be called untouched because prior probes exposed outcomes; discovery also encountered a default current-year player leaderboard. It was not used for model fitting or evaluation.
+Frozen cutoffs are Wednesday 12:00 UTC before regionals, with a two-calendar-day
+assumed availability delay. Regular-only and conference-inclusive modes remain separate;
+publication/completion timing is not certified. Prior outcome exposure disqualifies
+2026 as untouched; it has not been used for fitting or evaluation here.
 
-[DATA.md](DATA.md) owns the preserved checkpoints. V2 resolves timing conflicts, checks 1,019 official schedule entries and adds a cutoff-safe 2022–2025 seed benchmark. The [engine and app](Tournament_Engine.md) use the retained 2025 field in both frozen modes, with advancement odds, a complete bracket, comparisons and CSV exports. The app works offline or privately hosted on Sites.
+[DATA.md](DATA.md) owns restoration. V2 resolves two timing quarantines, checks 1,019
+official schedule entries and adds eligible 2022–2025 seed benchmarks while preserving
+the original baseline. The [engine/app](Tournament_Engine.md) provide the 2025 field
+in both modes, advancement odds, a full bracket, comparisons and CSV exports, offline
+or privately hosted on Sites.
 
 ## Working references
 
@@ -84,7 +94,7 @@ Normalized records retain source/team/player identities, season, game time, venu
 | 5. First usable app | Mobile-friendly bracket, probabilities, team comparisons, explanations and export | Aaron can open and use a complete 64-team development bracket through the champion; model/data versions, cutoffs and limitations are visible |
 | 6. Richer inputs and production readiness | Qualified hitting profiles, pitching depth/aces and availability; reliable fresh import | Validate additions against the baseline chronologically; qualify source access and coverage for inputs actually used |
 
-Python and SQLite implement the pipeline and baseline. Build order remains engine → usable app → richer inputs. Aaron accepts the first app’s appearance and behavior. Move to milestone 6 with focused input qualification; broad collection/access audits remain paused unless needed for a selected feature. This does not certify fresh nationwide ingestion or player features.
+Python/SQLite implement the pipeline. Aaron accepts the first app. Milestone 6 prioritizes focused experiments; broad audits remain paused. Fresh nationwide ingestion and player features remain unqualified.
 
 ## Evaluation rules
 
@@ -118,24 +128,29 @@ closed without promotion: it picked one extra game and regional champion but wor
 both probability scores. A fixed missing-game diagnostic did not change the conclusion.
 Do not retune closed candidates on exposed 2024/2025. **Elo remains in the app.**
 
-**Nolan refresh is connected to the Elo export:** [usage/results](Nolan_Refresh.md).
-The bounded three-page snapshot reparses from saved bytes and confirms ten unchanged
-games; 185 unpaired games retain verified historical fallback. All 64 teams, every
-matchup, advancement odds and bracket picks match in both cutoff modes. Candidate
-exports stay separate from app data. Unreviewed changed/new/conflicting/missing rows retain
-baseline values and review reasons; official corrections remain intact. No 2026 use.
+**Nolan refresh and evidence-backed corrections are connected to candidate Elo exports:**
+[usage and review contract](Nolan_Refresh.md). Saved-byte replay preserves historical
+fallback and official overrides. Explicit reviews bind source hashes and exact
+original/replacement rows; unsupported changes keep baseline values. Synthetic tests
+cover raw-to-Elo integration, provenance and cutoff separation. The retained bounded
+refresh matches the original forecasts; no actual correction has been approved and
+no prediction gain is claimed. App data remains unchanged.
 
-**Evidence-backed score correction acceptance is implemented:** explicit review files
-bind saved evidence and exact original/replacement rows. Accepted scores update only
-candidate forecasts; unsupported or unreviewed changes retain historical fallback.
-Synthetic tests cover the raw-to-Elo path, cutoff separation and original-v2 verification.
-No actual changed result has been approved, no prediction gain is claimed, and the app
-is unchanged. See [the review contract](Nolan_Refresh.md#reviewed-score-correction-acceptance).
+**Offensive walk rate is a promising distinct candidate:** the locked
+[BB/recorded-PA experiment](Walk_Rate_Experiment.md) improves 2024 game and regional
+probability scores, including both fixed sensitivity checks. Later-round regressions
+and uncertainty crossing zero prevent claiming reliable gains or promoting it now.
+The app remains Elo; prior failed candidates stay closed.
 
-**Next:** use this offline review path when a genuine score correction is available;
-no additional collection or coverage audit is needed to prove it. Fresh-year support
-still needs a separate roster/cutoff decision. New model experiments require a distinct hypothesis and chronological lock.
-[The practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) remains in force: accept small documented gaps, preserve leakage safeguards and exact Elo fallback. No broad source audit, school sweep, paid detour or raw-candidate reopening. D1 remains reference-only.
+**Next:** lock this exact model for a 2025 development confirmation before scoring.
+Use eligible dated pre-NCAA walk counts; final workbook totals cannot substitute.
+The retained national checkpoint covers 2021–2024. If necessary, separately scope one
+free national-report acquisition, not another coverage audit or school sweep. Do not
+retune on 2024, use 2026, or reopen failed candidates. The
+[practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority)
+remains in force: accept small documented gaps and preserve exact Elo fallback.
+Score-correction review remains available when genuine evidence arises; fresh-year
+export is a separate roster/cutoff task. D1 remains reference-only.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
 

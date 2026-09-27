@@ -18,6 +18,11 @@ The active [team-component source decision](Team_Component_Source_Decision.md) s
 
 “Test now” means proposed experiments **after data qualification and approval of the relevant family**. Hitting and pitching quality/depth have priority approval; the remaining families remain proposals. None is already proven predictive. The current plan prioritizes team-level counts; individual pitching coverage work remains deferred.
 
+The inventory's offensive BB/PA candidate now has a distinct
+[locked walk-rate experiment](Walk_Rate_Experiment.md), using recorded-PA counts from
+retained NCAA reports. It is promising retrospective evidence pending confirmation;
+this does not qualify power, batting K%, pitching control or individual-arm inputs.
+
 ## Original references inspected
 
 - STATIC: all eight sheet names and the Raw_Stats/Data_Master/Solver_Control/Style_Control inputs and formulas inspected. Raw_Stats has 64 teams and 75 columns. It already includes conventional offense, pitching, batted-ball rates, wOBA/wRC+, FIP/xFIP/SIERA and custom metrics. This inventory extends it with player roles/depth, uncertainty, actual availability, opportunities and matchup context.

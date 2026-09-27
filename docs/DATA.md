@@ -395,6 +395,22 @@ replacement. Source fingerprints are portable relative paths. The report's sourc
 subsets describe available inputs; strict sensitivity additionally routes flagged pairs
 to Elo. Preserve the existing checkpoints; do not commit generated game-level outputs.
 
+## Offensive walk-rate experiment
+
+Reuse the same baseline/v2 and combined NCAA checkpoint; no additional evidence ZIP.
+[Protocol/results](Walk_Rate_Experiment.md) owns the distinct BB/recorded-PA hypothesis.
+
+```sh
+python3 historical/walk_rate.py prepare --evidence-dir /absolute/path/to/baseball-ncaa
+python3 historical/walk_rate.py evaluate --evidence-dir /absolute/path/to/baseball-ncaa
+python3 -m unittest discover -s historical -p 'test_walk_rate.py'
+```
+
+Preparation reuses the component input qualification without rerunning its closed model.
+Independent prepared inputs, selection/forecast locks, predictions and report are ignored
+under `historical/walk_rate_output/`. Identical runs match bytes; changed source/code/
+protocol reject stale locks. No app output or preserved model is replaced.
+
 ## Schedule-aware component extension
 
 After reproducing the raw-component experiment immediately above, reuse the same NCAA

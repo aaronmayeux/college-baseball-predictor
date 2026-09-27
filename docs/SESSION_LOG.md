@@ -2,35 +2,35 @@
 
 Updated September 27, 2026. Git history owns prior sessions.
 
-## Completed — evidence-backed score corrections in candidate Elo exports
+## Completed — distinct offensive walk-rate experiment
 
-[Review contract and usage](Nolan_Refresh.md#reviewed-score-correction-acceptance).
-`tournament.build --refresh <saved-version> --accept-corrections <review.json>
---output tournament/output/<name>/forecast.json` accepts explicitly reviewed score
-corrections tied to every saved evidence hash and exact original/candidate row fingerprints.
-The actual parser must reproduce agreeing reciprocal observations. Dates, identities,
-phases, timing changes, new games and official overrides are not accepted by this path.
-Unreviewed changes keep historical fallback; invalid approvals fail the export.
+[Locked protocol, results and reproduction](Walk_Rate_Experiment.md).
+Tested BB/(AB+BB+HBP+SF+SH) from retained NCAA reports as one addition to
+conference-inclusive Elo. Fit 2021–2022, selected on 2023, refit through 2023,
+then scored previously exposed 2024 without retuning. Source preparation reuses
+existing qualifications only; no closed candidate was rescored or modified.
 
-The candidate retains original rows, corrected fields, new provenance and review details.
-The exporter independently checks original Elo against v2, then reports candidate
-probability differences. Baseline evidence and app data remain unchanged. Both cutoff
-modes and the two-day lag still apply; later corrections are retrospective, not certified
-as available at historical forecast time. No new collection, coverage audit, cost, model
-retuning, real correction acceptance or 2026 use.
+2024: 90/133 winners versus Elo's 89; game log loss 0.620988 → 0.616370 and
+Brier 0.215786 → 0.213651. Regional champion log loss 1.157268 → 1.117877 and
+Brier 0.636643 → 0.613727; both pick 10/16 champions. Both fixed sensitivities
+retain probability-score gains. This is promising retrospective evidence, not
+certified improvement: intervals cross zero and supers/finals regress.
 
 ## Verification
 
-266 data-free tests pass (199 scripts, 67 historical). Six new tests cover saved raw
-reciprocal pages through acceptance and real Elo/export integration (unrelated historical
-gates/bracket layout mocked), deterministic changed probabilities, original-v2 gate,
-provenance retention, stale/tampered reviews, invalid scores, ties, official protection,
-mode separation and cutoff exclusion. Existing fallback/app-output protection tests pass.
-`git diff --check` passes. No full-data scoring or new performance claim.
+273 data-free tests pass (199 scripts, 74 historical; seven new tests).
+Baseline/v2 rebuilds succeed. Five experiment outputs reproduce byte-for-byte;
+270 matchup equivalence checks and 32 regional paths pass. Source/protected inputs,
+old candidate code and app unchanged. `git diff --check` passes. No new collection,
+coverage audit, cost, 2025/2026 candidate evaluation or app promotion.
 
 ## Next concrete step
 
-Use the offline review path when a genuine score correction is available; do not collect
-more solely to find one. Fresh-year export remains a separate roster/cutoff task. The app
-remains the preserved 2025 Elo demo. No broad audits, paid services, UI/hosting changes
-or reopening closed model candidates.
+Lock this exact model for a 2025 development confirmation, before scoring.
+The retained national reports cover 2021–2024; use dated pre-NCAA 2025 walk counts,
+never final workbook totals. If needed, separately scope a bounded free NCAA report
+acquisition, not another coverage audit or school sweep. Review later-round behavior
+and bracket implications before deployment. Keep Elo, both cutoff modes and fallback.
+No 2024 retuning, failed-candidate reopening, individual-pitcher work or 2026 use.
+Evidence-backed score-correction review remains implemented; no actual correction
+has been accepted. Fresh-year export remains a separate roster/cutoff decision.
