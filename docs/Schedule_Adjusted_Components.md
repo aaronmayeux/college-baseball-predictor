@@ -154,9 +154,7 @@ all 32 regional paths qualify and winners match the super-regional fields. The e
 raw-component experiment remains byte-identical. Baseline/v2 preservation gates pass;
 no app, cutoff, prior experiment, source evidence, 2025 candidate or 2026 changes occurred.
 
-**Next:** freeze a schedule-only extension and evaluate it on **2025 development** using
-existing Nolan results, with chronological fitting specified before scoring. No NCAA
-component collection is required. Repeated 2024 exposure and known 2025 development status
-must remain explicit; do not call this a holdout. Compare game and regional advancement
-against matching Elo and retain fallback. This is one concrete extension of the useful
-schedule signal, not permission to keep trying weights against 2024 or reopen broad audits.
+**Follow-up completed:** the separately locked [2025 schedule-only development
+experiment](Schedule_Only_Development.md) failed game and regional probability-score
+comparisons. It is closed without promotion; Elo remains. The earlier diagnostic
+above and its original outputs are unchanged.

@@ -413,3 +413,22 @@ predictions and report. The schedule list and current-year opponent rating updat
 at the matching NCAA through-date. Previous-year carry and matchup probabilities remain
 identical to the conference-inclusive baseline. Fingerprints reject stale inputs/locks;
 identical reruns are byte-reproducible. No model is automatically deployed.
+
+## Schedule-only 2025 development
+
+Only restored/rebuilt baseline and timing/seed v2 are required; no NCAA component
+archive or new evidence ZIP. [Protocol/results](Schedule_Only_Development.md) owns
+the locked specification, known limitations and closed decision.
+
+```sh
+python3 historical/schedule_only.py prepare
+python3 historical/schedule_only.py evaluate
+python3 -m unittest discover -s historical -p 'test_schedule_only.py'
+```
+
+Preparation locks inputs, the 2021–2023 fitted model and all 2025 regional forecasts
+before evaluation. Outputs remain ignored in `historical/schedule_only_output/`:
+`prepared.json`, `model_lock.json`, `forecast_lock.json`, `predictions.json`,
+`report.json`. Reruns are byte-identical; changed inputs/code/protocol reject stale
+locks. The report includes calibration, stage/group scores, coverage, fallback and
+the fixed one-missing-appearance sensitivity. Existing model/app/evidence remain intact.

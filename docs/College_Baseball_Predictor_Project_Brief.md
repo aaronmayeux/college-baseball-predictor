@@ -105,14 +105,27 @@ Reproduction: [DATA.md](DATA.md).
 
 **Team-level-first plan:** defer individual pitcher roles, workload, depth/aces, availability and the Stillwater preflight. Prioritize practical team data and measured prediction comparisons.
 
-The [team-run experiment](Team_Run_Experiment.md) tested retained Nolan results and official/v2 corrections across all 256 tournament team-seasons in 2021–2024. Its net-runs/game candidate failed regional advancement validation and is **closed without promotion; Elo remains in the app**. No 2024 retuning, 2025 candidate evaluation or 2026 modeling occurred.
+The [net-run](Team_Run_Experiment.md) and [raw OBP/ERA](Team_Component_Experiment.md)
+candidates failed validation and are closed. The [schedule-aware OBP/ERA
+extension](Schedule_Adjusted_Components.md) improved 2024 game scores but failed its
+primary regional-advancement check. Strict fallback changed that conclusion; no
+post-scoring diagnostic was promoted. Detailed metrics and limitations stay in those
+reports. The [source report](Team_Component_Source_Decision.md) retains NCAA samples,
+snapshot gaps and unresolved count discrepancies.
 
-Aaron selected **Warren Nolan, NCAA and D1Baseball**, with zero spending. The [source report](Team_Component_Source_Decision.md) retains NCAA OBP/ERA samples for 2021–2024, snapshot gaps and five unresolved 2024 count discrepancies.
+**The [schedule-only 2025 development test](Schedule_Only_Development.md) is complete
+and closed without promotion.** Trained once on 2021–2023 and tested with full
+cutoff-eligible Nolan schedules, it picked 87/136 games versus Elo’s 86 and 8/16
+regional champions versus 7. However, game log loss/Brier worsened to
+0.675974/0.237253 versus 0.660978/0.233853, and regional advancement scores also
+worsened. A fixed one-missing-game diagnostic leaves that conclusion unchanged.
+All 64 teams qualified; no new collection or coverage audit was needed. 2024 motivated
+the hypothesis; 2025 remains development, not an untouched test. Do not retune this
+candidate against either season. **Elo remains in the app.**
 
-**Component experiments completed; Elo remains in the app.** The [raw OBP/ERA experiment](Team_Component_Experiment.md) failed 2024 game and regional-advancement checks and is closed without promotion. The [schedule-aware extension](Schedule_Adjusted_Components.md) improved 2024 game log loss (0.620988 → 0.592047) and Brier (0.215786 → 0.204155), with 89/133 winners for both models, but primary regional advancement remained slightly worse (9/16 champions versus Elo’s 10/16). Strict fallback changes that advancement conclusion; no diagnostic was promoted after seeing results.
-
-The schedule-only diagnostic looked stronger in 2024 but worse in 2023. **Next: lock a schedule-only extension for 2025 development using existing Nolan results**, with chronological fitting specified before scoring. No new NCAA collection is required. Keep 2024 exposure and 2025 development explicit; neither is an untouched test. Do not retune weights on 2024.
-
+**Next concrete product step:** a bounded free, on-demand Nolan refresh into a separate
+dataset version, preserving the verified Elo model, cutoff checks and offline demo.
+Further model experiments require a distinct hypothesis and a new chronological lock.
 [The practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority) remains in force: accept small documented gaps, preserve leakage safeguards and exact Elo fallback. No broad source audit, school sweep, paid detour or raw-candidate reopening. D1 remains reference-only.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.

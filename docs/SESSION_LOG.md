@@ -2,32 +2,32 @@
 
 Updated September 26, 2026. Git history owns prior sessions.
 
-## Completed — schedule-aware OBP/ERA experiment
+## Completed — schedule-only 2025 development test
 
-[Protocol/results](Schedule_Adjusted_Components.md); [reproduction](DATA.md#schedule-aware-component-extension).
-Added game-weighted opponent Elo through each NCAA snapshot date to the raw OBP/ERA
-model, with training-only weights/scaling and unchanged Elo offset. Trained 2021–2022,
-selected 2023, refit through 2023, evaluated exposed 2024. No new sources or fallback gaps.
+[Protocol/results](Schedule_Only_Development.md); [reproduction](DATA.md#schedule-only-2025-development).
+Locked one conference-inclusive schedule correction before scoring 2025: fixed ridge,
+training-only scaling/weight from 417 games in 2021–2023, no 2024 fitting. Full eligible
+Nolan schedules replace earlier NCAA snapshot restrictions; all 64 teams qualify.
+2024 only supplies eligible Elo carry; 2025 remains development, not a holdout.
 
-2024 game scores improve: log loss 0.620988 → 0.592047; Brier 0.215786 → 0.204155;
-both pick 89/133. Primary advancement remains slightly worse, with 9/16 regional
-champions versus Elo’s 10/16. Strict flagged-input fallback improves advancement,
-so that conclusion is sensitive; do not promote this diagnostic after scoring.
-**Keep Elo in the app.** Raw OBP/ERA and net-run remain closed.
-
-Schedule-only diagnostic: better 2024 game and advancement scores (91/133 games,
-10/16 champions), but worse than Elo in 2023. It is a research lead, not a selected model.
+**Failed; close without promotion or retuning. Keep Elo in the app.**
+Games: 87/136 versus Elo’s 86, but log loss/Brier worsen
+0.660978/0.233853 → 0.675974/0.237253. Regional champions: 8/16 versus 7,
+but advancement loss/Brier worsen 1.132374/0.633688 → 1.240951/0.677750.
+The predeclared one-missing-appearance diagnostic leaves the decision unchanged.
+Raw OBP/ERA, net-run and schedule-aware primary remain unpromoted; no new sources.
 
 ## Verification
 
-237 tests pass. Five new outputs rerun byte-identically; prior raw experiment unchanged.
-270 pairing comparisons match; all 32 regional paths qualify. Baseline/v2 gates pass;
-app, cutoffs and evidence unchanged. No 2025 candidate evaluation or 2026 modeling.
+242 tests pass. Five outputs rerun byte-identically; 136 matchup comparisons match;
+all 16 regional paths qualify. Baseline/v2 gates and protected fingerprints pass.
+App, both baseline modes, raw evidence and prior experiments unchanged. No 2026 modeling.
 
 ## Next concrete step
 
-Lock one schedule-only extension for **2025 development**, specifying chronological
-fitting before scoring. Use existing Nolan results; no NCAA collection needed. Preserve
-2024 exposure, 2025 development labeling, leakage checks, advancement comparison and
-Elo fallback. No retuning on 2024, broad coverage audit, paid services, individual
-pitchers/Stillwater, D1 automation or UI/hosting work.
+Implement a bounded, free, on-demand Nolan refresh into a separate dataset version,
+using the verified Elo model and existing cutoff/fallback rules. Preserve the offline
+demo; fresh-year import is not yet production-certified. No broad coverage audit,
+paid services, D1 automation, individual pitchers, UI redesign or hosting migration.
+Any further model candidate needs a distinct hypothesis and new chronological lock;
+do not keep trying weights on exposed 2024/2025.
