@@ -426,6 +426,31 @@ Independent files remain ignored under `historical/hit_by_pitch_output/`.
 Selection failure produces only preparation, selection lock and report; it stops
 before 2024 candidate predictions or advancement. The walk-rate experiment is unchanged.
 
+## Guillen/HAVOC count evidence and experiment
+
+`College_Baseball_Guillen_Havoc_Evidence.zip` (164,749 bytes) retains ten new free
+NCAA responses with request/UTC/hash metadata and the five derived Guillen outputs.
+It supplements baseline/v2 and the combined NCAA checkpoint, without replacing them.
+SHA-256: `754a5b826d9b8e62b6a07f27c44c2d55866a38bf9f9716cc7f524039bb101b9b`.
+Library identity: `libfile_53c49ab226748191bc070a9074dce845`.
+
+Verify the hash and extract into a fresh directory. `raw/` contains eight dated
+2021–2024 HR/run reports and 2023 SB/CS plus batting-average samples. The latter
+lack batting K, so HAVOC remains untested. Use current repository code:
+
+```sh
+python3 historical/guillen.py prepare --evidence-dir /absolute/path/to/ncaa --style-dir /absolute/path/to/style
+python3 historical/guillen.py evaluate --evidence-dir /absolute/path/to/ncaa --style-dir /absolute/path/to/style
+python3 -m unittest discover -s historical -p 'test_guillen.py'
+python3 -m unittest discover -s scripts -p 'test_ncaa_style_inputs.py'
+```
+
+The [protocol/results](Guillen_Havoc_Experiment.md) owns the candidate and limitations.
+Offline preparation verifies provenance and generates independent ignored outputs in
+`historical/guillen_output/`; matching reruns reproduce bytes, changed inputs reject
+stale locks. Do not copy the archived derived files over mismatching local locks.
+No source collection is required to reproduce this checkpoint.
+
 ## Schedule-aware component extension
 
 After reproducing the raw-component experiment immediately above, reuse the same NCAA

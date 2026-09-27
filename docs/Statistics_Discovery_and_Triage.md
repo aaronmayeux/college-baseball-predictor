@@ -14,7 +14,7 @@ The active [team-component source decision](Team_Component_Source_Decision.md) s
 | Test now, 4 | Stealing attempts and success; basic error/fielding measures as challengers | Cheap when boxes are complete, but narrower than full HAVOC or defense |
 | Research further | Available arms after recent use, exact HR-run share, advancement, park and handedness interactions, wOBA/FIP alternatives | Potentially valuable; histories, denominators or permissions need work |
 | Defer | Tracking-derived contact/pitch quality, full defensive runs, weather/travel effects, coach policy and detailed depletion simulation | High effort or unverified historical access; revisit after simpler features |
-| Skip as model inputs | Legacy HAVOC/DIRTY_DER formulas, assumed HR-run share, fixed style bonuses, pitcher wins/saves, clutch labels | Defective, redundant or weakly supported; raw evidence remains preserved |
+| Skip as model inputs | DIRTY_DER formula, fixed style bonuses, pitcher wins/saves, clutch labels | Defective, redundant or weakly supported; raw evidence remains preserved |
 
 “Test now” means proposed experiments **after data qualification and approval of the relevant family**. Hitting and pitching quality/depth have priority approval; the remaining families remain proposals. None is already proven predictive. The current plan prioritizes team-level counts; individual pitching coverage work remains deferred.
 
@@ -25,10 +25,15 @@ this does not qualify power, batting K%, pitching control or individual-arm inpu
 The separate [offensive HBP-rate test](Hit_By_Pitch_Experiment.md) failed 2023
 selection and is closed without 2024 scoring; do not stack it into the walk model.
 
+Aaron subsequently authorized [Guillen/HAVOC benchmarks](Guillen_Havoc_Experiment.md).
+Guillen now has a promising retrospective test; original and net-steals HAVOC remain
+untested because the dated national samples lack offensive K. This supersedes the
+legacy-formula skip recommendation for these two metrics, not their documented flaws.
+
 ## Original references inspected
 
 - STATIC: all eight sheet names and the Raw_Stats/Data_Master/Solver_Control/Style_Control inputs and formulas inspected. Raw_Stats has 64 teams and 75 columns. It already includes conventional offense, pitching, batted-ball rates, wOBA/wRC+, FIP/xFIP/SIERA and custom metrics. This inventory extends it with player roles/depth, uncertainty, actual availability, opportunities and matchup context.
-- Confirmed `Raw_Stats!Y2=(1-AF2)-(X2*0.4)`: own offensive BABIP feeds DIRTY_DER. `Z2=((V2*2)+T2+S2)/U2` omits caught stealing and opportunities. `AA2=(Q2*1.6)/M2` assumes HR run value. Data_Master standardizes within the 64-team field. These are unsuitable inherited definitions, not validated features.
+- Confirmed `Raw_Stats!Y2=(1-AF2)-(X2*0.4)`: own offensive BABIP feeds DIRTY_DER. `Z2=((V2*2)+T2+S2)/U2` omits caught stealing and opportunities. `AA2=(Q2*1.6)/M2` assumes HR run value. Data_Master standardizes within the 64-team field. These are unvalidated inherited definitions. Aaron subsequently authorized Guillen/HAVOC as experimental benchmarks; DIRTY_DER remains excluded.
 - DYNAMIC: inspected original XLSB shared strings and chart XML. Labels include CONTACT/POWER/SPEED/PITCHING/DEFENSE, the same advanced-stat families, and the original style classifications. Binary formula execution was not repeated; the prior PDF owns its detailed formula/cache audit. No workbook was modified or recalculated.
 - Read all 12 pages of `CWS_Predictor_Research_and_Design.pdf`. Retain its opponent adjustment, tournament resource and evidence-first hypotheses. Repository cutoffs and holdout decisions supersede its older proposed season range. Original advanced-stat attribution remains unresolved; a metric label is not source provenance.
 

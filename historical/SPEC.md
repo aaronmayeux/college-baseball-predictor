@@ -49,6 +49,12 @@ both 2023 selection probability scores. It is closed without 2024 candidate scor
 no sign reversal, sensitivity search or stacking after failure. Walk-rate remains
 unchanged and pending its separate confirmation.
 
+Aaron authorized [Guillen and HAVOC benchmark testing](../docs/Guillen_Havoc_Experiment.md),
+superseding the inventory's prior skip recommendation. Guillen is a separate promising
+2024 retrospective candidate; original/net-steals HAVOC lack dated batting K and are
+untested. Preserve prior models, no post-hoc combination or power penalty, and confirm
+fixed candidates under a newly locked 2025 development protocol before deployment.
+
 ## Holdout decision
 2026 cannot be certified untouched: recovered SESSION_RECORD.md says an earlier ESPN sample included 2026 and its original raw evidence was lost. Exact exposed games and whether outcomes informed choices are unknown. Do not collect or evaluate 2026 under an untouched-holdout claim. Reserve a future season prospectively after locking code, cutoffs and metrics; 2027 is the earliest candidate, not yet a committed test.
 

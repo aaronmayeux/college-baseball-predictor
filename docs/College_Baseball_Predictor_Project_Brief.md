@@ -136,22 +136,21 @@ cover raw-to-Elo integration, provenance and cutoff separation. The retained bou
 refresh matches the original forecasts; no actual correction has been approved and
 no prediction gain is claimed. App data remains unchanged.
 
-**Offensive walk rate is a promising distinct candidate:** the locked
-[BB/recorded-PA experiment](Walk_Rate_Experiment.md) improves 2024 game and regional
-probability scores, including both fixed sensitivity checks. Later-round regressions
-and uncertainty crossing zero prevent claiming reliable gains or promoting it now.
-[Offensive HBP rate](Hit_By_Pitch_Experiment.md) failed 2023 selection and is closed.
-Elo remains in the app; no candidate was retuned.
+**Promising candidates:** [Guillen](Guillen_Havoc_Experiment.md) and
+[walk rate](Walk_Rate_Experiment.md) each improve 2024 game/regional scores and fixed
+sensitivities. Guillen favors higher HR/run ratios; it is not a power penalty. Both
+need later confirmation. [Standalone HBP](Hit_By_Pitch_Experiment.md) failed selection.
+HAVOC's original and caught-stealing formulas are now authorized benchmarks, superseding
+the inventory's earlier skip recommendation, but lack dated batting-strikeout counts.
 
-**Next:** lock this exact model for a 2025 development confirmation before scoring.
-Use dated pre-NCAA walk counts; final totals are ineligible.
-Retained reports cover 2021–2024. If needed, scope one free national report,
-not another audit or school sweep. Do not
-retune on 2024, use 2026, or reopen failed candidates. The
-[practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority)
-remains in force: accept small documented gaps and preserve exact Elo fallback.
-Score-correction review remains available when genuine evidence arises; fresh-year
-export is a separate roster/cutoff task. D1 remains reference-only.
+**Next:** lock a 2025 development confirmation of the separate Guillen and walk models
+before scoring. Use dated pre-NCAA inputs; final totals are ineligible. If needed,
+scope national reports, not another audit or school sweep. Seek a focused dated
+batting-K source for HAVOC without blocking usable candidates. No 2024 retuning,
+post-hoc combinations, 2026 use or failed-candidate reopening. Preserve the
+[practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority),
+small documented gaps and exact Elo fallback. App remains Elo. Score-correction review
+is available; fresh-year export is a separate roster/cutoff task. D1 stays reference-only.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.
 
