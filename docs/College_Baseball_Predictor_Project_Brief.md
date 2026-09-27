@@ -51,7 +51,7 @@ The mobile-friendly app needs on-demand pre-tournament import, a complete bracke
 
 The [statistics inventory](Statistics_Discovery_and_Triage.md) owns candidate definitions, source findings, coverage, cutoff safety, thresholds and scaling alternatives, including both workbooks and the research PDF. Aaron prioritized hitting profiles and pitching quality/depth; individual features, thresholds and scaling remain unselected.
 
-The [player audit](Historical_Player_Data_Coverage.md) and [field map](Tournament_Source_Availability_2025.md) own coverage gaps. National player coverage remains unverified. The fallback preserves all 64 teams and v2 probabilities in both modes. Engine checks establish mechanics, not calibration; missing workload limits availability modeling. Final totals are audit-only.
+The [player audit](Historical_Player_Data_Coverage.md) and [field map](Tournament_Source_Availability_2025.md) own unverified player coverage. Fallback preserves all 64 teams in both modes. Engine checks establish mechanics, not calibration or pitching availability. Unadjusted final totals are audit-only.
 
 Carry these product requirements forward:
 
@@ -74,11 +74,11 @@ Retain the hypotheses of home/park effects, power sensitivity, opponent-specific
 | ESPN scoreboards and game summaries | Game IDs, results, box scores, play-by-play and pitch counts when available | Undocumented interfaces and uneven historical coverage; validate venue flags |
 | Boyd's World | ISR and historical ratings research | Accessible archives, cutoff dates, and permitted automated use |
 | Warren Nolan plus targeted official-school corrections | 2021–2025 results pilot: 40,615 games; all 1,520 team-season records reconcile after documented corrections | Independent national completeness, precise historical timing, broader phase verification, ongoing access/usage terms; original workbook attribution remains uncertain |
-| D1Baseball | Public historical batting tables plus linked official postseason boxes; Aaron authorized collection | One 2023 team reconstructed; no date filter observed; broader historical coverage and consistent access unverified |
+| D1Baseball | Public historical batting tables plus linked official postseason boxes; Aaron authorized collection | Virginia 2023 plus Texas/Louisiana Tech 2022 reconstructed; no date filter; bounded expansion blocked by browser verification and missing boxes |
 | FanGraphs college leaderboards | Advanced-stat comparisons and possible inputs | Export access, historical coverage, definitions, and usage terms |
 | Commercial providers | Prior research only; paid acquisition out of scope | Zero-budget rule in AGENTS.md |
 
-National player coverage remains unverified. baseballr is an access tool. MLB-derived metrics need college-specific validation.
+baseballr is an access tool; MLB-derived metrics need college-specific validation.
 
 Normalized records retain source/team/player identities, season, game time, venue, retrieval time and raw references. Preserve missingness, cache responses, deduplicate games and validate baseball innings. Imports are on demand; scheduled refresh is out of scope.
 
@@ -128,13 +128,11 @@ closed without promotion: it picked one extra game and regional champion but wor
 both probability scores. A fixed missing-game diagnostic did not change the conclusion.
 Do not retune closed candidates on exposed 2024/2025. **Elo remains in the app.**
 
-**Nolan refresh and evidence-backed corrections are connected to candidate Elo exports:**
-[usage and review contract](Nolan_Refresh.md). Saved-byte replay preserves historical
-fallback and official overrides. Explicit reviews bind source hashes and exact
-original/replacement rows; unsupported changes keep baseline values. Synthetic tests
-cover raw-to-Elo integration, provenance and cutoff separation. The retained bounded
-refresh matches the original forecasts; no actual correction has been approved and
-no prediction gain is claimed. App data remains unchanged.
+**Nolan refresh connects to candidate Elo exports:** [review contract](Nolan_Refresh.md).
+Saved-byte replay preserves fallback and official overrides. Reviews bind source hashes
+and exact original/replacement rows; unsupported changes retain baseline values.
+Synthetic tests verify integration, provenance and cutoffs. The bounded refresh matches
+original forecasts; no correction or prediction gain has been approved.
 
 **Promising candidates:** [Guillen](Guillen_Havoc_Experiment.md) and
 [walk rate](Walk_Rate_Experiment.md) each improve 2024 game/regional scores and fixed
@@ -143,15 +141,21 @@ need later confirmation. [Standalone HBP](Hit_By_Pitch_Experiment.md) failed sel
 HAVOC's original and caught-stealing formulas are now authorized benchmarks, superseding
 the inventory's earlier skip recommendation, and remain untested. The [D1Baseball reconstruction pilot](Havoc_Source_Reconstruction.md) recovered all pre-NCAA HAVOC counts for Virginia 2023 by subtracting eight postseason boxes from final totals.
 
-**Next:** obtain enough HAVOC inputs through the verified D1Baseball/postseason-subtraction
-route to test the original/net-steals formulas. Lock the source windows and bounded
-training/selection sample before fitting. Unsupported pairs retain Elo; no broad
-coverage audit. Final totals alone are ineligible.
+**HAVOC expansion is checkpointed, not tested:** the [locked chronological
+experiment](Havoc_Chronological_Experiment.md) targets eight teams per year in 2021–2023.
+Fourteen final tables were captured; Texas and Louisiana Tech 2022 have complete
+subtractions. D1 browser verification and failed/unsupported official boxes blocked
+completion. Only one training matchup and no selection matchups qualify, so neither
+formula was fitted or scored. Code, tests and raw evidence are retained.
 
-Guillen and walks separately await a locked 2025 development confirmation, without
-refitting or post-hoc combinations. No 2024 retuning, 2026 use or failed-candidate
-reopening. Follow the [practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority)
-and accept small documented gaps. D1 collection authorization is in AGENTS.md.
+**Next:** complete missing captures and named postseason exclusions within that same
+sample when access permits, then run both locked formulas against Elo. Do not replace
+teams, expand scope after scoring, or restart a broad audit. Final totals alone remain
+ineligible; unsupported pairs retain Elo.
+
+Guillen and walks await separate locked 2025 development confirmation: no refitting,
+post-hoc combinations, 2024 retuning, 2026 use or failed-candidate reopening. Follow
+the [practical contract](../historical/SPEC.md#practical-team-component-experiment--current-priority).
 Fresh-year export remains a separate roster/cutoff task; the app remains Elo.
 
 [Input qualification](Model_Input_Qualification.md) retains the richer-count extractors and gaps. Pitcher thresholds remain open.

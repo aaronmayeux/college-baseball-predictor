@@ -2,34 +2,35 @@
 
 Updated September 27, 2026. Git history owns prior sessions.
 
-## Completed — HAVOC source route demonstrated
+## Completed — bounded HAVOC checkpoint, not a model test
 
-Aaron prioritized obtaining HAVOC inputs and explicitly authorized scraping public
-D1Baseball historical stats, superseding the project’s reference-only rule.
-[Source proof](Havoc_Source_Reconstruction.md): Virginia 2023 D1 batting rows load
-in the browser, although direct HTTP returns 403. No date filter observed.
-All eight postseason boxes linked from its schedule downloaded successfully.
+[Locked protocol/results](Havoc_Chronological_Experiment.md) target eight teams in each
+of 2021–2023: first two regionals alphabetically. Fourteen complete final batting
+tables retained. Texas and Louisiana Tech 2022 now have complete pre-NCAA subtractions
+(69→61 and 64→61 games), supplementing the separately retained Virginia 2023 pilot.
+Twenty-nine official box requests are cached: 16 HTTP 200, nine 404, four certificate
+502 responses. Failed/missing/unsupported boxes remain explicit exclusions.
 
-Reconstruction removes every NCAA game from final-season batting counts: 65 → 57
-games, batting K 418 → 368, BB 319 → 284, HBP 82 → 74, SB 83 → 71, CS 20 → 16.
-Original HAVOC 1.358696; net-steals version 1.271739. These are input values,
-not predictive results. No fitting, 2026 collection or app changes.
+D1Baseball repeatedly showed Cloudflare browser verification. One normal reload
+recovered an earlier page; collection stopped when verification returned. No bypass.
+The evidence checkpoint preserves successes, failures and exact remaining game IDs.
 
-## Verification
+## Verification and limitations
 
-Seven new data-free tests pass. Real parser checks both teams’ player sums, dates,
-scores, hashes and all eight exclusions against retained Nolan games. D1 DOM sums
-and final runs reconcile; offline output repeats byte-for-byte. Diff check passes.
-Evidence ZIP and restoration instructions are in DATA.md; raw data is not committed.
+21 focused data-free tests pass. Offline preparation/report repeat byte-for-byte;
+baseline/v2 preservation gates pass. Only one 2022 matchup and no 2021/2023 matchups
+qualify. The coverage gate correctly stops before fitting or scoring either formula.
+**HAVOC is still untested, not rejected.** Elo and the app remain unchanged.
+Reproduction and checkpoint identity: DATA.md. New code: scripts/havoc_inputs.py and
+historical/havoc.py. Tests need no external data.
 
 ## Next concrete step
 
-Expand this verified route to a bounded 2021–2023 training/selection sample and
-test original/net-steals HAVOC. Lock source windows and fallback coverage before
-scoring. Final totals require complete subtraction; do not mix a full pre-NCAA
-denominator with older NCAA numerator snapshots. One team is insufficient for
-model testing. No broad coverage audit or open-ended school sweep.
+Resume the same fixed sample when public D1 access permits; finish missing captures
+and named excluded-game boxes using the saved checkpoint. Do not retry cached failures
+automatically, replace teams or start a broad coverage audit. Once chronological
+minimums pass, test both authorized formulas under the locked protocol. No later-year
+scoring or deployment is authorized by this preliminary screen alone.
 
-Guillen and walks remain separate promising candidates awaiting fixed 2025
-development confirmation. Do not combine or retune them after exposed results.
-Elo remains in the app; closed candidates stay closed, individual pitchers deferred.
+Guillen and walks still await separate locked 2025 confirmation; no combinations,
+2024 retuning, 2026 use or reopening failed candidates. Individual pitchers deferred.

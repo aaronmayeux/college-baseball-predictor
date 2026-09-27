@@ -1,5 +1,47 @@
 # Data restoration and provenance
 
+## Bounded HAVOC chronological checkpoint
+
+`College_Baseball_HAVOC_Bounded_Evidence.zip` (1,839,941 bytes) supplements the
+baseline/v2 and earlier one-team pilot. Library identity:
+`libfile_e05bf98834348191be66146c4c9dc7ac`. SHA-256:
+
+```text
+3550601fe7ab74cf0f9cb55cbc02f1d1a2447cb6eb4186d1c9bb85286db3e29d
+```
+
+It preserves rendered D1 capture evidence (including incomplete/loading captures and
+the browser-verification blocker), 29 linked official responses with metadata, an
+internal file-hash manifest, and the final prepared inputs/blocked report. Fourteen
+final batting tables are complete; only Texas/Louisiana Tech 2022 have complete
+subtraction in the fixed sample. Both HAVOC formulas remain **untested**, not rejected.
+[Protocol, results and exact continuation](Havoc_Chronological_Experiment.md).
+
+Restore/rebuild the baseline and timing/seed v2 using the instructions below. Verify
+the archive hash and extract it into a separate directory, then use repository code:
+
+```sh
+python3 historical/havoc.py prepare --raw-dir /absolute/path/to/checkpoint/raw --output historical/havoc_output/bounded-v1
+python3 historical/havoc.py evaluate --raw-dir /absolute/path/to/checkpoint/raw --output historical/havoc_output/bounded-v1
+python3 -m unittest discover -s scripts -p 'test*havoc*.py'
+python3 -m unittest discover -s historical -p 'test_havoc.py'
+```
+
+Matching reruns repeat byte-for-byte. Changed source/code/protocol rejects stale locks;
+a future completed source checkpoint needs a new explicitly versioned output directory.
+The current `evaluate` report deliberately says `fitted: false, scored: false`; successful
+command execution is not evidence that the model test occurred. No 2024–2026 candidate
+scoring or app output is written. Raw files and generated reports remain ignored.
+
+`python3 scripts/havoc_inputs.py inspect --raw-dir <checkpoint>/raw` lists the bounded
+source inventory; `reconstruct` emits eligible counts and per-team missing game IDs.
+The optional `collect-boxes` command requests only cached-schedule-linked exclusions
+needed by captured final tables. It reuses saved responses, including failures, without
+retrying or overwriting them; it never requests D1Baseball. New browser captures must
+contain the full historical Overall batting table or schedule, exact URL, identity,
+selected year and UTC capture time. Blank class/position cells are preserved; loading
+rows, incomplete tables and wrong-season pages cannot qualify.
+
 ## HAVOC D1Baseball reconstruction pilot
 
 `College_Baseball_HAVOC_Reconstruction_Evidence.zip` (811,282 bytes) preserves

@@ -63,12 +63,11 @@ selection. Retain Elo for any unsupported matchup. No failed model is reopened.
 
 ## Next step
 
-Use this route for a bounded 2021–2023 training/selection sample, expanding only
-enough to run the prespecified HAVOC comparison. Collect final batting tables and
-only excluded-game boxes, deduplicating shared boxes across teams. Lock coverage
-and source-window rules before fitting; stop at selection failure. If selected,
-evaluate exposed 2024 and advancement under the existing experiment contract.
-One team is insufficient to fit or assess HAVOC, so that test remains outstanding.
+The [bounded chronological expansion](Havoc_Chronological_Experiment.md) now owns
+continuation: a fixed 24-team-season sample, two additional complete 2022 reconstructions,
+retained partial captures and a source-access blocker. Both formulas remain untested
+because training/selection coverage is insufficient. Do not restart collection from
+this one-team pilot or change the locked sample after scoring.
 
 Restore the baseline and the separate HAVOC reconstruction evidence per
 [DATA.md](DATA.md#havoc-d1baseball-reconstruction-pilot), then run:
